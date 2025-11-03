@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/28 00:28:29 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/03 19:06:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ static void onpress_switch_key(t_switch_key *switch_key, int key, t_main *game)
 	{
 		printf("im doing a press event!\n"); // event that will happen when pressed
 		if (key == XK_e)
-			center_mouse(game);
+			next_spell(game);
+		else if (key == XK_q)
+			prev_spell(game);
+		else if (key == XK_space)
+			cast_spell(game);
 		switch_key->key_switch = true;
 	}
 }

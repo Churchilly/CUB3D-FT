@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:25:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:35:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	cub_render(t_main *g)
 {
 	render_background(g);
 	render_scene(g);
+	animate_objects(g);
 	render_objects(g);
 	// do raycasting and store its data
 	// according to raycasting data
@@ -27,5 +28,6 @@ void	cub_render(t_main *g)
 
 	draw_minimap(g);
 	draw_image(&g->window, &g->img, 500, 400);
+	render_spellbook(g);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }

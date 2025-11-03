@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 15:57:19 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:07:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ struct s_main
 	t_spellbook	spellbook;
 	t_key_list	key_list;
 	t_cub3_image img;
+	t_texture	spellbook_fireball; // tmp [BURAK]
+	t_texture	spellbook_lock; // tmp
+	t_texture	spellbook_unlock; // tmp 
 };
 
 void	__init__(t_main *game);

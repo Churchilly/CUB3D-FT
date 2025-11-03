@@ -6,29 +6,40 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 16:02:05 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:25:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
-// next spell
+
 void	next_spell(t_main *g)
 {
-	static int	state = 0;
-	
-	if (state == 0)
-	{
-		state++;
-	}
-	else if (state == 100)
-	{
-		state = 0;
-	}
-	else
-	{
-		state++;
-	}
+	if (g->spellbook.changing_direction != 0)
+		return ;
+	g->spellbook.changing_direction = 1;
+	g->spellbook.cooldown = SPELL_COOLDOWN;
 }
-// prev spell
-// idle spellbook
-// cast spell
+
+void	prev_spell(t_main *g)
+{
+	if (g->spellbook.changing_direction != 0)
+		return ;
+	g->spellbook.changing_direction = -1;
+	g->spellbook.cooldown = SPELL_COOLDOWN;
+}
+
+void	cast_spell(t_main *g)
+{
+	if (g->spellbook.cooldown > 0 || g->spellbook.changing_direction != 0)
+	{
+		if (g->spellbook.cooldown > 0)
+			printf("spell in cooldown :: %d\n", g->spellbook.cooldown);
+		return ;
+	}
+	 if (g->spellbook.current == FIRBALL)
+		cast_fireball(g);
+	else if (g->spellbook.current == LOCK)
+		cast_lock(g);
+	else if (g->spellbook.current == UNLOCK)
+		cast_unlock(g);
+}

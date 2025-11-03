@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:34:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:35:05 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,13 @@ static int	blend_colors(int bg_color, int fg_color, double alpha)
 // note to my self
 // think about remove the fucking t_cast_data XD you know why
 // 
-static void draw_door_column(t_main *g, int x, t_ray *ray)
+static void draw_door_column(t_main *g, int x, t_ray *ray, t_door *door)
 {
 	int		height;
 	int		start;
 	int		end;
 	int		y;
-	int		field_color;
 	int		bg_color;
-	int		final_color;
-	double	alpha;
 
 	height = (int)(WIN_HEIGHT / ray->distance);
 	start = (-height / 2) + (WIN_HEIGHT / 2);
@@ -88,13 +85,10 @@ static void draw_door_column(t_main *g, int x, t_ray *ray)
 	if (end >= WIN_HEIGHT)
 		end = WIN_HEIGHT - 1;
 	y = start - 1;
-	field_color = DOOR_FIELD_COLOR;
-	alpha = DOOR_BLEND_ALPHA;
 	while (++y <= end)
 	{
 		bg_color = get_pixel_color(&g->window, x, y);
-		final_color = blend_colors(bg_color, field_color, alpha);
-		put_pixel(x, y, final_color, &g->window);
+		put_pixel(x, y, blend_colors(bg_color, door->color, door->alpha), &g->window);
 	}
 }
 
@@ -131,7 +125,7 @@ static void	render_door(t_main *g, t_door *door)
 			d.direction += d.fov_rad / WIN_WIDTH;
 			continue ;
 		}
-		draw_door_column(g, x, &ray);
+		draw_door_column(g, x, &ray, door);
 		d.direction += d.fov_rad / WIN_WIDTH;
 	}
 }

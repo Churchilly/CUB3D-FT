@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:36:29 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:48:53 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ static void	insert_barrier(t_door *door, t_vector_int map_pos, double axis)
 		door->barrier.e.x = door->barrier.s.x + DOOR_WIDTH;
 		door->barrier.e.y = map_pos.y + 0.5;
 	}
-	door->state = LOCKED;
+	door->state = CLOSE;
+	door->alpha = DOOR_ALPHA_LOCKED;
+	door->color = DOOR_COLOR_LOCKED;
 }
 
 static void	create_barriers(t_main *g)

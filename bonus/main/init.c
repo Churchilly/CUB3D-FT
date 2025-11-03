@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/31 06:29:59 by root             ###   ########.fr       */
+/*   Updated: 2025/11/03 20:04:31 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ void	__init__(t_main *game)
 	game->img = create_image("cub3_images/images/book.cub3");
 	_init_keys(game);
 	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);
+	game->spellbook.current = FIRBALL;
+	game->spellbook.cur_texture = &game->spellbook_fireball;
+	game->spellbook.cooldown = 0;
+	game->spellbook.changing_direction = 0;
+	game->spellbook.win_pos.x = 450;
+	game->spellbook.win_pos.y = 450;
 }
 
 void _init_hooks(t_main *game)

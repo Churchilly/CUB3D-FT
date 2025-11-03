@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 16:44:16 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:42:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,25 @@
 
 
 # define DOOR_WIDTH 0.4
-# define DOOR_ALPHA_MAX 0.7
-# define DOOR_FIELD_COLOR 0xFF4990
+
+# define DOOR_ALPHA_OPEN 0.4
+# define DOOR_ALPHA_LOCKED 0.7
+
+# define DOOR_COLOR_OPEN 0x0000FF
+# define DOOR_COLOR_LOCKED 0xFF0000
+
 # define DOOR_INTERACT_DISTANCE 2.0
-# define DOOR_ANIMATION_SPEED 0.1
+# define DOOR_LOCK_ANIMATION_SPEED 0.01
 
 typedef struct s_door_wall	t_door_wall;
 typedef struct s_door		t_door;
 
 enum e_door_states
 {
-	OPEN = 11,
-	CLOSE, // also unlocked
-	LOCKED,
-	OPENING, // for animation
-	CLOSING // for animation
+	OPEN = 11, // blue, alpha 0.4, no collision
+	CLOSE, // locked (red, alpha 0.8, has collision)
+	LOCKING, // animation: OPEN -> CLOSE
+	UNLOCKING // animation: CLOSE -> OPEN
 };
 
 struct s_door_wall
@@ -50,7 +54,10 @@ struct s_door
 	double		alpha;
 };
 
+typedef struct s_main	t_main;
+
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);
+t_door		*find_interactable_door(t_main *g);
 
 /*
 door on map
