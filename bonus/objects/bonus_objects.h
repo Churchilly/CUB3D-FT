@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:13:10 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:31:31 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 16:45:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ void	add_object(t_obj_list *list, int type, void *obj);
 void	add_to_render_queue(t_obj_list *list, t_obj_node *object, t_player *player);
 void	clear_render_queue(t_obj_list *list);
 void	create_render_queue(t_main *g);
+// in process
+void	animate_objects(t_main *g);
 
 #endif

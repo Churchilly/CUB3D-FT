@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:08:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:57:19 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "../objects/doors.h"
 # include "../objects/bonus_objects.h"
 # include "../objects/bonus_fireball.h"
+# include "../spellbook/bonus_spellbook.h"
 
 # include <stdbool.h>
 
@@ -55,6 +56,7 @@ struct s_main
 	t_window	window;
 	t_ray_list	rays;
 	t_obj_list	objects;
+	t_spellbook	spellbook;
 	t_key_list	key_list;
 	t_cub3_image img;
 };

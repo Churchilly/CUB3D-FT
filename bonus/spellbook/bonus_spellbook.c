@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spellbook.h                                        :+:      :+:    :+:   */
+/*   bonus_spellbook.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 20:10:39 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/20 20:12:31 by btuncer          ###   ########.fr       */
+/*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/11/03 16:02:05 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct s_pos t_pos;
-typedef struct s_fireball t_fireball;
-
-struct s_pos
+#include "../main/main.h"
+// next spell
+void	next_spell(t_main *g)
 {
-    int x;
-    int y;
-};
-
-struct s_fireball
-{
-    int id;
-    t_pos pos;
-};
+	static int	state = 0;
+	
+	if (state == 0)
+	{
+		state++;
+	}
+	else if (state == 100)
+	{
+		state = 0;
+	}
+	else
+	{
+		state++;
+	}
+}
+// prev spell
+// idle spellbook
+// cast spell

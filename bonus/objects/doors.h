@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:30:22 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 16:44:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,14 @@
 
 
 # define DOOR_WIDTH 0.4
-# define DOOR_BLEND_ALPHA 0.4
+# define DOOR_ALPHA_MAX 0.7
 # define DOOR_FIELD_COLOR 0xFF4990
+# define DOOR_INTERACT_DISTANCE 2.0
+# define DOOR_ANIMATION_SPEED 0.1
 
 typedef struct s_door_wall	t_door_wall;
 typedef struct s_door		t_door;
 
-// if door hit a player while closing it opens ig
-// while opening or closing the door make you are casting a spell
-// so you cant FUCKING MOVE
-// problem solved
-// when pressing e to open the door respect the fucking animation and dont move
-// make wall collisions before the animation !!
-// for the animation real time needed merge point XD
 enum e_door_states
 {
 	OPEN = 11,
@@ -51,6 +46,8 @@ struct s_door
 {
 	int			state;
 	t_segment	barrier;
+	int			color;
+	double		alpha;
 };
 
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);

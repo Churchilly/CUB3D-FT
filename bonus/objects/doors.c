@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:30:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 16:38:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,26 @@ t_door_wall	*find_door_wall(int x, int y, t_door_wall *new)
 		if (x == door_walls[i].map_pos.x && y == door_walls[i].map_pos.y)
 			return (&door_walls[i]);
 	}
+	return (NULL);
+}
+
+void	toggle_door(t_door *door, int op)
+{
+	// open door
+	if (op == OPEN && door->state == CLOSE)
+		door->state = OPENING;
+	// close door
+	if (op == CLOSE && door->state == OPEN)
+		door->state = CLOSING;
+	// lock door
+	if (op == LOCKED && door->state == CLOSE)
+		door->state = LOCKED;
+	// unlock door
+	if (op == CLOSE && door->state == LOCKED)
+		door->state = CLOSE;
+}
+
+t_door	*get_door_in_view()
+{
 	return (NULL);
 }

@@ -37,7 +37,7 @@
 - [ ] fireball have white spaces that doesnt renders
 
 ### Doors
-- [ ] in map validation door must process as 0
+- [ ] in map validation door must process as D
 - [ ] add doors as array in map struct. need door count then alloc sizeof(t_door) * doorcount
 - [ ] doors have lock -> int lock
 - [ ] a door have its location and direction -> t_vec pos, double dov(radian)
