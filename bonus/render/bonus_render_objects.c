@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 17:35:05 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:44:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,23 @@ static int	get_pixel_color(t_window *win, int x, int y)
 	dst = win->addr + (y * win->line_length + x * (win->bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
 }
-
+// takes two pixel color and blend them according to alpha (transparency)
 static int	blend_colors(int bg_color, int fg_color, double alpha)
 {
-	int	bg_r;
-	int	bg_g;
-	int	bg_b;
-	int	fg_r;
-	int	fg_g;
-	int	fg_b;
-	int	r;
-	int	g;
-	int	b;
+	int	bg_rgb[3];
+	int	fg_rgb[3];
+	int	rgb[3];
 
-	bg_r = (bg_color >> 16) & 0xFF;
-	bg_g = (bg_color >> 8) & 0xFF;
-	bg_b = bg_color & 0xFF;
-	fg_r = (fg_color >> 16) & 0xFF;
-	fg_g = (fg_color >> 8) & 0xFF;
-	fg_b = fg_color & 0xFF;
-	r = (int)(fg_r * alpha + bg_r * (1.0 - alpha));
-	g = (int)(fg_g * alpha + bg_g * (1.0 - alpha));
-	b = (int)(fg_b * alpha + bg_b * (1.0 - alpha));
-	return ((r << 16) | (g << 8) | b);
+	bg_rgb[0] = (bg_color >> 16) & 0xFF;
+	bg_rgb[1] = (bg_color >> 8) & 0xFF;
+	bg_rgb[2] = bg_color & 0xFF;
+	fg_rgb[0] = (fg_color >> 16) & 0xFF;
+	fg_rgb[1] = (fg_color >> 8) & 0xFF;
+	fg_rgb[2] = fg_color & 0xFF;
+	rgb[0] = (int)(fg_rgb[0] * alpha + bg_rgb[0] * (1.0 - alpha));
+	rgb[1] = (int)(fg_rgb[1] * alpha + bg_rgb[1] * (1.0 - alpha));
+	rgb[2] = (int)(fg_rgb[2] * alpha + bg_rgb[2] * (1.0 - alpha));
+	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
 // note to my self
@@ -141,7 +135,7 @@ void	render_objects(t_main *g)
 	{
 		if (curr->type == DOOR)
 			render_door(g, curr->object);
-		// add fireball here xd
+		// add fireball [BURAK]
 		curr = curr->next_render;
 	}
 }

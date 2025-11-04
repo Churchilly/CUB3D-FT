@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 19:40:55 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:29:52 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void cya(void)
 	dump_crit_gc();
 }
 
+// need to delete this shit
 void	tmp_spellbook_textures(t_main *g)
 {
 	t_texture	*target_texture;
@@ -71,7 +72,6 @@ void	tmp_spellbook_textures(t_main *g)
 		printf("FUCK UNLOCK\n");
 		exit(1);
 	}
-	printf("FUCK FUCK FUCK\n");
 }
 
 int main(int argc, char **argv)
@@ -96,6 +96,7 @@ int main(int argc, char **argv)
 	mlx_mouse_hide(game.window.mlx, game.window.win);
 	cub_render(&game); // add the render and its done easy right
 	_init_hooks(&game);
+	center_mouse(&game);
 	mlx_loop(game.window.mlx);
 	map_cleanup(&game);
 	return 0;

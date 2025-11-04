@@ -6,11 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:41:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:47:09 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _GNU_SOURCE // delete it later its just for me .p
+
 #include "../main/main.h"
 #include <X11/keysym.h>
 #include <math.h>
@@ -22,26 +23,28 @@ void	change_position(t_main *g, int key)
 	t_vector	movement;
 
 	player = &g->map.player;
+	movement.x = 0;
+	movement.y = 0;
 	(void)key;
 	if (g->key_list.w)
 	{
-		movement.x = MOVE_MULT * cos(player->dov) * MOVE_SPEED;
-		movement.y = MOVE_MULT * sin(player->dov) * MOVE_SPEED;
+		movement.x += MOVE_MULT * cos(player->dov) * MOVE_SPEED;
+		movement.y += MOVE_MULT * sin(player->dov) * MOVE_SPEED;
 	}
 	if (g->key_list.s)
 	{
-		movement.x = -MOVE_MULT * cos(player->dov) * MOVE_SPEED;
-		movement.y = -MOVE_MULT * sin(player->dov) * MOVE_SPEED;
+		movement.x += -MOVE_MULT * cos(player->dov) * MOVE_SPEED;
+		movement.y += -MOVE_MULT * sin(player->dov) * MOVE_SPEED;
 	}
 	if (g->key_list.d)
 	{
-		movement.x = MOVE_MULT * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
-		movement.y = MOVE_MULT * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.x += MOVE_MULT * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.y += MOVE_MULT * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
 	}
 	if (g->key_list.a)
 	{
-		movement.x = MOVE_MULT * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
-		movement.y = MOVE_MULT * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.x += MOVE_MULT * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.y += MOVE_MULT * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
 	}
 	movement = check_collision(g, movement);
 	player->pos.x += movement.x;

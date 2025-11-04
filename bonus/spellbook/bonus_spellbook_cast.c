@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:46:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 18:50:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:39:19 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	cast_fireball(t_main *g)
 {
 	g->spellbook.cooldown = SPELL_COOLDOWN;
+	// [BURAK]
 }
 
 void	cast_lock(t_main *g)
