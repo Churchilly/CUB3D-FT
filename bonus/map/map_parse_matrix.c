@@ -61,15 +61,25 @@ static char	**copy_matrix(char **matrix, int height)
 	return (copy);
 }
 
-// static void	free_copy_matrix(char **copy) HERE2
-// {
-// 	int l;
+static void	check_map_enclosed(char **matrix, t_main *g)
+{
+	int	x;
+	int	y;
 
-// 	l = -1;
-// 	// while (copy[++l]) HERE1
-// 	// 	free(copy[l]);
-// 	// free(copy); HERE1
-// } HERE2
+	y = -1;
+	while (matrix[++y])
+	{
+		x = -1;
+		while (matrix[y][++x])
+		{
+			if (matrix[y][x] == '0')
+			{
+				if (!flood_fill(matrix, x, y))
+					map_cleanup_exit("Error: Map is not properly enclosed by walls", g);
+			}
+		}
+	}
+}
 
 void	parse_matrix(char *raw_map, t_main *g)
 {
@@ -86,10 +96,5 @@ void	parse_matrix(char *raw_map, t_main *g)
 	copy = copy_matrix(g->map.matrix, matrix_height);
 	if (!copy)
 		map_cleanup_exit("Error: Memory allocation failed", g);
-	// validate the matrix through copy
-	if (!flood_fill(copy, g->map.player.pos.x, g->map.player.pos.y))
-	{
-		// free_copy_matrix(copy); HERE1
-		map_cleanup_exit("Error: Player area is not properly enclosed by walls", g);
-	}
+	check_map_enclosed(copy, g);
 }
