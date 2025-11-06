@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 19:07:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:41:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include "../spellbook/bonus_spellbook.h"
 
 # include <stdbool.h>
+
+
+# include "../sound/sound.h"
 
 typedef struct s_key_list t_key_list;
 typedef struct s_main t_main;
@@ -61,7 +64,7 @@ struct s_main
 	t_cub3_image img;
 	t_texture	spellbook_fireball; // tmp [BURAK]
 	t_texture	spellbook_lock; // tmp
-	t_texture	spellbook_unlock; // tmp 
+	t_texture	spellbook_unlock; // tmp
 };
 
 void	__init__(t_main *game);

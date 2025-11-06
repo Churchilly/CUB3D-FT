@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 20:25:45 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:42:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ void	cast_spell(t_main *g)
 			printf("spell in cooldown :: %d\n", g->spellbook.cooldown);
 		return ;
 	}
-	 if (g->spellbook.current == FIRBALL)
+	if (g->spellbook.current == FIRBALL)
+	{
+		sound(SOUND_FIREBALL);
 		cast_fireball(g);
+	}
 	else if (g->spellbook.current == LOCK)
 		cast_lock(g);
 	else if (g->spellbook.current == UNLOCK)

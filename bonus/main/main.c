@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/04 17:29:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:58:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ __attribute__((destructor))
 void cya(void)
 {
 	dump_crit_gc();
+	printf("sound cleanup start\n");
+	sound(SOUND_UNINIT); // sound causes stillreachable - its normal
+	printf("sound cleanup end\n");
 }
 
 // need to delete this shit
@@ -85,6 +88,9 @@ int main(int argc, char **argv)
 	}
 	// initialize game struct and create mlx connection to use mlx_xpm_file_to_image in cub_map
 	__init__(&game);
+	printf("duck\n");
+	sound(SOUND_INIT);
+	printf("duck\n");
 	// read, validate, parse .cub file
 	cub_map(argv[1], &game); // game  goes here because i need to use mlx connection to convert textures
 	cub_objects(&game); // creates objects
