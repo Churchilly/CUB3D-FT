@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/06 12:42:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:40:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	cast_spell(t_main *g)
 	}
 	if (g->spellbook.current == FIRBALL)
 	{
-		sound(SOUND_FIREBALL);
+		system(AUDIO_FIREBALL);
 		cast_fireball(g);
 	}
 	else if (g->spellbook.current == LOCK)
