@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:48:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/04 17:23:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/09 01:19:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void	change_spell(t_spellbook *book, t_main *g)
 		spell = 0;
 	book->current = (t_spell)spell;
 	if (book->current == FIRBALL)
-		book->cur_texture = &g->spellbook_fireball;
+		book->cur_texture = &g->spellbook.texture_fireball;
 	else if (book->current == LOCK)
-		book->cur_texture = &g->spellbook_lock;
+		book->cur_texture = &g->spellbook.texture_lock;
 	else if (book->current == UNLOCK)
-		book->cur_texture = &g->spellbook_unlock;
+		book->cur_texture = &g->spellbook.texture_unlock;
 }
 
 static void	animation(t_main *g, int *phase, double original_y)
@@ -57,12 +57,12 @@ static void	idle_animation(t_spellbook *book)
 {
 	static int	timer = 0;
 	
-	if (timer < 100)
+	if (timer < SPELLBOOK_IDLE_ANIM_SIZE)
 		book->win_pos.y += SPELLBOOK_IDLE_ANIM_SPEED;
 	else
 		book->win_pos.y -= SPELLBOOK_IDLE_ANIM_SPEED;
 	timer++;
-	if (timer >= 200)
+	if (timer >= SPELLBOOK_IDLE_ANIM_SIZE * 2)
 		timer = 0;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:25:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/25 20:21:05 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/09 23:55:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void	init_render_data(t_render_data *d, t_main *g, t_ray *ray)
 	if (d->wall_start < 0)
 		d->wall_start = 0;
 	d->wall_end = (d->wall_height / 2) + (WIN_HEIGHT / 2);
-	if (d->wall_end < 0)
-		d->wall_end = 0;
+	if (d->wall_end >= WIN_HEIGHT)
+		d->wall_end = WIN_HEIGHT - 1;
 	if (ray->side == 'N' || ray->side == 'S')
 		d->wall_hit = ray->hit.x;
-	else // ray->side == 'E' || ray->side == 'W'
+	else
 		d->wall_hit = ray->hit.y;
 	d->wall_hit = d->wall_hit - floor(d->wall_hit);
 } 
@@ -51,15 +51,23 @@ static void	draw_wall_column(t_main *g, int x, t_ray *ray)
 	
 	init_render_data(&d, g, ray);
 	d.texture_x = (int)(d.wall_hit * (double)d.wall_texture->width);
-	d.texture_x = d.wall_texture->width - d.texture_x - 1;
-	d.texture_step = (double)d.wall_texture->height / d.wall_height;
+	if (d.texture_x < 0)
+		d.texture_x = 0;
+	if (d.texture_x >= d.wall_texture->width)
+		d.texture_x = d.wall_texture->width - 1;
+	d.texture_step = (double)d.wall_texture->height / (double)d.wall_height;
 	d.texture_pos = (d.wall_start - WIN_HEIGHT / 2 + d.wall_height / 2) * d.texture_step;
-	y =	d.wall_start - 1;
+	y = d.wall_start - 1;
 	while (++y <= d.wall_end)
 	{
-		d.texture_y = (int)d.texture_pos & (d.wall_texture->height - 1);
+		d.texture_y = (int)d.texture_pos;
+		if (d.texture_y < 0)
+			d.texture_y = 0;
+		if (d.texture_y >= d.wall_texture->height)
+			d.texture_y = d.wall_texture->height - 1;
 		d.texture_pos += d.texture_step;
 		color = *(int *)(d.wall_texture->addr + (d.texture_y * d.wall_texture->line_length + d.texture_x * (d.wall_texture->bits_per_pixel / 8)));
+		int rune_color = *(int *)(d.wall_texture->addr + (d.texture_y * d.wall_texture->line_length + d.texture_x * (d.wall_texture->bits_per_pixel / 8)));
 		put_pixel(x, y, color, &g->window);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/06 12:41:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/09 01:57:56 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 # include "../render/render.h"
 # include "../render/render_ray_list.h"
 # include "../cub3_images/cub3_images.h"
-# include "../objects/doors.h"
 # include "../objects/bonus_objects.h"
+# include "../objects/doors.h"
 # include "../objects/bonus_fireball.h"
+# include "../objects/bonus_enemy.h"
 # include "../spellbook/bonus_spellbook.h"
 
 # include <stdbool.h>
@@ -62,9 +63,6 @@ struct s_main
 	t_spellbook	spellbook;
 	t_key_list	key_list;
 	t_cub3_image img;
-	t_texture	spellbook_fireball; // tmp [BURAK]
-	t_texture	spellbook_lock; // tmp
-	t_texture	spellbook_unlock; // tmp
 };
 
 void	__init__(t_main *game);

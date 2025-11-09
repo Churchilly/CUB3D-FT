@@ -6,13 +6,30 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 18:48:53 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/09 02:30:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
 #include <stddef.h>
 void	add_object(t_obj_list *list, int type, void *obj);
+
+static void	create_enemies(t_main *g)
+{
+	int	i;
+	t_enemy *enemy;
+
+	i = -1;
+	while (++i < NUM_OF_FIREBALLS)
+	{
+		enemy = malloc(sizeof(t_fireball)); // alloc_crit
+		enemy->health = ENEMY_HEALTH;
+		enemy->state = IDLE;
+		enemy->position.x = -1.0;
+		enemy->position.y = -1.0;
+		add_object(&g->objects, ENEMY, enemy);
+	}
+}
 
 static void	create_fireballs(t_main *g)
 {
@@ -74,6 +91,7 @@ static void debug(t_main *g)
     t_obj_node *curr = g->objects.all;
     int fireball_count = 0;
     int door_count = 0;
+    int enemy_count = 0;
     
     printf("=== OBJECT LIST DEBUG ===\n");
     
@@ -98,6 +116,18 @@ static void debug(t_main *g)
             printf("    End:   (%.2f, %.2f)\n", door->barrier.e.x, door->barrier.e.y);
             printf("\n");
         }
+        else if (curr->type == ENEMY)
+        {
+            t_enemy *enemy = (t_enemy *)curr->object;
+            printf("ENEMY #%d:\n", enemy_count++);
+            printf("  Position: (%.2f, %.2f)\n", enemy->position.x, enemy->position.y);
+            printf("  Health: %d\n", enemy->health);
+            printf("  State: %d (%s)\n", enemy->state, 
+                   enemy->state == IDLE ? "IDLE" : enemy->state == ALIVE ? "ALIVE" : 
+                   enemy->state == BURNING ? "BURNING" : "UNKNOWN");
+            printf("  Status: %s\n", (enemy->position.x < 0) ? "INACTIVE" : "ACTIVE");
+            printf("\n");
+        }
         else
         {
             printf("UNKNOWN OBJECT TYPE: %d\n", curr->type);
@@ -108,14 +138,15 @@ static void debug(t_main *g)
     printf("=== SUMMARY ===\n");
     printf("Total Fireballs: %d\n", fireball_count);
     printf("Total Doors: %d\n", door_count);
-    printf("Total Objects: %d\n", fireball_count + door_count);
+    printf("Total Enemies: %d\n", enemy_count);
+    printf("Total Objects: %d\n", fireball_count + door_count + enemy_count);
     printf("==================\n\n");
 }
 
 void	cub_objects(t_main *g)
 {
 	create_fireballs(g);
+	create_enemies(g);
 	create_barriers(g);
-
 	debug(g);
 }

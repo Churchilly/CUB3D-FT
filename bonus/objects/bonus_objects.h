@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:13:10 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 16:45:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/09 01:58:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef struct s_fov_data		t_fov_data;
 enum e_object_types
 {
 	DOOR,
-	FIREBALL
+	FIREBALL,
+	ENEMY
 };
 
 struct s_object_node

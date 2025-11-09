@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:31:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/09 02:23:37 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,14 @@ rendering
 	put the fireball texture after wall
 */
 
-#include "../main/vector.h"
+#ifndef BONUS_FIREBALL_H
+# define BONUS_FIREBALL_H
+
+# include "../main/vector.h"
 
 # define NUM_OF_FIREBALLS 5
+# define FIREBALL_DAMAGE 5
+# define FIREBALL_BURN 3
 
 typedef struct s_fireball	t_fireball;
 // while rendering the fireball
@@ -39,3 +44,5 @@ struct	s_fireball
 	t_vector	position;
 	double		direction;
 };
+
+#endif
