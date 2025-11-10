@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/09 01:31:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:21:44 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void	_init_spellbook(t_spellbook *spellbook, void *mlx)
 	spellbook->changing_direction = 0;
 	spellbook->win_pos.x = (WIN_WIDTH - (SPELLBOOK_WIDTH / SPELLBOOK_SCALE)) / 2;
 	spellbook->win_pos.y = (WIN_HEIGHT * 1.1 - (SPELLBOOK_HEIGHT / SPELLBOOK_SCALE));
+	spellbook->original_win_pos.x = spellbook->win_pos.x;
+	spellbook->original_win_pos.y = spellbook->win_pos.y;
 }
 
 void	__init__(t_main *game)

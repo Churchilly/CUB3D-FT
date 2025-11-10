@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 20:10:39 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/09 01:25:59 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:21:05 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 # define SPELL_COOLDOWN 60
 # define SPELLBOOK_ANIM_SPEED 5.0
-# define SPELLBOOK_IDLE_ANIM_SPEED 0.05
-# define SPELLBOOK_IDLE_ANIM_SIZE 250
-# define SPELLBOOK_SCALE 3.0
+# define SPELLBOOK_IDLE_ANIM_SPEED 0.3
+# define SPELLBOOK_IDLE_ANIM_SIZE 100
+# define SPELLBOOK_SCALE 2.0
 # define SPELLBOOK_WIDTH 1248
 # define SPELLBOOK_HEIGHT 832
 
@@ -40,6 +40,7 @@ struct s_spellbook
 	t_spell			current;
 	t_texture		*cur_texture; // tmp
 	t_vector		win_pos;
+	t_vector		original_win_pos;
 	t_texture		texture_fireball;
 	t_texture		texture_lock;
 	t_texture		texture_unlock;

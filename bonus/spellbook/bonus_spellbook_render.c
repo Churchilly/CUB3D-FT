@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:48:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/09 01:19:59 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:39:05 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static void	change_spell(t_spellbook *book, t_main *g)
 		book->cur_texture = &g->spellbook.texture_unlock;
 }
 
-static void	animation(t_main *g, int *phase, double original_y)
+static void	change_animation(t_main *g, int *phase)
 {
 	if (*phase == 1)
 	{
 		g->spellbook.win_pos.y += SPELLBOOK_ANIM_SPEED;
-		if (g->spellbook.win_pos.y >= original_y + 200)
+		if (g->spellbook.win_pos.y >= g->spellbook.original_win_pos.y + 200)
 		{
 			change_spell(&g->spellbook, g);
 			*phase = 2;
@@ -44,13 +44,18 @@ static void	animation(t_main *g, int *phase, double original_y)
 	else if (*phase == 2)
 	{
 		g->spellbook.win_pos.y -= SPELLBOOK_ANIM_SPEED;
-		if (g->spellbook.win_pos.y <= original_y)
+		if (g->spellbook.win_pos.y <= g->spellbook.original_win_pos.y)
 		{
-			g->spellbook.win_pos.y = original_y;
+			g->spellbook.win_pos.y = g->spellbook.original_win_pos.y;
 			g->spellbook.changing_direction = 0;
 			*phase = 0;
 		}
 	}	
+}
+
+static void	walk_animation(t_main *g, int *phase)
+{
+	
 }
 
 static void	idle_animation(t_spellbook *book)
@@ -69,21 +74,23 @@ static void	idle_animation(t_spellbook *book)
 // make idle animation whebook goes up and down little by little
 void	animate_spellbook(t_main *g)
 {
-	static double	original_y = 0;
 	static int		phase = 0;
 
 	if (g->spellbook.changing_direction == 0)
 	{
+		if (g->key_list.w || g->key_list.s || g->key_list.d || g->key_list.a)
+		{
+			phase = 3;
+			return ;
+		}
 		idle_animation(&g->spellbook);
 		phase = 0;
 		return ;
 	}
 	if (phase == 0)
-	{
-		original_y = g->spellbook.win_pos.y;
 		phase = 1;
-	}
-	animation(g, &phase, original_y);
+	change_animation(g, &phase);
+	walk_animation(g, &phase);
 }
 
 void	render_spellbook(t_main *g)
@@ -97,6 +104,7 @@ void	render_spellbook(t_main *g)
 
 	if (!g->spellbook.cur_texture)
 		return ;
+		
 	texture = g->spellbook.cur_texture;
 	y = -1;
 	while (++y < texture->height / SPELLBOOK_SCALE)
