@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/09 23:59:45 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:29:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int loop_event(t_main *game)
 	double deltaTime;
 	if (game->spellbook.cooldown > 0)
 		game->spellbook.cooldown--;
-	animate_spellbook(game);
 	cub_render(game);
 	change_position(game, 0);
 	change_direction(game, 0);
