@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/10 17:21:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:13:05 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ static void	_init_texture(t_texture *src, char *dst, void *mlx)
 
 static void	_init_spellbook(t_spellbook *spellbook, void *mlx)
 {
+	int	target_width;
+	int	scaled_width;
+	int	scaled_height;
+
 	_init_texture(&spellbook->texture_fireball, "textures/fireball_spellbook.xpm", mlx);
 	_init_texture(&spellbook->texture_lock, "textures/lock_spellbook.xpm", mlx);
 	_init_texture(&spellbook->texture_unlock, "textures/unlock_spellbook.xpm", mlx);
@@ -63,8 +67,12 @@ static void	_init_spellbook(t_spellbook *spellbook, void *mlx)
 	spellbook->cur_texture = &spellbook->texture_fireball;
 	spellbook->cooldown = 0;
 	spellbook->changing_direction = 0;
-	spellbook->win_pos.x = (WIN_WIDTH - (SPELLBOOK_WIDTH / SPELLBOOK_SCALE)) / 2;
-	spellbook->win_pos.y = (WIN_HEIGHT * 1.1 - (SPELLBOOK_HEIGHT / SPELLBOOK_SCALE));
+	target_width = (int)(WIN_WIDTH * SPELLBOOK_TARGET_WIDTH_RATIO);
+	spellbook->scale = (float)SPELLBOOK_WIDTH / (float)target_width;
+	scaled_width = (int)(SPELLBOOK_WIDTH / spellbook->scale);
+	scaled_height = (int)(SPELLBOOK_HEIGHT / spellbook->scale);
+	spellbook->win_pos.x = (WIN_WIDTH - scaled_width) / 2;
+	spellbook->win_pos.y = WIN_HEIGHT - scaled_height + (WIN_HEIGHT / 10);
 	spellbook->original_win_pos.x = spellbook->win_pos.x;
 	spellbook->original_win_pos.y = spellbook->win_pos.y;
 }

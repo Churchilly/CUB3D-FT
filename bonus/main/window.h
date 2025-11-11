@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:43:19 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/10 17:00:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:33:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 typedef struct s_window t_window;
 
-# define WIN_HEIGHT 1200
-# define WIN_WIDTH 1600
+# define WIN_HEIGHT 600
+# define WIN_WIDTH 800
 
 struct s_window
 {
