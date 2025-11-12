@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:54:19 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/12 19:36:10 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/12 21:59:48 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@
 static void draw_line_of_mana(t_main *g, int vol)
 {
     int counter;
-    
+    int color;
+
+    if (g->map.player.mana <= MANA_CRIT_VAL)
+        color = CRIT_STAT_COLOR;
+    else
+        color = MANA_COLOR;
     counter = 20;
     while (counter--)
     {
-        put_pixel(vol, MANA_POS_Y + counter, MANA_COLOR, &g->window);
+        put_pixel(vol, MANA_POS_Y + counter, color, &g->window);
     }
 }
 

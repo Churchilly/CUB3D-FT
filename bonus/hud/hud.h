@@ -6,13 +6,14 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/12 19:43:18 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/12 21:57:16 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIMAP_H
 # define MINIMAP_H
 
+// MINIMAP DEFINES
 # define MMAP_GRID_SIZE 20
 # define MMAP_GRID_COUNT 9
 # define MMAP_RANGE 7
@@ -20,15 +21,20 @@
 
 # define MMAP_PLAYER_IMAGE_OFFSET 90.0
 
+// PLAYER STATS DEFINES
 # define MANA_COLOR 0xff2757f5
 # define MANA_POS_X 20
 # define MANA_POS_Y 227
+# define MANA_CRIT_VAL 40.0
 # define MAX_MANA 150.0
 
 # define HEALTH_COLOR 0xffff2424
 # define HEALTH_POS_X 20
 # define HEALTH_POS_Y 205
+# define HEALTH_CRIT_VAL 50.0
 # define MAX_HEALTH 175.0
+
+# define CRIT_STAT_COLOR 0xff502370
 
 # include "../minilibx/mlx.h"
 # include "../cub3_images/cub3_images.h"
