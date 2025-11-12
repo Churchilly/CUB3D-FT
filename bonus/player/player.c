@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 19:03:09 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:25:18 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <math.h>
 
 #include <stdio.h>
+
 void	change_position(t_main *g, int key)
 {
 	t_player	*player;

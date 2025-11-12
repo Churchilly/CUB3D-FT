@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/09 01:57:56 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:38:58 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../objects/bonus_fireball.h"
 # include "../objects/bonus_enemy.h"
 # include "../spellbook/bonus_spellbook.h"
+# include "../hud/hud.h"
 
 # include <stdbool.h>
 
@@ -62,10 +63,13 @@ struct s_main
 	t_obj_list	objects;
 	t_spellbook	spellbook;
 	t_key_list	key_list;
-	t_cub3_image img;
+	t_cub3_gallery gallery;
+	t_main_menu main_menu;
 };
 
 void	__init__(t_main *game);
 void _init_hooks(t_main *game);
+void center_window(t_main *g);
+long long	current_time_ms(void);
 
 #endif

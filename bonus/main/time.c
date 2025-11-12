@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.h                                          :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 01:16:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/28 18:36:59 by root             ###   ########.fr       */
+/*   Created: 2025/11/12 18:45:03 by btuncer           #+#    #+#             */
+/*   Updated: 2025/11/12 18:46:32 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#include <sys/time.h>
 
-# define MMAP_GRID_SIZE 16
-# define MMAP_EXPANDED_GRID_SIZE 32
-# define MMAP_GRID_COUNT 10
+long long	current_time_ms(void)
+{
+	struct timeval	tval;
 
-# include "../../minilibx/mlx.h"
-# include "../../main/main.h"
-
-void draw_minimap(t_main *game);
-
-#endif
+	gettimeofday(&tval, (void *)0);
+	return ((long long)(tval.tv_sec) *1000 + (tval.tv_usec) / 1000);
+}

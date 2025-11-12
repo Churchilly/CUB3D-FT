@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/11 17:13:05 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:35:36 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,24 @@
 #include "../gc/gc.h"
 #include "../player/player.h"
 #include "../events/events.h"
+#include <X11/Xlib.h>
+#include "../minilibx/mlx_int.h"
+
+void center_window(t_main *g)
+{
+	t_xvar *xvar;
+	Display *display;
+	Window window;
+	Screen *screen;
+	
+	xvar = (t_xvar *)g->window.mlx;
+	display = xvar->display;
+	window = xvar->win_list->window;
+	screen = DefaultScreenOfDisplay(display);
+	XMoveWindow(display, window, screen->width / 2 - WIN_WIDTH / 2,
+											screen->height / 2 - WIN_HEIGHT / 2 - WIN_HEIGHT / 5);	
+	XFlush(xvar->display);
+}
 
 static void _init_keys(t_main *game)
 {
@@ -38,7 +56,7 @@ static void _init_keys(t_main *game)
 	game->key_list.spc.key = false;
 	game->key_list.spc.key_switch = false;
 	game->key_list.f3.key = false;
-	game->key_list.f3.key_switch = true;
+	game->key_list.f3.key_switch = false;
 }
 
 static void	_init_texture(t_texture *src, char *dst, void *mlx)
@@ -89,7 +107,10 @@ void	__init__(t_main *game)
 	}
 	game->map.player.pos.x = -1;
 	game->map.player.pos.y = -1;
-	game->img = create_image("cub3_images/images/book.cub3");
+	game->map.player.mana = MAX_MANA;
+	game->map.player.health = MAX_HEALTH;
+	init_gallery_with_config(&(game->gallery), NULL); // config will be here. // no hud inits before gallery
+	init_main_menu(game, &(game->main_menu));
 	_init_keys(game);
 	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);
 	_init_spellbook(&game->spellbook, game->window.mlx);
@@ -100,5 +121,6 @@ void _init_hooks(t_main *game)
 	mlx_hook(game->window.win, 2, 1L << 0, onpress_event, game);
 	mlx_hook(game->window.win, 3, 1L << 1, onrelease_event, game);
 	mlx_hook(game->window.win, 17, 0, terminate_hook, NULL);
+	mlx_mouse_hook(game->window.win, mouse_click, game);
 	mlx_loop_hook(game->window.mlx, loop_event, game);
 }

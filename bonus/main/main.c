@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/11 18:05:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:26:56 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,9 @@ int main(int argc, char **argv)
 	cub_objects(&game); // creates objects
 	cub_create_window(&game); // game goes here for memory management stuff 
 	dump_gc();
-	mlx_mouse_hide(game.window.mlx, game.window.win);
 	cub_render(&game); // add the render and its done easy right
 	_init_hooks(&game);
-	center_mouse(&game);
+	center_window(&game);
 	mlx_loop(game.window.mlx);
 	map_cleanup(&game);
 	return 0;

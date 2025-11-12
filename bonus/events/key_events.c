@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/03 19:06:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:46:04 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int onpress_event(int key, t_main *game)
 int onrelease_event(int key, t_main *game)
 {
 	if (key == XK_Escape)
-		terminate_hook();
+		switch_main_menu(game);
 	else if (key == XK_w)
 		game->key_list.w = false;
 	else if (key == XK_a)

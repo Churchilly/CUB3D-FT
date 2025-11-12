@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 19:03:09 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:40:24 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ struct s_player
 {
 	t_vector	pos;
 	double		dov; // direction of view
+	double mana;
+	double health;
 };
 
 void	change_direction(t_main *g, int key);
@@ -37,6 +39,11 @@ void	change_position(t_main *g, int key);
 void	change_direction_advanced(t_main *g, int direction, int weight);
 
 t_vector	check_collision(t_main *g, t_vector movement);
+
+void update_mana(t_main *g);
+void use_mana(t_main *g, double val);
+void update_health(t_main *g);
+void damage_player(t_main *g, double val);
 
 #endif
 

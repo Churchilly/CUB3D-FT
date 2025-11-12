@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_spellbook.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/09 01:53:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:47:01 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	prev_spell(t_main *g)
 
 void	cast_spell(t_main *g)
 {
+	use_mana(g, 42.0);
 	if (g->spellbook.cooldown > 0 || g->spellbook.changing_direction != 0)
 	{
 		if (g->spellbook.cooldown > 0)
