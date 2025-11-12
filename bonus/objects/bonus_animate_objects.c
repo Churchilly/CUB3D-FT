@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 19:37:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:45:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,19 @@ static void	animate_door(t_door *door)
 
 static void animate_enemy(t_enemy *enemy, t_map *map)
 {
-	return ;
+	static int	spawn_timer = ENEMY_SPAWN_DELAY / 2;
+	int			spawn;
+
 	if (enemy->state == IDLE)
 	{
-		spawn_enemy(enemy, map);
+		spawn_timer++;
+		if (spawn_timer >= ENEMY_SPAWN_DELAY)
+		{
+			spawn = rand() % 100;
+			if (spawn < ENEMY_SPAWN_RATE)
+				spawn_enemy(enemy, map);
+			spawn_timer = 0;
+		}
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:31:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/11 17:24:06 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 21:18:52 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	animate_spellbook(t_main *g)
 	static int	phase = 0;
 	static int	idle_delay = 0;
 
+	if (g->spellbook.cooldown > 0)
+		g->spellbook.cooldown--;
 	if (g->spellbook.changing_direction != 0 && (phase == 0 || phase == 3))
 		phase = 1;
 	if (phase == 1 || phase == 2)
