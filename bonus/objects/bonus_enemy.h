@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/09 02:20:47 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 19:02:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include "../main/vector.h"
 
 # define NUM_OF_ENEMIES 5
-# define SPAWN_RATE 4
-# define ENEMY_SPEED 1
+# define ENEMY_SPAWN_RATE 4
+# define ENEMY_SPAWN_DIST 1
+# define ENEMY_MOVE_SPEED 0.25
+# define ENEMY_MOVE_MULT 0.05
 # define ENEMY_RADIUS 0.2
 # define ENEMY_HEALTH 100
 
@@ -29,7 +31,8 @@ enum e_enemy_state
 {
 	IDLE,
 	ALIVE,
-	BURNING
+	BURNING,
+	DYING
 };
 
 struct s_enemy
@@ -39,5 +42,12 @@ struct s_enemy
 	int				state;
 };
 
+// Forward declarations
+typedef struct s_map	t_map;
+
+// Function declarations
+void	spawn_enemy(t_enemy *enemy, t_map *map);
+void	enemy_walk(t_enemy *enemy, t_map *map);
+void	enemy_health(t_enemy *enemy);
 
 #endif

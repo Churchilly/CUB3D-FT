@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/04 16:47:09 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 19:03:09 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,23 @@ void	change_position(t_main *g, int key)
 	(void)key;
 	if (g->key_list.w)
 	{
-		movement.x += MOVE_MULT * cos(player->dov) * MOVE_SPEED;
-		movement.y += MOVE_MULT * sin(player->dov) * MOVE_SPEED;
+		movement.x += PLAYER_MOVE_MULT * cos(player->dov) * PLAYER_MOVE_SPEED;
+		movement.y += PLAYER_MOVE_MULT * sin(player->dov) * PLAYER_MOVE_SPEED;
 	}
 	if (g->key_list.s)
 	{
-		movement.x += -MOVE_MULT * cos(player->dov) * MOVE_SPEED;
-		movement.y += -MOVE_MULT * sin(player->dov) * MOVE_SPEED;
+		movement.x += -PLAYER_MOVE_MULT * cos(player->dov) * PLAYER_MOVE_SPEED;
+		movement.y += -PLAYER_MOVE_MULT * sin(player->dov) * PLAYER_MOVE_SPEED;
 	}
 	if (g->key_list.d)
 	{
-		movement.x += MOVE_MULT * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
-		movement.y += MOVE_MULT * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.x += PLAYER_MOVE_MULT * cos(player->dov + (M_PI / 2)) * PLAYER_MOVE_SPEED;
+		movement.y += PLAYER_MOVE_MULT * sin(player->dov + (M_PI / 2)) * PLAYER_MOVE_SPEED;
 	}
 	if (g->key_list.a)
 	{
-		movement.x += MOVE_MULT * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
-		movement.y += MOVE_MULT * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.x += PLAYER_MOVE_MULT * cos(player->dov - (M_PI / 2)) * PLAYER_MOVE_SPEED;
+		movement.y += PLAYER_MOVE_MULT * sin(player->dov - (M_PI / 2)) * PLAYER_MOVE_SPEED;
 	}
 	movement = check_collision(g, movement);
 	player->pos.x += movement.x;

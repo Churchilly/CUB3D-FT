@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 19:41:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 19:37:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,28 @@ static void	animate_door(t_door *door)
 	}
 }
 
+static void animate_enemy(t_enemy *enemy, t_map *map)
+{
+	return ;
+	if (enemy->state == IDLE)
+	{
+		spawn_enemy(enemy, map);
+	}
+	else
+	{
+		enemy_walk(enemy, map);
+		enemy_health(enemy);
+		// add collision check here [BURAK]
+	}
+}
+
+// [BURAK]
+static void	animate_fireball(t_enemy *enemy, t_map *map)
+{
+	(void)enemy;
+	(void)map;
+}
+
 void	animate_objects(t_main *g)
 {
 	t_obj_node	*curr;
@@ -72,7 +94,10 @@ void	animate_objects(t_main *g)
 	{
 		if (curr->type == DOOR)
 			animate_door(curr->object);
-		// else type == FIREBALL
+		else if (curr->type == ENEMY)
+			animate_enemy(curr->object, &g->map);
+		else
+			animate_fireball(curr->object, &g->map);
 		curr = curr->next;
 	}
 }

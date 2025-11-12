@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/09 02:23:37 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/12 19:35:02 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,17 @@ rendering
 
 # define NUM_OF_FIREBALLS 5
 # define FIREBALL_DAMAGE 5
-# define FIREBALL_BURN 3
+# define FIREBALL_BURN_DAMAGE 3
 
-typedef struct s_fireball	t_fireball;
+typedef struct s_fireball		t_fireball;
+typedef enum e_fireball_state	t_fireball_state;
+
+enum e_fireball_state
+{
+	//IDLE, // not on map
+	FLY, // when fireball is goes on map
+	BLAST // for collision animation i added this state animate this like doors
+};
 // while rendering the fireball
 // calculate fireball segment **
 // calculate fireball tail segment **
