@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/09 23:38:09 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/13 19:52:04 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,29 @@ static void draw_door_column(t_main *g, int x, t_ray *ray, t_door *door)
 	}
 }
 
+static void draw_fireball_column(t_main *g, int x, t_ray *ray, t_fireball *fireball)
+{
+	int		height;
+	int		start;
+	int		end;
+	int		y;
+	int		bg_color;
+
+	height = (int)(WIN_HEIGHT / ray->distance);
+	start = (-height / 2) + (WIN_HEIGHT / 2);
+	if (start < 0)
+		start = 0;
+	end = (height / 2) + (WIN_HEIGHT / 2);
+	if (end >= WIN_HEIGHT)
+		end = WIN_HEIGHT - 1;
+	y = start - 1;
+	while (++y <= end)
+	{
+		bg_color = get_pixel_color(&g->window, x, y);
+		put_pixel(x, y, 0xFFFFFF, &g->window);
+	}
+}
+
 static void	init_cast_data(t_cast_data *d, t_main *g, t_ray *ray)
 {
 	d->fov_rad = FOV * (M_PI) / 180.0;
@@ -124,6 +147,37 @@ static void	render_door(t_main *g, t_door *door)
 	}
 }
 
+static void render_fireball(t_main *g, t_fireball *f)
+{
+	t_cast_data d;
+	t_ray ray;
+	int x;
+	
+	init_cast_data(&d, g, &ray);
+	x = -1;
+	while (++x < WIN_WIDTH)
+	{
+		t_ray	*old_ray = get_ray_from_list(&g->rays, x);
+		d.ray_d.x = cos(d.direction);
+		d.ray_d.y = sin(d.direction);
+		if (!find_intersection(&d, f->segment))
+		{
+			d.direction += d.fov_rad / WIN_WIDTH;
+			continue ;
+		}
+		d.ray->distance *= cos(d.direction - g->map.player.dov);
+		if (d.ray->distance > old_ray->distance)
+		{
+			d.direction += d.fov_rad / WIN_WIDTH;
+			continue ;
+		}
+		
+		draw_fireball_column(g, x, &ray, f);
+
+		d.direction += d.fov_rad / WIN_WIDTH;
+	}
+}
+
 void	render_objects(t_main *g)
 {
 	t_obj_node	*curr;
@@ -135,6 +189,8 @@ void	render_objects(t_main *g)
 	{
 		if (curr->type == DOOR)
 			render_door(g, curr->object);
+		else if (curr->type == FIREBALL)
+			render_fireball(g, curr->object);
 		// add fireball [BURAK]
 		curr = curr->next_render;
 	}

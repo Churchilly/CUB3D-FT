@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycast_single_intersection.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 23:07:05 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:23:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/13 19:05:23 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

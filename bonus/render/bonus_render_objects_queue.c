@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects_queue.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/04 16:45:16 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/13 19:52:08 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,56 @@ void	create_render_queue(t_main *g)
 		{
 			if (is_segment_in_fov(&g->map.player, &((t_door *)curr->object)->barrier))
 				add_to_render_queue(&g->objects, curr, &g->map.player); // i calculate distance in here check inside
+		}
+		else if (curr->type == FIREBALL)
+		{
+			double fireball_width = 0.5; 
+			// create segment
+			t_segment seg;
+			t_fireball *f;
+			t_player pl;
+			t_vector diff;
+			double distance;
+			t_vector direction;
+			t_vector direction_;
+
+			f = curr->object;
+			pl = g->map.player;
+			
+			// find midpoint;
+			diff.x = (pl.pos.x - f->position.x);
+			diff.y = (pl.pos.y - f->position.y);
+
+			// find distance
+			distance = sqrt(
+					(f->position.x - pl.pos.x) * (f->position.x - pl.pos.x) +
+					(f->position.y - pl.pos.y) * (f->position.y - pl.pos.y)
+			);
+			
+			// calc direction
+			direction.x = diff.x / distance;
+			direction.y = diff.y / distance;
+			
+			// turn direction 90deg
+			direction_.x = direction.y;
+			direction_.y = direction.x * -1;
+
+			// first vector of segment
+			seg.e = (t_vector){
+				f->position.x + direction_.x * (fireball_width / 2),
+				f->position.y + direction_.y * (fireball_width / 2)
+			};
+
+			// other vector of segment
+			seg.s = (t_vector){
+				f->position.x - direction_.x * (fireball_width / 2),
+				f->position.y - direction_.y * (fireball_width / 2)
+			};
+			f->segment = seg;
+			if (is_segment_in_fov(&g->map.player, &seg) && f->state != F_IDLE)
+			{
+				add_to_render_queue(&g->objects, curr, &g->map.player);
+			}
 		}
 		// else add fireball [BURAK]
 		// create fireball segment

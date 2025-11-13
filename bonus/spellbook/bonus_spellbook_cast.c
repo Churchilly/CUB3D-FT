@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_spellbook_cast.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:46:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/04 16:39:19 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:26:11 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	cast_fireball(t_main *g)
 {
 	g->spellbook.cooldown = SPELL_COOLDOWN;
-	// [BURAK]
+	t_fireball *fireball;
+
 }
 
 void	cast_lock(t_main *g)

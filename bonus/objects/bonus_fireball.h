@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 19:35:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/13 18:49:14 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef enum e_fireball_state	t_fireball_state;
 
 enum e_fireball_state
 {
-	//IDLE, // not on map
+	F_IDLE = 0, // not on map
 	FLY, // when fireball is goes on map
 	BLAST // for collision animation i added this state animate this like doors
 };
@@ -51,6 +51,8 @@ struct	s_fireball
 {
 	t_vector	position;
 	double		direction;
+	t_segment segment;
+	t_fireball_state state;
 };
 
 #endif

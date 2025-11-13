@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/09 02:30:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/13 19:50:50 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
 #include <stddef.h>
+
 void	add_object(t_obj_list *list, int type, void *obj);
 
 static void	create_enemies(t_main *g)
@@ -31,20 +32,32 @@ static void	create_enemies(t_main *g)
 	}
 }
 
+// static void	create_fireballs(t_main *g)
+// {
+// 	int	i;
+// 	t_fireball *fireball;
+
+// 	i = -1;
+// 	while (++i < NUM_OF_FIREBALLS)
+// 	{
+// 		fireball = malloc(sizeof(t_fireball)); // alloc_crit
+// 		fireball->direction = 0.0;
+// 		fireball->position.x = -1.0;
+// 		fireball->position.y = -1.0;
+// 		add_object(&g->objects, FIREBALL, fireball);
+// 	}
+// }
+
 static void	create_fireballs(t_main *g)
 {
 	int	i;
 	t_fireball *fireball;
 
-	i = -1;
-	while (++i < NUM_OF_FIREBALLS)
-	{
-		fireball = malloc(sizeof(t_fireball)); // alloc_crit
-		fireball->direction = 0.0;
-		fireball->position.x = -1.0;
-		fireball->position.y = -1.0;
-		add_object(&g->objects, FIREBALL, fireball);
-	}
+	fireball = malloc(sizeof(t_fireball)); // alloc_crit
+	fireball->direction = 0.0;
+	fireball->position.x = 3.5;
+	fireball->position.y = 3.5;
+	add_object(&g->objects, FIREBALL, fireball);
 }
 
 static void	insert_barrier(t_door *door, t_vector_int map_pos, double axis)
