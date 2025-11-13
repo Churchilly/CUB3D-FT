@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:20:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:24:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:35:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static t_ray_node	*init_cast_data(t_cast_data *d, t_main *g)
 	d->player = &g->map.player;
 	return (g->rays.head);
 }
+
+// need to add new raycast for ceiling and floor
 
 void	raycasting(t_main *g)
 {
