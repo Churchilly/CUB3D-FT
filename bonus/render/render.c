@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 20:41:02 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/14 21:45:18 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ static void render_main_menu(t_main *g)
 
 static void render_game(t_main *g)
 {
+	static int frame_count = 0;
+	static long long time_log = 0;
+	long long curr_time;
+
 	render_background(g);
 	render_scene(g);
 	animate_objects(g);
@@ -40,6 +44,16 @@ static void render_game(t_main *g)
 	animate_spellbook(g);
 	render_spellbook(g);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
+
+	frame_count++;
+	curr_time = current_time_ms();
+
+	if (curr_time - time_log >= 1000)
+	{
+		printf("%ifps\n", frame_count);
+		frame_count = 0;
+		time_log = curr_time;
+	}
 }
 
 void	cub_render(t_main *g)
