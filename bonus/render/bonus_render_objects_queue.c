@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects_queue.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/13 19:52:08 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/14 20:16:50 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	create_render_queue(t_main *g)
 		}
 		else if (curr->type == FIREBALL)
 		{
-			double fireball_width = 0.5; 
+			double fireball_width = 0.2; 
 			// create segment
 			t_segment seg;
 			t_fireball *f;

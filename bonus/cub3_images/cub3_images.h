@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/12 20:34:40 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/14 21:13:05 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ struct s_cub3_gallery
     t_im mmenu_bg;
     t_im mmenu_bg_active;
     t_im mmenu_start_btn;
+    t_im fireball;
+    t_im fireball2;
+    t_im fireball3;
+    t_im fireball4;
     t_mmap_gallery mmap;
 };
 

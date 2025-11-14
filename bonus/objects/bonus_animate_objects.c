@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_objects.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 20:45:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/14 21:19:34 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,22 @@ static void animate_enemy(t_enemy *enemy, t_map *map)
 }
 
 // [BURAK]
-static void	animate_fireball(t_enemy *enemy, t_map *map)
+static void	animate_fireball(t_cub3_gallery *g)
 {
-	(void)enemy;
-	(void)map;
+	static long long time_log = 0;
+	long long curr_time;
+	t_im swap;
+
+	curr_time = current_time_ms();
+	if (curr_time - time_log > 120)
+	{
+		swap = g->fireball;
+		g->fireball = g->fireball2;
+		g->fireball2 = g->fireball3;
+		g->fireball3 = g->fireball4;
+		g->fireball4 = swap;
+		time_log = curr_time;
+	}
 }
 
 void	animate_objects(t_main *g)
@@ -106,7 +118,7 @@ void	animate_objects(t_main *g)
 		else if (curr->type == ENEMY)
 			animate_enemy(curr->object, &g->map);
 		else
-			animate_fireball(curr->object, &g->map);
+			animate_fireball(&g->gallery);
 		curr = curr->next;
 	}
 }

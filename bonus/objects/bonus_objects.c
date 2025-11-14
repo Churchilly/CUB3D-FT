@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/13 19:50:50 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/14 18:45:03 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	create_fireballs(t_main *g)
 	fireball->direction = 0.0;
 	fireball->position.x = 3.5;
 	fireball->position.y = 3.5;
+	fireball->state = FLY;
 	add_object(&g->objects, FIREBALL, fireball);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/13 19:52:04 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/14 20:33:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,60 @@ static void draw_door_column(t_main *g, int x, t_ray *ray, t_door *door)
 
 static void draw_fireball_column(t_main *g, int x, t_ray *ray, t_fireball *fireball)
 {
-	int		height;
-	int		start;
-	int		end;
-	int		y;
-	int		bg_color;
+    int height, start, end, y;
+    int texture_x;
+    double dx, dy, seg_len, hit_distance, hit_position;
 
-	height = (int)(WIN_HEIGHT / ray->distance);
-	start = (-height / 2) + (WIN_HEIGHT / 2);
-	if (start < 0)
-		start = 0;
-	end = (height / 2) + (WIN_HEIGHT / 2);
-	if (end >= WIN_HEIGHT)
-		end = WIN_HEIGHT - 1;
-	y = start - 1;
-	while (++y <= end)
-	{
-		bg_color = get_pixel_color(&g->window, x, y);
-		put_pixel(x, y, 0xFFFFFF, &g->window);
-	}
+	// positioning
+    height = (int)(WIN_HEIGHT / ray->distance * 0.35); // define 0.35 as FIREBALL_SCALE
+    start = (WIN_HEIGHT / 2) - (height / 2); 
+    if (start < 0)
+        start = start - (start * -1) / 2 / 2;
+    end = (WIN_HEIGHT / 2) + (height / 2);
+    if (end >= WIN_HEIGHT)
+        end = WIN_HEIGHT - 1;
+
+    // distance between hit_pos and seg
+    dx = ray->hit.x - fireball->segment.s.x;
+    dy = ray->hit.y - fireball->segment.s.y;
+    hit_distance = sqrt(dx * dx + dy * dy);
+
+	// segment length
+    seg_len = sqrt(
+        (fireball->segment.e.x - fireball->segment.s.x) *
+        (fireball->segment.e.x - fireball->segment.s.x) +
+        (fireball->segment.e.y - fireball->segment.s.y) *
+        (fireball->segment.e.y - fireball->segment.s.y)
+    );
+
+	// final hit pos
+    hit_position = hit_distance / seg_len;
+
+    // texture column
+    texture_x = (int)(hit_position * g->gallery.fireball.width);
+    if (texture_x >= g->gallery.fireball.width)
+        texture_x = g->gallery.fireball.width - 1;
+
+    // draw column
+    double texture_step = (double)g->gallery.fireball.height / (double)height;
+    double texture_pos = 0;
+
+    y = start - 1;
+    while (++y <= end)
+    {
+        int texture_y = (int)texture_pos;
+        if (texture_y >= g->gallery.fireball.height)
+            texture_y = g->gallery.fireball.height - 1;
+			
+        int color = g->gallery.fireball.image[texture_y * g->gallery.fireball.width + texture_x];
+
+        if ((unsigned int)color != 0xffffffff)
+        {
+            color = (color >> 8) & 0x00FFFFFF;
+            put_pixel(x, y, color, &g->window);
+        }
+        texture_pos += texture_step;
+    }
 }
 
 static void	init_cast_data(t_cast_data *d, t_main *g, t_ray *ray)
