@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/14 18:45:03 by root             ###   ########.fr       */
+/*   Updated: 2025/11/15 17:42:39 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,19 @@ static void	create_enemies(t_main *g)
 
 static void	create_fireballs(t_main *g)
 {
-	int	i;
+	int	counter;
 	t_fireball *fireball;
 
-	fireball = malloc(sizeof(t_fireball)); // alloc_crit
-	fireball->direction = 0.0;
-	fireball->position.x = 3.5;
-	fireball->position.y = 3.5;
-	fireball->state = FLY;
-	add_object(&g->objects, FIREBALL, fireball);
+	counter = NUM_OF_FIREBALLS;
+	while (counter--)
+	{
+		fireball = malloc(sizeof(t_fireball)); // alloc_crit
+		fireball->direction = 0.0;
+		fireball->position.x = -1.0;
+		fireball->position.y = -1.0;
+		fireball->state = F_IDLE;  // ✅ F_IDLE (fireball enum)
+		add_object(&g->objects, FIREBALL, fireball);
+	}
 }
 
 static void	insert_barrier(t_door *door, t_vector_int map_pos, double axis)

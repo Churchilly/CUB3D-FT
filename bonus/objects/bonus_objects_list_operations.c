@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects_list_operations.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:26:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:36:19 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:05:49 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,24 @@ void	add_object(t_obj_list *list, int type, void *obj)
 	list->all = new;
 }
 
-static double	calculate_distance_door(t_player *player, t_obj_node *obj)
+static double	calculate_distance_object(t_player *player, t_obj_node *obj)
 {
 	double	dx;
 	double	dy;
 	t_door	*door;
+	t_fireball *f;
 
 	if (obj->type == DOOR)
 	{
 		door = (t_door *)obj->object;
 		dx = (door->barrier.s.x + door->barrier.e.x) / 2.0 - player->pos.x;
 		dy = (door->barrier.s.y + door->barrier.e.y) / 2.0 - player->pos.y;
+	}
+	else if (obj->type == FIREBALL)
+	{
+		f = (t_fireball *)obj->object;
+		dx = (f->segment.s.x + f->segment.e.x) / 2.0 - player->pos.x;
+		dy = (f->segment.s.y + f->segment.e.y) / 2.0 - player->pos.y;
 	}
 	else
 	{
@@ -51,8 +58,8 @@ void	add_to_render_queue(t_obj_list *list, t_obj_node *object, t_player *player)
 	t_obj_node	*curr;
 	t_obj_node	*prev;
 
-	if (object->type == DOOR)
-		object->distance = calculate_distance_door(player, object);
+	if (object->type)
+		object->distance = calculate_distance_object(player, object);
 	object->next_render = NULL;
 	if (!list->to_render || object->distance > list->to_render->distance)
 	{
