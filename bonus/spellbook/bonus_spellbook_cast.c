@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:46:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/15 18:14:30 by root             ###   ########.fr       */
+/*   Updated: 2025/11/15 23:24:50 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,29 @@
 
 void	cast_fireball(t_main *g)
 {
+	static long long last_cooldown = 0;
+	long long curr_time;
+	
 	g->spellbook.cooldown = SPELL_COOLDOWN;
 	t_fireball *fireball;
 	t_obj_node *objects;
 
+	// curr_time = current_time_ms();
+	// if (curr_time - last_cooldown < SPELL_COOLDOWN)
+	// 	return;
+	// last_cooldown = curr_time;
+	
 	objects = g->objects.all;
 	while (objects)
 	{
 		if (objects->type == FIREBALL)
 		{
 			fireball = (t_fireball *)objects->object;
-			if (fireball->state == F_IDLE)
+			if (fireball->state == IDLE)
 			{
-				fireball->state = FLY;
 				fireball->position = (t_vector){g->map.player.pos.x, g->map.player.pos.y};
 				fireball->direction = g->map.player.dov;
+				fireball->state = FLY;
 				return ;
 			}
 		}

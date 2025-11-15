@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 20:40:24 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/15 22:20:03 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_player t_player;
 typedef struct s_view	t_view;
+typedef struct s_inventory t_inventory;
 
 typedef struct s_main	t_main; // forward dec
 
@@ -26,12 +27,22 @@ typedef struct s_main	t_main; // forward dec
 # define SENSITIVITY 0.4
 # define PLAYER_RADIUS 0.1
 
+struct s_inventory
+{
+	int currency;
+	int adrenaline_potions;
+	int damage_increase;
+	int mana_increase;
+	int cooldown_decreaser;
+};
+
 struct s_player
 {
 	t_vector	pos;
 	double		dov; // direction of view
 	double mana;
 	double health;
+	t_inventory inventory;
 };
 
 void	change_direction(t_main *g, int key);

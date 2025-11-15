@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/14 21:13:05 by root             ###   ########.fr       */
+/*   Updated: 2025/11/15 22:39:48 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ struct s_cub3_image
     int height;
 };
 
-struct s_minimap_gallery
+# include "cub3_galleries.h"
+
+struct s_animated_sprite
 {
-    t_im floor;
-    t_im wall;
-    t_im player;
-    t_im floor_void;
+    t_im *frames;
+    int max_frame;
+    int curr_frame;
 };
 
 struct s_cub3_gallery
@@ -52,7 +53,7 @@ struct s_cub3_gallery
     t_im fireball2;
     t_im fireball3;
     t_im fireball4;
-    t_mmap_gallery mmap;
+    t_mmap_gal mmap;
 };
 
 t_cub3_image create_image(char *path);

@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/14 21:19:34 by root             ###   ########.fr       */
+/*   Updated: 2025/11/15 23:40:39 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,23 +87,41 @@ static void animate_enemy(t_enemy *enemy, t_map *map)
 }
 
 // [BURAK]
-static void	animate_fireball(t_cub3_gallery *g)
+static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 {
 	static long long time_log = 0;
+	static long long time_log_2 = 0;
 	long long curr_time;
 	t_im swap;
 
 	curr_time = current_time_ms();
 	if (curr_time - time_log > 120)
 	{
-		swap = g->fireball;
-		g->fireball = g->fireball2;
-		g->fireball2 = g->fireball3;
-		g->fireball3 = g->fireball4;
-		g->fireball4 = swap;
+		swap = gal->fireball;
+		gal->fireball = gal->fireball2;
+		gal->fireball2 = gal->fireball3;
+		gal->fireball3 = gal->fireball4;
+		gal->fireball4 = swap;
+		
 		time_log = curr_time;
 	}
+	if (f->state == FLY && curr_time - time_log_2 > 5)
+	{
+		f->position.x += cos(f->direction) * 0.05;
+		f->position.y += sin(f->direction) * 0.05;
+		
+		if (g->map.matrix[(int)f->position.y][(int)f->position.x] == '1')
+		{
+			f->state = IDLE;
+			f->position = (t_vector){-1, -1};
+			printf("BOOOOOOOOOOOOOMMMM\n");
+		}
+
+		time_log_2 = curr_time;
+	}
+
 }
+
 
 void	animate_objects(t_main *g)
 {
@@ -117,8 +135,8 @@ void	animate_objects(t_main *g)
 			animate_door(curr->object);
 		else if (curr->type == ENEMY)
 			animate_enemy(curr->object, &g->map);
-		else
-			animate_fireball(&g->gallery);
+		else if (curr->type == FIREBALL)
+			animate_fireball(curr->object, g, &g->gallery);
 		curr = curr->next;
 	}
 }
