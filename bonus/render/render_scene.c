@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:25:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/13 19:42:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 09:44:47 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	draw_wall_column(t_main *g, int x, t_ray *ray)
 		put_pixel(x, y, color, &g->window);
 	}
 }
-
+// refactor it 
 void draw_floor_column(t_main *g, int x, t_ray *ray)
 {
 	int			y;
@@ -91,10 +91,15 @@ void draw_floor_column(t_main *g, int x, t_ray *ray)
 	ray_angle = g->map.player.dov - (fov_rad / 2.0) + ((double)x / WIN_WIDTH) * fov_rad;
 	ray_dir.x = cos(ray_angle);
 	ray_dir.y = sin(ray_angle);
-	
+	int wall_height = (int)(WIN_HEIGHT / ray->distance);
+	int wall_end = (wall_height / 2) + (WIN_HEIGHT / 2);
+	if (wall_end >= WIN_HEIGHT)
+		wall_end = WIN_HEIGHT - 1;
 	y = WIN_HEIGHT / 2;
 	while (++y < WIN_HEIGHT)
 	{
+		if (y < wall_end)
+			continue;
 		row_distance = (WIN_HEIGHT / 2.0) / (y - WIN_HEIGHT / 2.0);
 		row_distance /= cos(ray_angle - g->map.player.dov);
 		

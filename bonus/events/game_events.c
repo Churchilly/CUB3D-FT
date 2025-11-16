@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_events.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/16 03:16:56 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 09:27:20 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int loop_event(t_main *game)
 	long long curr_time;
 
 	curr_time = current_time_ms();
-	if (!(curr_time - time_log > 16))
-		return (0);
+	//if (!(curr_time - time_log > 16))
+	//	return (0);
 	time_log = curr_time;
 	
 	if (game->main_menu.active)
