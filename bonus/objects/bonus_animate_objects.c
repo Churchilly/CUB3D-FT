@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 03:05:34 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 04:58:43 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,50 +86,120 @@ static void animate_enemy(t_enemy *enemy, t_map *map)
 	}
 }
 
-// [BURAK]
-static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
+static void animate_fireball_sprite(t_main *g)
 {
 	static long long time_log = 0;
-	static long long time_log_2 = 0;
 	long long curr_time;
+	t_cub3_gallery *gal;
 	t_im swap;
-
+	
 	curr_time = current_time_ms();
-	if (curr_time - time_log > 120)
+	gal = &g->gallery;
+	if (curr_time - time_log > 138)
 	{
 		swap = gal->fireball;
 		gal->fireball = gal->fireball2;
 		gal->fireball2 = gal->fireball3;
 		gal->fireball3 = gal->fireball4;
 		gal->fireball4 = swap;
-		
-		time_log = curr_time;
 	}
-	if (f->state == FLY && curr_time - time_log_2 > 5)
+}
+
+static void animate_fireball_particle_sprite(t_main *g)
+{
+	static long long time_log = 0;
+	long long curr_time;
+	t_cub3_gallery *gal;
+	t_im swap;
+	
+	curr_time = current_time_ms();
+	gal = &g->gallery;
+	if (curr_time - time_log > 220)
 	{
+		swap = gal->fireball_particle_1;
+		gal->fireball_particle_1 = gal->fireball_particle_2;
+		gal->fireball_particle_2 = gal->fireball_particle_3;
+		gal->fireball_particle_3 = swap;
+	}
+}
 
-		// particle //
+static void animate_particles(t_main *g)
+{
+	static long long time_log = 0;
+	long long curr_time;
+	t_obj_node *obj;
+	t_fire_particle *particle;
 
-		t_obj_node *obj;
-		t_fire_particle *particle;
-		
+	curr_time = current_time_ms();
+	if (curr_time - time_log > 50)
+	{
 		obj = g->objects.all;
-		while (obj->next)
+		while (obj)
 		{
 			if (obj->type == PARTICLE)
 			{
 				particle = obj->object;
 				if (particle->active)
-					continue ;
-				break ;
+				{
+					if (particle->start_y >= 50)
+					{
+						particle->active = false;
+						particle->start_y = 0;
+					}
+					else
+						particle->start_y += 2;
+				}
 			}
 			obj = obj->next;
 		}
+		time_log = curr_time;
+	}
+}
+
+static void add_particle(t_main *g, t_fireball *f)
+{
+	static long long time_log = 0;
+	long long curr_time;
+	t_obj_node *obj;
+	t_fire_particle *particle;
+	
+	curr_time = current_time_ms();
+	if (curr_time - time_log > 300)
+	{
+		obj = g->objects.all;
+		while (obj)
+		{
+			if (obj->type == PARTICLE)
+			{
+				particle = obj->object;
+				if (!particle->active)
+					break;
+			}
+			obj = obj->next;
+		}
+		particle->image = g->gallery.fireball_particle_1;
 		particle->position.x = f->position.x;
 		particle->position.y = f->position.y;
-		
-		// particlEND //
+		particle->segment = f->segment;
+		// particle->deploy_time = 0;
+		particle->active = true;
+		time_log = curr_time;
+	}
+}
 
+
+static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
+{
+	static long long time_log = 0;
+	long long curr_time;
+
+	animate_fireball_sprite(g);
+	animate_fireball_particle_sprite(g);
+	animate_particles(g);
+	curr_time = current_time_ms();
+	if (f->state == FLY && curr_time - time_log > 5)
+	{
+		add_particle(g, f);
 		f->position.x += cos(f->direction) * 0.05;
 		f->position.y += sin(f->direction) * 0.05;
 		
@@ -139,10 +209,9 @@ static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 			f->position = (t_vector){-1, -1};
 			printf("BOOOOOOOOOOOOOMMMM\n");
 		}
-
-		time_log_2 = curr_time;
+		
+		time_log = curr_time;
 	}
-
 }
 
 

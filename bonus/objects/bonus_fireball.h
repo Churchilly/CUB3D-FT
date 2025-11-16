@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 02:57:03 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 04:01:49 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ struct s_fireball_particle
 {
 	t_vector position;
 	t_segment segment;
+	t_im image;
+	int start_y;
 	bool active;
 };
 
