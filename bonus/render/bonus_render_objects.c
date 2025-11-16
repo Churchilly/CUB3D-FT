@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 02:40:17 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 04:10:14 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,64 @@ static void draw_fireball_column(t_main *g, int x, t_ray *ray, t_fireball *fireb
     }
 }
 
+static void draw_particle_column(t_main *g, int x, t_ray *ray, t_fire_particle *particle)
+{
+    int height, start, end, y;
+    int texture_x;
+    double dx, dy, seg_len, hit_distance, hit_position;
+
+	// positioning
+    height = (int)(WIN_HEIGHT / ray->distance * 0.30); // define 0.35 as FIREBALL_SCALE
+    start = (WIN_HEIGHT / 2) - (height / 2) / 2 / 2 / 2 + particle->start_y;
+    if (start < 0)
+        start = start - (start * -1) / 2 / 2;
+    end = (WIN_HEIGHT / 2) + (height / 2);
+    if (end >= WIN_HEIGHT)
+        end = WIN_HEIGHT - 1;
+
+    // distance between hit_pos and seg
+    dx = ray->hit.x - particle->segment.s.x;
+    dy = ray->hit.y - particle->segment.s.y;
+    hit_distance = sqrt(dx * dx + dy * dy);
+
+	// segment length
+    seg_len = sqrt(
+        (particle->segment.e.x - particle->segment.s.x) *
+        (particle->segment.e.x - particle->segment.s.x) +
+        (particle->segment.e.y - particle->segment.s.y) *
+        (particle->segment.e.y - particle->segment.s.y)
+    );
+
+	// final hit pos
+    hit_position = hit_distance / seg_len;
+
+    // texture column
+    texture_x = (int)(hit_position * g->gallery.fireball_particle_1.width);
+    if (texture_x >= g->gallery.fireball_particle_1.width)
+        texture_x = g->gallery.fireball_particle_1.width - 1;
+
+    // draw column
+    double texture_step = (double)g->gallery.fireball_particle_1.height / (double)height;
+    double texture_pos = 0;
+
+    y = start - 1;
+    while (++y <= end)
+    {
+        int texture_y = (int)texture_pos;
+        if (texture_y >= g->gallery.fireball_particle_1.height)
+            texture_y = g->gallery.fireball_particle_1.height - 1;
+			
+        int color = particle->image.image[texture_y * g->gallery.fireball_particle_1.width + texture_x];
+
+        if ((unsigned int)color != 0xffffffff)
+        {
+            color = (color >> 8) & 0x00FFFFFF;
+            put_pixel(x, y, color, &g->window);
+        }
+        texture_pos += texture_step;
+    }
+}
+
 static void	init_cast_data(t_cast_data *d, t_main *g, t_ray *ray)
 {
 	d->fov_rad = FOV * (M_PI) / 180.0;
@@ -213,6 +271,37 @@ static void render_fireball(t_main *g, t_fireball *f)
 	}
 }
 
+static void render_particle(t_main *g, t_fire_particle *particle)
+{
+	t_cast_data d;
+	t_ray ray;
+	int x;
+
+	init_cast_data(&d, g, &ray);
+	x = -1;
+	while (++x < WIN_WIDTH)
+	{
+		t_ray *old_ray = get_ray_from_list(&g->rays, x);
+		d.ray_d.x = cos(d.direction);
+		d.ray_d.y = sin(d.direction);
+		if (!find_intersection(&d, particle->segment))
+		{
+			d.direction += d.fov_rad / WIN_WIDTH;
+			continue ;
+		}
+		d.ray->distance *= cos(d.direction - g->map.player.dov);
+		if (d.ray->distance > old_ray->distance)
+		{
+			d.direction += d.fov_rad / WIN_WIDTH;
+			continue ;
+		}
+		
+		draw_particle_column(g, x, &ray, particle);
+
+		d.direction += d.fov_rad / WIN_WIDTH;
+	}
+}
+
 void	render_objects(t_main *g)
 {
 	t_obj_node	*curr;
@@ -226,6 +315,8 @@ void	render_objects(t_main *g)
 			render_door(g, curr->object);
 		else if (curr->type == FIREBALL)
 			render_fireball(g, curr->object);
+		else if (curr->type == PARTICLE)
+			render_particle(g, curr->object);
 		// add fireball [BURAK]
 		curr = curr->next_render;
 	}

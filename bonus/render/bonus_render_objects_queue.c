@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 02:56:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 04:58:59 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,15 @@ void	create_render_queue(t_main *g)
 			update_object_segment(&((t_enemy *)curr->object)->segment, ((t_enemy *)curr->object)->position, &g->map.player);
 			if (is_segment_in_fov(&g->map.player, &((t_enemy *)curr->object)->segment))
 				add_to_render_queue(&g->objects, curr, &g->map.player);
+		}
+		else if (curr->type == PARTICLE)
+		{
+			if (((t_fire_particle *)curr->object)->active)
+			{
+				update_object_segment(&((t_fire_particle *)curr->object)->segment, ((t_enemy *)curr->object)->position, &g->map.player);
+				if (is_segment_in_fov(&g->map.player, &((t_fire_particle *)curr->object)->segment))
+					add_to_render_queue(&g->objects, curr, &g->map.player);
+			}
 		}
 		curr = curr->next;
 	}

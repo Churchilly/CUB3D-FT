@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/16 02:56:22 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 03:16:56 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int loop_event(t_main *game)
 	if (!(curr_time - time_log > 16))
 		return (0);
 	time_log = curr_time;
+	
 	if (game->main_menu.active)
 		return (loop_main_menu(game));
 	else
