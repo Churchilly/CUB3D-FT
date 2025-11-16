@@ -29,6 +29,7 @@ typedef enum e_sound	t_sound;
 # define AUDIO_FOOTSTEP_1 "aplay -q sound/sound_effects/footstep-1.wav > /dev/null 2>&1 &"
 # define AUDIO_FOOTSTEP_2 "aplay -q sound/sound_effects/footstep-2.wav > /dev/null 2>&1 &"
 # define AUDIO_FOOTSTEP_3 "aplay -q sound/sound_effects/footstep-3.wav > /dev/null 2>&1 &"
-# define AUDIO_MUSIC "aplay -q sound/music/background.wav > /dev/null 2>&1 &"
+# define AUDIO_MAIN_MENU "aplay -q sound/sound_effects/open_main_menu.wav > /dev/null 2>&1 &"
 
+# define AUDIO_MUSIC "aplay -q sound/music/background.wav > /dev/null 2>&1 &"
 #endif

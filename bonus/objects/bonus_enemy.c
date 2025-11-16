@@ -164,9 +164,3 @@ void	enemy_health(t_enemy *enemy)
 		enemy->position.y = -1;
 	}
 }
-
-// [BURAK]
-void	am_i_collide()
-{
-	
-}

@@ -82,7 +82,7 @@ static void animate_enemy(t_enemy *enemy, t_map *map)
 	{
 		enemy_walk(enemy, map);
 		enemy_health(enemy);
-		// add collision check here [BURAK]
+		// add fireball && player collision check here [BURAK]
 	}
 }
 

@@ -94,7 +94,7 @@ void	create_render_queue(t_main *g)
 			if (is_segment_in_fov(&g->map.player, &((t_door *)curr->object)->barrier))
 				add_to_render_queue(&g->objects, curr, &g->map.player); // i calculate distance in here check inside
 		}
-		else if (curr->type == FIREBALL)
+		else if (curr->type == FIREBALL && ((t_fireball *)curr->object)->state != IDLE)
 		{
 			update_object_segment(&((t_fireball *)curr->object)->segment, ((t_fireball *)curr->object)->position, &g->map.player);
 			if (is_segment_in_fov(&g->map.player, &((t_fireball *)curr->object)->segment))
@@ -102,7 +102,7 @@ void	create_render_queue(t_main *g)
 				add_to_render_queue(&g->objects, curr, &g->map.player);
 			}
 		}
-		else if (curr->type == ENEMY)
+		else if (curr->type == ENEMY && ((t_enemy *)curr->object)->state != IDLE)
 		{
 			update_object_segment(&((t_enemy *)curr->object)->segment, ((t_enemy *)curr->object)->position, &g->map.player);
 			if (is_segment_in_fov(&g->map.player, &((t_enemy *)curr->object)->segment))

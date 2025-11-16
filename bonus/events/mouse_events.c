@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/12 21:13:14 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 05:18:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,14 @@ void read_mouse_movements(t_main *game)
         change_direction_advanced(game, 'L', win_x_abs);
 }
 
+static bool is_xy_on_button(int x, int y, t_button *btn)
+{
+    if (x > btn->position.x && x < btn->position.x + btn->width)
+        if (y > btn->position.y && y < btn->position.y + btn->height)
+            return (true);
+    return (false);
+}
+
 int mouse_click(int button, int x, int y, void *game)
 {
     t_main *g;
@@ -73,10 +81,10 @@ int mouse_click(int button, int x, int y, void *game)
     {
         btn = &g->main_menu.btn_start;
         if (is_xy_on_button(x, y, btn))
-            activate_button(g, btn);
+            activate_button(g);
         btn = &g->main_menu.btn_exit;
         if (is_xy_on_button(x, y, btn))
-            activate_button(g, btn);
+            activate_button(g);
     }
     return (0);
 }
