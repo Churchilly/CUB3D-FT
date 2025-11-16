@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 02:35:55 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 08:54:40 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	raycast_single(t_cast_data *d, char **matrix);
 int 	check_off_map(t_main *g);
 void	render_black_screen(t_window *win);
 void	render_scene(t_main *g);
+void render_frames(t_main *g);
 
 int		insert_doorwall_hit(t_cast_data *d, int player_location);
 void	insert_vertical_hit(t_cast_data *d);

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 22:25:41 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 02:56:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 08:52:37 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_main_menu_gallery t_mmenu_gal;
 typedef struct s_hud_gallery t_hud_gal;
 typedef struct s_shop_gallery t_shop_gal;
 typedef struct s_effect_gallery t_effect_gal;
+typedef struct s_frame_gallery t_frame_gal;
 
 struct s_number_gallery
 {
@@ -76,6 +77,13 @@ struct s_effect_gallery
 {
     t_im coin;
     t_im damage;
+};
+
+struct s_frame_gallery
+{
+    t_im low_hp_1;
+    t_im low_hp_2;
+    t_im low_hp_3;
 };
 
 #endif

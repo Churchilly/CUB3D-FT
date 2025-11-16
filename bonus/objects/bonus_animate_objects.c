@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 04:58:43 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 07:53:19 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,14 @@ static void animate_fireball_sprite(t_main *g)
 	
 	curr_time = current_time_ms();
 	gal = &g->gallery;
-	if (curr_time - time_log > 138)
+	if (curr_time - time_log > 20)
 	{
 		swap = gal->fireball;
 		gal->fireball = gal->fireball2;
 		gal->fireball2 = gal->fireball3;
 		gal->fireball3 = gal->fireball4;
 		gal->fireball4 = swap;
+		time_log = curr_time;
 	}
 }
 
@@ -141,13 +142,13 @@ static void animate_particles(t_main *g)
 				particle = obj->object;
 				if (particle->active)
 				{
-					if (particle->start_y >= 50)
+					if (particle->start_y >= 100)
 					{
 						particle->active = false;
 						particle->start_y = 0;
 					}
 					else
-						particle->start_y += 2;
+						particle->start_y += 4;
 				}
 			}
 			obj = obj->next;
@@ -187,6 +188,17 @@ static void add_particle(t_main *g, t_fireball *f)
 	}
 }
 
+static void fireball_explode(t_main *g, t_vector *f_pos)
+{
+	t_player *player;
+
+	player = &g->map.player;
+	if (player->pos.x >= f_pos->x - 0.7 && player->pos.x <= f_pos->x + 0.7
+		&& player->pos.y >= f_pos->y - 0.7 && player->pos.y <= f_pos->y + 0.7)
+	{
+		damage_player(g, 50);
+	}
+}
 
 static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 {
@@ -206,8 +218,9 @@ static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 		if (g->map.matrix[(int)f->position.y][(int)f->position.x] == '1')
 		{
 			f->state = IDLE;
-			f->position = (t_vector){-1, -1};
 			printf("BOOOOOOOOOOOOOMMMM\n");
+			fireball_explode(g, &f->position);
+			f->position = (t_vector){-1, -1};
 		}
 		
 		time_log = curr_time;
