@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:00:59 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 08:07:58 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 08:53:46 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void *init_gallery_with_config(t_cub3_gallery *gal, char *config)
     gal->fireball_particle_2 = create_image("cub3_images/images/fireball/fireball_particle_2.cub3");
     gal->fireball_particle_3 = create_image("cub3_images/images/fireball/fireball_particle_3.cub3");
     gal->cross = create_image("cub3_images/images/crosshair.cub3");
+    gal->frames.low_hp_1 = create_image("cub3_images/images/frames/low_hp_frame.cub3");
+    gal->frames.low_hp_2 = create_image("cub3_images/images/frames/low_hp_frame_2.cub3");
+    gal->frames.low_hp_3 = create_image("cub3_images/images/frames/low_hp_frame_3.cub3");
     init_mmap_gallery(gal);
     return (gal);
 } // this is OK for TODO#1, not for the other

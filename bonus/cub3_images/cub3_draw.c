@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 05:39:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 08:10:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 08:59:32 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,29 @@ void draw_image(t_window *win, t_cub3_image *img, int x, int y)
         }
         if (((unsigned int)img->image[counter]) != 0xffffffff)
             put_pixel(x1 + x, y1 + y, img->image[counter], win);
+        x1++;
+        counter++;
+    }
+}
+
+void draw_image_no_alpha(t_window *win, t_cub3_image *img, int x, int y)
+{
+    int x1;
+    int y1;
+    int counter;
+
+    x1 = 0;
+    y1 = 0;
+    counter = 0;
+    while (counter < (img->height * img->width))
+    {
+        if (counter != 0 && counter % img->width == 0)
+        {
+            x1 = 0;
+            y1 = y1 + 1;
+        }
+        if (((unsigned int)img->image[counter]) != 0xffffffff)
+            put_pixel(x1 + x, y1 + y, img->image[counter] >> 8 & 0x00FFFFFF, win);
         x1++;
         counter++;
     }

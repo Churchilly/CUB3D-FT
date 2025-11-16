@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 08:08:56 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 08:54:23 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void render_game(t_main *g)
 	draw_heath_bar(g);
 	animate_spellbook(g);
 	render_spellbook(g);
+	render_frames(g);
 	draw_image(&g->window, &g->gallery.cross,
 		WIN_WIDTH / 2 - g->gallery.cross.width / 2,
 		WIN_HEIGHT / 2 - g->gallery.cross.height / 2);

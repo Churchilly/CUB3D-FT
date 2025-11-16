@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 08:07:38 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 08:59:44 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ struct s_cub3_gallery
     t_im fireball_particle_3;
     t_im cross;
     t_mmap_gal mmap;
+    t_frame_gal frames;
 };
 
 struct s_draw_pkg
@@ -73,6 +74,7 @@ struct s_draw_pkg
 
 t_cub3_image create_image(char *path);
 void draw_image(t_window *win, t_cub3_image *img, int x, int y);
+void draw_image_no_alpha(t_window *win, t_cub3_image *img, int x, int y);
 void draw_image_rotated(t_window *win, t_cub3_image *img, int x, int y, double angle_deg); // claude
 void draw_button(t_window *win, t_cub3_image *img, int x, int y);
 void draw_button_hover(t_window *win, t_cub3_image *img, int x, int y);
