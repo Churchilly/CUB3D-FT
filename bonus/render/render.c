@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/14 21:45:18 by root             ###   ########.fr       */
+/*   Updated: 2025/11/16 02:28:07 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void render_game(t_main *g)
 	draw_heath_bar(g);
 	animate_spellbook(g);
 	render_spellbook(g);
+	draw_image(&g->window, &g->gallery.fireball2, 0, 0);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 
 	frame_count++;
@@ -57,7 +58,7 @@ static void render_game(t_main *g)
 }
 
 void	cub_render(t_main *g)
-{	
+{
 	if (g->main_menu.active)
 		render_main_menu(g);
 	else

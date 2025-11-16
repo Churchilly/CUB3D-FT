@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/12 20:32:25 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 02:56:22 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,18 @@ static int loop_game(t_main *game)
 	}
 	
 	unlock_switch(game);
-	usleep(1000);
 	return (0);	
 }
 
 int loop_event(t_main *game)
 {
+	static long long time_log = 0;
+	long long curr_time;
+
+	curr_time = current_time_ms();
+	if (!(curr_time - time_log > 16))
+		return (0);
+	time_log = curr_time;
 	if (game->main_menu.active)
 		return (loop_main_menu(game));
 	else

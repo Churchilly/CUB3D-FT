@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/15 17:42:39 by root             ###   ########.fr       */
+/*   Updated: 2025/11/16 03:01:12 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,24 @@ static void	create_fireballs(t_main *g)
 		fireball->direction = 0.0;
 		fireball->position.x = -1.0;
 		fireball->position.y = -1.0;
-		fireball->state = F_IDLE;  // ✅ F_IDLE (fireball enum)
+		fireball->state = F_IDLE;
 		add_object(&g->objects, FIREBALL, fireball);
+	}
+}
+
+static void create_particles(t_main *g)
+{
+	int counter;
+	t_fire_particle *particle;
+
+	counter = NUM_OF_PARTICLES;
+	while (counter--)
+	{
+		particle = malloc(sizeof(t_fire_particle));
+		particle->active = false;
+		particle->position.x = -1.0;
+		particle->position.y = -1.0;
+		add_object(&g->objects, PARTICLE, particle);
 	}
 }
 
@@ -164,6 +180,7 @@ static void debug(t_main *g)
 void	cub_objects(t_main *g)
 {
 	create_fireballs(g);
+	create_particles(g);
 	create_enemies(g);
 	create_barriers(g);
 	debug(g);

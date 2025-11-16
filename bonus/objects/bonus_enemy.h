@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 21:25:01 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 02:56:20 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ enum e_enemy_state
 struct s_enemy
 {
 	t_vector		position;
+	t_segment 		segment;
 	int				health;
 	int				state;
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_ray_list_operations.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:37 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 02:36:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 02:56:21 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

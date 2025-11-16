@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects_queue.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/15 18:01:24 by root             ###   ########.fr       */
+/*   Updated: 2025/11/16 02:56:21 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,24 @@ static int	is_segment_in_fov(t_player *p, t_segment *segment)
 	return (do_angular_ranges_overlap(player.s, player.e, object.s, object.e));
 }
 
+static void	update_object_segment(t_segment *obj_seg, t_vector obj_pos, t_player *player)
+{
+	t_vector	diff;
+	double		distance;
+	t_vector	delta;
+
+	diff.x = player->pos.x - obj_pos.x;
+	diff.y = player->pos.y - obj_pos.y;
+	distance = sqrt((obj_pos.x - player->pos.x) * (obj_pos.x - player->pos.x)
+					+ (obj_pos.y - player->pos.y) * (obj_pos.y - player->pos.y));
+	delta.x = diff.y / distance;
+	delta.y = (diff.x / distance) * -1;
+	obj_seg->e = (t_vector){obj_pos.x + delta.x * (FIREBALL_WIDTH / 2),
+				obj_pos.y + delta.y * (FIREBALL_WIDTH / 2)};
+	obj_seg->s = (t_vector){obj_pos.x - delta.x * (FIREBALL_WIDTH / 2),
+				obj_pos.y - delta.y * (FIREBALL_WIDTH / 2)};
+}
+
 void	create_render_queue(t_main *g)
 {
 	t_obj_node	*curr;
@@ -78,58 +96,18 @@ void	create_render_queue(t_main *g)
 		}
 		else if (curr->type == FIREBALL)
 		{
-			double fireball_width = 0.2; 
-			// create segment
-			t_segment seg;
-			t_fireball *f;
-			t_player pl;
-			t_vector diff;
-			double distance;
-			t_vector direction;
-			t_vector direction_;
-
-			f = curr->object;
-			pl = g->map.player;
-			
-			// find midpoint;
-			diff.x = (pl.pos.x - f->position.x);
-			diff.y = (pl.pos.y - f->position.y);
-
-			// find distance
-			distance = sqrt(
-					(f->position.x - pl.pos.x) * (f->position.x - pl.pos.x) +
-					(f->position.y - pl.pos.y) * (f->position.y - pl.pos.y)
-			);
-			
-			// calc direction
-			direction.x = diff.x / distance;
-			direction.y = diff.y / distance;
-			
-			// turn direction 90deg
-			direction_.x = direction.y;
-			direction_.y = direction.x * -1;
-
-			// first vector of segment
-			seg.e = (t_vector){
-				f->position.x + direction_.x * (fireball_width / 2),
-				f->position.y + direction_.y * (fireball_width / 2)
-			};
-
-			// other vector of segment
-			seg.s = (t_vector){
-				f->position.x - direction_.x * (fireball_width / 2),
-				f->position.y - direction_.y * (fireball_width / 2)
-			};
-			f->segment = seg;
-			if (is_segment_in_fov(&g->map.player, &seg) && f->state != F_IDLE)
+			update_object_segment(&((t_fireball *)curr->object)->segment, ((t_fireball *)curr->object)->position, &g->map.player);
+			if (is_segment_in_fov(&g->map.player, &((t_fireball *)curr->object)->segment))
 			{
 				add_to_render_queue(&g->objects, curr, &g->map.player);
 			}
 		}
-		// else add fireball [BURAK]
-		// create fireball segment
-		// check is segment in fov
-		// calc distance and add render queue
+		else if (curr->type == ENEMY)
+		{
+			update_object_segment(&((t_enemy *)curr->object)->segment, ((t_enemy *)curr->object)->position, &g->map.player);
+			if (is_segment_in_fov(&g->map.player, &((t_enemy *)curr->object)->segment))
+				add_to_render_queue(&g->objects, curr, &g->map.player);
+		}
 		curr = curr->next;
 	}
 }

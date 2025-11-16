@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_objects.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/15 23:40:39 by root             ###   ########.fr       */
+/*   Updated: 2025/11/16 03:05:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,29 @@ static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 	}
 	if (f->state == FLY && curr_time - time_log_2 > 5)
 	{
+
+		// particle //
+
+		t_obj_node *obj;
+		t_fire_particle *particle;
+		
+		obj = g->objects.all;
+		while (obj->next)
+		{
+			if (obj->type == PARTICLE)
+			{
+				particle = obj->object;
+				if (particle->active)
+					continue ;
+				break ;
+			}
+			obj = obj->next;
+		}
+		particle->position.x = f->position.x;
+		particle->position.y = f->position.y;
+		
+		// particlEND //
+
 		f->position.x += cos(f->direction) * 0.05;
 		f->position.y += sin(f->direction) * 0.05;
 		

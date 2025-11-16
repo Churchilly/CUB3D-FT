@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/13 18:49:14 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 02:57:03 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,16 @@ rendering
 # define BONUS_FIREBALL_H
 
 # include "../main/vector.h"
+# include <stdbool.h>
 
 # define NUM_OF_FIREBALLS 5
 # define FIREBALL_DAMAGE 5
 # define FIREBALL_BURN_DAMAGE 3
+# define FIREBALL_WIDTH 0.2
+# define NUM_OF_PARTICLES 25
 
 typedef struct s_fireball		t_fireball;
+typedef struct s_fireball_particle t_fire_particle;
 typedef enum e_fireball_state	t_fireball_state;
 
 enum e_fireball_state
@@ -51,8 +55,15 @@ struct	s_fireball
 {
 	t_vector	position;
 	double		direction;
-	t_segment segment;
+	t_segment 	segment;
 	t_fireball_state state;
+};
+
+struct s_fireball_particle
+{
+	t_vector position;
+	t_segment segment;
+	bool active;
 };
 
 #endif
