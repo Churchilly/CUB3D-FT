@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/16 02:56:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 05:25:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,29 @@
 // 	switch keys are for player to be not able to spam some events by just
 // continuously pressing on the key. switch key attribute provide a safe
 // switching between active and inactive
+
+static int	onpress_switch_key_main_menu(t_switch_key *switch_key, int key, t_main *game)
+{
+	if (!game->main_menu.active)
+		return (0);
+	if (!switch_key->key_switch)
+	{
+		if (key == XK_space)
+		{
+			activate_button(game);
+		}
+		if (key == XK_w)
+			prev_button(&game->main_menu);
+		if (key == XK_s)
+			next_button(&game->main_menu);
+	}
+	return (1);
+}
 static void onpress_switch_key(t_switch_key *switch_key, int key, t_main *game)
 {
 	switch_key->key = true;
+	if (onpress_switch_key_main_menu(switch_key, key, game))
+		return ;
 	if (key == XK_F3)
 	{
 		printf("im pressin f3 mf\n");
@@ -60,11 +80,11 @@ void unlock_switch(t_main *game)
 
 int onpress_event(int key, t_main *game)
 {
-	if (key == XK_w)
+	if (key == XK_w && !game->main_menu.active)
 		game->key_list.w = true;
 	else if (key == XK_a)
 		game->key_list.a = true;
-	else if (key == XK_s)
+	else if (key == XK_s && !game->main_menu.active)
 		game->key_list.s = true;
 	else if (key == XK_d)
 		game->key_list.d = true;
@@ -80,6 +100,10 @@ int onpress_event(int key, t_main *game)
 		onpress_switch_key(&(game->key_list.spc), key, game);
 	else if (key == XK_F3)
 		onpress_switch_key(&(game->key_list.f3), key, game);
+	else if (key == XK_w)
+		onpress_switch_key(&(game->key_list.w), key, game);
+	else if (key == XK_s)
+		onpress_switch_key(&(game->key_list.s), key, game);
 	return (0);
 }
 
