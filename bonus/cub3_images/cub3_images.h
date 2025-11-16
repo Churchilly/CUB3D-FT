@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 02:56:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 07:31:45 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_cub3_image t_cub3_image;
 typedef struct s_minimap_gallery t_mmap_gallery;
 typedef struct s_cub3_gallery t_cub3_gallery;
 typedef struct s_window t_window;
+typedef struct s_draw_pkg t_draw_pkg;
 
 typedef t_cub3_image t_im;
 
@@ -59,12 +60,22 @@ struct s_cub3_gallery
     t_mmap_gal mmap;
 };
 
+struct s_draw_pkg
+{
+    t_im *image;
+    t_window *window;
+    int height;
+    int start;
+    int end;
+    int col;
+};
+
 t_cub3_image create_image(char *path);
 void draw_image(t_window *win, t_cub3_image *img, int x, int y);
 void draw_image_rotated(t_window *win, t_cub3_image *img, int x, int y, double angle_deg); // claude
 void draw_button(t_window *win, t_cub3_image *img, int x, int y);
 void draw_button_hover(t_window *win, t_cub3_image *img, int x, int y);
-
+void draw_column(t_draw_pkg *pkg, int x, t_window *win);
 void *init_gallery_with_config(t_cub3_gallery *gal, char *config);
 
 #endif

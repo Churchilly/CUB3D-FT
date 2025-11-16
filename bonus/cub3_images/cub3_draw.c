@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 05:39:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/14 20:07:51 by root             ###   ########.fr       */
+/*   Updated: 2025/11/16 07:43:42 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3_images.h"
+#include "../main/main.h"
 #include <math.h>
 
 void draw_image(t_window *win, t_cub3_image *img, int x, int y)
@@ -81,6 +81,32 @@ void draw_button_hover(t_window *win, t_cub3_image *img, int x, int y)
             put_pixel(x1 + x, y1 + y, img->image[counter + img->width / 2], win);
         x1++;
         counter++;
+    }
+}
+
+void draw_column(t_draw_pkg *pkg, int x, t_window *win)
+{
+    double step;
+    double image_x;
+    int image_y;
+    int color;
+    int y_counter;
+        
+    step = (double)pkg->image->height / (double)pkg->height;
+    image_x = 0;
+    y_counter = pkg->start - 1;
+    while (++y_counter <= pkg->end)
+    {
+        image_y = (int)image_x;
+        if (image_y >= pkg->image->height)
+            image_y = pkg->image->height - 1;
+        color = pkg->image->image[image_y * pkg->image->width + pkg->col];
+        if ((unsigned int)color != 0xffffffff)
+        {
+            color = (color >> 8) & 0x00FFFFFF;
+            put_pixel(x, y_counter, color, win);
+        }
+        image_x += step;
     }
 }
 
