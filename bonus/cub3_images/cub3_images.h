@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 07:31:45 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 08:07:38 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ struct s_cub3_gallery
     t_im fireball_particle_1;
     t_im fireball_particle_2;
     t_im fireball_particle_3;
+    t_im cross;
     t_mmap_gal mmap;
 };
 

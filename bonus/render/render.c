@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 03:37:15 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 08:08:56 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static void render_game(t_main *g)
 	draw_heath_bar(g);
 	animate_spellbook(g);
 	render_spellbook(g);
-	draw_image(&g->window, &g->gallery.fireball2, 0, 0);
+	draw_image(&g->window, &g->gallery.cross,
+		WIN_WIDTH / 2 - g->gallery.cross.width / 2,
+		WIN_HEIGHT / 2 - g->gallery.cross.height / 2);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 
 	frame_count++;
