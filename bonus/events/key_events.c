@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/16 05:25:16 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 09:02:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int onpress_event(int key, t_main *game)
 
 int onrelease_event(int key, t_main *game)
 {
-	if (key == XK_Escape)
+	if (key == XK_Escape && game->active)
 		switch_main_menu(game);
 	else if (key == XK_w)
 		game->key_list.w = false;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 20:38:58 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/16 09:12:48 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ struct s_key_list
 
 struct s_main
 {
+	int			active; // change this. this should store the current state -> main_menu - pause_menu - game - shop - map_select
 	t_map		map;
 	t_window	window;
 	t_ray_list	rays;

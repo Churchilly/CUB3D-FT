@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 03:37:15 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 09:09:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,24 @@
 #include <math.h>
 #include <stdio.h>
 
+static void render_pause_menu(t_main *g)
+{
+	// change the fucking images
+	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
+	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	place_button(g, &g->main_menu.btn_continue);
+	place_button(g, &g->main_menu.btn_campaign);
+	place_button(g, &g->main_menu.btn_map_selector);
+	place_button(g, &g->main_menu.btn_exit);
+	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
+}
+
 static void render_main_menu(t_main *g)
 {
 	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
 	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
-	place_button(g, &g->main_menu.btn_start);
+	place_button(g, &g->main_menu.btn_campaign);
+	place_button(g, &g->main_menu.btn_map_selector);
 	place_button(g, &g->main_menu.btn_exit);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }
@@ -59,8 +72,10 @@ static void render_game(t_main *g)
 
 void	cub_render(t_main *g)
 {
-	if (g->main_menu.active)
+	if (g->main_menu.active && !g->active)
 		render_main_menu(g);
+	else if (g->main_menu.active)
+		render_pause_menu(g);
 	else
 		render_game(g);
 }

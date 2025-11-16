@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 05:18:07 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 07:13:09 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#ifndef HUD_H
+# define HUD_H
 
 // MINIMAP DEFINES
 # define MMAP_GRID_SIZE 20
@@ -41,11 +41,11 @@
 # include "../main/vector.h"
 # include <stdbool.h>
 
-typedef struct s_button t_button;
-typedef struct s_main_menu t_main_menu;
-typedef struct s_main t_main;
-typedef struct s_pos t_pos;
-typedef enum e_button_type t_button_type;
+typedef struct s_button		t_button;
+typedef struct s_main_menu	t_main_menu;
+typedef struct s_main		t_main;
+typedef struct s_pos		t_pos;
+typedef enum e_button_type	t_button_type;
 
 enum e_button_type
 {
@@ -55,43 +55,53 @@ enum e_button_type
 
 struct s_button
 {
-    t_im image;
-    t_vector position;
-    int width;
-    int height;
+	t_im		image;
+	t_vector	position;
+	int			width;
+	int			height;
 };
 
 struct s_main_menu
 {
-    bool			active;
+	bool			active;
 	t_button		*selected;
-    t_cub3_image	bg_img;
-    t_button		btn_start;
-    t_button		btn_exit;
+	t_cub3_image	bg_img;
+	t_button		btn_continue;
+	t_button		btn_campaign;
+	t_button		btn_map_selector;
+	t_button		btn_exit;
+};
+
+struct s_map_selector
+{
+	bool			active;
+	t_button		*selected;
+	t_cub3_image	bg_img;
+	t_button		btn_maps[5];
 };
 
 struct s_pos
 {
-    int x;
-    int y;
+	int	x;
+	int	y;
 };
 
-void draw_minimap(t_main *game);
-void draw_mmap(t_main *g);
+void	draw_minimap(t_main *game);
+void	draw_mmap(t_main *g);
 
-void *init_main_menu(t_main *g, t_main_menu *mmenu);
-void switch_main_menu(t_main *g);
+void	*init_main_menu(t_main *g, t_main_menu *mmenu);
+void	switch_main_menu(t_main *g);
 
-void *set_button(t_button *button, t_im *img, t_vector pos);
-void check_button(t_main *game, t_button *button);
-void place_button(t_main *g, t_button *btn);
-void activate_button(t_main *g);
+void	*set_button(t_button *button, t_im *img, t_vector pos);
+void	check_button(t_main *game, t_button *button);
+void	place_button(t_main *g, t_button *btn);
+void	activate_button(t_main *g);
 //bool is_xy_on_button(int x, int y, t_button *btn);
 
 void	next_button(t_main_menu *menu);
 void	prev_button(t_main_menu *menu);
 
-void draw_mana_bar(t_main *g);
-void draw_heath_bar(t_main *g);
+void	draw_mana_bar(t_main *g);
+void	draw_heath_bar(t_main *g);
 
 #endif

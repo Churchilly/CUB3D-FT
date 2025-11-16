@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 05:15:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 09:01:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@
 void *init_main_menu(t_main *g, t_main_menu *mmenu)
 {
     mmenu->active = true;
+	mmenu->selected = &mmenu->btn_campaign;
     mmenu->bg_img = g->gallery.mmenu_bg;
-	mmenu->selected = &mmenu->btn_start;
     
-    set_button(&mmenu->btn_start, &g->gallery.mmenu_start_btn,
-        (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4), 210});
-    
+	mmenu->btn_continue.height = -1;
+    set_button(&mmenu->btn_campaign, &g->gallery.mmenu_start_btn,
+        (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4), (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3});
+
+	set_button(&mmenu->btn_map_selector, &g->gallery.mmenu_start_btn,
+        (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4),
+            (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3 + g->gallery.mmenu_start_btn.height});
+
     set_button(&mmenu->btn_exit, &g->gallery.mmenu_start_btn,
         (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4),
-            210 + g->gallery.mmenu_start_btn.height + 5});
+            (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3 + g->gallery.mmenu_start_btn.height * 2});
 }
 
 void switch_main_menu(t_main *g)

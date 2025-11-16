@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:55:21 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 05:17:46 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/16 09:02:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,17 @@ void place_button(t_main *g, t_button *btn)
 
 void activate_button(t_main *g)
 {
-    if (g->main_menu.selected == &g->main_menu.btn_start)
+    if (g->main_menu.selected == &g->main_menu.btn_campaign)
     {
+		g->active = 1;
+    	set_button(&g->main_menu.btn_continue, &g->gallery.mmenu_start_btn,
+        	(t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4),
+            (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3 - g->gallery.mmenu_start_btn.height});
         switch_main_menu(g);
         g->key_list.f3.key_switch = true;
     }
+	else if (g->main_menu.selected == &g->main_menu.btn_continue)
+		switch_main_menu(g);
     else if (g->main_menu.selected == &g->main_menu.btn_exit)
         terminate_hook();
 }
