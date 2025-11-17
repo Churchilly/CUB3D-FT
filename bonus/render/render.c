@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 15:57:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 21:38:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ void	render_game(t_main *g)
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }
 
-void	render_shop(t_main *g)
+void	render_select_map(t_main *g)
 {
-	
+	place_button(g, &g->main_menu.btn_campaign);
+	place_button(g, &g->main_menu.btn_map_select);
+	place_button(g, &g->main_menu.btn_exit);	
 }
 
-void	render_select_map(t_main *g)
+void	render_shop(t_main *g)
 {
 	
 }

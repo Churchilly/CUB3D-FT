@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 17:42:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 21:40:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ struct s_main
 	t_key_list		key_list;
 	t_cub3_gallery	gallery;
 	t_main_menu		main_menu;
-	
+	t_map_select	map_select;
 };
 
 void	__init__(t_main *game);

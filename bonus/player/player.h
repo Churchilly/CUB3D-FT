@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 17:13:48 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:02:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ struct s_inventory
 	int damage_increase;
 	int mana_increase;
 	int cooldown_decreaser;
+	int	orb;
 };
 
 struct s_player
