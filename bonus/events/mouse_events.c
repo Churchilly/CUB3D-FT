@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/16 07:04:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 18:41:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,18 @@ int mouse_click(int button, int x, int y, void *game)
     t_button *btn;
     
     g = (t_main *)game;
-    if (g->main_menu.active)
+    if (g->state == MENU_MAIN || g->state == MENU_PAUSE)
     {
+		if (g->main_menu.btn_continue.height != -1)
+		{
+			btn = &g->main_menu.btn_continue;
+        	if (is_xy_on_button(x, y, btn))
+            	activate_button(g);
+		}
         btn = &g->main_menu.btn_campaign;
+        if (is_xy_on_button(x, y, btn))
+            activate_button(g);
+        btn = &g->main_menu.btn_map_select;
         if (is_xy_on_button(x, y, btn))
             activate_button(g);
         btn = &g->main_menu.btn_exit;

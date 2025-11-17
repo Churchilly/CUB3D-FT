@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 09:12:48 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 17:42:20 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,19 @@
 
 # include "../sound/sound.h"
 
-typedef struct s_key_list t_key_list;
-typedef struct s_main t_main;
-typedef struct s_switch_key t_switch_key;
+typedef struct s_key_list	t_key_list;
+typedef struct s_main		t_main;
+typedef struct s_switch_key	t_switch_key;
+typedef enum e_game_state	t_game_state;
+
+enum e_game_state
+{
+	MENU_MAIN = 0,
+	GAME,
+	MENU_PAUSE,
+	MENU_MAP_SELECT,
+	MENU_SHOP
+};
 
 struct s_switch_key
 {
@@ -57,18 +67,20 @@ struct s_key_list
 
 struct s_main
 {
-	int			active; // change this. this should store the current state -> main_menu - pause_menu - game - shop - map_select
-	t_map		map;
-	t_window	window;
-	t_ray_list	rays;
-	t_obj_list	objects;
-	t_spellbook	spellbook;
-	t_key_list	key_list;
-	t_cub3_gallery gallery;
-	t_main_menu main_menu;
+	t_game_state	state; // change this. this should store the current state -> main_menu - pause_menu - game - shop - map_select
+	t_map			map;
+	t_window		window;
+	t_ray_list		rays;
+	t_obj_list		objects;
+	t_spellbook		spellbook;
+	t_key_list		key_list;
+	t_cub3_gallery	gallery;
+	t_main_menu		main_menu;
+	
 };
 
 void	__init__(t_main *game);
+void	init_game(t_main *game, char *map_file);
 void _init_hooks(t_main *game);
 void center_window(t_main *g);
 long long	current_time_ms(void);

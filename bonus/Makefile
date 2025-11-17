@@ -22,10 +22,10 @@ $(MLX):
 	@make -C $(MLX_DIR)
 
 run: all
-	make clean && ./cub3d testmaps/valid_basic.cub
+	make clean && ./cub3d
 
 run_valgrind: all
-	make clean && valgrind ./cub3d testmaps/valid_basic.cub
+	make clean && valgrind ./cub3d
 
 clean:
 	rm -rf $(OBJ)

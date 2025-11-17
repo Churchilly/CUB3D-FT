@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/16 09:27:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 16:28:54 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,34 @@ int terminate_hook(void)
 	return (0);
 }
 
-static int loop_main_menu(t_main *game)
+static void	update_game(t_main *g)
 {
-	cub_render(game);
-	// check_button;
-	return (0);	
+	change_position(g, 0);
+	change_direction(g, 0);
+	
+	update_mana(g);
+	update_health(g);
+	
+	if (g->key_list.f3.key_switch)
+	{
+		read_mouse_movements(g);
+		center_mouse(g);
+	}
+	unlock_switch(g);
 }
 
-static int loop_game(t_main *game)
+static void	fps_counter(long long curr_time)
 {
-	cub_render(game);
-	change_position(game, 0);
-	change_direction(game, 0);
-	
-	update_mana(game);
-	update_health(game);
-	
-	if (game->key_list.f3.key_switch)
+	static int frame_count = 0;
+	static long long time_log = 0;
+
+	frame_count++;
+	if (curr_time - time_log >= 1000)
 	{
-		read_mouse_movements(game);
-		center_mouse(game);
+		printf("%ifps\n", frame_count);
+		frame_count = 0;
+		time_log = curr_time;
 	}
-	
-	unlock_switch(game);
-	return (0);	
 }
 
 int loop_event(t_main *game)
@@ -52,12 +56,21 @@ int loop_event(t_main *game)
 	long long curr_time;
 
 	curr_time = current_time_ms();
-	//if (!(curr_time - time_log > 16))
-	//	return (0);
+	if (!(curr_time - time_log > 16))
+		return (0);
 	time_log = curr_time;
-	
-	if (game->main_menu.active)
-		return (loop_main_menu(game));
-	else
-		return (loop_game(game));
+	fps_counter(curr_time);
+	if (game->state == MENU_MAIN)
+		render_main_menu(game);
+	else if (game->state == MENU_PAUSE)
+		render_pause_menu(game);
+	else if (game->state == GAME)
+	{
+		render_game(game);
+		update_game(game);
+	}
+	else if (game->state == MENU_MAP_SELECT)
+		return (0);
+	else if (game->state == MENU_SHOP)
+		return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 08:54:40 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/17 14:30:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ struct s_ray
 
 typedef void	(*t_raycasting_func)(t_main *g);
 
-void	cub_render(t_main *g);
+void render_game(t_main *g);
+void render_main_menu(t_main *g);
+void render_pause_menu(t_main *g);
+
 void	put_pixel(int x, int y, int color, t_window *win);
 void	render_background(t_main *g);
 void	raycasting(t_main *g);

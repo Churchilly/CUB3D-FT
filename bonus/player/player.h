@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/15 22:20:03 by root             ###   ########.fr       */
+/*   Updated: 2025/11/17 17:13:48 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ struct s_player
 {
 	t_vector	pos;
 	double		dov; // direction of view
-	double mana;
-	double health;
+	double		mana;
+	double		health;
 	t_inventory inventory;
 };
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/13 17:23:06 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/17 17:34:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,62 +59,26 @@ static void _init_keys(t_main *game)
 	game->key_list.f3.key_switch = false;
 }
 
-static void	_init_texture(t_texture *src, char *dst, void *mlx)
-{
-	src->img = mlx_xpm_file_to_image(mlx, dst, &src->width, &src->height);
-	if (!src->img)
-	{
-		printf("Error: Failed to load texture %s\n", dst);
-		exit(1);
-	}
-	src->addr = mlx_get_data_addr(src->img,
-		&src->bits_per_pixel, &src->line_length,
-		&src->endian);
-}
-
-static void	_init_spellbook(t_spellbook *spellbook, void *mlx)
-{
-	int	target_width;
-	int	scaled_width;
-	int	scaled_height;
-
-	_init_texture(&spellbook->texture_fireball, "textures/fireball_spellbook.xpm", mlx);
-	_init_texture(&spellbook->texture_lock, "textures/lock_spellbook.xpm", mlx);
-	_init_texture(&spellbook->texture_unlock, "textures/unlock_spellbook.xpm", mlx);
-	spellbook->current = FIRBALL;
-	spellbook->cur_texture = &spellbook->texture_fireball;
-	spellbook->cooldown = 0;
-	spellbook->changing_direction = 0;
-	target_width = (int)(WIN_WIDTH * SPELLBOOK_TARGET_WIDTH_RATIO);
-	spellbook->scale = (float)SPELLBOOK_WIDTH / (float)target_width;
-	scaled_width = (int)(SPELLBOOK_WIDTH / spellbook->scale);
-	scaled_height = (int)(SPELLBOOK_HEIGHT / spellbook->scale);
-	spellbook->win_pos.x = (WIN_WIDTH - scaled_width) / 2;
-	spellbook->win_pos.y = WIN_HEIGHT - scaled_height + (WIN_HEIGHT / 10);
-	spellbook->original_win_pos.x = spellbook->win_pos.x;
-	spellbook->original_win_pos.y = spellbook->win_pos.y;
-}
 
 void	__init__(t_main *game)
 {
 	memset(game, 0, sizeof(t_main));
-	game->window.mlx = mlx_init(); // connection to mlx for textures
-	safe_mlx(game->window.mlx, op_mlx); // insert connection into the safe
+	
+	// Initialize MLX connection
+	game->window.mlx = mlx_init();
+	safe_mlx(game->window.mlx, op_mlx);
 	if (!game->window.mlx)
 	{
 		printf("Error: Failed to initialize MLX\n");
 		exit(1);
 	}
-	game->map.player.pos.x = -1;
-	game->map.player.pos.y = -1;
-	game->map.player.mana = MAX_MANA;
-	game->map.player.health = MAX_HEALTH;
-	init_gallery_with_config(&(game->gallery), NULL); // config will be here. // no hud inits before gallery
+	
+	// Initialize menu-related things (needed before game starts)
+	init_gallery_with_config(&(game->gallery), NULL);
 	init_main_menu(game, &(game->main_menu));
 	_init_keys(game);
-	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);
-	_init_spellbook(&game->spellbook, game->window.mlx);
 }
+
 
 void _init_hooks(t_main *game)
 {

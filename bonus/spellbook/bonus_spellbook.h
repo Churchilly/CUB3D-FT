@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 20:10:39 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/11 18:06:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 17:14:54 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ struct s_spellbook
 
 typedef struct s_main	t_main;
 
+void	cub_spellbook(t_spellbook *spellbook, void *mlx);
 void	next_spell(t_main *g);
 void	prev_spell(t_main *g);
 void	cast_spell(t_main *g);

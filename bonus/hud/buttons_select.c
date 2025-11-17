@@ -6,46 +6,80 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 03:32:58 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 07:38:38 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 18:42:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hud.h"
+#include "../main/main.h"
 
-void	next_button(t_main_menu *menu)
+void	next_button(t_main *g)
 {
-	if (!menu->active)
-		return ;
-	if (menu->selected == &menu->btn_campaign)
-		menu->selected = &menu->btn_map_selector;
-	else if (menu->selected == &menu->btn_exit)
+	if (g->state == MENU_MAIN || g->state == MENU_PAUSE)
 	{
-		if (menu->btn_continue.height != -1)
-			menu->selected = &menu->btn_continue;
-		else
-			menu->selected = &menu->btn_campaign;
+		if (g->main_menu.selected == &(g->main_menu.btn_continue))
+			g->main_menu.selected = &(g->main_menu.btn_campaign);
+		else if (g->main_menu.selected == &(g->main_menu.btn_campaign))
+			g->main_menu.selected = &(g->main_menu.btn_map_select);
+		else if (g->main_menu.selected == &(g->main_menu.btn_map_select))
+			g->main_menu.selected = &(g->main_menu.btn_exit);
+		else if (g->main_menu.selected == &(g->main_menu.btn_exit))
+		{
+			if (g->main_menu.btn_continue.height != -1)
+				g->main_menu.selected = &(g->main_menu.btn_continue);
+			else
+				g->main_menu.selected = &(g->main_menu.btn_campaign);
+		}
 	}
-	else if (menu->selected == &menu->btn_map_selector)
-		menu->selected = &menu->btn_exit;
-	else if (menu->selected == &menu->btn_continue)
-		menu->selected = &menu->btn_campaign;
 }
 
-void	prev_button(t_main_menu *menu)
+void	prev_button(t_main *g)
 {
-	if (!menu->active)
-		return ;
-	if (menu->selected == &menu->btn_campaign)
+	if (g->state == MENU_MAIN || g->state == MENU_PAUSE)
 	{
-		if (menu->btn_continue.height != -1)
-			menu->selected = &menu->btn_continue;
-		else
-			menu->selected = &menu->btn_exit;
+		if (g->main_menu.selected == &(g->main_menu.btn_continue))
+			g->main_menu.selected = &(g->main_menu.btn_exit);
+		else if (g->main_menu.selected == &(g->main_menu.btn_campaign))
+		{
+			if (g->main_menu.btn_continue.height != -1)
+				g->main_menu.selected = &(g->main_menu.btn_continue);
+			else
+				g->main_menu.selected = &(g->main_menu.btn_exit);
+		}
+		else if (g->main_menu.selected == &(g->main_menu.btn_map_select))
+			g->main_menu.selected = &(g->main_menu.btn_campaign);
+		else if (g->main_menu.selected == &(g->main_menu.btn_exit))
+			g->main_menu.selected = &(g->main_menu.btn_map_select);
 	}
-	else if (menu->selected == &menu->btn_exit)
-		menu->selected = &menu->btn_map_selector;
-	else if (menu->selected == &menu->btn_map_selector)
-		menu->selected = &menu->btn_campaign;
-	else if (menu->selected == &menu->btn_continue)
-		menu->selected = &menu->btn_exit;
+}
+
+
+void activate_button(t_main *g)
+{
+
+	if (g->state == MENU_MAIN || g->state == MENU_PAUSE)
+	{
+    	if (g->main_menu.selected == &g->main_menu.btn_campaign)
+    	{
+			// dump the gc that holds the game things here
+			init_game(g, CAMPAIGN_MAP); // always init game
+			// dump the gc that holds the garbages that are created while initing game (like map_copy or raw_map)
+			if (g->main_menu.btn_continue.height == -1)
+			{
+    			set_button(&g->main_menu.btn_continue,
+					&g->gallery.mmenu_start_btn,
+    	    		(t_vector){(WIN_WIDTH / 2
+					- g->gallery.mmenu_start_btn.width / 4),
+    	    	    (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2)
+					/ 3 - g->gallery.mmenu_start_btn.height});
+			}
+			switch_menu(g);
+    	    g->key_list.f3.key_switch = true;
+    	}
+		else if (g->main_menu.selected == &g->main_menu.btn_continue)
+			switch_menu(g);
+		else if (g->main_menu.selected == &(g->main_menu.btn_map_select))
+			g->state = MENU_MAP_SELECT;
+    	else if (g->main_menu.selected == &g->main_menu.btn_exit)
+    	    terminate_hook();
+	}
 }

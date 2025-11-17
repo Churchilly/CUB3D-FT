@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:14:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/17 17:45:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "texture.h"
 #include "../utils/utils.h"
 #include "../player/player.h"
+
+# define CAMPAIGN_MAP	"valid_basic.cub"
 
 typedef struct s_map	t_map;
 typedef struct s_main	t_main;
@@ -33,6 +35,7 @@ enum e_identifiers
 
 struct s_map
 {
+	char		*next_map;
 	t_texture	texture_no;
 	t_texture	texture_so;
 	t_texture	texture_we;

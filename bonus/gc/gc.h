@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:04:00 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/19 08:19:42 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/17 17:32:37 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define GC_H
 
 # include <stdlib.h>
+
+// !! gc needs a recode!
+// need 3 list
+// 1st list -> mlx things dump only window close
+// 2nd list -> game things dump when window close || 
+// 3rd list -> for initing game dump on game start || window close (this is for safety dont use malloc !!)
 
 enum e_safe_mlx_options
 {
