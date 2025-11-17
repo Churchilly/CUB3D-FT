@@ -217,8 +217,8 @@ static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 		
 		if (g->map.matrix[(int)f->position.y][(int)f->position.x] == '1')
 		{
-			f->state = IDLE;
 			printf("BOOOOOOOOOOOOOMMMM\n");
+			f->state = IDLE;
 			fireball_explode(g, &f->position);
 			f->position = (t_vector){-1, -1};
 		}
