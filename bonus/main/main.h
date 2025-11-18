@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 21:40:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/18 19:12:08 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "../objects/bonus_enemy.h"
 # include "../spellbook/bonus_spellbook.h"
 # include "../hud/hud.h"
+#include "../cub3_fonts/cub3_fonts.h"
 
 # include <stdbool.h>
 
@@ -77,6 +78,7 @@ struct s_main
 	t_cub3_gallery	gallery;
 	t_main_menu		main_menu;
 	t_map_select	map_select;
+	t_font_menu font_menu;
 };
 
 void	__init__(t_main *game);

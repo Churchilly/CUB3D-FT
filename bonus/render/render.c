@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 21:38:16 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 00:33:35 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ void	render_game(t_main *g)
 	draw_image(&g->window, &g->gallery.cross,
 		WIN_WIDTH / 2 - g->gallery.cross.width / 2,
 		WIN_HEIGHT / 2 - g->gallery.cross.height / 2);
+
+	char *text = "CUBCUBCUBCUBCUBCUB";
+	draw_text("asdasdasdasdasd", &g->font_menu.alagard, (t_pos){0, 0}, &g->window, 0.5);
+	draw_text("asdasdasdasdasd", &g->font_menu.alagard, (t_pos){0, 50}, &g->window, 1);
+	draw_text("asdasdasdasdasd", &g->font_menu.alagard, (t_pos){0, 100}, &g->window, 1.5);
+	draw_text("asdasdasdasdasd", &g->font_menu.alagard, (t_pos){0, 150}, &g->window, 2);
+	draw_text("asdasdasdasdasd", &g->font_menu.alagard, (t_pos){0, 200}, &g->window, 5);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }
 

@@ -55,8 +55,9 @@ for curr_section, section in enumerate(sections):
                         pixels[curr_x, curr_y] = (255, 0, 0)
         
         draw_x = draw_x_backup + max_width + SPACING
-
+    
     curr_section += 1
+    print(f"section {curr_section} max_width: {max_width}")
 
 image.save("font.png")
 print("OK")

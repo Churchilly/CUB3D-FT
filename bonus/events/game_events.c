@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   game_events.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/17 16:28:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/18 22:55:34 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "events.h"
 #include <stdio.h> // for debug
+#include "../cub3_fonts/cub3_fonts.h"
 
 int terminate_hook(void)
 {
@@ -54,6 +55,7 @@ int loop_event(t_main *game)
 {
 	static long long time_log = 0;
 	long long curr_time;
+
 
 	curr_time = current_time_ms();
 	if (!(curr_time - time_log > 16))

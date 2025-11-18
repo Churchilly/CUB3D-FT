@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_galleries.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 22:25:41 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 08:52:37 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/18 19:07:19 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_hud_gallery t_hud_gal;
 typedef struct s_shop_gallery t_shop_gal;
 typedef struct s_effect_gallery t_effect_gal;
 typedef struct s_frame_gallery t_frame_gal;
+typedef struct s_font_gallery t_font_gal;
 
 struct s_number_gallery
 {
@@ -84,6 +85,11 @@ struct s_frame_gallery
     t_im low_hp_1;
     t_im low_hp_2;
     t_im low_hp_3;
+};
+
+struct s_font_gallery
+{
+    t_im alagard;
 };
 
 #endif

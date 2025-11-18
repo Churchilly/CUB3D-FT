@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/17 18:23:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:00:02 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_main_menu	t_main_menu;
 typedef struct s_map_select	t_map_select;
 typedef struct s_shop		t_shop;
 typedef struct s_main		t_main;
-typedef struct s_pos		t_pos;
 typedef enum e_button_type	t_button_type;
 
 enum e_button_type
@@ -89,11 +88,6 @@ struct s_shop
 	t_button		items[];// idk how much item we are gonna put here
 };
 
-struct s_pos
-{
-	int	x;
-	int	y;
-};
 
 void	draw_minimap(t_main *game);
 void	draw_mmap(t_main *g);
