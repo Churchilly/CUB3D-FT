@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   bonus_orbs.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 03:03:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 20:29:22 by btuncer          ###   ########.fr       */
+/*   Created: 2025/11/19 23:01:56 by btuncer           #+#    #+#             */
+/*   Updated: 2025/11/20 02:04:02 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#ifndef BONUS_ORBS_H
+# define BONUS_ORBS_H
 
-typedef struct s_vector		t_vector;
-typedef struct s_vector_int	t_vector_int;
-typedef struct s_segment	t_segment;
-typedef struct s_angle		t_angle;
+# define ORB_RADIUS 0.3
+# define ORB_WIDTH 0.1
 
-struct s_vector
+# include "../main/vector.h"
+
+typedef struct s_orb t_orb;
+
+struct s_orb
 {
-	double	x;	
-	double	y;	
+    t_vector position;
+    t_segment segment;
+    long long last_hit_time;
 };
 
-struct s_vector_int
-{
-	int	x;
-	int	y;
-};
-
-struct s_segment
-{
-	t_vector s;
-	t_vector e;
-};
-
-struct s_angle
-{
-	double	s;
-	double	e;
-};
+void animate_orbs(t_main *g);
 
 #endif

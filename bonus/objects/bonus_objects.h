@@ -6,14 +6,19 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:13:10 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 02:56:22 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/20 00:51:12 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS
 # define OBJECTS
 
-# include "../main/main.h"
+// Forward declarations
+typedef struct s_main			t_main;
+typedef struct s_player			t_player;
+typedef struct s_cub3_gallery	t_cub3_gallery;
+typedef struct s_fireball		t_fireball;
+typedef struct s_vector			t_vector;
 
 typedef struct s_object_node	t_obj_node;
 typedef struct s_object_list	t_obj_list;
@@ -27,7 +32,9 @@ enum e_object_types
 	DOOR,
 	FIREBALL,
 	PARTICLE,
-	ENEMY
+	ENEMY,
+	ENEMY_PARTICLE,
+	ORB
 };
 
 struct s_object_node
@@ -54,5 +61,13 @@ void	clear_render_queue(t_obj_list *list);
 void	create_render_queue(t_main *g);
 // in process
 void	animate_objects(t_main *g);
+
+// sprite animations
+void animate_fireball_sprite(t_main *g);
+void animate_fireball_particle_sprite(t_main *g);
+
+// fireball and particle animations
+void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal);
+void fireball_explode(t_main *g, t_vector *f_pos);
 
 #endif

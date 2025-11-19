@@ -1,45 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   draw_currency.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 03:03:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 20:29:22 by btuncer          ###   ########.fr       */
+/*   Created: 2025/11/12 18:54:19 by btuncer           #+#    #+#             */
+/*   Updated: 2025/11/20 01:30:37 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#include "../../main/main.h"
+#include <stdlib.h>
 
-typedef struct s_vector		t_vector;
-typedef struct s_vector_int	t_vector_int;
-typedef struct s_segment	t_segment;
-typedef struct s_angle		t_angle;
-
-struct s_vector
+void draw_currency(t_main *g)
 {
-	double	x;	
-	double	y;	
-};
+    int currency;
 
-struct s_vector_int
-{
-	int	x;
-	int	y;
-};
-
-struct s_segment
-{
-	t_vector s;
-	t_vector e;
-};
-
-struct s_angle
-{
-	double	s;
-	double	e;
-};
-
-#endif
+    currency = g->map.player.inventory.currency;
+    draw_image_no_alpha_scaled(&g->window, &g->gallery.currency, 580, 10, 0.08);
+    draw_text(ft_itoa(currency), &g->font_menu.alagard, (t_pos){590, 10}, &g->window, 1);
+}

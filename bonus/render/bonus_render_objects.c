@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 02:54:53 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 02:43:49 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ static void draw_enemy_column(t_main *g, int x, t_ray *ray, t_enemy *enemy)
 	t_draw_pkg	pkg;
 	t_im		*enemy_img;
 
-    height = (int)(WIN_HEIGHT / ray->distance * 0.35);
+    height = (int)(WIN_HEIGHT / ray->distance * 0.50);
     pkg.start = (WIN_HEIGHT / 2) - (height / 2); 
     if (pkg.start < 0)
         pkg.start = pkg.start - (pkg.start * -1) / 2 / 2;
@@ -198,7 +198,7 @@ static void draw_enemy_column(t_main *g, int x, t_ray *ray, t_enemy *enemy)
     pkg.col = get_image_column(hit_position, enemy_img);
 	pkg.height = height;
 	pkg.image = enemy_img;
-	draw_column(&pkg, x, &g->window);
+	draw_column_alpha(&pkg, x, &g->window, 0xFF0000, enemy->red_alpha);
 }
 
 static void	init_cast_data(t_cast_data *d, t_main *g, t_ray *ray)
@@ -272,7 +272,7 @@ static void	render_enemy(t_main *g, t_enemy *e)
 	t_cast_data d;
 	t_ray ray;
 	int x;
-	
+
 	init_cast_data(&d, g, &ray);
 	x = -1;
 	while (++x < WIN_WIDTH)
@@ -324,6 +324,57 @@ static void render_particle(t_main *g, t_fire_particle *particle)
 	}
 }
 
+static void draw_orb_column(t_main *g, int x, t_ray *ray, t_orb *orb)
+{
+    int height;
+    double hit_position;
+	t_draw_pkg pkg;
+    int y_offset;
+
+    height = (int)(WIN_HEIGHT / ray->distance * 0.25 * 0.5);
+    y_offset = 200;
+    pkg.start = (WIN_HEIGHT / 2) - (height / 2) + y_offset;
+    if (pkg.start < 0)
+        pkg.start = 0;
+    pkg.end = (WIN_HEIGHT / 2) + (height / 2) + y_offset;
+    if (pkg.end >= WIN_HEIGHT)
+        pkg.end = WIN_HEIGHT - 1;
+    hit_position = get_hit_position(ray, &orb->segment);
+    pkg.col = get_image_column(hit_position, &g->gallery.pokeball);
+	pkg.height = height;
+	pkg.image = &g->gallery.pokeball;
+	draw_column(&pkg, x, &g->window);
+}
+
+static void render_orb(t_main *g, t_orb *orb)
+{
+	t_cast_data d;
+	t_ray ray;
+	int x;
+
+	init_cast_data(&d, g, &ray);
+	x = -1;
+	while (++x < WIN_WIDTH)
+	{
+		t_ray *old_ray = get_ray_from_list(&g->rays, x);
+		d.ray_d.x = cos(d.direction);
+		d.ray_d.y = sin(d.direction);
+		if (!find_intersection(&d, orb->segment))
+		{
+			d.direction += d.fov_rad / WIN_WIDTH;
+			continue ;
+		}
+		d.ray->distance *= cos(d.direction - g->map.player.dov);
+		if (d.ray->distance > old_ray->distance)
+		{
+			d.direction += d.fov_rad / WIN_WIDTH;
+			continue ;
+		}
+		draw_orb_column(g, x, &ray, orb);
+		d.direction += d.fov_rad / WIN_WIDTH;
+	}
+}
+
 void	render_objects(t_main *g)
 {
 	t_obj_node	*curr;
@@ -341,6 +392,8 @@ void	render_objects(t_main *g)
 			render_particle(g, curr->object);
 		else if (curr->type == ENEMY)
 			render_enemy(g, curr->object);
+		else if (curr->type == ORB)
+			render_orb(g, curr->object);
 		curr = curr->next_render;
 	}
 }

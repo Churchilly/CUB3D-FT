@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects_queue.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 03:23:15 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 00:14:07 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,12 @@ void	create_render_queue(t_main *g)
 				if (is_segment_in_fov(&g->map.player, &((t_fire_particle *)curr->object)->segment))
 					add_to_render_queue(&g->objects, curr, &g->map.player);
 			}
+		}
+		else if (curr->type == ORB)
+		{
+			update_object_segment(&((t_orb *)curr->object)->segment, ((t_orb *)curr->object)->position, &g->map.player, ORB_WIDTH);
+			if (is_segment_in_fov(&g->map.player, &((t_orb *)curr->object)->segment))
+				add_to_render_queue(&g->objects, curr, &g->map.player);
 		}
 		curr = curr->next;
 	}

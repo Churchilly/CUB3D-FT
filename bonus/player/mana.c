@@ -34,7 +34,7 @@ void use_mana(t_main *g, double val)
 {
     if (g->map.player.mana <= val)
     {
-        damage_player(g, val - g->map.player.mana + (g->map.player.health / 100 * 5));
+        // damage_player(g, val - g->map.player.mana + (g->map.player.health / 100 * 5));
         g->map.player.mana = 0;
         return ;
     }

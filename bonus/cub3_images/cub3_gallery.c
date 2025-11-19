@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_gallery.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:00:59 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 03:40:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:07:55 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void *init_gallery_with_config(t_cub3_gallery *gal, char *config)
 	gal->enemy11 = create_image("cub3_images/images/enemy/enemy11.cub3");
 	gal->enemy12 = create_image("cub3_images/images/enemy/enemy12.cub3");
     gal->fonts.alagard = create_image("cub3_images/images/fonts/alagard.cub3");
+    gal->pokeball = create_image("cub3_images/images/orb/pokeball.cub3");
+    gal->currency = create_image("cub3_images/images/player/coin.cub3");
+    gal->potion = create_image("cub3_images/images/player/potion.cub3");
     init_mmap_gallery(gal);
     return (gal);
 } // this is OK for TODO#1, not for the other

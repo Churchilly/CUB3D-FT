@@ -13,7 +13,6 @@
 #ifndef CUB3_GALLERIES_H
 # define CUB3_GALLERIES_H
 
-typedef t_im;
 typedef struct s_number_gallery t_num_gal;
 typedef struct s_minimap_gallery t_mmap_gal;
 typedef struct s_main_menu_gallery t_mmenu_gal;

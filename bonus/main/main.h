@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 01:42:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 02:55:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,27 @@
 # define MAIN_H
 
 # include "../map/map.h"
-# include "window.h"
 # include "../player/player.h"
+
+# include "window.h"
+
 # include "../render/render.h"
 # include "../render/render_ray_list.h"
+
+# include "../hud/hud.h"
 # include "../cub3_images/cub3_images.h"
-# include "../objects/bonus_objects.h"
-# include "../objects/doors.h"
+# include "../cub3_fonts/cub3_fonts.h"
+
 # include "../objects/bonus_fireball.h"
 # include "../objects/bonus_enemy.h"
+# include "../objects/bonus_objects.h"
+# include "../objects/bonus_orbs.h"
+
 # include "../spellbook/bonus_spellbook.h"
-# include "../hud/hud.h"
-#include "../cub3_fonts/cub3_fonts.h"
+
+# include "../objects/doors.h"
 
 # include <stdbool.h>
-
 
 # include "../sound/sound.h"
 

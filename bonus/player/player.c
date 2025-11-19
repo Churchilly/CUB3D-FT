@@ -114,7 +114,7 @@ void	change_direction_advanced(t_main *g, int direction, int weight)
 	player = &g->map.player;
 	if (weight < 0)
 		weight = -weight;
-	rotation_step = (((FOV * M_PI / 180.0) * SENSITIVITY) + weight * 0.015) * 0.05;
+	rotation_step = (((FOV * M_PI / 180.0) * SENSITIVITY) + weight * 0.025) * 0.05;
 	// this means one package goes dont touch this !!
 	if (direction == 'R')
 	{
