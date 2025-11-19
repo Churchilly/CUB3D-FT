@@ -3,8 +3,8 @@
 
 
 ### BURAK
-- [ ] Strings to img -> draw_text
-- [ ] Enemy render
+- [OK] Strings to img -> draw_text
+- [OK] Enemy render
 - [ ] Enemy Damage on player
 - [ ] enemy fireball collision 
 - [ ] enemy player collision aabb

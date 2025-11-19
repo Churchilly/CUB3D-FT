@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 03:40:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 03:51:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 
 # define CRIT_STAT_COLOR 0xff502370
 
-# define CAMPAIGN_MAP "testmaps/valid_wall.cub"
 
 # include "../minilibx/mlx.h"
 # include "../cub3_images/cub3_images.h"

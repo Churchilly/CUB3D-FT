@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 23:35:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 03:51:17 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "../player/player.h"
 
 # define MAP_FOLDER		"testmaps/"
-# define CAMPAIGN_MAP	"valid_basic.cub"
+# define CAMPAIGN_MAP "testmaps/valid_wall.cub"
 # define MAP_FORMAT		".cub"
 
 typedef struct s_map		t_map;
