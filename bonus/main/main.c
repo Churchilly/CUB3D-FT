@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 20:39:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 21:36:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,10 @@ void cya(void)
 	Maps are loaded through the menu system.
 */
 
-int main(int argc, char **argv)
+int main(void)
 {
 	t_main game;
 
-	(void)argc;
-	(void)argv;
-
-	cub_map(&game.map);
 	__init__(&game);
 
 	cub_create_window(&game);

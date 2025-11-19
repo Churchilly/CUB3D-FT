@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/17 18:41:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:17:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,68 @@ static bool is_xy_on_button(int x, int y, t_button *btn)
     return (false);
 }
 
+static bool is_xy_on_text_button(int x, int y, t_text_button *btn)
+{
+    if (x > btn->position.x && x < btn->position.x + btn->width)
+        if (y > btn->position.y && y < btn->position.y + btn->height)
+            return (true);
+    return (false);
+}
+
 int mouse_click(int button, int x, int y, void *game)
 {
     t_main *g;
-    t_button *btn;
     
     g = (t_main *)game;
     if (g->state == MENU_MAIN || g->state == MENU_PAUSE)
     {
 		if (g->main_menu.btn_continue.height != -1)
 		{
-			btn = &g->main_menu.btn_continue;
-        	if (is_xy_on_button(x, y, btn))
+        	if (is_xy_on_button(x, y, &g->main_menu.btn_continue))
             	activate_button(g);
 		}
-        btn = &g->main_menu.btn_campaign;
-        if (is_xy_on_button(x, y, btn))
+        if (is_xy_on_button(x, y, &g->main_menu.btn_campaign))
             activate_button(g);
-        btn = &g->main_menu.btn_map_select;
-        if (is_xy_on_button(x, y, btn))
-            activate_button(g);
-        btn = &g->main_menu.btn_exit;
-        if (is_xy_on_button(x, y, btn))
+        if (is_xy_on_button(x, y, &g->main_menu.btn_map_select))
+            g->state = MENU_MAP_SELECT;
+        if (is_xy_on_button(x, y, &g->main_menu.btn_exit))
             activate_button(g);
     }
+	else if (g->state == MENU_MAP_SELECT)
+	{
+		t_text_button *page;
+		int i;
+		
+		if (is_xy_on_text_button(x, y, &g->map_select.prev_page))
+		{
+			prev_page(g);
+			return (0);
+		}
+		if (is_xy_on_text_button(x, y, &g->map_select.next_page))
+		{
+			next_page(g);
+			return (0);
+		}
+		
+		page = g->map_select.maps[g->map_select.curr_page];
+		
+		i = 0;
+		while (i < MAP_SELECT_PAGE_NUM)
+		{
+			if (page[i].width > 0 && is_xy_on_text_button(x, y, &page[i]))
+			{
+				g->map_select.selected = &page[i];
+				activate_button(g);
+				return (0);
+			}
+			i++;
+		}
+	}
+	else if (g->state == MENU_ERROR)
+	{
+		/* Any click returns to main menu */
+		g->state = MENU_MAIN;
+	}
     return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 19:12:08 by root             ###   ########.fr       */
+/*   Updated: 2025/11/20 01:42:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ enum e_game_state
 	GAME,
 	MENU_PAUSE,
 	MENU_MAP_SELECT,
-	MENU_SHOP
+	MENU_SHOP,
+	MENU_ERROR
 };
 
 struct s_switch_key
@@ -78,6 +79,7 @@ struct s_main
 	t_cub3_gallery	gallery;
 	t_main_menu		main_menu;
 	t_map_select	map_select;
+	t_error			error_menu;
 	t_font_menu font_menu;
 };
 

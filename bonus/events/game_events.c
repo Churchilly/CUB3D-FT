@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/19 03:42:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 02:01:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int loop_event(t_main *game)
 		return (0);
 	time_log = curr_time;
 	fps_counter(curr_time);
+	printf("gamestate::%d", game->state);
 	if (game->state == MENU_MAIN)
 		render_main_menu(game);
 	else if (game->state == MENU_PAUSE)
@@ -73,7 +74,9 @@ int loop_event(t_main *game)
 		update_game(game);
 	}
 	else if (game->state == MENU_MAP_SELECT)
-		return (0);
+		render_select_map(game);
 	else if (game->state == MENU_SHOP)
 		return (0);
+	else if (game->state == MENU_ERROR)
+		render_error_menu(game);
 }

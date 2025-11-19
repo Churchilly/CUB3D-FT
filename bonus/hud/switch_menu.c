@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 23:12:39 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 23:13:29 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 00:58:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void switch_menu(t_main *g)
 		mlx_mouse_show(g->window.mlx, g->window.win);
 	}
 	else if (g->state == MENU_MAP_SELECT)
-		g->state = MENU_MAIN;
+		g->state = GAME;
     system(AUDIO_MAIN_MENU);
 }

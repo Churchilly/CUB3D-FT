@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 19:55:41 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 23:35:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 23:11:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,49 @@ static void debug_printer_files(t_map_file *files)
 	i = 0;
 	while (files && files[i].file)
 	{
-		printf("[%s] (validated: %d)\n", files[i].file, files[i].validated);
+		printf("[%s] -> shown as [%s] (validated: %d)\n", 
+			files[i].file, 
+			files[i].file_shown ? files[i].file_shown : "NULL",
+			files[i].validated);
 		i++;
 	}
 	printf("--END OF MAP FILES--\n");
+}
+
+static void	parse_normalized_files(t_map_file *files)
+{
+	int		i;
+	char	*fname;
+	int		fname_len;
+	int		base_len;
+	int		ext_len;
+
+	i = 0;
+	ext_len = ft_strlen(MAP_FORMAT); // ".cub" = 4
+	while (files && files[i].file)
+	{
+		// Get filename without folder path
+		fname = files[i].file + ft_strlen(MAP_FOLDER);
+		fname_len = ft_strlen(fname);
+		
+		// If filename fits within MAP_MAX_LEN, use it as-is
+		if (fname_len <= MAP_MAX_LEN)
+		{
+			files[i].file_shown = alloc_crit(fname_len + 1);
+			strcpy(files[i].file_shown, fname);
+		}
+		else
+		{
+			base_len = MAP_MAX_LEN - ext_len - 1; // -1 for the '*'
+			
+			files[i].file_shown = alloc_crit(MAP_MAX_LEN + 1);
+			strncpy(files[i].file_shown, fname, base_len);
+			files[i].file_shown[base_len] = '\0';
+			strcat(files[i].file_shown, "*");
+			strcat(files[i].file_shown, MAP_FORMAT);
+		}
+		i++;
+	}
 }
 
 void	cub_map(t_map *map)
@@ -105,6 +144,7 @@ void	cub_map(t_map *map)
 	count = count_valid_files(dir);
 	rewinddir(dir);
 	parse_valid_files(dir, &map->files, count);
+	parse_normalized_files(map->files);
 	closedir(dir);
 	debug_printer_files(map->files);
 }

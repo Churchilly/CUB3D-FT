@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 00:10:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 19:09:50 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	play_footstep(int moved)
 	double			curr_time;
 	
 	curr_time = current_time_ms();
-	if (moved && curr_time - last_time < 1)
+	if (moved && curr_time - last_time > 240)
 	{
 		if (step == 0)
 			system(AUDIO_FOOTSTEP_1);
@@ -62,11 +62,8 @@ void	play_footstep(int moved)
 		else if (step == 2)
 			system(AUDIO_FOOTSTEP_3);
 		step = (step + 1) % 3;
+		last_time = curr_time;
 	}
-	else if (moved)
-		system(AUDIO_FOOTSTEP_1);
-		
-	last_time = curr_time;
 }
 
 void	change_position(t_main *g)

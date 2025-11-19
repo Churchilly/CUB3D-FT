@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/18 23:37:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:22:38 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*init_main_menu(t_main *g, t_main_menu *mmenu)
 	mmenu->btn_continue.height = -1;
     set_button(&mmenu->btn_campaign, &g->gallery.mmenu_start_btn,
         (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4), (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3});
-
+	
 	set_button(&mmenu->btn_map_select, &g->gallery.mmenu_start_btn,
         (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4),
             (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3 + g->gallery.mmenu_start_btn.height});
@@ -31,22 +31,98 @@ void	*init_main_menu(t_main *g, t_main_menu *mmenu)
         (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4),
             (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3 + g->gallery.mmenu_start_btn.height * 2});
 }
-
+#include <stdio.h>
+#include <math.h>
 void	*init_map_select_menu(t_main *g, t_map_select *menu)
 {
-	// 10 button in total
-	// 8 buttons for maps 
-	// 2 buttons for change page
+    int files_count;
+    int pages;
+    int p;
+    int s;
+    t_vector base;
+    t_text txt;
+    char *fname;
+
+    menu->bg_img = g->gallery.mmenu_bg;
+    menu->selected = NULL;
+
+    /* count available map files */
+    files_count = 0;
+    while (g->map.files && g->map.files[files_count].file)
+        files_count++;
+
+    if (files_count == 0)
+    {
+        menu->maps = NULL;
+        menu->curr_page = 0;
+    }
+    else
+    {
+    pages = ceil((double)(files_count + 4) / MAP_SELECT_PAGE_NUM);
+	printf("filescount::%d\npage::%d\n",files_count, pages);
+    menu->maps = alloc_crit(sizeof(t_text_button *) * (pages + 1));
+
+    base.x = WIN_WIDTH / 4;
+
+    p = 0;
+    while (p < pages)
+    {
+        menu->maps[p] = alloc_crit(sizeof(t_text_button) * MAP_SELECT_PAGE_NUM);
+        base.y = WIN_HEIGHT / 4;
+        s = 0;
+        while (s < MAP_SELECT_PAGE_NUM)
+        {
+            int idx = p * MAP_SELECT_PAGE_NUM + s;
+            if (idx < files_count)
+            {
+                fname = g->map.files[idx].file_shown;
+                txt.text_len = ft_strlen(fname);
+                txt.font = &g->font_menu.alagard;
+                txt.scale = 1.0;
+                txt.win = &g->window;
+                txt.win_x = base.x;
+                txt.win_y = base.y;
+                set_text_button(&menu->maps[p][s], txt, base);
+                base.y += (txt.font->font_size * txt.scale) + 16;
+            }
+            else
+            {
+                menu->maps[p][s].width = 0;
+                menu->maps[p][s].height = 0;
+            }
+            s++;
+        }
+        p++;
+    }
+    menu->maps[p] = NULL;
+    menu->curr_page = 0;
+    }
+    txt.text_len = 1;
+    txt.font = &g->font_menu.alagard;
+    txt.scale = 5.0;
+    txt.win = &g->window;
+    txt.win_x = WIN_WIDTH / 10;
+    txt.win_y = WIN_HEIGHT / 2;
+    set_text_button(&menu->prev_page, txt, (t_vector){WIN_WIDTH / 10, (WIN_HEIGHT / 2) - 40});
+    txt.win_x = WIN_WIDTH - (WIN_WIDTH / 5);
+    txt.win_y = WIN_HEIGHT / 2;
+    set_text_button(&menu->next_page, txt, (t_vector){WIN_WIDTH - (WIN_WIDTH / 5), (WIN_HEIGHT / 2) - 40});
+
+    return (menu);
 }
+
 // show up when you complete the map and there is a next map
 void	*init_shop_menu(t_main *g, t_map_select *menu)
 {
-	// 6 buttons in total
+	// 6 normal button on left of the screen
+	// 6 normal text ın right of the screen
+	// one continue button on bottom mid
 }
 // shows up when game session ends no matter if u died or won(somehow)
-void	*init_game_summary_menu(t_main *g, t_map_select *menu)
+void	*init_game_summary_menu(t_main *g, t_game_summary *menu)
 {
 	// no buttons
+	
 	// game summary:
 	// how many enemy you have killed
 	// How many fireball you have cast
@@ -57,10 +133,35 @@ void	*init_game_summary_menu(t_main *g, t_map_select *menu)
 	// 
 }
 // shows up when map facing with an error while loading map
-void	*init_error_menu(t_main *g, t_map_select *menu)
+void	*init_error_menu(t_main *g, t_error *menu)
 {
-	// no buttons
-	// 2 text
-	// first text says "Failed to load map"
-	// second says "click any button to continue"
+	t_text	txt;
+	
+	/* Set background image */
+	menu->bg_img = g->gallery.mmenu_bg;
+	
+	txt.text_len = 19; // length of "Failed to load map"
+	txt.font = &g->font_menu.alagard;
+	txt.scale = 2.0;
+	txt.win = &g->window;
+	txt.color = 0xFFFF4444; // Red color for error
+	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * txt.text_len) / 3;
+	txt.win_y = WIN_HEIGHT / 2 - 100;
+	txt.sheet_row = 0;
+	txt.sheet_col = 0;
+	menu->error_text = txt;
+	
+	/* Initialize "Press any key to continue" text */
+	txt.text_len = 26; // length of "Press any key to continue"
+	txt.font = &g->font_menu.alagard;
+	txt.scale = 1.0;
+	txt.win = &g->window;
+	txt.color = 0xFFFFFFFF; // White color
+	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * txt.text_len) / 3;
+	txt.win_y = WIN_HEIGHT / 2 + 50;
+	txt.sheet_row = 0;
+	txt.sheet_col = 0;
+	menu->to_continue = txt;
+	
+	return (menu);
 }

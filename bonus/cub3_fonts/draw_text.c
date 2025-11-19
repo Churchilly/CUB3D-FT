@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:49:50 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 01:22:50 by root             ###   ########.fr       */
+/*   Updated: 2025/11/19 22:04:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int draw_from_sheet(t_text *text)
             pixel = image->image[(text->sheet_row * text->font->font_size + original_py) *
                 image->width + (text->sheet_col * text->font->max_width) + original_px];
             if (pixel == 0x000000ff)
-                put_pixel(text->win_x + scaled_px, text->win_y + scaled_py, 0x000000, text->win);
+                put_pixel(text->win_x + scaled_px, text->win_y + scaled_py, text->color, text->win);
             scaled_px++;
         }
         scaled_py++;
@@ -79,26 +79,22 @@ static int draw_symbol(int sym, t_text *text)
     return (draw_from_sheet(text));
 }
 
-void draw_text(char *text, t_font *font, t_pos pos, t_window *win, double scale)
+void draw_text(char *text, t_text *text_data)
 {
-    t_text text_t;
     int counter;
 
-    text_t.font = font;
-    text_t.win_x = pos.x;
-    text_t.win_y = pos.y;
-    text_t.scale = scale;
-    text_t.win = win;
-    
+    if (!text || !text_data || !text_data->font || !text_data->win)
+        return;
+
     counter = 0;
     while (text[counter])
     {
         if (is_char(text[counter]))
-            text_t.win_x += font->gap + draw_char(text[counter], is_upper(text[counter]), &text_t);
+            text_data->win_x += text_data->font->gap + draw_char(text[counter], is_upper(text[counter]), text_data);
         else if (is_num(text[counter]))
-            text_t.win_x += font->gap + draw_number(text[counter], &text_t);
+            text_data->win_x += text_data->font->gap + draw_number(text[counter], text_data);
         else if (is_symbol(text[counter]))
-            text_t.win_x += font->gap + draw_symbol(text[counter], &text_t);
+            text_data->win_x += text_data->font->gap + draw_symbol(text[counter], text_data);
         counter++;
     }
 }

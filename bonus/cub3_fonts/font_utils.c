@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   font_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:56:56 by root              #+#    #+#             */
-/*   Updated: 2025/11/18 15:00:08 by root             ###   ########.fr       */
+/*   Updated: 2025/11/19 22:15:09 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool is_upper(char ch)
 
 bool is_num(char ch)
 {
-    return (ch >= '0' && ch <= '9');
+    return (ch >= '0' && ch <= '?');
 }
 
 bool is_symbol(char ch)

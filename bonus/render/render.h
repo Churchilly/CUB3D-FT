@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 14:30:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:17:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ typedef void	(*t_raycasting_func)(t_main *g);
 void render_game(t_main *g);
 void render_main_menu(t_main *g);
 void render_pause_menu(t_main *g);
+void	render_select_map(t_main *g);
+void	render_shop(t_main *g);
+void	render_error_menu(t_main *g);
 
 void	put_pixel(int x, int y, int color, t_window *win);
 void	render_background(t_main *g);

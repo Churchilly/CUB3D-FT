@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 03:51:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 02:11:47 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "../player/player.h"
 
 # define MAP_FOLDER		"testmaps/"
-# define CAMPAIGN_MAP "testmaps/valid_wall.cub"
+# define CAMPAIGN_MAP "testmaps/valid-wall.cub"
 # define MAP_FORMAT		".cub"
+# define MAP_MAX_LEN	16
 
 typedef struct s_map		t_map;
 typedef struct s_main		t_main;
@@ -39,6 +40,7 @@ enum e_identifiers
 struct s_map_file
 {
 	char	*file;
+	char	*file_shown;
 	int		validated; // if map valid = 1 if not valid = -1 if not validated yet = 0
 };
 

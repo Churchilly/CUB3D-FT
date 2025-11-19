@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 19:14:51 by root             ###   ########.fr       */
+/*   Updated: 2025/11/20 01:17:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,13 @@ void	__init__(t_main *game)
 	}
 	
 	// Initialize menu-related things (needed before game starts)
+	cub_map(&(game->map));
 	init_gallery_with_config(&(game->gallery), NULL);
+	init_fonts(game);  // Initialize fonts BEFORE menus that use them
 	init_main_menu(game, &(game->main_menu));
+	init_map_select_menu(game, &(game->map_select));
+	init_error_menu(game, &(game->error_menu));
 	_init_keys(game);
-	init_fonts(game);
 }
 
 

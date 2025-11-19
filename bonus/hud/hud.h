@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 03:51:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:22:41 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,23 @@
 
 # define CRIT_STAT_COLOR 0xff502370
 
+# define MAP_SELECT_PAGE_NUM 8
 
 # include "../minilibx/mlx.h"
 # include "../cub3_images/cub3_images.h"
 # include "../main/vector.h"
+#include "../cub3_fonts/cub3_fonts.h"
 # include <stdbool.h>
 
-typedef struct s_button		t_button;
-typedef struct s_main_menu	t_main_menu;
-typedef struct s_map_select	t_map_select;
-typedef struct s_shop		t_shop;
-typedef struct s_main		t_main;
-typedef enum e_button_type	t_button_type;
-
-enum e_button_type
-{
-	BUTTON_START,
-	BUTTON_EXIT	
-};
+typedef struct s_button			t_button;
+typedef struct s_text_button	t_text_button;
+typedef struct s_main_menu		t_main_menu;
+typedef struct s_map_select		t_map_select;
+typedef struct s_shop			t_shop;
+typedef struct s_game_summary	t_game_summary;
+typedef struct s_error			t_error;
+typedef struct s_main			t_main;
+typedef enum e_button_type		t_button_type;
 
 struct s_button
 {
@@ -61,6 +60,14 @@ struct s_button
 	t_vector	position;
 	int			width;
 	int			height;
+};
+
+struct s_text_button
+{
+	t_vector	position;
+	int			width;
+	int			height;
+	t_text		text_data;
 };
 
 struct s_main_menu
@@ -75,28 +82,36 @@ struct s_main_menu
 
 struct s_map_select
 {
-	t_button		*selected;
+	t_text_button	*selected;
 	t_cub3_image	bg_img;
-	t_button		btn_maps[5];
+	t_text_button	**maps;
+	int				curr_page;
+	t_text_button	next_page;
+	t_text_button	prev_page;
 };
 
 struct s_shop
 {
 	t_button		*selected;
 	t_cub3_image	bg_img;
-	t_button		items[6];// idk how much item we are gonna put here
+	t_button		items[6];
 };
 
 struct s_game_summary
 {
 	t_cub3_image	bg_img;
-	// text here
+	t_text			run_time;
+	t_text			kill_count;
+	t_text			total_income;
+	t_text			items_bought;
+	t_text			to_continue;
 };
 
 struct s_error
 {
 	t_cub3_image	bg_img;
-	// text here
+	t_text			error_text;
+	t_text			to_continue;
 };
 
 
@@ -104,6 +119,8 @@ void	draw_minimap(t_main *game);
 void	draw_mmap(t_main *g);
 
 void	*init_main_menu(t_main *g, t_main_menu *mmenu);
+void	*init_map_select_menu(t_main *g, t_map_select *menu);
+void	*init_error_menu(t_main *g, t_error *menu);
 void	switch_menu(t_main *g);
 
 void	*set_button(t_button *button, t_im *img, t_vector pos);
@@ -113,8 +130,13 @@ void	activate_button(t_main *g);
 
 void	next_button(t_main *game);
 void	prev_button(t_main *game);
+void	next_page(t_main *game);
+void	prev_page(t_main *game);
 
 void	draw_mana_bar(t_main *g);
 void	draw_heath_bar(t_main *g);
+void	*set_text_button(t_text_button *button, t_text text_data, t_vector pos);
+void	check_text_button(t_main *game, t_text_button *button);
+void	place_text_button(t_main *g, t_text_button *button, char *label);
 
 #endif

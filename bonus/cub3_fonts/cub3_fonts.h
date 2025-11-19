@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_fonts.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:45:23 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 00:28:50 by root             ###   ########.fr       */
+/*   Updated: 2025/11/19 21:45:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3_FONTS_H
 # define DEFAULT_FONT_SIZE 32
 # define DEFAULT_FONT_GAP 1
-# define DEFAULT_FONT_COLOR 0x00000000
+# define DEFAULT_FONT_COLOR 0xFFFFFFFF
 # define CASE_UPPER 1
 # define CASE_LOWER 0
 
@@ -51,13 +51,15 @@ struct s_font_selector
 
 struct s_text
 {
-    int win_x;
-    int win_y;
-    t_font *font;
+	int		text_len;
+    int		win_x;
+    int		win_y;
+    t_font	*font;
     int sheet_row;
     int sheet_col;
     double scale;
     t_window *win;
+	int 	color;
 };
 
 struct s_pos
@@ -71,6 +73,6 @@ bool is_upper(char ch);
 bool is_num(char ch);
 bool is_symbol(char ch);
 void init_fonts(void *g);
-void draw_text(char *text, t_font *font, t_pos pos, t_window *win, double scale);
+void draw_text(char *text, t_text *text_data);
 
 #endif
