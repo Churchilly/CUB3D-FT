@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:30:49 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/18 19:45:17 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ static void	map_parse(char *raw_map, t_main *g)
 		current_id = find_id(raw_map);
 		if (current_id < F)
 		{
-			parse_texture(raw_map, current_id, parsed, g);
+			load_texture(raw_map, current_id, parsed, g);
 			// Advance to next line after processing texture
 			while (*raw_map && *raw_map != '\n')
 				raw_map++;
 		}
 		else if (current_id < MAP)
 		{
-			parse_color(raw_map, current_id, parsed, g);
+			load_color(raw_map, current_id, parsed, g);
 			// Advance to next line after processing color
 			while (*raw_map && *raw_map != '\n')
 				raw_map++;
@@ -83,7 +83,7 @@ static void	map_parse(char *raw_map, t_main *g)
 			break ;
 	}
 	check_parsed_table(parsed);
-	parse_matrix(map_start, g);
+	load_matrix(map_start, g);
 }
 
 void	cub_map(char *map_file, t_main *game)

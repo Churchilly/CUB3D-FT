@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:15:12 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/13 17:22:47 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/18 21:05:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	render_background(t_main *g)
 		{
 			if (y < (WIN_HEIGHT / 2))
 				put_pixel(x, y, g->map.color_c, &g->window);
-			else
-				put_pixel(x, y, g->map.color_f, &g->window);
+			// Floor is now rendered as texture in render_scene.c
+			// Removed: else put_pixel(x, y, g->map.color_f, &g->window);
 		}
 	}
 }

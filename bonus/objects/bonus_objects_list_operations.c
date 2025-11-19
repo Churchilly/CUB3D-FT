@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects_list_operations.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:26:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 05:04:23 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/19 03:26:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static double	calculate_distance_object(t_player *player, t_obj_node *obj)
 	t_door	*door;
 	t_fireball *f;
 	t_fire_particle *p;
+	t_enemy			*e;
 
 	if (obj->type == DOOR)
 	{
@@ -51,6 +52,12 @@ static double	calculate_distance_object(t_player *player, t_obj_node *obj)
 		p = (t_fire_particle *)obj->object;
 		dx = (p->segment.s.x + p->segment.e.x) / 2.0 - player->pos.x;
 		dy = (p->segment.s.y + p->segment.e.y) / 2.0 - player->pos.y;
+	}
+	else if (obj->type == ENEMY)
+	{
+		e = (t_enemy *)obj->object;
+		dx = (e->segment.s.x + e->segment.e.x) / 2.0 - player->pos.x;
+		dy = (e->segment.s.y + e->segment.e.y) / 2.0 - player->pos.y;
 	}
 	else
 	{

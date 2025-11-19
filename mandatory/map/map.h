@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:34:26 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/18 19:45:17 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ struct s_map
 
 void	cub_map(char *map_location, t_main *game);
 char	*cub_map_read(char *map_file);
-void	parse_texture(char *raw_map, int id, int parsed[6], t_main *game);
-void	parse_color(char *raw_map, int id, int parsed[6], t_main *game);
+void	load_texture(char *raw_map, int id, int parsed[6], t_main *game);
+void	load_color(char *raw_map, int id, int parsed[6], t_main *game);
 void	validate_map(char *raw_map);
-void	parse_matrix(char *raw_map, t_main *game);  // Added: function to validate the map matrix
+void	load_matrix(char *raw_map, t_main *game);  // Added: function to validate the map matrix
 int		create_matrix(char *raw_map, t_main *game);  // Added: missing function declaration
 // Note: create_matrix function is called but not defined - needs implementation
 void	map_cleanup_exit(char *errmsg, t_main *game);

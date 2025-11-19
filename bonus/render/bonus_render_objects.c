@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 07:40:06 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/19 02:54:53 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,55 @@ static void draw_particle_column(t_main *g, int x, t_ray *ray, t_fire_particle *
 	draw_column(&pkg, x, &g->window);
 }
 
+static t_im	*get_enemy_image(t_main *g, double distance)
+{
+	if (distance < 0.2)
+		return (&(g->gallery.enemy12));
+	if (distance < 0.4)
+		return (&(g->gallery.enemy11));
+	if (distance < 0.6)
+		return (&(g->gallery.enemy10));
+	if (distance < 0.8)
+		return (&(g->gallery.enemy9));
+	if (distance < 1.0)
+		return (&(g->gallery.enemy8));
+	if (distance < 1.2)
+		return (&(g->gallery.enemy7));
+	if (distance < 1.4)
+		return (&(g->gallery.enemy6));
+	if (distance < 1.6)
+		return (&(g->gallery.enemy5));
+	if (distance < 1.8)
+		return (&(g->gallery.enemy4));
+	if (distance < 2.0)
+		return (&(g->gallery.enemy3));
+	if (distance < 2.2)
+		return (&(g->gallery.enemy2));
+	return (&(g->gallery.enemy1));
+}
+
+static void draw_enemy_column(t_main *g, int x, t_ray *ray, t_enemy *enemy)
+{
+    int 		height;
+    double		hit_position;
+	t_draw_pkg	pkg;
+	t_im		*enemy_img;
+
+    height = (int)(WIN_HEIGHT / ray->distance * 0.35);
+    pkg.start = (WIN_HEIGHT / 2) - (height / 2); 
+    if (pkg.start < 0)
+        pkg.start = pkg.start - (pkg.start * -1) / 2 / 2;
+    pkg.end = (WIN_HEIGHT / 2) + (height / 2);
+    if (pkg.end >= WIN_HEIGHT)
+        pkg.end = WIN_HEIGHT - 1;
+    hit_position = get_hit_position(ray, &enemy->segment);
+	enemy_img = get_enemy_image(g, ray->distance);
+    pkg.col = get_image_column(hit_position, enemy_img);
+	pkg.height = height;
+	pkg.image = enemy_img;
+	draw_column(&pkg, x, &g->window);
+}
+
 static void	init_cast_data(t_cast_data *d, t_main *g, t_ray *ray)
 {
 	d->fov_rad = FOV * (M_PI) / 180.0;
@@ -218,7 +267,34 @@ static void render_fireball(t_main *g, t_fireball *f)
 		d.direction += d.fov_rad / WIN_WIDTH;
 	}
 }
-
+static void	render_enemy(t_main *g, t_enemy *e)
+{
+	t_cast_data d;
+	t_ray ray;
+	int x;
+	
+	init_cast_data(&d, g, &ray);
+	x = -1;
+	while (++x < WIN_WIDTH)
+	{
+		t_ray	*old_ray = get_ray_from_list(&g->rays, x);
+		d.ray_d.x = cos(d.direction);
+		d.ray_d.y = sin(d.direction);
+		if (!find_intersection(&d, e->segment))
+		{
+			d.direction += d.fov_rad / WIN_WIDTH;
+			continue ;
+		}
+		d.ray->distance *= cos(d.direction - g->map.player.dov);
+		if (d.ray->distance > old_ray->distance)
+		{
+			d.direction += d.fov_rad / WIN_WIDTH;
+			continue ;
+		}
+		draw_enemy_column(g, x, &ray, e);
+		d.direction += d.fov_rad / WIN_WIDTH;
+	}
+}
 static void render_particle(t_main *g, t_fire_particle *particle)
 {
 	t_cast_data d;
@@ -263,6 +339,8 @@ void	render_objects(t_main *g)
 			render_fireball(g, curr->object);
 		else if (curr->type == PARTICLE)
 			render_particle(g, curr->object);
+		else if (curr->type == ENEMY)
+			render_enemy(g, curr->object);
 		curr = curr->next_render;
 	}
 }

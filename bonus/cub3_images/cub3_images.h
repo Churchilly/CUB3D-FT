@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 08:59:44 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/19 01:59:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,20 @@ struct s_cub3_gallery
     t_im cross;
     t_mmap_gal mmap;
     t_frame_gal frames;
+	t_im	enemy1;
+	t_im	enemy2;
+	t_im	enemy3;
+	t_im	enemy4;
+	t_im	enemy5;
+	t_im	enemy6;
+	t_im	enemy7;
+	t_im	enemy8;
+	t_im	enemy9;
+	t_im	enemy10;
+	t_im	enemy11;
+	t_im	enemy12;
+	t_im	enemy13;
+	t_im	enemy14;
 };
 
 struct s_draw_pkg

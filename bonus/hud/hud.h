@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/17 18:23:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 02:52:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 # define CRIT_STAT_COLOR 0xff502370
 
-# define CAMPAIGN_MAP "testmaps/valid_basic.cub"
+# define CAMPAIGN_MAP "testmaps/valid_wall.cub"
 
 # include "../minilibx/mlx.h"
 # include "../cub3_images/cub3_images.h"
@@ -86,7 +86,19 @@ struct s_shop
 {
 	t_button		*selected;
 	t_cub3_image	bg_img;
-	t_button		items[];// idk how much item we are gonna put here
+	t_button		items[6];// idk how much item we are gonna put here
+};
+
+struct s_game_summary
+{
+	t_cub3_image	bg_img;
+	// text here
+};
+
+struct s_error
+{
+	t_cub3_image	bg_img;
+	// text here
 };
 
 struct s_pos

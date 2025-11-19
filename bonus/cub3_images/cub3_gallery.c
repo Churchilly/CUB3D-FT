@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_gallery.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:00:59 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 08:53:46 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/19 02:35:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void *init_gallery_with_config(t_cub3_gallery *gal, char *config)
     gal->frames.low_hp_1 = create_image("cub3_images/images/frames/low_hp_frame.cub3");
     gal->frames.low_hp_2 = create_image("cub3_images/images/frames/low_hp_frame_2.cub3");
     gal->frames.low_hp_3 = create_image("cub3_images/images/frames/low_hp_frame_3.cub3");
+	gal->enemy1 = create_image("cub3_images/images/enemy/enemy1.cub3");
+	gal->enemy2 = create_image("cub3_images/images/enemy/enemy2.cub3");
+	gal->enemy3 = create_image("cub3_images/images/enemy/enemy3.cub3");
+	gal->enemy4 = create_image("cub3_images/images/enemy/enemy4.cub3");
+	gal->enemy5 = create_image("cub3_images/images/enemy/enemy5.cub3");
+	gal->enemy6 = create_image("cub3_images/images/enemy/enemy6.cub3");
+	gal->enemy7 = create_image("cub3_images/images/enemy/enemy7.cub3");
+	gal->enemy8 = create_image("cub3_images/images/enemy/enemy8.cub3");
+	gal->enemy9 = create_image("cub3_images/images/enemy/enemy9.cub3");
+	gal->enemy10 = create_image("cub3_images/images/enemy/enemy10.cub3");
+	gal->enemy11 = create_image("cub3_images/images/enemy/enemy11.cub3");
+	gal->enemy12 = create_image("cub3_images/images/enemy/enemy12.cub3");
     init_mmap_gallery(gal);
     return (gal);
 } // this is OK for TODO#1, not for the other

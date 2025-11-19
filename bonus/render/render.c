@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 21:38:16 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 01:45:09 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,10 @@ void	render_game(t_main *g)
 {
 	render_background(g);
 	render_scene(g);
-	animate_objects(g);
 	render_objects(g);
 	draw_mmap(g);
 	draw_mana_bar(g);
 	draw_heath_bar(g);
-	animate_spellbook(g);
 	render_spellbook(g);
 	render_frames(g);
 	draw_image(&g->window, &g->gallery.cross,

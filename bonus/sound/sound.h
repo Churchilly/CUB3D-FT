@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:28:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/07 16:39:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 00:11:47 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef enum e_sound	t_sound;
 # define AUDIO_COLLOPORTUS "aplay -q sound/sound_effects/colloportus.wav > /dev/null 2>&1 &"
 # define AUDIO_DOOR_OPEN "aplay -q sound/sound_effects/door-open.wav > /dev/null 2>&1 &"
 # define AUDIO_DOOR_CLOSE "aplay -q sound/sound_effects/door-close.wav > /dev/null 2>&1 &"
-# define AUDIO_FOOTSTEP_1 "aplay -q sound/sound_effects/footstep-1.wav > /dev/null 2>&1 &"
+# define AUDIO_FOOTSTEP_1 "pplay -q sound/sound_effects/footstep-1.wav > /dev/null 2>&1 &"
 # define AUDIO_FOOTSTEP_2 "aplay -q sound/sound_effects/footstep-2.wav > /dev/null 2>&1 &"
 # define AUDIO_FOOTSTEP_3 "aplay -q sound/sound_effects/footstep-3.wav > /dev/null 2>&1 &"
 # define AUDIO_MAIN_MENU "aplay -q sound/sound_effects/open_main_menu.wav > /dev/null 2>&1 &"

@@ -3,7 +3,7 @@ SO textures/brickwall.xpm
 WE textures/brickwall.xpm
 EA textures/brickwall.xpm
 
-F 0,1,1
+FL textures/brickwall.xpm
 C 135,206,235
 
 111111

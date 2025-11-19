@@ -3,8 +3,10 @@ SO textures/brickwall.xpm
 WE textures/brickwall.xpm
 EA textures/brickwall.xpm
 
-F 0,1,1
+FL textures/brickwall.xpm
 C 135,206,235
+
+NEXT valid_door.cub
 
 111111111
 100000001

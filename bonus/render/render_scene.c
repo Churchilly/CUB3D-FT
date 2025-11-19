@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:25:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 16:36:08 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/18 21:05:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void draw_floor_column(t_main *g, int x, t_ray *ray)
 	int			color;
 	t_texture	*floor_tex;
 	
-	floor_tex = &g->map.texture_no;
+	floor_tex = &g->map.texture_f;
 	
 	fov_rad = FOV * M_PI / 180.0;
 	ray_angle = g->map.player.dov - (fov_rad / 2.0) + ((double)x / WIN_WIDTH) * fov_rad;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 02:56:20 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/19 03:20:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define ENEMY_MOVE_MULT 0.05
 # define ENEMY_RADIUS 0.2
 # define ENEMY_HEALTH 100
+# define ENEMY_WIDTH 0.5
+
 
 
 typedef struct s_enemy		t_enemy;

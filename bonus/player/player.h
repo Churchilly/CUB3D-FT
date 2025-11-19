@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 23:02:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:46:06 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ struct s_player
 };
 
 void	change_direction(t_main *g, int key);
-void	change_position(t_main *g, int key);
+void	change_position(t_main *g);
 void	change_direction_advanced(t_main *g, int direction, int weight);
 
 t_vector	check_collision(t_main *g, t_vector movement);

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 18:23:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/18 20:39:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,12 @@ int main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	
-	// Phase 1: Initialize MLX, window, and menu system
+
+	cub_map(&game.map);
 	__init__(&game);
+
 	cub_create_window(&game);
-	
-	// Game content will be initialized when user clicks "Campaign" button
-	// See: hud/buttons_select.c -> activate_button()
-	
+
 	dump_gc();
 	loop_event(&game);
 	

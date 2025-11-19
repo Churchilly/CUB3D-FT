@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/17 16:28:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 01:45:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ int terminate_hook(void)
 
 static void	update_game(t_main *g)
 {
-	change_position(g, 0);
+	change_position(g);
 	change_direction(g, 0);
-	
+	animate_objects(g);
+	animate_spellbook(g);
 	update_mana(g);
 	update_health(g);
 	

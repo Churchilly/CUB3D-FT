@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects_queue.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 05:02:36 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/19 03:23:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	is_segment_in_fov(t_player *p, t_segment *segment)
 	return (do_angular_ranges_overlap(player.s, player.e, object.s, object.e));
 }
 
-static void	update_object_segment(t_segment *obj_seg, t_vector obj_pos, t_player *player)
+static void	update_object_segment(t_segment *obj_seg, t_vector obj_pos, t_player *player, double width)
 {
 	t_vector	diff;
 	double		distance;
@@ -75,10 +75,10 @@ static void	update_object_segment(t_segment *obj_seg, t_vector obj_pos, t_player
 					+ (obj_pos.y - player->pos.y) * (obj_pos.y - player->pos.y));
 	delta.x = diff.y / distance;
 	delta.y = (diff.x / distance) * -1;
-	obj_seg->e = (t_vector){obj_pos.x + delta.x * (FIREBALL_WIDTH / 2),
-				obj_pos.y + delta.y * (FIREBALL_WIDTH / 2)};
-	obj_seg->s = (t_vector){obj_pos.x - delta.x * (FIREBALL_WIDTH / 2),
-				obj_pos.y - delta.y * (FIREBALL_WIDTH / 2)};
+	obj_seg->e = (t_vector){obj_pos.x + delta.x * (width / 2),
+				obj_pos.y + delta.y * (width / 2)};
+	obj_seg->s = (t_vector){obj_pos.x - delta.x * (width / 2),
+				obj_pos.y - delta.y * (width / 2)};
 }
 
 void	create_render_queue(t_main *g)
@@ -96,15 +96,13 @@ void	create_render_queue(t_main *g)
 		}
 		else if (curr->type == FIREBALL && ((t_fireball *)curr->object)->state != IDLE)
 		{
-			update_object_segment(&((t_fireball *)curr->object)->segment, ((t_fireball *)curr->object)->position, &g->map.player);
+			update_object_segment(&((t_fireball *)curr->object)->segment, ((t_fireball *)curr->object)->position, &g->map.player, FIREBALL_WIDTH);
 			if (is_segment_in_fov(&g->map.player, &((t_fireball *)curr->object)->segment))
-			{
 				add_to_render_queue(&g->objects, curr, &g->map.player);
-			}
 		}
 		else if (curr->type == ENEMY && ((t_enemy *)curr->object)->state != IDLE)
 		{
-			update_object_segment(&((t_enemy *)curr->object)->segment, ((t_enemy *)curr->object)->position, &g->map.player);
+			update_object_segment(&((t_enemy *)curr->object)->segment, ((t_enemy *)curr->object)->position, &g->map.player, ENEMY_WIDTH);
 			if (is_segment_in_fov(&g->map.player, &((t_enemy *)curr->object)->segment))
 				add_to_render_queue(&g->objects, curr, &g->map.player);
 		}
@@ -112,7 +110,7 @@ void	create_render_queue(t_main *g)
 		{
 			if (((t_fire_particle *)curr->object)->active)
 			{
-				update_object_segment(&((t_fire_particle *)curr->object)->segment, ((t_fire_particle *)curr->object)->position, &g->map.player);
+				update_object_segment(&((t_fire_particle *)curr->object)->segment, ((t_fire_particle *)curr->object)->position, &g->map.player, FIREBALL_WIDTH);
 				if (is_segment_in_fov(&g->map.player, &((t_fire_particle *)curr->object)->segment))
 					add_to_render_queue(&g->objects, curr, &g->map.player);
 			}
