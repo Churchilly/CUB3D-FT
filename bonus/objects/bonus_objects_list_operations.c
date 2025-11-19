@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects_list_operations.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:26:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 03:26:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 00:08:35 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

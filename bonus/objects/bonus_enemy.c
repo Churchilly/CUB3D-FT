@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 22:55:49 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/12 21:07:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:02:10 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	spawn_enemy(t_enemy *enemy, t_map *map)
 	}
 }
 
-
 static t_vector	rotate_vector(t_vector vec, double angle)
 {
 	t_vector	rotated;
@@ -116,7 +115,7 @@ void	enemy_walk(t_enemy *enemy, t_map *map)
 	direction.x = map->player.pos.x - enemy->position.x;
 	direction.y = map->player.pos.y - enemy->position.y;
 	distance = sqrt(direction.x * direction.x + direction.y * direction.y);
-	if (distance < 0.001)
+	if (distance < 0.5)
 		return ;
 	direction.x /= distance;
 	direction.y /= distance;
@@ -137,7 +136,7 @@ void	enemy_walk(t_enemy *enemy, t_map *map)
 // get a timer for burning state take FIREBALL_BURN times damage
 // if not died change state alive
 // if died change state idle loc x=-1 y=-1
-void	enemy_health(t_enemy *enemy)
+void	enemy_health(t_enemy *enemy) // bunu kullanmicam
 {
 	static int	burn_timer = 60;
 	static int	burn_count = 5;
@@ -162,5 +161,25 @@ void	enemy_health(t_enemy *enemy)
 		enemy->state = DYING;
 		enemy->position.x = -1;
 		enemy->position.y = -1;
+	}
+}
+
+static void kill_enemy(t_enemy *enemy, t_main *g)
+{
+	enemy->health = 0;
+	enemy->state = IDLE;
+	enemy->position = (t_vector){-1, -1};
+	g->map.player.inventory.currency += 20;
+	// ENEMY_PARTICLE SPAWN HERE
+}
+
+void damage_enemy(t_enemy *enemy, double damage, t_main *g)
+{
+	enemy->red_alpha = 0.5;
+	if (damage >= enemy->health)
+		kill_enemy(enemy, g);
+	else
+	{
+		enemy->health -= damage;
 	}
 }

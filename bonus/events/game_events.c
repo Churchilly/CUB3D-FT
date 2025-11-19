@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_events.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/19 03:42:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:21:40 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ static void	update_game(t_main *g)
 	change_position(g);
 	change_direction(g, 0);
 	animate_objects(g);
+	animate_enemy_effect(g);
+	animate_orbs(g);
 	animate_spellbook(g);
 	update_mana(g);
 	update_health(g);
+	draw_currency(g);
 	
 	if (g->key_list.f3.key_switch)
 	{

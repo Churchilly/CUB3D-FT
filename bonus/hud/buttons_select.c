@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buttons_select.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 03:32:58 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 18:42:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:02:51 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

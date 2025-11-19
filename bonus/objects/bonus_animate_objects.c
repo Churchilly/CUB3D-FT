@@ -6,13 +6,11 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 07:53:19 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/20 01:49:30 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
-
-// add animate fireball here [BURAK]
 
 static int	interpolate_color(int color1, int color2, double t)
 {
@@ -62,6 +60,32 @@ static void	animate_door(t_door *door)
 	}
 }
 
+void animate_enemy_effect(t_main *g)
+{
+	static long long time_log = 0;
+	long long curr_time;
+	t_obj_node *obj;
+	t_enemy *enemy;
+	
+	curr_time = current_time_ms();
+	if (curr_time - time_log > 50)
+	{
+		obj = g->objects.all;
+		while (obj)
+		{
+			if (obj->type == ENEMY)
+			{
+				enemy = (t_enemy *)obj->object;
+				enemy->red_alpha = enemy->red_alpha - 0.1;
+				if (enemy->red_alpha < 0)
+					enemy->red_alpha = 0;
+			}
+			obj = obj->next;
+		}
+		time_log = curr_time;
+	}
+}
+
 static void animate_enemy(t_enemy *enemy, t_map *map)
 {
 	static int	spawn_timer = ENEMY_SPAWN_DELAY / 2;
@@ -85,148 +109,6 @@ static void animate_enemy(t_enemy *enemy, t_map *map)
 		// add fireball && player collision check here [BURAK]
 	}
 }
-
-static void animate_fireball_sprite(t_main *g)
-{
-	static long long time_log = 0;
-	long long curr_time;
-	t_cub3_gallery *gal;
-	t_im swap;
-	
-	curr_time = current_time_ms();
-	gal = &g->gallery;
-	if (curr_time - time_log > 20)
-	{
-		swap = gal->fireball;
-		gal->fireball = gal->fireball2;
-		gal->fireball2 = gal->fireball3;
-		gal->fireball3 = gal->fireball4;
-		gal->fireball4 = swap;
-		time_log = curr_time;
-	}
-}
-
-static void animate_fireball_particle_sprite(t_main *g)
-{
-	static long long time_log = 0;
-	long long curr_time;
-	t_cub3_gallery *gal;
-	t_im swap;
-	
-	curr_time = current_time_ms();
-	gal = &g->gallery;
-	if (curr_time - time_log > 220)
-	{
-		swap = gal->fireball_particle_1;
-		gal->fireball_particle_1 = gal->fireball_particle_2;
-		gal->fireball_particle_2 = gal->fireball_particle_3;
-		gal->fireball_particle_3 = swap;
-	}
-}
-
-static void animate_particles(t_main *g)
-{
-	static long long time_log = 0;
-	long long curr_time;
-	t_obj_node *obj;
-	t_fire_particle *particle;
-
-	curr_time = current_time_ms();
-	if (curr_time - time_log > 50)
-	{
-		obj = g->objects.all;
-		while (obj)
-		{
-			if (obj->type == PARTICLE)
-			{
-				particle = obj->object;
-				if (particle->active)
-				{
-					if (particle->start_y >= 100)
-					{
-						particle->active = false;
-						particle->start_y = 0;
-					}
-					else
-						particle->start_y += 4;
-				}
-			}
-			obj = obj->next;
-		}
-		time_log = curr_time;
-	}
-}
-
-static void add_particle(t_main *g, t_fireball *f)
-{
-	static long long time_log = 0;
-	long long curr_time;
-	t_obj_node *obj;
-	t_fire_particle *particle;
-	
-	curr_time = current_time_ms();
-	if (curr_time - time_log > 300)
-	{
-		obj = g->objects.all;
-		while (obj)
-		{
-			if (obj->type == PARTICLE)
-			{
-				particle = obj->object;
-				if (!particle->active)
-					break;
-			}
-			obj = obj->next;
-		}
-		particle->image = g->gallery.fireball_particle_1;
-		particle->position.x = f->position.x;
-		particle->position.y = f->position.y;
-		particle->segment = f->segment;
-		// particle->deploy_time = 0;
-		particle->active = true;
-		time_log = curr_time;
-	}
-}
-
-static void fireball_explode(t_main *g, t_vector *f_pos)
-{
-	t_player *player;
-
-	player = &g->map.player;
-	if (player->pos.x >= f_pos->x - 0.7 && player->pos.x <= f_pos->x + 0.7
-		&& player->pos.y >= f_pos->y - 0.7 && player->pos.y <= f_pos->y + 0.7)
-	{
-		damage_player(g, 50);
-	}
-}
-
-static void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
-{
-	static long long time_log = 0;
-	long long curr_time;
-
-	animate_fireball_sprite(g);
-	animate_fireball_particle_sprite(g);
-	animate_particles(g);
-	curr_time = current_time_ms();
-	if (f->state == FLY && curr_time - time_log > 5)
-	{
-		add_particle(g, f);
-		f->position.x += cos(f->direction) * 0.05;
-		f->position.y += sin(f->direction) * 0.05;
-		
-		if (g->map.matrix[(int)f->position.y][(int)f->position.x] == '1')
-		{
-			printf("BOOOOOOOOOOOOOMMMM\n");
-			f->state = IDLE;
-			fireball_explode(g, &f->position);
-			f->position = (t_vector){-1, -1};
-		}
-		
-		time_log = curr_time;
-	}
-}
-
 
 void	animate_objects(t_main *g)
 {

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 03:01:12 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/20 00:07:25 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,10 @@ static void	create_enemies(t_main *g)
 		enemy->state = IDLE;
 		enemy->position.x = -1.0;
 		enemy->position.y = -1.0;
+		enemy->red_alpha = 0.0;
 		add_object(&g->objects, ENEMY, enemy);
 	}
 }
-
-// static void	create_fireballs(t_main *g)
-// {
-// 	int	i;
-// 	t_fireball *fireball;
-
-// 	i = -1;
-// 	while (++i < NUM_OF_FIREBALLS)
-// 	{
-// 		fireball = malloc(sizeof(t_fireball)); // alloc_crit
-// 		fireball->direction = 0.0;
-// 		fireball->position.x = -1.0;
-// 		fireball->position.y = -1.0;
-// 		add_object(&g->objects, FIREBALL, fireball);
-// 	}
-// }
 
 static void	create_fireballs(t_main *g)
 {
@@ -118,6 +103,21 @@ static void	create_barriers(t_main *g)
 		door_wall = find_door_wall(-1, ++i, NULL);
 	}
 }
+
+static void create_orbs(t_main *g)
+{
+	int orb_count = 4; // gather this from g->player.inventory.orb
+	t_orb *orb;
+	
+	while (orb_count--)
+	{
+		orb = malloc(sizeof(t_orb));
+		orb->position = (t_vector){-1, -1};
+		orb->last_hit_time = 0;
+		add_object(&g->objects, ORB, orb);
+	}
+}
+
 #include <stdio.h>
 
 static void debug(t_main *g)
@@ -183,5 +183,6 @@ void	cub_objects(t_main *g)
 	create_particles(g);
 	create_enemies(g);
 	create_barriers(g);
+	create_orbs(g);
 	debug(g);
 }

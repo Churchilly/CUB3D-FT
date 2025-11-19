@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 03:39:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 01:07:47 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ struct s_cub3_gallery
 	t_im	enemy12;
 	t_im	enemy13;
 	t_im	enemy14;
+    t_im    pokeball;
+    t_im    currency;
+    t_im    potion;
     t_font_gal fonts;
 };
 
@@ -89,11 +92,15 @@ struct s_draw_pkg
 
 t_cub3_image create_image(char *path);
 void draw_image(t_window *win, t_cub3_image *img, int x, int y);
+void draw_image_scaled(t_window *win, t_cub3_image *img, int x, int y, double scale);
 void draw_image_no_alpha(t_window *win, t_cub3_image *img, int x, int y);
+void draw_image_no_alpha_scaled(t_window *win, t_cub3_image *img, int x, int y, double scale);
 void draw_image_rotated(t_window *win, t_cub3_image *img, int x, int y, double angle_deg); // claude
 void draw_button(t_window *win, t_cub3_image *img, int x, int y);
 void draw_button_hover(t_window *win, t_cub3_image *img, int x, int y);
 void draw_column(t_draw_pkg *pkg, int x, t_window *win);
+int blend_alpha(int color, int color_to_blend, double alpha);
+void draw_column_alpha(t_draw_pkg *pkg, int x, t_window *win, int blend, double alpha);
 void *init_gallery_with_config(t_cub3_gallery *gal, char *config);
 
 #endif
