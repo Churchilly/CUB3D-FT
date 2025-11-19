@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:00:59 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 02:35:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 03:40:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void *init_gallery_with_config(t_cub3_gallery *gal, char *config)
 	gal->enemy10 = create_image("cub3_images/images/enemy/enemy10.cub3");
 	gal->enemy11 = create_image("cub3_images/images/enemy/enemy11.cub3");
 	gal->enemy12 = create_image("cub3_images/images/enemy/enemy12.cub3");
+    gal->fonts.alagard = create_image("cub3_images/images/fonts/alagard.cub3");
     init_mmap_gallery(gal);
     return (gal);
 } // this is OK for TODO#1, not for the other

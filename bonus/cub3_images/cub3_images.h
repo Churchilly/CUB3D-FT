@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 01:59:15 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 03:39:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ struct s_cub3_gallery
 	t_im	enemy12;
 	t_im	enemy13;
 	t_im	enemy14;
+    t_font_gal fonts;
 };
 
 struct s_draw_pkg

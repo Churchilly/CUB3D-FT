@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 02:52:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/19 03:40:54 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_main_menu	t_main_menu;
 typedef struct s_map_select	t_map_select;
 typedef struct s_shop		t_shop;
 typedef struct s_main		t_main;
-typedef struct s_pos		t_pos;
 typedef enum e_button_type	t_button_type;
 
 enum e_button_type
@@ -101,11 +100,6 @@ struct s_error
 	// text here
 };
 
-struct s_pos
-{
-	int	x;
-	int	y;
-};
 
 void	draw_minimap(t_main *game);
 void	draw_mmap(t_main *g);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/17 17:34:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/18 19:14:51 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static void _init_keys(t_main *game)
 	game->key_list.f3.key_switch = false;
 }
 
-
 void	__init__(t_main *game)
 {
 	memset(game, 0, sizeof(t_main));
@@ -77,6 +76,7 @@ void	__init__(t_main *game)
 	init_gallery_with_config(&(game->gallery), NULL);
 	init_main_menu(game, &(game->main_menu));
 	_init_keys(game);
+	init_fonts(game);
 }
 
 
