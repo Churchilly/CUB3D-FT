@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:10:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:11:27 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:24:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,18 @@
 
 void	init_game(t_main *game, char *map_file)
 {
-	game->map.player.pos.x = -1;
-	game->map.player.pos.y = -1;
-	game->map.player.mana = MAX_MANA;
-	game->map.player.health = MAX_HEALTH;
-	
+	printf("here\n");
+	map_cleanup(game);
+	printf("here\n");
 	load_map(map_file, game);
+	if (game->state == MENU_ERROR)
+		return ;
+	printf("here1\n");
 	cub_objects(game);
+	printf("here2\n");
 	cub_spellbook(&game->spellbook, game->window.mlx);
+	printf("here3\n");
 	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);
+
+	printf("here4\n");
 }

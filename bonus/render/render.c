@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:55:29 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:19:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	render_shop(t_main *g)
 
 void	render_error_menu(t_main *g)
 {
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	//draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
+	//draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
 	
 	draw_text("Failed to load map", &g->error_menu.error_text);
 	

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/20 01:22:38 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:18:53 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,11 @@ void	*init_error_menu(t_main *g, t_error *menu)
 	/* Set background image */
 	menu->bg_img = g->gallery.mmenu_bg;
 	
-	txt.text_len = 19; // length of "Failed to load map"
+	txt.text_len = 19;
 	txt.font = &g->font_menu.alagard;
 	txt.scale = 2.0;
 	txt.win = &g->window;
-	txt.color = 0xFFFF4444; // Red color for error
+	txt.color = 0xFFFF4444;
 	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * txt.text_len) / 3;
 	txt.win_y = WIN_HEIGHT / 2 - 100;
 	txt.sheet_row = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 05:00:15 by root             ###   ########.fr       */
+/*   Updated: 2025/11/20 17:41:38 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	map_parse(char *raw_map, t_main *g)
 	}
 	if (!check_map_materials(&g->map, g) || g->state == MENU_ERROR)
 		return ;
-	load_doors(raw_map);
+	load_doors(map_start);
 	load_matrix(map_start, g);
 }
 
@@ -104,7 +104,6 @@ void	load_map(char *map_file, t_main *game)
 {
 	char	*raw_map;
 
-	map_cleanup(game);
 	raw_map = read_file(map_file);
 	if (!raw_map)
 	{
