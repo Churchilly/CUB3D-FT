@@ -85,16 +85,21 @@ void	load_matrix(char *raw_map, t_main *g)
 {
 	int 	matrix_height;
 	char	**copy;
-	
+
 	if (!*raw_map)
 	{
-		printf("Error: Missing map data\n");
-		exit(1);
+		map_cleanup_exit("Error: Missing map data", g);
+		return ;
 	}
 	matrix_height = create_matrix(raw_map, g);
+	if (g->state == MENU_ERROR)
+		return ;
 	// copy current matrix to make changes on it
 	copy = copy_matrix(g->map.matrix, matrix_height);
 	if (!copy)
+	{
 		map_cleanup_exit("Error: Memory allocation failed", g);
+		return ;
+	}
 	check_map_enclosed(copy, g);
 }

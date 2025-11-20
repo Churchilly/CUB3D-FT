@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:18:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 05:00:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,25 @@ static int	find_id(char *raw_map)
 	return (MAP);
 }
 
-static void	check_map_materials(t_map *map)
+static int	check_map_materials(t_map *map, t_main *g)
 {
-	if (!map->texture_no.img || !map->texture_so.img 
+	if (!map->texture_no.img || !map->texture_so.img
 		|| !map->texture_we.img || !map->texture_ea.img)
 	{
-		printf("Error: Missing wall texture data\n");
-		exit(1);
+		map_cleanup_exit("Error: Missing wall texture data", g);
+		return (0);
 	}
 	if (!map->texture_f.img)
 	{
-		printf("Error: Missing floor texture data\n");
-		exit(1);
+		map_cleanup_exit("Error: Missing floor texture data", g);
+		return (0);
 	}
 	if (map->color_c == 0)
 	{
-		printf("Error: Missing ceiling color data\n");
-		exit(1);
+		map_cleanup_exit("Error: Missing ceiling color data", g);
+		return (0);
 	}
+	return (1);
 }
 
 static void	map_parse(char *raw_map, t_main *g)
@@ -83,15 +84,18 @@ static void	map_parse(char *raw_map, t_main *g)
 		else if (current_id == FL)
 			load_texture(raw_map, &g->map.texture_f, "FL", g);
 		else if (current_id == C)
-			load_color(raw_map, &g->map.color_c, "C");
+			load_color(raw_map, &g->map.color_c, "C", g);
 		else if (current_id == NEXT)
 			load_next_map_info(raw_map, g);
 		else
 			break ;
+		if (g->state == MENU_ERROR)
+			return ;
 		while (*raw_map && *raw_map != '\n')
 			raw_map++;
 	}
-	check_map_materials(&g->map);
+	if (!check_map_materials(&g->map, g) || g->state == MENU_ERROR)
+		return ;
 	load_doors(raw_map);
 	load_matrix(map_start, g);
 }
@@ -100,10 +104,16 @@ void	load_map(char *map_file, t_main *game)
 {
 	char	*raw_map;
 
+	map_cleanup(game);
 	raw_map = read_file(map_file);
 	if (!raw_map)
-		exit(1);
+	{
+		map_cleanup_exit("Error: Failed to read map file", game);
+		return ;
+	}
 	map_parse(raw_map, game);
+	if (game->state == MENU_ERROR)
+		return ;
 	// check textures one by one
 	//test color
 	printf("color_c::%d\n", game->map.color_c);

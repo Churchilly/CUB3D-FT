@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_cleanup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:54 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:10:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 05:02:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../minilibx/mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <strings.h>
 
 void	map_cleanup(t_main *game)
 {
@@ -29,6 +30,7 @@ void	map_cleanup(t_main *game)
 		if (game->map.texture_ea.img)
 			mlx_destroy_image(game->window.mlx, game->map.texture_ea.img);
 	}
+	bzero(&game->map, sizeof(t_map));
 	//close mlx connection which opened at _init at main
 	// if (game->window.mlx)
 	// {
@@ -52,10 +54,10 @@ void	map_cleanup(t_main *game)
 	// } HERE1
 }
 
-// cleanup and exit for error cases
+// cleanup and show error menu instead of exiting
 void	map_cleanup_exit(char *errmsg, t_main *game)
 {
 	printf("%s\n", errmsg);
 	map_cleanup(game);
-	exit(1);
+	game->state = MENU_ERROR;
 }
