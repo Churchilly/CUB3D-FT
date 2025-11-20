@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/20 01:17:45 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/20 03:00:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ int onrelease_event(int key, t_main *game)
 	}
 	else if (key == XK_space || key == XK_Return)
 	{
-		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT)
+		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == GAME)
 			unlock_menu_switches(game);
 	}
 	else if (key == XK_e)
