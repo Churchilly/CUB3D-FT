@@ -6,12 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:55:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 01:11:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
+
+# include "../garbage_collector/garbage_collector.h"
 
 # include "../map/map.h"
 # include "../player/player.h"

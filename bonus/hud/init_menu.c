@@ -6,12 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/20 18:18:53 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 03:52:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hud.h"
 #include "../main/main.h"
+#include <string.h>
 
 void	*init_main_menu(t_main *g, t_main_menu *mmenu)
 {
@@ -60,14 +61,14 @@ void	*init_map_select_menu(t_main *g, t_map_select *menu)
     {
     pages = ceil((double)(files_count + 4) / MAP_SELECT_PAGE_NUM);
 	printf("filescount::%d\npage::%d\n",files_count, pages);
-    menu->maps = alloc_crit(sizeof(t_text_button *) * (pages + 1));
+    menu->maps = alloc(sizeof(t_text_button *) * (pages + 1), STATIC);
 
     base.x = WIN_WIDTH / 4;
 
     p = 0;
     while (p < pages)
     {
-        menu->maps[p] = alloc_crit(sizeof(t_text_button) * MAP_SELECT_PAGE_NUM);
+        menu->maps[p] = alloc(sizeof(t_text_button) * MAP_SELECT_PAGE_NUM, STATIC);
         base.y = WIN_HEIGHT / 4;
         s = 0;
         while (s < MAP_SELECT_PAGE_NUM)
@@ -76,7 +77,7 @@ void	*init_map_select_menu(t_main *g, t_map_select *menu)
             if (idx < files_count)
             {
                 fname = g->map.files[idx].file_shown;
-                txt.text_len = ft_strlen(fname);
+                txt.text_len = strlen(fname);
                 txt.font = &g->font_menu.alagard;
                 txt.scale = 1.0;
                 txt.win = &g->window;

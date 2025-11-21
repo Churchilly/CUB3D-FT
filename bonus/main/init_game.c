@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:10:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 18:24:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 04:51:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <string.h>
 #include "main.h"
 #include "../minilibx/mlx.h"
-#include "../gc/gc.h"
 #include "../player/player.h"
 #include "../events/events.h"
 #include <X11/Xlib.h>
@@ -27,18 +26,19 @@
 
 void	init_game(t_main *game, char *map_file)
 {
-	printf("here\n");
-	map_cleanup(game);
-	printf("here\n");
-	load_map(map_file, game);
-	if (game->state == MENU_ERROR)
-		return ;
-	printf("here1\n");
-	cub_objects(game);
-	printf("here2\n");
-	cub_spellbook(&game->spellbook, game->window.mlx);
-	printf("here3\n");
-	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);
-
-	printf("here4\n");
+	clear_section(DYNAMIC);
+	create_barriers(game);
+	game->map.player.pos.x = -1;
+	game->map.player.pos.y = -1;
+	game->map.player.mana = MAX_MANA;
+	game->map.player.health = MAX_HEALTH;
+	game->map.next_map = NULL;
+	game->map.color_c = -1;
+	game->map.texture_ea.img = NULL;
+	game->map.texture_no.img = NULL;
+	game->map.texture_ea.img = NULL;
+	game->map.texture_ea.img = NULL;
+	game->map.texture_f.img = NULL;
+	if (load_map(map_file, game))
+		game->state = MENU_ERROR;
 }

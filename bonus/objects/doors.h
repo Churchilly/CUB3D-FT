@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/06 14:29:41 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 04:39:48 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_main	t_main;
 
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);
 t_door		*find_interactable_door(t_main *g);
-
+void		create_barriers(t_main *g);
 /*
 door on map
 111111

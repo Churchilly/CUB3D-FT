@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 00:07:25 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/21 03:33:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	create_enemies(t_main *g)
 	i = -1;
 	while (++i < NUM_OF_FIREBALLS)
 	{
-		enemy = malloc(sizeof(t_fireball)); // alloc_crit
+		enemy = alloc(sizeof(t_fireball), STATIC);
 		enemy->health = ENEMY_HEALTH;
 		enemy->state = IDLE;
 		enemy->position.x = -1.0;
@@ -42,7 +42,7 @@ static void	create_fireballs(t_main *g)
 	counter = NUM_OF_FIREBALLS;
 	while (counter--)
 	{
-		fireball = malloc(sizeof(t_fireball)); // alloc_crit
+		fireball = alloc(sizeof(t_fireball), STATIC);
 		fireball->direction = 0.0;
 		fireball->position.x = -1.0;
 		fireball->position.y = -1.0;
@@ -59,7 +59,7 @@ static void create_particles(t_main *g)
 	counter = NUM_OF_PARTICLES;
 	while (counter--)
 	{
-		particle = malloc(sizeof(t_fire_particle));
+		particle = alloc(sizeof(t_fire_particle), STATIC);
 		particle->active = false;
 		particle->position.x = -1.0;
 		particle->position.y = -1.0;
@@ -67,43 +67,7 @@ static void create_particles(t_main *g)
 	}
 }
 
-static void	insert_barrier(t_door *door, t_vector_int map_pos, double axis)
-{
-	if (axis == 0) // horizontal
-	{
-		door->barrier.s.x = map_pos.x + 0.5;
-		door->barrier.s.y = map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
-		door->barrier.e.x = map_pos.x + 0.5;
-		door->barrier.e.y = door->barrier.s.y + DOOR_WIDTH;
-	}
-	else // vertical
-	{
-		door->barrier.s.x = map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
-		door->barrier.s.y = map_pos.y + 0.5;
-		door->barrier.e.x = door->barrier.s.x + DOOR_WIDTH;
-		door->barrier.e.y = map_pos.y + 0.5;
-	}
-	door->state = CLOSE;
-	door->alpha = DOOR_ALPHA_LOCKED;
-	door->color = DOOR_COLOR_LOCKED;
-}
 
-static void	create_barriers(t_main *g)
-{
-	t_door_wall *door_wall;
-	t_door		*door;
-	int			i;
-
-	door_wall = find_door_wall(-1, 0, NULL);
-	i = 0;
-	while (door_wall)
-	{
-		door = malloc(sizeof(t_door)); // alloc_crit
-		insert_barrier(door, door_wall->map_pos, door_wall->axis);
-		add_object(&g->objects, DOOR, door);
-		door_wall = find_door_wall(-1, ++i, NULL);
-	}
-}
 
 static void create_orbs(t_main *g)
 {
@@ -183,7 +147,8 @@ void	cub_objects(t_main *g)
 	create_fireballs(g);
 	create_particles(g);
 	create_enemies(g);
-	create_barriers(g);
+	// this shit need to go to map creation !remember
+	//
 	create_orbs(g);
 	debug(g);
 }

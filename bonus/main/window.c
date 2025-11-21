@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 04:31:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 08:53:15 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 03:49:07 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <X11/keysym.h>
 #include <stdlib.h>
 
-#include "../gc/gc.h"
 #include <stdio.h>
 /*
 ◦ The left and right arrow keys of the keyboard must allow you to look left and
@@ -40,7 +39,6 @@ void	cub_create_window(t_main *g)
 		// free(d->mlx); HERE1
 		exit(1);
 	}
-	safe_mlx(d->win, op_win);
 	d->img = mlx_new_image(d->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!d->img)
 	{

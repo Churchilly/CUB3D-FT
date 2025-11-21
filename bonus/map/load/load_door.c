@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:10:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 03:24:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static t_door_wall *create_door_walls(char *raw_map, int count)
 	int		y;
 	int		i;
 	
-	door_walls = malloc(sizeof(t_door_wall) * count); // gc add here
+	door_walls = alloc(sizeof(t_door_wall) * count, DYNAMIC); // gc add here
 	x = 0;
 	y = 0;
 	i = 0;

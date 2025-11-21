@@ -6,14 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:09:01 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 03:28:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "../../gc/gc.h"
 
 static int	flood_fill(char **matrix, int x, int y)
 {
@@ -40,28 +39,22 @@ static char	**copy_matrix(char **matrix, int height)
 	int i;
 	int j;
 
-	copy = alloc(sizeof(char *) * (height + 1));
-	if (!copy)
-		return (NULL);
+	copy = alloc(sizeof(char *) * (height + 1), TEMPORARY);
 	i = -1;
 	while (matrix[++i])
 	{
 		j = -1;
 		while (matrix[i][++j])
 			;
-		copy[i] = alloc(sizeof(char) * (j + 1));
-		if (!copy)
-			return (NULL);
+		copy[i] = alloc(sizeof(char) * (j + 1), TEMPORARY);
 		j = -1;
 		while (matrix[i][++j])
 			copy[i][j] = matrix[i][j];
-		copy[i][j] = 0;
 	}
-	copy[i] = NULL;
 	return (copy);
 }
 
-static void	check_map_enclosed(char **matrix, t_main *g)
+static int	check_map_enclosed(char **matrix, t_main *g)
 {
 	int	x;
 	int	y;
@@ -75,31 +68,25 @@ static void	check_map_enclosed(char **matrix, t_main *g)
 			if (matrix[y][x] == '0')
 			{
 				if (!flood_fill(matrix, x, y))
-					map_cleanup_exit("Error: Map is not properly enclosed by walls", g);
+					return (1);
 			}
 		}
 	}
+	return (0);
 }
 
-void	load_matrix(char *raw_map, t_main *g)
+int	load_matrix(char *raw_map, t_main *g)
 {
 	int 	matrix_height;
 	char	**copy;
 
 	if (!*raw_map)
-	{
-		map_cleanup_exit("Error: Missing map data", g);
-		return ;
-	}
+		return (1);
 	matrix_height = create_matrix(raw_map, g);
-	if (g->state == MENU_ERROR)
-		return ;
-	// copy current matrix to make changes on it
+	if (matrix_height == -1)
+		return (1);
 	copy = copy_matrix(g->map.matrix, matrix_height);
-	if (!copy)
-	{
-		map_cleanup_exit("Error: Memory allocation failed", g);
-		return ;
-	}
-	check_map_enclosed(copy, g);
+	if (check_map_enclosed(copy, g))
+		return (1);
+	return (0);
 }

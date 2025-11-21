@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils_strjoin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 06:59:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:35:36 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/21 02:15:54 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "utils.h"  // Added: for ft_strlen function declaration
+#include "string.h"
+#include "../garbage_collector/garbage_collector.h"
 
-#include "../gc/gc.h"
-char	*ft_strjoin(char *str1, char *str2)
+char	*ft_strjoin(char *str1, char *str2, t_section sec)
 {
 	char	*res;
 	char	*ret;
 
-	res = alloc_crit(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	res = alloc(sizeof(char) * (strlen(str1) + strlen(str2) + 1), sec);
 	if (!res)
 		return (NULL);
 	ret = res;

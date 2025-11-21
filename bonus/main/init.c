@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 17:59:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 02:07:52 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <string.h>
 #include "main.h"
 #include "../minilibx/mlx.h"
-#include "../gc/gc.h"
 #include "../player/player.h"
 #include "../events/events.h"
 #include <X11/Xlib.h>
@@ -62,18 +61,19 @@ static void _init_keys(t_main *game)
 void	__init__(t_main *game)
 {
 	memset(game, 0, sizeof(t_main));
-	
 	// Initialize MLX connection
 	game->window.mlx = mlx_init();
-	safe_mlx(game->window.mlx, op_mlx);
 	if (!game->window.mlx)
 	{
 		printf("Error: Failed to initialize MLX\n");
 		exit(1);
 	}
 	
-	// Initialize menu-related things (needed before game starts)
+	// initialize menu-related things (needed before game starts)
 	cub_map(&(game->map));
+	cub_objects(game); // objects are no belongs to map dont forget to reset on init game
+	cub_spellbook(&game->spellbook, game->window.mlx); // same as objects need reset
+	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05); // same as obj no need to reset
 	init_gallery_with_config(&(game->gallery), NULL);
 	init_fonts(game);  // Initialize fonts BEFORE menus that use them
 	init_main_menu(game, &(game->main_menu));

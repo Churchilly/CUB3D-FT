@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:11:35 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/31 03:07:40 by root             ###   ########.fr       */
+/*   Updated: 2025/11/21 02:21:20 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../garbage_collector/garbage_collector.h"
 #include <stdlib.h>
 
 static unsigned int	split_count(char const *s, char c)
@@ -58,21 +59,7 @@ static void	write_word(char **str, const char **s, unsigned int len)
 	(*str)[counter] = '\0';
 }
 
-static char	**free_all(char **splitted, unsigned int count)
-{
-	unsigned int	counter;
-
-	counter = 0;
-	while (counter <= count)
-	{
-		free(splitted[counter]);
-		counter++;
-	}
-	free(splitted);
-	return (NULL);
-}
-
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, t_section sec)
 {
 	char			**splitted;
 	unsigned int	word_count;
@@ -81,17 +68,13 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word_count = split_count(s, c);
-	splitted = malloc((word_count + 1) * sizeof(char *));
-	if (!splitted)
-		return (NULL);
+	splitted = alloc((word_count + 1) * sizeof(char *), sec);
 	counter = 0;
 	while (counter < word_count)
 	{
 		while (*s == c && *s)
 			s++;
-		splitted[counter] = malloc(short_len(s, c) + 1);
-		if (!splitted[counter])
-			return (free_all(splitted, counter));
+		splitted[counter] = alloc(short_len(s, c) + 1, sec);
 		write_word(&splitted[counter], &s, short_len(s, c));
 		counter++;
 	}
