@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_objects.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 01:49:30 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/21 05:04:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void animate_enemy_effect(t_main *g)
 	}
 }
 
-static void animate_enemy(t_enemy *enemy, t_map *map)
+static void animate_enemy(t_enemy *enemy, t_main *g)
 {
 	static int	spawn_timer = ENEMY_SPAWN_DELAY / 2;
 	int			spawn;
@@ -98,15 +98,14 @@ static void animate_enemy(t_enemy *enemy, t_map *map)
 		{
 			spawn = rand() % 100;
 			if (spawn < ENEMY_SPAWN_RATE)
-				spawn_enemy(enemy, map);
+				spawn_enemy(enemy, &g->map);
 			spawn_timer = 0;
 		}
 	}
 	else
 	{
-		enemy_walk(enemy, map);
-		enemy_health(enemy);
-		// add fireball && player collision check here [BURAK]
+		enemy_walk(enemy, g);
+		draw_enemy_effect(enemy, &g->map.player, &g->window);
 	}
 }
 
@@ -121,7 +120,7 @@ void	animate_objects(t_main *g)
 		if (curr->type == DOOR)
 			animate_door(curr->object);
 		else if (curr->type == ENEMY)
-			animate_enemy(curr->object, &g->map);
+			animate_enemy(curr->object, g);
 		else if (curr->type == FIREBALL)
 			animate_fireball(curr->object, g, &g->gallery);
 		curr = curr->next;

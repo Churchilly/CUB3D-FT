@@ -12,6 +12,45 @@
 
 #include "../main/main.h"
 
+static int get_pixel_from_window(t_window *win, int x, int y)
+{
+    char *dst;
+
+    if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
+        return (0);
+    dst = win->addr + (y * win->line_length + x * (win->bits_per_pixel / 8));
+    return (*(unsigned int *)dst);
+}
+
+static void draw_frame_with_alpha(t_window *win, t_cub3_image *img, double alpha)
+{
+    int x;
+    int y;
+    int color;
+    int bg_color;
+    int blended;
+
+    y = 0;
+    while (y < img->height && y < WIN_HEIGHT)
+    {
+        x = 0;
+        while (x < img->width && x < WIN_WIDTH)
+        {
+            color = img->image[y * img->width + x];
+            if ((unsigned int)color != 0xffffffff)
+            {
+                // Remove alpha channel (shift right by 8 bits to convert RGBA to RGB)
+                color = (color >> 8) & 0x00FFFFFF;
+                bg_color = get_pixel_from_window(win, x, y);
+                blended = blend_alpha(bg_color, color, alpha);
+                put_pixel(x, y, blended, win);
+            }
+            x++;
+        }
+        y++;
+    }
+}
+
 void render_frames(t_main *g)
 {
     t_im *frame;
@@ -26,5 +65,5 @@ void render_frames(t_main *g)
         frame = &g->gallery.frames.low_hp_1;
     else
         return ;
-    draw_image_no_alpha(&g->window, frame, 0, 0);
+    draw_frame_with_alpha(&g->window, frame, 0.3);
 }

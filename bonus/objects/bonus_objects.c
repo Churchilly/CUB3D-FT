@@ -29,6 +29,7 @@ static void	create_enemies(t_main *g)
 		enemy->position.x = -1.0;
 		enemy->position.y = -1.0;
 		enemy->red_alpha = 0.0;
+		enemy->attack_time_log = 0;
 		add_object(&g->objects, ENEMY, enemy);
 	}
 }

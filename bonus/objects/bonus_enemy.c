@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 22:55:49 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 01:02:10 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/21 05:08:28 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,66 +101,31 @@ static int	try_move(t_enemy *enemy, t_map *map, t_vector direction)
 }
 
 
-// walk to player idea
-// get current loc of the player
-// change pos of enemy (towards to player) 
-// if no wall on the way ofc.
-// if there is a wall. change move vector 90 degrees and try again. try 3 times for check all angles (M_PI)
-void	enemy_walk(t_enemy *enemy, t_map *map)
+void	enemy_walk(t_enemy *enemy, t_main *g)
 {
 	t_vector	direction;
 	double		distance;
 	int			attempt;
 
-	direction.x = map->player.pos.x - enemy->position.x;
-	direction.y = map->player.pos.y - enemy->position.y;
+	direction.x = g->map.player.pos.x - enemy->position.x;
+	direction.y = g->map.player.pos.y - enemy->position.y;
 	distance = sqrt(direction.x * direction.x + direction.y * direction.y);
 	if (distance < 0.5)
+	{
+		enemy_attack(enemy, g);
 		return ;
+	}
 	direction.x /= distance;
 	direction.y /= distance;
 	attempt = -1;
 	while (++attempt < 6)
 	{
-		if (try_move(enemy, map, direction))
+		if (try_move(enemy, &g->map, direction))
 			return ;
 		if (attempt % 2)
 			direction = rotate_vector(direction, M_PI / 3);
 		else
 			direction = rotate_vector(direction, -(M_PI / 3));
-	}
-}
-
-// check health idea
-// burning state -> -1 health
-// get a timer for burning state take FIREBALL_BURN times damage
-// if not died change state alive
-// if died change state idle loc x=-1 y=-1
-void	enemy_health(t_enemy *enemy) // bunu kullanmicam
-{
-	static int	burn_timer = 60;
-	static int	burn_count = 5;
-
-	if (enemy->state == BURNING)
-	{
-		burn_timer -= 1;
-		if (burn_timer <= 0)
-		{
-			enemy->health -= FIREBALL_BURN_DAMAGE;
-			burn_timer = 60;
-			burn_count -= 1;
-			if (burn_count <= 0)
-			{
-				burn_count = 5;
-				enemy->state = ALIVE;
-			}
-		}
-	}
-	if (enemy->health < 0)
-	{
-		enemy->state = DYING;
-		enemy->position.x = -1;
-		enemy->position.y = -1;
 	}
 }
 

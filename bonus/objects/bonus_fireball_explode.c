@@ -24,11 +24,11 @@ static void damage_nearby_enemies(t_main *g, t_vector *f_pos)
 		if (obj->type == ENEMY)
 		{
 			enemy = (t_enemy *)obj->object;
-			if (enemy->state == ALIVE)
+			if (enemy->state == ALIVE || enemy->state == ATTACKING)
 			{
 				if (enemy->position.x >= f_pos->x - 1 && enemy->position.x <= f_pos->x + 1
 					&& enemy->position.y >= f_pos->y - 1 && enemy->position.y <= f_pos->y + 1)
-					damage_enemy(enemy, 40, g); // FIREBALL_DAMAGE * (inv->damage->increaser * 10)					
+					damage_enemy(enemy, 40, g); // FIREBALL_DAMAGE * (inv->damage->increaser * 10)
 			}
 		}
 		obj = obj->next;

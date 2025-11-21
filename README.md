@@ -6,10 +6,11 @@
 - [OK] Strings to img -> draw_text
 - [OK] Enemy render
 - [ ] Enemy Damage on player
-- [ ] enemy fireball collision 
-- [ ] enemy player collision aabb
-- [ ] rotating orb like asol -> 360 / orb count. 
+- [OK] enemy fireball collision 
+- [OK] rotating orb like asol -> 360 / orb count. 
 	for every time you buy orb need to go through all orbs and adjust their position.
+- [ ] enemy die effect
+- [ ] timer
 - [ ] gallery init && memory
 - [ ] project general memory management
 - [ ] if have time to waste make minimap rotate
