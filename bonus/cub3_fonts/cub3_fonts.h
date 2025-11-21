@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:45:23 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 21:45:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 05:34:25 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ bool is_upper(char ch);
 bool is_num(char ch);
 bool is_symbol(char ch);
 void init_fonts(void *g);
-void draw_text(char *text, t_text *text_data);
+void draw_text(char *text, t_text text_data);
 
 #endif

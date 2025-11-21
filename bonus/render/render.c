@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 18:19:14 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 08:46:49 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,32 +86,36 @@ void	render_select_map(t_main *g)
 
 void	render_shop(t_main *g)
 {
-	
+	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
+	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	place_text_button(g, &g->shop_menu.items[0], "Adrenaline Potion");
+	place_text_button(g, &g->shop_menu.items[1], "Mana Increase");
+	place_text_button(g, &g->shop_menu.items[2], "Health Increase");
+	place_text_button(g, &g->shop_menu.items[3], "Damage Increase");
+	place_text_button(g, &g->shop_menu.items[4], "Cooldown Decreaser");
+	place_text_button(g, &g->shop_menu.items[5], "Spinning Orb");
+	place_text_button(g, &g->shop_menu.to_continue, "Continue");
+	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }
 
 void	render_error_menu(t_main *g)
 {
-	//draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
-	//draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
-	
-	draw_text("Failed to load map", &g->error_menu.error_text);
-	
-	static long long last_blink = 0;
-	static double scale_dir = 0.01;
-	long long curr_time;
-	
-	//curr_time = current_time_ms();
-	//if (curr_time - last_blink > 16)
-	//{
-	//	g->error_menu.to_continue.scale += scale_dir;
-	//	if (g->error_menu.to_continue.scale >= 1.2)
-	//		scale_dir = -0.01;
-	//	else if (g->error_menu.to_continue.scale <= 0.8)
-	//		scale_dir = 0.01;
-	//	last_blink = curr_time;
-	//}
-	
-	draw_text("Press any key to continue", &g->error_menu.to_continue);
-	
+	static double scale_dir = 0.0075;
+
+	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
+	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	draw_text("Failed to load map", g->error_menu.error_text);
+	g->error_menu.to_continue.scale += scale_dir;
+	g->error_menu.to_continue.win_x = WIN_WIDTH / 2 - (g->error_menu.to_continue.font->font_size * g->error_menu.to_continue.scale * (g->error_menu.to_continue.text_len + 2)) / 3;
+	if (g->error_menu.to_continue.scale >= 1.0)
+		scale_dir = -0.005;
+	else if (g->error_menu.to_continue.scale <= 0.75)
+		scale_dir = 0.0075;
+	draw_text("Press any key to continue", g->error_menu.to_continue);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
+}
+
+void	render_summary_menu(t_main *g)
+{
+	(void)g;
 }

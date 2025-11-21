@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:55:21 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 23:27:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 05:34:09 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,5 @@ void	place_text_button(t_main *g, t_text_button *b, char *label)
 	tmp = b->text_data;
 	tmp.win_x = b->position.x;
 	tmp.win_y = b->position.y;
-	draw_text(label, &tmp);
+	draw_text(label, tmp);
 }

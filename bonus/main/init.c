@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 02:07:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 08:24:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	__init__(t_main *game)
 	init_main_menu(game, &(game->main_menu));
 	init_map_select_menu(game, &(game->map_select));
 	init_error_menu(game, &(game->error_menu));
+	init_shop_menu(game, &(game->shop_menu));
 	_init_keys(game);
 }
 

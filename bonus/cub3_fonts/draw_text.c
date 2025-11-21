@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:49:50 by root              #+#    #+#             */
-/*   Updated: 2025/11/19 22:04:08 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 05:33:38 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,22 @@ static int draw_symbol(int sym, t_text *text)
     return (draw_from_sheet(text));
 }
 
-void draw_text(char *text, t_text *text_data)
+void draw_text(char *text, t_text text_data)
 {
     int counter;
 
-    if (!text || !text_data || !text_data->font || !text_data->win)
-        return;
+    //if (!text || !text_data || !text_data->font || !text_data->win)
+    //    return;
 
     counter = 0;
     while (text[counter])
     {
         if (is_char(text[counter]))
-            text_data->win_x += text_data->font->gap + draw_char(text[counter], is_upper(text[counter]), text_data);
+            text_data.win_x += text_data.font->gap + draw_char(text[counter], is_upper(text[counter]), &text_data);
         else if (is_num(text[counter]))
-            text_data->win_x += text_data->font->gap + draw_number(text[counter], text_data);
+            text_data.win_x += text_data.font->gap + draw_number(text[counter], &text_data);
         else if (is_symbol(text[counter]))
-            text_data->win_x += text_data->font->gap + draw_symbol(text[counter], text_data);
+            text_data.win_x += text_data.font->gap + draw_symbol(text[counter], &text_data);
         counter++;
     }
 }

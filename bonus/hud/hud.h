@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/20 02:54:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 08:48:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ struct s_shop
 {
 	t_button		*selected;
 	t_cub3_image	bg_img;
-	t_button		items[6];
+	t_text_button	items[6];
+	t_text_button	to_continue;
 };
 
 struct s_game_summary
@@ -121,6 +122,8 @@ void	draw_mmap(t_main *g);
 void	*init_main_menu(t_main *g, t_main_menu *mmenu);
 void	*init_map_select_menu(t_main *g, t_map_select *menu);
 void	*init_error_menu(t_main *g, t_error *menu);
+void	*init_shop_menu(t_main *g, t_shop *menu);
+void	*init_game_summary_menu(t_main *g, t_game_summary *menu);
 void	switch_menu(t_main *g);
 
 void	*set_button(t_button *button, t_im *img, t_vector pos);
@@ -140,3 +143,4 @@ void	check_text_button(t_main *game, t_text_button *button);
 void	place_text_button(t_main *g, t_text_button *button, char *label);
 
 #endif
+

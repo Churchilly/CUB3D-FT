@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/20 02:59:06 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 08:47:37 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int loop_event(t_main *game)
 	static long long time_log = 0;
 	long long curr_time;
 
-
 	curr_time = current_time_ms();
 	if (!(curr_time - time_log > 16))
 		return (0);
@@ -78,7 +77,9 @@ int loop_event(t_main *game)
 	else if (game->state == MENU_MAP_SELECT)
 		render_select_map(game);
 	else if (game->state == MENU_SHOP)
-		return (0);
+		render_shop(game);
 	else if (game->state == MENU_ERROR)
 		render_error_menu(game);
+	else if (game->state == MENU_SUMMARY)
+		render_summary_menu(game);
 }

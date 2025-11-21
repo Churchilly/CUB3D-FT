@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 03:52:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 08:42:44 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,33 @@ void	*init_map_select_menu(t_main *g, t_map_select *menu)
 }
 
 // show up when you complete the map and there is a next map
-void	*init_shop_menu(t_main *g, t_map_select *menu)
+void	*init_shop_menu(t_main *g, t_shop *menu)
 {
-	// 6 normal button on left of the screen
-	// 6 normal text ın right of the screen
-	// one continue button on bottom mid
+    t_text txt;
+    int i;
+
+    menu->bg_img = g->gallery.mmenu_bg;
+    menu->selected = NULL;
+
+    txt.font = &g->font_menu.alagard;
+    txt.scale = 1.0;
+    txt.win = &g->window;
+    txt.color = 0xFFFFFFFF; // White
+	i = -1;
+    while (++i < 6)
+    {
+        txt.text_len = 30;
+        txt.win_x = WIN_WIDTH / 4;
+        txt.win_y = WIN_HEIGHT / 4 + i * (txt.font->font_size * txt.scale + 24);
+        set_text_button(&menu->items[i], txt, (t_vector){txt.win_x, txt.win_y});
+    }
+	txt.text_len = 9;
+	txt.scale = 0.8;
+	txt.color = 0xFFFFFFFF;
+	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * (txt.text_len + 2)) / 3;
+	txt.win_y = WIN_HEIGHT / 4 + 8 * (txt.font->font_size * txt.scale + 24);
+    set_text_button(&menu->to_continue, txt, (t_vector){txt.win_x, txt.win_y});
+    return (menu);
 }
 // shows up when game session ends no matter if u died or won(somehow)
 void	*init_game_summary_menu(t_main *g, t_game_summary *menu)
@@ -138,31 +160,23 @@ void	*init_error_menu(t_main *g, t_error *menu)
 {
 	t_text	txt;
 	
-	/* Set background image */
 	menu->bg_img = g->gallery.mmenu_bg;
 	
 	txt.text_len = 19;
 	txt.font = &g->font_menu.alagard;
-	txt.scale = 2.0;
+	txt.scale = 1.5;
 	txt.win = &g->window;
 	txt.color = 0xFFFF4444;
-	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * txt.text_len) / 3;
-	txt.win_y = WIN_HEIGHT / 2 - 100;
+	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * (txt.text_len + 1)) / 3 ;
+	txt.win_y = WIN_HEIGHT / 2 - (WIN_HEIGHT / 20);
 	txt.sheet_row = 0;
 	txt.sheet_col = 0;
 	menu->error_text = txt;
-	
-	/* Initialize "Press any key to continue" text */
-	txt.text_len = 26; // length of "Press any key to continue"
-	txt.font = &g->font_menu.alagard;
-	txt.scale = 1.0;
-	txt.win = &g->window;
-	txt.color = 0xFFFFFFFF; // White color
-	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * txt.text_len) / 3;
-	txt.win_y = WIN_HEIGHT / 2 + 50;
-	txt.sheet_row = 0;
-	txt.sheet_col = 0;
+	txt.text_len = 26;
+	txt.scale = 0.8;
+	txt.color = 0xFFFFFFFF;
+	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * (txt.text_len + 2)) / 3;
+	txt.win_y = WIN_HEIGHT / 2 + (WIN_HEIGHT / 5);
 	menu->to_continue = txt;
-	
 	return (menu);
 }

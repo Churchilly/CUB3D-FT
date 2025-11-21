@@ -19,18 +19,11 @@
 - [OK] Map parse need to move when map selected
 - [OK] Map parse addition "NEXT" -> next map 
 - [OK] Sound effect on player step
-- [ ] In map parse when we failed we need to see error menu instead exit!
-- [ ] Click any button to continue -> animated text 
-- [ ] Error menu (when load map failed) -> click any button to continue
-- [ ] Map select menu -> dynamic list the maps in map.files
+- [OK] In map parse when we failed we need to see error menu instead exit!
+- [OK] Click any button to continue -> animated text 
+- [OK] Error menu (when load map failed) -> click any button to continue
+- [OK] Map select menu -> dynamic list the maps in map.files
 - [ ] Game summary menu -> uses click any button to continue
 - [ ] Shop menu -> static list the items
 - [ ] all the fucking menus need event XDDDDDDDDDDDDDDDDDDDD
 
-### Current shop items
-	-> Adrenaline potion
-	-> Mana increase
-	-> Health increase
-	-> Damage increase
-	-> Cooldown Descreaser
-	-> Spining orb

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 01:11:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 08:45:05 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ enum e_game_state
 	MENU_PAUSE,
 	MENU_MAP_SELECT,
 	MENU_SHOP,
-	MENU_ERROR
+	MENU_ERROR,
+	MENU_SUMMARY
 };
 
 struct s_switch_key
@@ -88,7 +89,8 @@ struct s_main
 	t_main_menu		main_menu;
 	t_map_select	map_select;
 	t_error			error_menu;
-	t_font_menu font_menu;
+	t_shop			shop_menu;
+	t_font_menu		font_menu;
 };
 
 void	__init__(t_main *game);
