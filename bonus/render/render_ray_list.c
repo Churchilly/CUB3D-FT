@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_ray_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:00 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 02:56:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/21 01:44:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../main/window.h"
 #include <math.h>
 
-#include "../gc/gc.h"
+#include "../garbage_collector/garbage_collector.h"
 
 #include <stdio.h>
 
@@ -54,7 +54,7 @@ static t_ray	*create_ray_pack(int size)
 {
 	t_ray	*pack;
 
-	pack = alloc_crit(sizeof(t_ray) * size);
+	pack = alloc(sizeof(t_ray) * size, STATIC);
 	memset(pack, 0, sizeof(t_ray) * size);
 	return (pack);
 }
@@ -63,7 +63,7 @@ static void	add_ray_pack(t_ray_list *list, t_ray *ray_pack)
 {
 	t_ray_node	*new;
 	
-	new = alloc_crit(sizeof(t_ray_node));
+	new = alloc(sizeof(t_ray_node), STATIC);
 	if (!new)
 		return ;
 	new->ray_pack = ray_pack;

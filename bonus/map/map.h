@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:55:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 03:49:42 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,13 @@ struct s_map
 
 void	cub_map(t_map *map);
 
-void	load_map(char *map_location, t_main *game);
+int		load_map(char *map_location, t_main *game);
 char	*read_file(char *map_file);
-void	load_texture(char *raw_map, t_texture *target, char *identifier, t_main *game);
-void	load_color(char *raw_map, int *target_color, char *identifier, t_main *game);
+int		load_texture(char *raw_map, t_texture *target, char *identifier, t_main *game);
+int		load_color(char *raw_map, int *target_color, char *identifier, t_main *game);
 void	load_next_map_info(char *raw_map, t_main *game);
-void	validate_map(char *raw_map);
-void	load_matrix(char *raw_map, t_main *game);
+int		load_matrix(char *raw_map, t_main *game);
 int		create_matrix(char *raw_map, t_main *game);
-void	map_cleanup_exit(char *errmsg, t_main *game);
-void	map_cleanup(t_main *game);
 void	load_doors(char *raw_map);
 
 #endif

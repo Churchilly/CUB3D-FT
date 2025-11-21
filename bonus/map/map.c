@@ -6,14 +6,15 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 19:55:41 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 23:11:55 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/21 03:52:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <dirent.h>
 #include "map.h"
 #include <stddef.h>
-#include "../gc/gc.h"
+#include <string.h>
+#include "../garbage_collector/garbage_collector.h"
 #include <string.h>
 
 static int	validate_extension(char	*file_name)
@@ -55,7 +56,7 @@ static void	parse_valid_files(DIR *dir, t_map_file **files, int count)
 	int				entry_len;
 	int				i;
 
-	*files = alloc_crit(sizeof(t_map_file) * (count + 1));
+	*files = alloc(sizeof(t_map_file) * (count + 1), STATIC);
 	entry = readdir(dir);
 	i = 0;
 	while (entry)
@@ -63,7 +64,7 @@ static void	parse_valid_files(DIR *dir, t_map_file **files, int count)
 		entry_len = strlen(entry->d_name);
 		if (validate_extension(entry->d_name))
 		{
-			(*files)[i].file = alloc_crit(ft_strlen(MAP_FOLDER) + entry_len + 1);
+			(*files)[i].file = alloc(strlen(MAP_FOLDER) + entry_len + 1, STATIC);
 			strcpy((*files)[i].file, MAP_FOLDER);
 			strcat((*files)[i].file, entry->d_name);
 			(*files)[i].validated = 0;
@@ -101,24 +102,21 @@ static void	parse_normalized_files(t_map_file *files)
 	int		ext_len;
 
 	i = 0;
-	ext_len = ft_strlen(MAP_FORMAT); // ".cub" = 4
+	ext_len = strlen(MAP_FORMAT); // ".cub" = 4
 	while (files && files[i].file)
 	{
-		// Get filename without folder path
-		fname = files[i].file + ft_strlen(MAP_FOLDER);
-		fname_len = ft_strlen(fname);
-		
-		// If filename fits within MAP_MAX_LEN, use it as-is
+		fname = files[i].file + strlen(MAP_FOLDER);
+		fname_len = strlen(fname);
 		if (fname_len <= MAP_MAX_LEN)
 		{
-			files[i].file_shown = alloc_crit(fname_len + 1);
+			files[i].file_shown = alloc(fname_len + 1, STATIC);
 			strcpy(files[i].file_shown, fname);
 		}
 		else
 		{
 			base_len = MAP_MAX_LEN - ext_len - 1; // -1 for the '*'
 			
-			files[i].file_shown = alloc_crit(MAP_MAX_LEN + 1);
+			files[i].file_shown = alloc(MAP_MAX_LEN + 1, STATIC);
 			strncpy(files[i].file_shown, fname, base_len);
 			files[i].file_shown[base_len] = '\0';
 			strcat(files[i].file_shown, "*");

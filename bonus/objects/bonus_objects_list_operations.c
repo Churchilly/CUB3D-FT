@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects_list_operations.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:26:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 00:08:35 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/21 01:42:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	add_object(t_obj_list *list, int type, void *obj)
 {
 	t_obj_node *new;
 
-	new = malloc(sizeof(t_obj_node)); // alloc_crit
+	new = alloc(sizeof(t_obj_node), STATIC);
 	new->type = type;
 	new->object = obj;
 	new->next = NULL;

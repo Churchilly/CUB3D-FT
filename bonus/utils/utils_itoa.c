@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils_itoa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 19:13:02 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/20 01:17:31 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/21 02:22:38 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "../garbage_collector/garbage_collector.h"
 
 static unsigned int	count_digits(int n)
 {
@@ -46,7 +47,7 @@ static unsigned int	power_of10(unsigned int len)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int n, t_section sec)
 {
 	char			*res;
 	unsigned int	len;
@@ -54,9 +55,7 @@ char	*ft_itoa(int n)
 
 	len = count_digits(n);
 	cnt = 0;
-	res = malloc(len + 1);
-	if (!res)
-		return (NULL);
+	res = alloc(len + 1, sec);
 	if (n < 0)
 	{
 		res[cnt++] = '-';

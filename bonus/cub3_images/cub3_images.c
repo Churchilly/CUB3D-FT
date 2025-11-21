@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:19:16 by root              #+#    #+#             */
-/*   Updated: 2025/11/16 03:03:57 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/21 03:54:27 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 #include "../utils/utils.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "../garbage_collector/garbage_collector.h"
+#include <string.h>
 
 static int init_cub3_image(t_cub3_image *img, char *first_line)
 {
     char **attr;
     
-    if (!first_line || !*first_line || ft_strlen(first_line) < 9)
+    if (!first_line || !*first_line || strlen(first_line) < 9)
         return (0);
-    attr = ft_split(first_line, ':');
+    attr = ft_split(first_line, ':', TEMPORARY);
     if (!attr[2] || !attr[2][0])
         return (0);
-    img->width = ft_atoi(attr[1]);
-    img->height = ft_atoi(attr[2]);
+    img->width = atoi(attr[1]);
+    img->height = atoi(attr[2]);
     if (!(img->width) || !(img->height))
         return (0);
     return (1);
@@ -42,7 +44,7 @@ static int write_line_to_image(char *line, t_cub3_image *img, int stat)
         counter = 0;
         return (RESET);
     }
-    parsed_line = ft_split(line, '.');
+    parsed_line = ft_split(line, '.', TEMPORARY);
     line_counter = 0;
     while (parsed_line[line_counter])
     {
@@ -59,7 +61,7 @@ static int read_cub3_image_content(t_cub3_image *img, FILE *file)
     size_t buffer_size;
     int line_counter;
     
-    img->image = alloc_crit(img->height * img->width * sizeof(int));
+    img->image = alloc(img->height * img->width * sizeof(int), STATIC);
     line = NULL;
     buffer_size = BUFFER_SIZE;
     line_counter = img->height;
