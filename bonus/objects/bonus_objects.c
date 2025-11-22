@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:33:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 08:00:02 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	create_enemies(t_main *g)
 	t_enemy *enemy;
 
 	i = -1;
-	while (++i < NUM_OF_FIREBALLS)
+	while (++i < NUM_OF_ENEMIES)
 	{
-		enemy = alloc(sizeof(t_fireball), STATIC);
+		enemy = alloc(sizeof(t_enemy), STATIC);
 		enemy->health = ENEMY_HEALTH;
 		enemy->state = IDLE;
 		enemy->position.x = -1.0;

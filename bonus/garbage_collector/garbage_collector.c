@@ -6,12 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:55:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 07:37:42 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "garbage_collector.h"
 #include <strings.h>
+#include "../main/main.h"
 
 t_collector	*pointer_storage(void *ptr)
 {
@@ -37,13 +38,20 @@ void	**get_section(t_section section)
 		return ((void **)&gc->temporary_section);
 	if (section == WINDOW)
 		return ((void **)&gc->win);
+	if (section == TEXTURES)
+		return ((void **)&gc->textures);
 	return (NULL);
 }
 
-void	init_collector(t_collector *gc, t_window *win)
+void	init_collector(t_collector *gc, t_main *g)
 {
 	bzero(gc, sizeof(t_collector));
 	pointer_storage(gc);
-	gc->win = win;
+	gc->win = &(g->window);
+	gc->textures[0] = &(g->map.texture_ea.img);
+	gc->textures[1] = &(g->map.texture_we.img);
+	gc->textures[2] = &(g->map.texture_so.img);
+	gc->textures[3] = &(g->map.texture_no.img);
+	gc->textures[4] = &(g->map.texture_f.img);
 }
 

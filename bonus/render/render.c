@@ -88,12 +88,12 @@ void	render_shop(t_main *g)
 {
 	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
 	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
-	place_text_button(g, &g->shop_menu.items[0], "Adrenaline Potion");
-	place_text_button(g, &g->shop_menu.items[1], "Mana Increase");
-	place_text_button(g, &g->shop_menu.items[2], "Health Increase");
-	place_text_button(g, &g->shop_menu.items[3], "Damage Increase");
-	place_text_button(g, &g->shop_menu.items[4], "Cooldown Decreaser");
-	place_text_button(g, &g->shop_menu.items[5], "Spinning Orb");
+	place_text_button(g, &g->shop_menu.items[0], "Adrenaline Potion - 50g");
+	place_text_button(g, &g->shop_menu.items[1], "Mana Increase - 100g");
+	place_text_button(g, &g->shop_menu.items[2], "Health Increase - 100g");
+	place_text_button(g, &g->shop_menu.items[3], "Damage Increase - 75g");
+	place_text_button(g, &g->shop_menu.items[4], "Cooldown Decreaser - 80g");
+	place_text_button(g, &g->shop_menu.items[5], "Spinning Orb - 150g");
 	place_text_button(g, &g->shop_menu.to_continue, "Continue");
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }
@@ -117,5 +117,43 @@ void	render_error_menu(t_main *g)
 
 void	render_summary_menu(t_main *g)
 {
-	(void)g;
+	static double scale_dir = 0.0075;
+	char buf[64];
+	int minutes;
+	int seconds;
+
+	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
+	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+
+	// Format and draw play time (milliseconds to MM:SS)
+	minutes = (g->record.play_time / 1000) / 60;
+	seconds = (g->record.play_time / 1000) % 60;
+	snprintf(buf, sizeof(buf), "Time: %02d:%02d", minutes, seconds);
+	draw_text(buf, g->summary_menu.run_time);
+
+	// Draw kill count
+	snprintf(buf, sizeof(buf), "Enemies Killed: %u", g->record.kill_count);
+	draw_text(buf, g->summary_menu.kill_count);
+
+	// Draw total income
+	snprintf(buf, sizeof(buf), "Total Income: %u", g->record.total_income);
+	draw_text(buf, g->summary_menu.total_income);
+
+	// Draw items bought (TODO: implement when shop purchases are added)
+	if (g->record.purchase_count > 0)
+		snprintf(buf, sizeof(buf), "Items Bought: %u", g->record.purchase_count);
+	else
+		snprintf(buf, sizeof(buf), "Items Bought: None");
+	draw_text(buf, g->summary_menu.items_bought);
+
+	// Animate continue text
+	g->summary_menu.to_continue.scale += scale_dir;
+	g->summary_menu.to_continue.win_x = WIN_WIDTH / 2 - (g->summary_menu.to_continue.font->font_size * g->summary_menu.to_continue.scale * (g->summary_menu.to_continue.text_len + 2)) / 3;
+	if (g->summary_menu.to_continue.scale >= 1.0)
+		scale_dir = -0.005;
+	else if (g->summary_menu.to_continue.scale <= 0.75)
+		scale_dir = 0.0075;
+	draw_text("Press any key to continue", g->summary_menu.to_continue);
+
+	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }

@@ -135,6 +135,8 @@ static void kill_enemy(t_enemy *enemy, t_main *g)
 	enemy->state = IDLE;
 	enemy->position = (t_vector){-1, -1};
 	g->map.player.inventory.currency += 20;
+	g->record.kill_count++;
+	g->record.total_income += 20;
 	// ENEMY_PARTICLE SPAWN HERE
 }
 

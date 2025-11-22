@@ -6,7 +6,7 @@ EA textures/brickwall.xpm
 FL textures/brickwall.xpm
 C 135,206,235
 
-NEXT valid_door.cub
+NEXT testmaps/valid-basic.cub
 
 111111111
 100000001

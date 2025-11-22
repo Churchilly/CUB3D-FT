@@ -80,7 +80,15 @@ void	__init__(t_main *game)
 	init_map_select_menu(game, &(game->map_select));
 	init_error_menu(game, &(game->error_menu));
 	init_shop_menu(game, &(game->shop_menu));
+	init_game_summary_menu(game, &(game->summary_menu));
 	_init_keys(game);
+
+	// Initialize game statistics (total run across all maps)
+	game->record.play_time = 0;
+	game->record.kill_count = 0;
+	game->record.fireballs_cast = 0;
+	game->record.total_income = 0;
+	game->record.purchase_count = 0;
 }
 
 
