@@ -6,7 +6,11 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/11/22 07:06:49 by root             ###   ########.fr       */
+=======
+/*   Updated: 2025/11/22 03:31:37 by yusudemi         ###   ########.fr       */
+>>>>>>> c9864e13a896b271d20a76696a59e45fc4aeac2a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,18 +134,34 @@ void	switch_menu(t_main *g);
 void	*set_button(t_button *button, t_im *img, t_vector pos);
 void	check_button(t_main *game, t_button *button);
 void	place_button(t_main *g, t_button *btn);
-void	activate_button(t_main *g);
+void	*set_text_button(t_text_button *button, t_text text_data, t_vector pos);
+void	check_text_button(t_main *game, t_text_button *button);
+void	place_text_button(t_main *g, t_text_button *button, char *label);
 
+// General button navigation (delegates to specific menu functions)
+void	activate_button(t_main *g);
 void	next_button(t_main *game);
 void	prev_button(t_main *game);
 void	next_page(t_main *game);
 void	prev_page(t_main *game);
 
+// Main/Pause menu specific
+void	next_main_pause_item(t_main *g);
+void	prev_main_pause_item(t_main *g);
+void	activate_button_main_pause(t_main *g);
+
+// Map select menu specific
+void	next_map_select_item(t_main *g);
+void	prev_map_select_item(t_main *g);
+void	activate_button_map_select(t_main *g);
+
+// Shop menu specific
+void	next_shop_item(t_main *g);
+void	prev_shop_item(t_main *g);
+void	activate_button_shop(t_main *g);
+
 void	draw_mana_bar(t_main *g);
 void	draw_heath_bar(t_main *g);
-void	*set_text_button(t_text_button *button, t_text text_data, t_vector pos);
-void	check_text_button(t_main *game, t_text_button *button);
-void	place_text_button(t_main *g, t_text_button *button, char *label);
 
 #endif
 

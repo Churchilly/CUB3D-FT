@@ -128,7 +128,34 @@ int mouse_click(int button, int x, int y, void *game)
 			i++;
 		}
 	}
+	else if (g->state == MENU_SHOP)
+	{
+		int i;
+
+		if (is_xy_on_text_button(x, y, &g->shop_menu.to_continue))
+		{
+			g->shop_menu.selected = &g->shop_menu.to_continue;
+			activate_button(g);
+			return (0);
+		}
+		i = 0;
+		while (i < 6)
+		{
+			if (is_xy_on_text_button(x, y, &g->shop_menu.items[i]))
+			{
+				g->shop_menu.selected = &g->shop_menu.items[i];
+				activate_button(g);
+				return (0);
+			}
+			i++;
+		}
+	}
 	else if (g->state == MENU_ERROR)
+	{
+		/* Any click returns to main menu */
+		g->state = MENU_MAIN;
+	}
+	else if (g->state == MENU_SUMMARY)
 	{
 		/* Any click returns to main menu */
 		g->state = MENU_MAIN;

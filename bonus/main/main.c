@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 04:15:34 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 07:29:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(void)
 	t_main game;
 	t_collector	gc;
 
-	init_collector(&gc, &(game.window));
+	init_collector(&gc, &(game));
 	__init__(&game);
 	cub_create_window(&game);
 	loop_event(&game);

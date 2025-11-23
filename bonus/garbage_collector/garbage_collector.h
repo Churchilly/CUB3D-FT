@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:26 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:56:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 07:45:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 # define GARBAGE_COLLECTOR_H
 
 # include <stddef.h>
-# include "../main/window.h"
 
 typedef enum e_section				t_section;
 typedef struct s_gc_node			t_gc_node;
 typedef struct s_garbage_collector	t_collector;
+
+typedef struct s_window				t_window;
+typedef struct s_main				t_main;
 
 enum e_section
 {
@@ -26,6 +28,7 @@ enum e_section
 	STATIC,
 	DYNAMIC,
 	TEMPORARY,
+	TEXTURES,
 	WINDOW
 };
 
@@ -41,9 +44,10 @@ struct	s_garbage_collector
 	t_gc_node	*dynamic_section;
 	t_gc_node	*temporary_section;
 	t_window	*win;
+	void		**textures[5];
 };
 
-void		init_collector(t_collector *gc, t_window *win);
+void		init_collector(t_collector *gc, t_main *g);
 void		*alloc(size_t size, t_section section);
 void		clear_section(t_section section);
 

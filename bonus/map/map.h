@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:49:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 02:38:06 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ struct s_map
 	int			color_c;
 	char		**matrix;
 	t_player	player;
+	long long	map_timer;
 };
 
 void	cub_map(t_map *map);

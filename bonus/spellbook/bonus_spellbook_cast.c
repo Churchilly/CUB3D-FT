@@ -37,6 +37,7 @@ void	cast_fireball(t_main *g)
 				fireball->position = (t_vector){g->map.player.pos.x, g->map.player.pos.y};
 				fireball->direction = g->map.player.dov;
 				fireball->state = FLY;
+				g->record.fireballs_cast++;
 				return ;
 			}
 		}

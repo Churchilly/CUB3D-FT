@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 08:45:05 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 04:13:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,13 @@
 
 # include "../sound/sound.h"
 
+# define GAME_TIME 5
+
 typedef struct s_key_list	t_key_list;
 typedef struct s_main		t_main;
 typedef struct s_switch_key	t_switch_key;
+typedef struct s_record		t_record;
+
 typedef enum e_game_state	t_game_state;
 
 enum e_game_state
@@ -76,6 +80,15 @@ struct s_key_list
 	t_switch_key f3;
 };
 
+struct s_record
+{
+	long long		play_time;
+	unsigned int	kill_count;
+	unsigned int	fireballs_cast; // num of fireballs casted during run
+	unsigned int	total_income;
+	unsigned int	purchase_count;
+};
+
 struct s_main
 {
 	t_game_state	state; // change this. this should store the current state -> main_menu - pause_menu - game - shop - map_select
@@ -90,12 +103,16 @@ struct s_main
 	t_map_select	map_select;
 	t_error			error_menu;
 	t_shop			shop_menu;
+	t_game_summary	summary_menu;
 	t_font_menu		font_menu;
+<<<<<<< HEAD
 	t_cub3_image	minimap_full;
+=======
+	t_record		record;
+>>>>>>> c9864e13a896b271d20a76696a59e45fc4aeac2a
 };
 
 void	__init__(t_main *game);
-void	init_game(t_main *game, char *map_file);
 void _init_hooks(t_main *game);
 void center_window(t_main *g);
 long long	current_time_ms(void);

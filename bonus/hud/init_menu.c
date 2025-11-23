@@ -144,16 +144,48 @@ void	*init_shop_menu(t_main *g, t_shop *menu)
 // shows up when game session ends no matter if u died or won(somehow)
 void	*init_game_summary_menu(t_main *g, t_game_summary *menu)
 {
-	// no buttons
-	
-	// game summary:
-	// how many enemy you have killed
-	// How many fireball you have cast
-	// what items you have bought on shop and how much
-	// how many steps you take
-	// how much time passed
-	// maybe show them up animated ??
-	// 
+	t_text	txt;
+
+	menu->bg_img = g->gallery.mmenu_bg;
+
+	// Initialize text properties
+	txt.font = &g->font_menu.alagard;
+	txt.win = &g->window;
+	txt.sheet_row = 0;
+	txt.sheet_col = 0;
+
+	// Runtime text
+	txt.text_len = 20;
+	txt.scale = 1.0;
+	txt.color = 0xFFFFFFFF;
+	txt.win_x = WIN_WIDTH / 4;
+	txt.win_y = WIN_HEIGHT / 4;
+	menu->run_time = txt;
+
+	// Kill count text
+	txt.text_len = 20;
+	txt.win_y = WIN_HEIGHT / 4 + (txt.font->font_size * txt.scale + 20);
+	menu->kill_count = txt;
+
+	// Total income text
+	txt.text_len = 20;
+	txt.win_y = WIN_HEIGHT / 4 + 2 * (txt.font->font_size * txt.scale + 20);
+	menu->total_income = txt;
+
+	// Items bought text
+	txt.text_len = 30;
+	txt.win_y = WIN_HEIGHT / 4 + 3 * (txt.font->font_size * txt.scale + 20);
+	menu->items_bought = txt;
+
+	// Continue text
+	txt.text_len = 26;
+	txt.scale = 0.8;
+	txt.color = 0xFFFFFF00;
+	txt.win_x = WIN_WIDTH / 2 - (txt.font->font_size * txt.scale * (txt.text_len + 2)) / 3;
+	txt.win_y = WIN_HEIGHT / 2 + (WIN_HEIGHT / 4);
+	menu->to_continue = txt;
+
+	return (menu);
 }
 // shows up when map facing with an error while loading map
 void	*init_error_menu(t_main *g, t_error *menu)

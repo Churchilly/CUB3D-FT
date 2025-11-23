@@ -6,13 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:24 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 04:22:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 07:52:42 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "garbage_collector.h"
 #include <stdlib.h>
 #include "../minilibx/mlx.h"
+#include "../main/main.h"
 
 static void	clear(t_section section_name)
 {
@@ -35,6 +36,29 @@ static void	clear(t_section section_name)
 		curr = next;
 	}
 	*section = NULL;
+}
+
+static void	clear_textures(void)
+{
+	void	**section;
+	void	*mlx;
+	void	**img;
+	int		i;
+
+	section = get_section(TEXTURES);
+	mlx = ((t_window *)(*get_section(WINDOW)))->mlx;
+	i = -1;
+	while (++i < 5)
+	{
+		if ((section)[i])
+		{
+			printf("here\n");
+			img = (void **)(section)[i];
+			if (*img)
+				mlx_destroy_image(mlx, *img);
+			*img = NULL;
+		}
+	}
 }
 
 static void	clear_win(void)
@@ -64,7 +88,10 @@ void	clear_section(t_section section_name)
 	if (section_name == STATIC)
 		clear(STATIC);
 	else if (section_name == DYNAMIC)
+	{
 		clear(DYNAMIC);
+		clear_textures();
+	}
 	else if (section_name == TEMPORARY)
 		clear(TEMPORARY);
 	else if (section_name == ALL)
@@ -72,6 +99,7 @@ void	clear_section(t_section section_name)
 		clear(STATIC);
 		clear(DYNAMIC);
 		clear(TEMPORARY);
+		clear_textures();
 		clear_win();
 	}
 }
