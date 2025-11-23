@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mana.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:43:14 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/12 22:00:22 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/23 04:28:40 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void update_mana(t_main *g)
     curr_time = current_time_ms();
     if (curr_time - time_log > 1)
     {
-        use_mana(g, -0.10);
+        use_mana(g, -1);
         time_log = curr_time;
     }
 }

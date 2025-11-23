@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:10:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 04:51:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 05:21:34 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -22,7 +21,6 @@
 #include "../events/events.h"
 #include <X11/Xlib.h>
 #include "../minilibx/mlx_int.h"
-
 
 void	init_game(t_main *game, char *map_file)
 {
@@ -41,4 +39,6 @@ void	init_game(t_main *game, char *map_file)
 	game->map.texture_f.img = NULL;
 	if (load_map(map_file, game))
 		game->state = MENU_ERROR;
+	else
+		init_minimap(game);
 }

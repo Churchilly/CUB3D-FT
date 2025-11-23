@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 22:55:49 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 05:08:28 by root             ###   ########.fr       */
+/*   Updated: 2025/11/22 05:09:45 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 # define M_PI 3.14159265358979323846
 #endif
 
-// spawn enemy idea
-// check the state of the enemy objects if there is an idle one if not return:
-// select a random number between 0-100 
-// if number > spawn_rate select a random position on map and teleport the enemy to this location (must not to close to player(1 block at least) && not inside of the wall)
-// change its state to alive
 static int	try_spawn(t_enemy *enemy, t_map *map, t_vector_int pos)
 {
 	t_vector	dist;
@@ -99,7 +94,6 @@ static int	try_move(t_enemy *enemy, t_map *map, t_vector direction)
 	enemy->position = new_pos;
 	return (1);
 }
-
 
 void	enemy_walk(t_enemy *enemy, t_main *g)
 {

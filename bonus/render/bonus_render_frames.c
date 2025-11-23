@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_frames.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 08:54:49 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/16 09:01:15 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/22 05:21:47 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void draw_frame_with_alpha(t_window *win, t_cub3_image *img, double alpha
             color = img->image[y * img->width + x];
             if ((unsigned int)color != 0xffffffff)
             {
-                // Remove alpha channel (shift right by 8 bits to convert RGBA to RGB)
                 color = (color >> 8) & 0x00FFFFFF;
                 bg_color = get_pixel_from_window(win, x, y);
                 blended = blend_alpha(bg_color, color, alpha);

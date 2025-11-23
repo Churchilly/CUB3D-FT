@@ -91,6 +91,7 @@ struct s_main
 	t_error			error_menu;
 	t_shop			shop_menu;
 	t_font_menu		font_menu;
+	t_cub3_image	minimap_full;
 };
 
 void	__init__(t_main *game);

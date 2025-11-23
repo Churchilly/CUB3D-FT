@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:49:50 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 05:33:38 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 05:08:37 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,28 @@
 
 static int draw_from_sheet(t_text *text)
 {
-    int scaled_px;
-    int scaled_py;
-    int original_px;
-    int original_py;
-    int pixel;
-    t_im *image;
-    int scaled_height;
-    int scaled_width;
+    t_vector_int scaled;
+    t_vector_int orig;
+    t_vector_int size;
+    t_im *sheet;
 
-    image = &text->font->sheet;
-    scaled_height = (int)(text->font->font_size * text->scale);
-    scaled_width = (int)(text->font->max_width * text->scale);
-
-    scaled_py = 0;
-    while (scaled_py < scaled_height)
+    sheet = &text->font->sheet;
+    size.x = (int)(text->font->max_width * text->scale);
+    size.y = (int)(text->font->font_size * text->scale);
+    scaled.y = -1;
+    while (++scaled.y < size.y)
     {
-        original_py = (int)(scaled_py / text->scale);
-        scaled_px = 0;
-        while (scaled_px < scaled_width)
+        orig.y = (int)(scaled.y / text->scale);
+        scaled.x = -1;
+        while (++scaled.x < size.x)
         {
-            original_px = (int)(scaled_px / text->scale);
-            pixel = image->image[(text->sheet_row * text->font->font_size + original_py) *
-                image->width + (text->sheet_col * text->font->max_width) + original_px];
-            if (pixel == 0x000000ff)
-                put_pixel(text->win_x + scaled_px, text->win_y + scaled_py, text->color, text->win);
-            scaled_px++;
+            orig.x = (int)(scaled.x / text->scale);
+            if (sheet->image[(text->sheet_row * text->font->font_size + orig.y) *
+                sheet->width + (text->sheet_col * text->font->max_width) + orig.x] == 0x000000ff)
+                put_pixel(text->win_x + scaled.x, text->win_y + scaled.y, text->color, text->win);
         }
-        scaled_py++;
     }
-    return (scaled_width);
+    return (size.x);
 }
 
 static int draw_char(char ch, bool upper, t_text *text)

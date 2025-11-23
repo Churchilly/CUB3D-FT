@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_background.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:15:12 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 21:05:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 05:22:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,3 @@ void	render_background(t_main *g)
 		}
 	}
 }
-
-
-// new renderer here for floor and ceiling

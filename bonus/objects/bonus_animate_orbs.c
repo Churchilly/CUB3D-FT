@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_orbs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 23:10:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/20 02:43:30 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/23 02:39:17 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void orb_damage(t_main *g, t_orb *orb)
 
     curr_time = current_time_ms();
     if (curr_time - orb->last_hit_time < 300)
-        return;
+        return ;
     obj = g->objects.all;
     while (obj)
     {
@@ -68,7 +68,7 @@ static void orb_damage(t_main *g, t_orb *orb)
             {
                 damage_enemy(enemy, 1, g);
                 orb->last_hit_time = curr_time;
-                return;
+                return ;
             }
         }
         obj = obj->next;
@@ -83,7 +83,7 @@ static void place_orbs(t_main *g, int start_deg)
     int gap;
     
     curr_orb = 0;
-    gap = 360 / 4; // number of orbs
+    gap = 360 / 72; // number of orbs
     obj = g->objects.all;
     while (obj)
     {
@@ -95,7 +95,7 @@ static void place_orbs(t_main *g, int start_deg)
             curr_orb++;
         }
         obj = obj->next;
-    }   
+    }
 }
 
 void animate_orbs(t_main *g)

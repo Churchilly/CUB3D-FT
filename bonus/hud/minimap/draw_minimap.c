@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 01:15:49 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/12 18:41:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/22 07:06:46 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,112 +14,92 @@
 #include "../../main/main.h"
 #include <math.h>
 
-static void draw_player_on_mmap(t_main *g)
+static void	rotate_pixel(t_vector_int *src, t_vector_int dst,
+	t_vector_int ctr, double angle)
 {
-    t_vector pos;
-    int win_x;
-    int win_y;
-    double angle_deg;
+	double	cos_a;
+	double	sin_a;
 
-    pos = g->map.player.pos;
-    win_x = (MMAP_GRID_COUNT / 2 + 1) * MMAP_GRID_SIZE; // margin eklenecek
-    win_y = win_x;
-    angle_deg = g->map.player.dov * 180.0 / M_PI + MMAP_PLAYER_IMAGE_OFFSET;
-    draw_image_rotated(&g->window, &g->gallery.mmap.player, win_x, win_y, angle_deg);
+	cos_a = cos(angle);
+	sin_a = sin(angle);
+	src->x = (int)(cos_a * (dst.x - ctr.x) + sin_a * (dst.y - ctr.y)
+			+ ctr.x + 0.5);
+	src->y = (int)(-sin_a * (dst.x - ctr.x) + cos_a * (dst.y - ctr.y)
+			+ ctr.y + 0.5);
 }
 
-static void draw_floors(t_main *g)
+static void	draw_cropped_rotated(t_main *g, t_cub3_image *img, int cx, int cy)
 {
-    int row;
-    int col;
-    int win_x;
-    int win_y;
+	t_vector_int	dst;
+	t_vector_int	src;
+	t_vector_int	ctr;
+	int				dist_sq;
+	int				r_sq;
 
-    row = MMAP_GRID_COUNT;
-    win_x = MMAP_MARGIN;
-    win_y = MMAP_MARGIN;
-    while (row--)
-    {
-        col = MMAP_GRID_COUNT;
-        while (col--)
-        {
-            draw_image(&g->window, &g->gallery.mmap.floor, win_x, win_y);
-            win_x += MMAP_GRID_SIZE;
-        }
-        win_x = MMAP_GRID_SIZE;
-        win_y += MMAP_GRID_SIZE;
-    }  
+	ctr = (t_vector_int){img->width / 2, img->height / 2};
+	r_sq = (MMAP_RANGE * MMAP_GRID_SIZE) * (MMAP_RANGE * MMAP_GRID_SIZE);
+	dst.y = -1;
+	while (++dst.y < img->height)
+	{
+		dst.x = -1;
+		while (++dst.x < img->width)
+		{
+			dist_sq = (dst.x - ctr.x) * (dst.x - ctr.x)
+				+ (dst.y - ctr.y) * (dst.y - ctr.y);
+			if (dist_sq > r_sq)
+				continue ;
+			rotate_pixel(&src, dst, ctr, -(g->map.player.dov + 1.5));
+			if (src.x >= 0 && src.x < img->width && src.y >= 0
+				&& src.y < img->height)
+				put_pixel(cx + dst.x - ctr.x + MMAP_MARGIN, cy + dst.y - ctr.y + MMAP_MARGIN,
+					img->image[src.y * img->width + src.x], &g->window);
+		}
+	}
 }
 
-static void draw_walls(t_main *g)
+static void	crop_minimap(t_main *g, t_cub3_image *cropped, int player_px, int player_py)
 {
-    t_vector pp;
-    t_vector counter;
-    t_vector curr_pos;
-    
-    pp = (t_vector){g->map.player.pos.x, g->map.player.pos.y};
-    counter = (t_vector){MMAP_RANGE, MMAP_RANGE};
-    curr_pos = (t_vector){pp.x - 2.0, pp.y - 2.0};
-    
-    while ((counter.y)--)
-    {
-        if (curr_pos.y < 0)
-        {
-            curr_pos.y++;
-            continue;
-        }
-        else if (g->map.matrix[(int)curr_pos.y] == NULL)
-            break;
-             
-        while ((counter.x)--)
-        {
-            if (curr_pos.x < 0)
-            {
-                curr_pos.x++;
-                continue;
-            }
-            else if (g->map.matrix[(int)curr_pos.y][(int)curr_pos.x] == NULL)
-                break;
-            if (g->map.matrix[(int)curr_pos.y][(int)curr_pos.x] == '1')
-            {
-                draw_image(&g->window, &g->gallery.mmap.wall,
-                    ((MMAP_GRID_COUNT / 2) + 1 + (MMAP_RANGE / 2) + 1 - counter.x) * (MMAP_GRID_SIZE),
-                    ((MMAP_GRID_COUNT / 2) + 1 + (MMAP_RANGE / 2) + 1 - counter.y) * (MMAP_GRID_SIZE)
-                );
-            }
-            else if (g->map.matrix[(int)curr_pos.y][(int)curr_pos.x] == '0')
-            {
-                draw_image(&g->window, &g->gallery.mmap.floor_void,
-                    (MMAP_GRID_COUNT / 2 + 1 + MMAP_RANGE / 2 + 1 - counter.x) * (MMAP_GRID_SIZE),
-                    (MMAP_GRID_COUNT / 2 + 1 + MMAP_RANGE / 2 + 1 - counter.y) * (MMAP_GRID_SIZE)
-                );
-            }
-            curr_pos.x++;
-        }
-        counter.x = MMAP_RANGE;
-        curr_pos.x = pp.x - 2.0;
-        curr_pos.y++;
-    }
+	int	src_x;
+	int	src_y;
+	int	dst_idx;
+	int	radius;
+
+	radius = MMAP_RANGE * MMAP_GRID_SIZE;
+	dst_idx = 0;
+	src_y = player_py - radius;
+	while (src_y < player_py + radius)
+	{
+		src_x = player_px - radius;
+		while (src_x < player_px + radius)
+		{
+			if (src_x >= 0 && src_x < g->minimap_full.width && src_y >= 0 && src_y < g->minimap_full.height)
+				cropped->image[dst_idx] = g->minimap_full.image[src_y * g->minimap_full.width + src_x];
+			else
+				cropped->image[dst_idx] = 0xffffffff;
+			dst_idx++;
+			src_x++;
+		}
+		src_y++;
+	}
 }
 
-void draw_mmap(t_main *g)
+void	draw_mmap(t_main *g)
 {
-    draw_floors(g);
-    draw_walls(g);
-    draw_player_on_mmap(g);
+	t_cub3_image	cropped;
+	int				player_px;
+	int				player_py;
+	int				size;
+
+	player_px = (int)(g->map.player.pos.x * MMAP_GRID_SIZE);
+	player_py = (int)(g->map.player.pos.y * MMAP_GRID_SIZE);
+	size = MMAP_RANGE * MMAP_GRID_SIZE * 2;
+	cropped.width = size;
+	cropped.height = size;
+	cropped.image = alloc(size * size * sizeof(int), DYNAMIC);
+	crop_minimap(g, &cropped, player_px, player_py);
+	draw_cropped_rotated(g, &cropped, (MMAP_GRID_COUNT / 2 + 1) * MMAP_GRID_SIZE,
+		(MMAP_GRID_COUNT / 2 + 1) * MMAP_GRID_SIZE);
+	draw_image(&g->window, &g->gallery.mmap.player,
+		(MMAP_GRID_COUNT / 2 + 1) * MMAP_GRID_SIZE - g->gallery.mmap.player.width / 2,
+		(MMAP_GRID_COUNT / 2 + 1) * MMAP_GRID_SIZE - g->gallery.mmap.player.height / 2);
 }
-
-// 1 2 3 4 5 6 -7- 8 9
-
-// curr + range - cnt;
-
-// curr = 7;
-// range = 5;
-// cnt = 5;
-// wanted = 5;
-
-// curr - ((cnt - 1) / 2)
-// 7 - 2 | cnt 5 (2)
-// 7 - 1 | cnt 4 (1)
-// 7 - 0 | cnt 3 (0)
-// 7 - () | cnt 2

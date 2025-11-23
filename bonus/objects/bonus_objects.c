@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:33:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:39:13 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void create_particles(t_main *g)
 
 static void create_orbs(t_main *g)
 {
-	int orb_count = 4; // gather this from g->player.inventory.orb
+	int orb_count = 72; // gather this from g->player.inventory.orb
 	t_orb *orb;
 	
 	while (orb_count--)

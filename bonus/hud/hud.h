@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 08:48:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/22 07:06:49 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 // MINIMAP DEFINES
 # define MMAP_GRID_SIZE 20
 # define MMAP_GRID_COUNT 9
-# define MMAP_RANGE 7
-# define MMAP_MARGIN 20
+# define MMAP_RANGE 5
+# define MMAP_MARGIN 10
 
 # define MMAP_PLAYER_IMAGE_OFFSET 90.0
 
@@ -118,6 +118,7 @@ struct s_error
 
 void	draw_minimap(t_main *game);
 void	draw_mmap(t_main *g);
+void	init_minimap(t_main *g);
 
 void	*init_main_menu(t_main *g, t_main_menu *mmenu);
 void	*init_map_select_menu(t_main *g, t_map_select *menu);

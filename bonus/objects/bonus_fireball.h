@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/16 04:01:49 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/22 05:16:53 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ struct s_fireball_particle
 	int start_y;
 	bool active;
 };
+
+void add_particle(t_main *g, t_fireball *f);
+void animate_particles(t_main *g);
 
 #endif
