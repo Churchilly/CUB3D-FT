@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 22:55:49 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 05:09:45 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 02:27:00 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
-#ifndef M_PI
-# define M_PI 3.14159265358979323846
-#endif
 
 static int	try_spawn(t_enemy *enemy, t_map *map, t_vector_int pos)
 {
@@ -104,7 +100,7 @@ void	enemy_walk(t_enemy *enemy, t_main *g)
 	direction.x = g->map.player.pos.x - enemy->position.x;
 	direction.y = g->map.player.pos.y - enemy->position.y;
 	distance = sqrt(direction.x * direction.x + direction.y * direction.y);
-	if (distance < 0.5)
+	if (distance < ENEMY_RADIUS + PLAYER_RADIUS)
 	{
 		enemy_attack(enemy, g);
 		return ;

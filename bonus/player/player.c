@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 19:09:50 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 02:21:32 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	play_footstep(int moved)
 	curr_time = current_time_ms();
 	if (moved && curr_time - last_time > 240)
 	{
+		printf("yürüyom\n");
 		if (step == 0)
 			system(AUDIO_FOOTSTEP_1);
 		else if (step == 1)
@@ -75,7 +76,7 @@ void	change_position(t_main *g)
 	movement = get_movement(g, player);
 	player->pos.x += movement.x;
 	player->pos.y += movement.y;
-	play_footstep(movement.x > 0.0 || movement.y > 0.0);
+	play_footstep(fabs(movement.x) > 0.0 || fabs(movement.y) > 0.0);
 	raycasting(g);
 }
 

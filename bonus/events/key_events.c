@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 00:20:48 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 02:15:25 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 static int	onpress_switch_key_menu(t_switch_key *switch_key, int key, t_main *game)
 {
+	switch_key->key = true;
 	if (!switch_key->key_switch)
 	{
 		if (key == XK_space || key == XK_Return)
@@ -79,9 +80,11 @@ void unlock_switch(t_main *game)
 
 static void unlock_menu_switches(t_main *game)
 {
-	game->key_list.e.key_switch = false;
-	game->key_list.q.key_switch = false;
-	game->key_list.spc.key_switch = false;
+	// game->key_list.e.key_switch = false;
+	// game->key_list.q.key_switch = false;
+	// game->key_list.spc.key_switch = false;
+	// unlock_switch(game);
+	return ;
 }
 static void	onpress_event_menu(int key, t_main *game)
 {
@@ -181,6 +184,7 @@ int onrelease_event(int key, t_main *game)
 	}
 	else if (key == XK_space || key == XK_Return)
 	{
+		onrelease_switch_key(&(game->key_list.spc));
 		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == MENU_SHOP || game->state == GAME)
 			unlock_menu_switches(game);
 	}

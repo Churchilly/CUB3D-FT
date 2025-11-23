@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_events.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/22 02:13:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 02:18:53 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	update_play_time(t_main *g)
 
 static void	check_game_time(t_main *g)
 {
-	if (g->map.map_timer >= GAME_TIME * 1000)
+	if (g->map.map_timer >= GAME_TIME * 10000)
 	{
 		if (g->map.next_map)
 		{
@@ -70,7 +70,7 @@ static void	update_game(t_main *g)
 	update_mana(g);
 	update_health(g);
 	draw_currency(g);
-
+	
 	if (g->key_list.f3.key_switch)
 	{
 		read_mouse_movements(g);

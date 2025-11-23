@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mana.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:43:14 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/23 04:28:40 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 02:17:31 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void update_mana(t_main *g)
 
 void use_mana(t_main *g, double val)
 {
+    if (g->spellbook.cooldown > 0 && val > 0)
+        return ;
     if (g->map.player.mana <= val)
     {
         // damage_player(g, val - g->map.player.mana + (g->map.player.health / 100 * 5));
