@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 05:34:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 02:00:52 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	new_game(t_main *g, char *map_file)
 		g->state = MENU_ERROR;
 		return ;
 	}
+	else
+		init_minimap(g);
 	create_barriers(g);
 	g->state = GAME;
 	if (g->main_menu.btn_continue.height == -1)
