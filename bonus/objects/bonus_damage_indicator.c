@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 05:06:26 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 06:40:23 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 00:27:19 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
-#ifndef M_PI
-# define M_PI 3.14159265358979323846
-#endif
 
 static double get_enemy_angle_relative_to_player(t_enemy *enemy, t_player *player)
 {

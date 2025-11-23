@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 04:13:08 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 00:24:51 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@
 # include "../sound/sound.h"
 
 # define GAME_TIME 5
+
+#ifndef M_PI
+# define M_PI 3.14159265358979323846
+#endif
 
 typedef struct s_key_list	t_key_list;
 typedef struct s_main		t_main;
@@ -105,11 +109,8 @@ struct s_main
 	t_shop			shop_menu;
 	t_game_summary	summary_menu;
 	t_font_menu		font_menu;
-<<<<<<< HEAD
 	t_cub3_image	minimap_full;
-=======
 	t_record		record;
->>>>>>> c9864e13a896b271d20a76696a59e45fc4aeac2a
 };
 
 void	__init__(t_main *game);
