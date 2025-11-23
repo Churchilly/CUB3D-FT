@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_fonts.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:45:23 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 05:34:25 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 02:47:52 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3_FONTS_H
 # define CUB3_FONTS_H
 # define DEFAULT_FONT_SIZE 32
-# define DEFAULT_FONT_GAP 1
+# define DEFAULT_FONT_GAP 4
 # define DEFAULT_FONT_COLOR 0xFFFFFFFF
 # define CASE_UPPER 1
 # define CASE_LOWER 0

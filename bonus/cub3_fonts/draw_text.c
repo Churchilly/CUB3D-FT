@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:49:50 by root              #+#    #+#             */
-/*   Updated: 2025/11/22 05:08:37 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 02:48:55 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ static int draw_from_sheet(t_text *text)
     t_vector_int orig;
     t_vector_int size;
     t_im *sheet;
-
+    int pixel;
+    
     sheet = &text->font->sheet;
-    size.x = (int)(text->font->max_width * text->scale);
+    size.x = (text->font->max_width * text->scale);
     size.y = (int)(text->font->font_size * text->scale);
     scaled.y = -1;
     while (++scaled.y < size.y)
@@ -34,12 +35,15 @@ static int draw_from_sheet(t_text *text)
         while (++scaled.x < size.x)
         {
             orig.x = (int)(scaled.x / text->scale);
-            if (sheet->image[(text->sheet_row * text->font->font_size + orig.y) *
-                sheet->width + (text->sheet_col * text->font->max_width) + orig.x] == 0x000000ff)
+            pixel = sheet->image[(text->sheet_row * text->font->font_size + orig.y) *
+                sheet->width + (text->sheet_col * text->font->max_width) + orig.x];
+            if (pixel == 0x000000ff)
                 put_pixel(text->win_x + scaled.x, text->win_y + scaled.y, text->color, text->win);
+            else if (pixel == 0xffffffff)
+                break ;
         }
     }
-    return (size.x);
+    return (scaled.x + DEFAULT_FONT_GAP);
 }
 
 static int draw_char(char ch, bool upper, t_text *text)
@@ -66,6 +70,8 @@ static int draw_number(int num, t_text *text)
 
 static int draw_symbol(int sym, t_text *text)
 {
+    if (sym == ' ')
+        return (5);
     text->sheet_row = ROW_SYMBOL;
     text->sheet_col = sym - ' ';
     return (draw_from_sheet(text));
