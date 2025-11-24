@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:37:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 04:00:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 06:16:07 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	next_main_pause_item(t_main *g)
 		g->main_menu.selected = &(g->main_menu.btn_exit);
 	else if (g->main_menu.selected == &(g->main_menu.btn_exit))
 	{
-		if (g->main_menu.btn_continue.height != -1)
+		if (g->state == MENU_PAUSE)
 			g->main_menu.selected = &(g->main_menu.btn_continue);
 		else
 			g->main_menu.selected = &(g->main_menu.btn_campaign);
@@ -36,7 +36,7 @@ void	prev_main_pause_item(t_main *g)
 		g->main_menu.selected = &(g->main_menu.btn_exit);
 	else if (g->main_menu.selected == &(g->main_menu.btn_campaign))
 	{
-		if (g->main_menu.btn_continue.height != -1)
+		if (g->state == MENU_PAUSE)
 			g->main_menu.selected = &(g->main_menu.btn_continue);
 		else
 			g->main_menu.selected = &(g->main_menu.btn_exit);
