@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_barriers.c                                  :+:      :+:    :+:   */
+/*   bonus_door_create.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/21 03:32:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:32:55 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/11/24 05:22:17 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/11/24 05:22:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
+#include "../../main/main.h"
 
 static void	insert_barrier(t_door *door, t_vector_int map_pos, double axis)
 {

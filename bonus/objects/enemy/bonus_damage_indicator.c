@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_damage_indicator.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 05:06:26 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 00:40:15 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 04:11:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
+#include "../../main/main.h"
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>

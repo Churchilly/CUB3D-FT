@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 07:29:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 02:03:17 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,6 @@ void cya(void)
 	
 	printf("cleanup end\n");
 }
-
-
-/*
-	Game initialization system:
-	- __init__() - Initializes MLX, window, gallery, menu, spellbook
-	- init_game() - Initializes map, objects, raycasting (called from campaign button)
-	
-	No command-line map argument needed anymore!
-	Maps are loaded through the menu system.
-*/
 
 int main(void)
 {

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_objects.c                                    :+:      :+:    :+:   */
+/*   bonus_orb_create.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:29:06 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/11/24 05:28:04 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/11/24 05:28:26 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
+#include "../../main/main.h"
 
-void	create_objects_static(t_main *g)
+void create_orbs(t_main *g)
 {
-	create_fireballs(g);
-	create_particles(g);
-	create_enemies(g);
-}
-
-void	create_objects_dynamic(t_main *g)
-{
-	create_barriers(g);
-	create_orbs(g);
+	int orb_count = 72; // gather this from g->player.inventory.orb
+	t_orb *orb;
+	
+	while (orb_count--)
+	{
+		orb = alloc(sizeof(t_orb), DYNAMIC);
+		orb->position = (t_vector){-1, -1};
+		orb->last_hit_time = 0;
+		add_object(&g->objects, ORB, orb);
+	}
 }

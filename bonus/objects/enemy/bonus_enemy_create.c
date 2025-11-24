@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_objects.c                                    :+:      :+:    :+:   */
+/*   bonus_enemy_create.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:29:06 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/11/24 05:23:30 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/11/24 05:23:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
+#include "../../main/main.h"
 
-void	create_objects_static(t_main *g)
+void	create_enemies(t_main *g)
 {
-	create_fireballs(g);
-	create_particles(g);
-	create_enemies(g);
-}
+	int	i;
+	t_enemy *enemy;
 
-void	create_objects_dynamic(t_main *g)
-{
-	create_barriers(g);
-	create_orbs(g);
+	i = -1;
+	while (++i < NUM_OF_ENEMIES)
+	{
+		enemy = alloc(sizeof(t_enemy), STATIC);
+		enemy->health = ENEMY_HEALTH;
+		enemy->state = IDLE;
+		enemy->position.x = -1.0;
+		enemy->position.y = -1.0;
+		enemy->red_alpha = 0.0;
+		enemy->attack_time_log = 0;
+		add_object(&g->objects, ENEMY, enemy);
+	}
 }

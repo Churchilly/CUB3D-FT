@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy_attack.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 05:06:26 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 06:40:10 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 04:10:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
+#include "../../main/main.h"
 
 void enemy_attack(t_enemy *enemy, t_main *g)
 {

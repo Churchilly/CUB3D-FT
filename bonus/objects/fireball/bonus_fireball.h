@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 05:16:53 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 06:00:02 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ rendering
 #ifndef BONUS_FIREBALL_H
 # define BONUS_FIREBALL_H
 
-# include "../main/vector.h"
+# include "../../main/vector.h"
 # include <stdbool.h>
 
 # define NUM_OF_FIREBALLS 5
@@ -43,32 +43,37 @@ typedef enum e_fireball_state	t_fireball_state;
 
 enum e_fireball_state
 {
-	F_IDLE = 0, // not on map
-	FLY, // when fireball is goes on map
-	BLAST // for collision animation i added this state animate this like doors
+	F_IDLE = 0,
+	FLY,
+	BLAST
 };
-// while rendering the fireball
-// calculate fireball segment **
-// calculate fireball tail segment **
-// find the intersection and print
+
 struct	s_fireball
 {
-	t_vector	position;
-	double		direction;
-	t_segment 	segment;
-	t_fireball_state state;
+	t_fireball_state	state;
+	t_vector			position;
+	double				direction;
+	t_segment			segment;
 };
 
 struct s_fireball_particle
 {
-	t_vector position;
-	t_segment segment;
-	t_im image;
-	int start_y;
-	bool active;
+	t_vector	position;
+	t_segment	segment;
+	t_im		image;
+	int			start_y;
+	bool		active;
 };
 
-void add_particle(t_main *g, t_fireball *f);
-void animate_particles(t_main *g);
+void	create_fireballs(t_main *g);
+void	create_particles(t_main *g);
+
+void	fireball_explode(t_main *g, t_vector *f_pos);
+
+void	animate_fireball_sprite(t_main *g);
+void	animate_fireball_particle_sprite(t_main *g);
+
+void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal);
+void	animate_particles(t_main *g);
 
 #endif

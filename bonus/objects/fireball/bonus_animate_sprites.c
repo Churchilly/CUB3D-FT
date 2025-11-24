@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_sprites.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:12:10 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/19 20:13:50 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 05:11:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
-#include "bonus_objects.h"
+#include "../../main/main.h"
 
 void animate_fireball_sprite(t_main *g)
 {
