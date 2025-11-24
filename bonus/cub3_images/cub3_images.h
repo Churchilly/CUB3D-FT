@@ -79,7 +79,7 @@ void draw_button_hover(t_window *win, t_cub3_image *img, int x, int y);
 void draw_column(t_draw_pkg *pkg, int x, t_window *win);
 int blend_alpha(int color, int color_to_blend, double alpha);
 void draw_column_alpha(t_draw_pkg *pkg, int x, t_window *win, int blend, double alpha);
-void *init_gallery_with_config(t_cub3_gallery *gal, char *config);
+void *init_gallery_with_config(t_cub3_gallery *gal);
 
 // Gallery init functions
 void init_enemy_gallery(t_cub3_gallery *gal);

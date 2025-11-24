@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-static int	validate_format(char *color, int len, t_main *g)
+static int	validate_format(char *color, int len)
 {
 	int	i;
 	int	commas;
@@ -23,7 +23,6 @@ static int	validate_format(char *color, int len, t_main *g)
 	i = -1;
 	commas = 0;
 	comma_seen = 1;
-	(void)g;
 	while (++i < len)
 	{
 		if (color[i] == ',' && comma_seen == 0)
@@ -42,12 +41,11 @@ static int	validate_format(char *color, int len, t_main *g)
 	return (0);
 }
 
-static int	extract_rgb_component(char **str, t_main *g)
+static int	extract_rgb_component(char **str)
 {
 	int	value;
 
 	value = 0;
-	(void)g;
 	while (**str >= '0' && **str <= '9')
 	{
 		value = value * 10 + (**str - '0');
@@ -58,7 +56,7 @@ static int	extract_rgb_component(char **str, t_main *g)
 	return (value);
 }
 
-static int	str_to_rgb(char	*color, t_main *g)
+static int	str_to_rgb(char	*color)
 {
 	int rgb[3];
 	int	i;
@@ -66,7 +64,7 @@ static int	str_to_rgb(char	*color, t_main *g)
 	i = 0;
 	while (i < 3)
 	{
-		rgb[i] = extract_rgb_component(&color, g);
+		rgb[i] = extract_rgb_component(&color);
 		if (rgb[i] == -1)
 			return (-1);
 		if (i < 2)
@@ -80,7 +78,7 @@ static int	str_to_rgb(char	*color, t_main *g)
 	}
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
-static int	extract_color(char *color_start, t_main *g)
+static int	extract_color(char *color_start)
 {
 	char	*color_end;
 	int		color_len;
@@ -94,19 +92,17 @@ static int	extract_color(char *color_start, t_main *g)
 	color_len = color_end - color_start;
 	if (color_len < 5)
 		return (-1);
-	if (validate_format(color_start, color_len, g))
+	if (validate_format(color_start, color_len))
 		return (-1);
-	return (str_to_rgb(color_start, g));
+	return (str_to_rgb(color_start));
 }
 
-int	load_color(char *raw_map, int *target_color, char *identifier, t_main *g)
+int	load_color(char *raw_map, int *target_color)
 {
 	int	rgb;
-
-	(void)identifier;
 	if (*target_color != -1)
 		return (1);
-	rgb = extract_color(raw_map, g);
+	rgb = extract_color(raw_map);
 	if (rgb == -1)
 		return (1);
 	*target_color = rgb;

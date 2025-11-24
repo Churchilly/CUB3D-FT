@@ -19,14 +19,13 @@
 #include <ctype.h>
 
 
-static char	*extract_texture_path(char *path_start, t_main *g)
+static char	*extract_texture_path(char *path_start)
 {
 	char	*path_end;
 	char	*path;
 	int		path_len;
 	int		i;
 
-	(void)g;
 	path_start += 2;
 	while (*path_start && isspace(*path_start))
 		path_start++;
@@ -43,12 +42,11 @@ static char	*extract_texture_path(char *path_start, t_main *g)
 	return (path);
 }
 
-static int	check_file_extension(char *path, t_main *g)
+static int	check_file_extension(char *path)
 {
 	int		path_len;
 	int		fd;
 
-	(void)g;
 	path_len = strlen(path);
 	if (path_len < 4)
 		return (1);
@@ -75,17 +73,16 @@ static int	set_texture(t_texture *target, char *path, t_main *g)
 	return (0);
 }
 
-int	load_texture(char *raw_map, t_texture *target, char *identifier, t_main *g)
+int	load_texture(char *raw_map, t_texture *target, t_main *g)
 {
 	char	*path;
 
-	(void)identifier;
 	if (target->img)
 		return (1);
-	path = extract_texture_path(raw_map, g);
+	path = extract_texture_path(raw_map);
 	if (!path)
 		return (1);
-	if (check_file_extension(path, g))
+	if (check_file_extension(path))
 		return (1);
 	if (set_texture(target, path, g))
 		return (1);

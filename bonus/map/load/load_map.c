@@ -36,9 +36,8 @@ static int	find_id(char *raw_map)
 	return (MAP);
 }
 
-static int	check_map_materials(t_map *map, t_main *g)
+static int	check_map_materials(t_map *map)
 {
-	(void)g;
 	if (!map->texture_no.img || !map->texture_so.img
 		|| !map->texture_we.img || !map->texture_ea.img)
 		return (1);
@@ -73,19 +72,19 @@ static int	map_parse(char *raw_map, t_main *g)
 		current_id = find_id(raw_map);
 		if (current_id == NO)
 		{
-			if (load_texture(raw_map, &g->map.texture_no, "NO", g))
+			if (load_texture(raw_map, &g->map.texture_no, g))
 				return (1);
 		}
 		else if (current_id == SO)
-			load_texture(raw_map, &g->map.texture_so, "SO", g);
+			load_texture(raw_map, &g->map.texture_so, g);
 		else if (current_id == WE)
-			load_texture(raw_map, &g->map.texture_we, "WE", g);
+			load_texture(raw_map, &g->map.texture_we, g);
 		else if (current_id == EA)
-			load_texture(raw_map, &g->map.texture_ea, "EA", g);
+			load_texture(raw_map, &g->map.texture_ea, g);
 		else if (current_id == FL)
-			load_texture(raw_map, &g->map.texture_f, "FL", g);
+			load_texture(raw_map, &g->map.texture_f, g);
 		else if (current_id == C)
-			load_color(raw_map, &g->map.color_c, "C", g);
+			load_color(raw_map, &g->map.color_c);
 		else if (current_id == NEXT)
 			load_next_map_info(raw_map, g);
 		else
@@ -93,7 +92,7 @@ static int	map_parse(char *raw_map, t_main *g)
 		while (*raw_map && *raw_map != '\n')
 			raw_map++;
 	}
-	if (check_map_materials(&g->map, g))
+	if (check_map_materials(&g->map))
 		return (1);
 	load_doors(map_start);
 	if (load_matrix(map_start, g))

@@ -12,9 +12,8 @@
 
 #include "cub3_images.h"
 
-void *init_gallery_with_config(t_cub3_gallery *gal, char *config)
+void *init_gallery_with_config(t_cub3_gallery *gal)
 {
-	(void)config;
 	init_enemy_gallery(gal);
 	init_fireball_gallery(gal);
 	init_frame_gallery(gal);

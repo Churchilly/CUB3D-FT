@@ -12,9 +12,8 @@
 
 #include "../../main/main.h"
 
-void animate_enemy_effect(t_enemy *enemy, t_main *g)
+void animate_enemy_effect(t_enemy *enemy)
 {
-	(void)g;
 	enemy->red_alpha = enemy->red_alpha - 0.1;
 	if (enemy->red_alpha < 0)
 		enemy->red_alpha = 0;

@@ -69,12 +69,11 @@ static void add_particle(t_main *g, t_fireball *f)
 	}
 }
 
-void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
+void	animate_fireball(t_fireball *f, t_main *g)
 {
 	static long long time_log = 0;
 	long long curr_time;
 
-	(void)gal;
 	animate_fireball_sprite(g);
 	animate_fireball_particle_sprite(g);
 	curr_time = current_time_ms();

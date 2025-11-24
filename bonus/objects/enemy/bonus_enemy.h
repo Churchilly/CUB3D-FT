@@ -71,7 +71,7 @@ void	damage_enemy(t_enemy *enemy, double damage, t_main *g);
 void	draw_enemy_effect(t_enemy *enemy, t_player *player, t_window *win);
 void	enemy_attack(t_enemy *enemy, t_main *g);
 void	animate_enemy(t_enemy *enemy, t_main *g);
-void animate_enemy_effect(t_enemy *enemy, t_main *g);
+void animate_enemy_effect(t_enemy *enemy);
 void	create_enemies(t_main *g);
 
 #endif

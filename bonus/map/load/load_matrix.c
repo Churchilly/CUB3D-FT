@@ -54,12 +54,11 @@ static char	**copy_matrix(char **matrix, int height)
 	return (copy);
 }
 
-static int	check_map_enclosed(char **matrix, t_main *g)
+static int	check_map_enclosed(char **matrix)
 {
 	int	x;
 	int	y;
 
-	(void)g;
 	y = -1;
 	while (matrix[++y])
 	{
@@ -87,7 +86,7 @@ int	load_matrix(char *raw_map, t_main *g)
 	if (matrix_height == -1)
 		return (1);
 	copy = copy_matrix(g->map.matrix, matrix_height);
-	if (check_map_enclosed(copy, g))
+	if (check_map_enclosed(copy))
 		return (1);
 	return (0);
 }

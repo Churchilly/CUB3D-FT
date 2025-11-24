@@ -17,13 +17,13 @@ static void animate_orbs(t_orb *orb, t_main *g)
 	static int curr_orb = 0;
 	static int gap;
 	int start_deg;
-	
+
 	if (curr_orb == 0)
 		gap = 360 / g->map.player.inventory.orb;
 	start_deg = animate_orb_rotation();
-	curr_orb++; // NOTE
-	orb->position = orb_position(&g->map.player, start_deg + gap * curr_orb, curr_orb, gap);
+	orb->position = orb_position(&g->map.player, start_deg, curr_orb, gap);
 	orb_damage(g, orb);
+	curr_orb++;
 	if (curr_orb == g->map.player.inventory.orb)
 		curr_orb = 0;
 }
@@ -41,7 +41,7 @@ static void	animate_object_clusters(t_main *g)
 		while (obj)
 		{
 			if (obj->type == ENEMY)
-				animate_enemy_effect((t_enemy *)obj->object, g);
+				animate_enemy_effect((t_enemy *)obj->object);
 			else if (obj->type == PARTICLE)
 				animate_particle_y((t_fire_particle *)obj->object);
 			obj = obj->next;
@@ -62,7 +62,7 @@ void	animate_objects(t_main *g)
 		else if (curr->type == ENEMY)
 			animate_enemy(curr->object, g);
 		else if (curr->type == FIREBALL)
-			animate_fireball(curr->object, g, &g->gallery);
+			animate_fireball(curr->object, g);
 		else if (curr->type == ORB && g->map.player.inventory.orb > 0)
 			animate_orbs(curr->object, g);
 		curr = curr->next;

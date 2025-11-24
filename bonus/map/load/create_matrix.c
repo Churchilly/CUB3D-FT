@@ -24,14 +24,13 @@ int	is_valid_map_char(char c)
 		|| c == 'd' || c == 'D');
 }
 
-static int get_map_height(char *raw_map, t_main *g)
+static int get_map_height(char *raw_map)
 {
 	int	count;
 	int	ret;
 
 	count = 1;
 	ret = 0;
-	(void)g;
 	while (*raw_map)
 	{
 		if (*raw_map == '\n')
@@ -104,7 +103,7 @@ int	create_matrix(char *raw_map, t_main *g)
 	int	player;
 	int	i;
 
-	matrix_height = get_map_height(raw_map, g);
+	matrix_height = get_map_height(raw_map);
 	if (matrix_height == -1)
 		return (-1);
 	g->map.matrix = alloc(sizeof(char *) * (matrix_height + 1), DYNAMIC);

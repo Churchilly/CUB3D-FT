@@ -50,7 +50,7 @@ static void	update_game(t_main *g)
 	update_play_time(g);
 	check_game_time(g);
 	change_position(g);
-	change_direction(g, 0);
+	change_direction(g);
 	animate_objects(g);
 	animate_spellbook(g);
 	update_mana(g);
