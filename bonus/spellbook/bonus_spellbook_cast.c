@@ -3,36 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_spellbook_cast.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:46:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/15 23:24:50 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 10:07:43 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
 
 void	cast_fireball(t_main *g)
-{
-	static long long last_cooldown = 0;
-	long long curr_time;
-	
-	g->spellbook.cooldown = SPELL_COOLDOWN;
+{	
 	t_fireball *fireball;
 	t_obj_node *objects;
 
-	// curr_time = current_time_ms();
-	// if (curr_time - last_cooldown < SPELL_COOLDOWN)
-	// 	return;
-	// last_cooldown = curr_time;
-	
+	g->spellbook.cooldown = SPELL_COOLDOWN;
 	objects = g->objects.all;
 	while (objects)
 	{
 		if (objects->type == FIREBALL)
 		{
 			fireball = (t_fireball *)objects->object;
-			if (fireball->state == IDLE)
+			if (fireball->state == F_IDLE)
 			{
 				fireball->position = (t_vector){g->map.player.pos.x, g->map.player.pos.y};
 				fireball->direction = g->map.player.dov;

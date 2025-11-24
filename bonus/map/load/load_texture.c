@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 04:07:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:59:31 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static char	*extract_texture_path(char *path_start, t_main *g)
 	int		path_len;
 	int		i;
 
+	(void)g;
 	path_start += 2;
 	while (*path_start && isspace(*path_start))
 		path_start++;
@@ -47,6 +48,7 @@ static int	check_file_extension(char *path, t_main *g)
 	int		path_len;
 	int		fd;
 
+	(void)g;
 	path_len = strlen(path);
 	if (path_len < 4)
 		return (1);
@@ -77,6 +79,7 @@ int	load_texture(char *raw_map, t_texture *target, char *identifier, t_main *g)
 {
 	char	*path;
 
+	(void)identifier;
 	if (target->img)
 		return (1);
 	path = extract_texture_path(raw_map, g);

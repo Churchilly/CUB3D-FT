@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:49:50 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 02:48:55 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 09:40:01 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static int draw_from_sheet(t_text *text)
             orig.x = (int)(scaled.x / text->scale);
             pixel = sheet->image[(text->sheet_row * text->font->font_size + orig.y) *
                 sheet->width + (text->sheet_col * text->font->max_width) + orig.x];
-            if (pixel == 0x000000ff)
+            if ((unsigned int)pixel == 0x000000ff)
                 put_pixel(text->win_x + scaled.x, text->win_y + scaled.y, text->color, text->win);
-            else if (pixel == 0xffffffff)
+            else if ((unsigned int)pixel == 0xffffffff)
                 break ;
         }
     }

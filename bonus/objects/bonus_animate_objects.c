@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 07:58:09 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 09:49:58 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void animate_orbs(t_orb *orb, t_main *g)
 	if (curr_orb == 0)
 		gap = 360 / g->map.player.inventory.orb;
 	start_deg = animate_orb_rotation();
-	curr_orb++;
-	orb->position = orb_position(&g->map.player, start_deg + gap * curr_orb, orb, gap);
+	curr_orb++; // NOTE
+	orb->position = orb_position(&g->map.player, start_deg + gap * curr_orb, curr_orb, gap);
 	orb_damage(g, orb);
 	if (curr_orb == g->map.player.inventory.orb)
 		curr_orb = 0;
@@ -53,7 +53,6 @@ static void	animate_object_clusters(t_main *g)
 void	animate_objects(t_main *g)
 {
 	t_obj_node	*curr;
-	t_door		*door;
 
 	curr = g->objects.all;
 	while (curr)

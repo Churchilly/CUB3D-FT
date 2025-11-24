@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:24 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 08:23:55 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 09:44:18 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	clear_textures(void)
 	i = -1;
 	while (++i < 5)
 	{
-		printf("here\n");
 		img = (void **)(section)[i];
 		if (*img)
 			mlx_destroy_image(mlx, *img);
@@ -86,11 +85,8 @@ void	clear_section(t_section section_name)
 		clear(STATIC);
 	else if (section_name == DYNAMIC)
 	{
-		printf("SSHIT\n");
-		//clear(DYNAMIC);
-		printf("SSHIT2\n");
+		//clear(DYNAMIC); //AAAAAAAAAAAAAAAAAAAAAAAA
 		clear_textures();
-		printf("SSHIT3\n");
 	}
 	else if (section_name == TEMPORARY)
 		clear(TEMPORARY);

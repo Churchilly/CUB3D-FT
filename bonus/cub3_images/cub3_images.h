@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 04:06:26 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 09:38:53 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,12 @@ struct s_cub3_gallery
     t_frame_gal frames;
     t_font_gal fonts;
     t_mmenu_gal menu;
-    
-    t_im mmenu_bg;
-    t_im mmenu_bg_active;
-    t_im mmenu_start_btn;
-    t_im fireball;
-    t_im fireball2;
-    t_im fireball3;
-    t_im fireball4;
-    t_im fireball_particle_1;
-    t_im fireball_particle_2;
-    t_im fireball_particle_3;
-    t_im cross;
-	t_im	enemy1;
-	t_im	enemy2;
-	t_im	enemy3;
-	t_im	enemy4;
-	t_im	enemy5;
-	t_im	enemy6;
-	t_im	enemy7;
-	t_im	enemy8;
-	t_im	enemy9;
-	t_im	enemy10;
-	t_im	enemy11;
-	t_im	enemy12;
-	t_im	enemy13;
-	t_im	enemy14;
-    t_im    pokeball;
-    t_im    currency;
-    t_im    potion;
+    t_hud_gal hud;
+    t_shop_gal shop;
+    t_effect_gal effect;
+    t_enemy_gal enemy;
+    t_fireball_gal fireball;
+    t_misc_gal misc;
 };
 
 struct s_draw_pkg
@@ -103,5 +80,17 @@ void draw_column(t_draw_pkg *pkg, int x, t_window *win);
 int blend_alpha(int color, int color_to_blend, double alpha);
 void draw_column_alpha(t_draw_pkg *pkg, int x, t_window *win, int blend, double alpha);
 void *init_gallery_with_config(t_cub3_gallery *gal, char *config);
+
+// Gallery init functions
+void init_enemy_gallery(t_cub3_gallery *gal);
+void init_fireball_gallery(t_cub3_gallery *gal);
+void init_frame_gallery(t_cub3_gallery *gal);
+void init_font_gallery(t_cub3_gallery *gal);
+void init_mmap_gallery(t_cub3_gallery *gal);
+void init_mmenu_gallery(t_cub3_gallery *gal);
+void init_hud_gallery(t_cub3_gallery *gal);
+void init_shop_gallery(t_cub3_gallery *gal);
+void init_effect_gallery(t_cub3_gallery *gal);
+void init_misc_gallery(t_cub3_gallery *gal);
 
 #endif

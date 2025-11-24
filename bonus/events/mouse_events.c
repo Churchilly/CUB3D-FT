@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 07:49:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:42:51 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	mouse_click(int button, int x, int y, void *game)
 {
 	t_main	*g;
 
+	(void)button;
 	g = (t_main *)game;
 	if (g->state == MENU_MAIN || g->state == MENU_PAUSE)
 		mouse_click_main_pause(x, y, game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 04:47:59 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:58:11 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	find_id(char *raw_map)
 
 static int	check_map_materials(t_map *map, t_main *g)
 {
+	(void)g;
 	if (!map->texture_no.img || !map->texture_so.img
 		|| !map->texture_we.img || !map->texture_ea.img)
 		return (1);
@@ -100,13 +101,11 @@ static int	map_parse(char *raw_map, t_main *g)
 	return (0);
 }
 
-static void debug(t_main *game);
-
 int	load_map(char *map_file, t_main *game)
 {
 	char	*raw_map;
-	char	*map_start;
-	int		current_id;
+	// char	*map_start;
+	// int		current_id;
 
 	raw_map = read_file(map_file);
 	if (!raw_map)
@@ -114,29 +113,4 @@ int	load_map(char *map_file, t_main *game)
 	if (map_parse(raw_map, game))
 		return (1);
 	return (0);
-}
-
-
-
-
-
-
-static void debug(t_main *game)
-{
-	printf("color_c::%d\n", game->map.color_c);
-	// matrix
-	printf("matrix::\n");
-	int i = -1;
-	while (game->map.matrix[++i])
-	{
-		int j = -1;
-		while (game->map.matrix[i][++j])
-		{
-			printf("%c", game->map.matrix[i][j]);	
-		}
-		printf("\n");
-	}
-	//player
-	printf("player_x::%f\nplayer_y::%f\n", game->map.player.pos.x, game->map.player.pos.y);
-	printf("player_dov::%f\n", game->map.player.dov);
 }

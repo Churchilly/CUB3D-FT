@@ -6,11 +6,12 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:14:46 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 07:32:05 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 10:05:51 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
+#include <math.h>
 
 static bool fireball_collision(t_vector *f_pos, t_main *g)
 {
@@ -60,7 +61,7 @@ static void add_particle(t_main *g, t_fireball *f)
 			}
 			obj = obj->next;
 		}
-		particle->image = g->gallery.fireball_particle_1;
+		particle->image = g->gallery.fireball.particle_1;
         particle->position = (t_vector){f->position.x, f->position.y};
 		particle->segment = f->segment;
 		particle->active = true;
@@ -73,6 +74,7 @@ void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 	static long long time_log = 0;
 	long long curr_time;
 
+	(void)gal;
 	animate_fireball_sprite(g);
 	animate_fireball_particle_sprite(g);
 	curr_time = current_time_ms();
@@ -85,7 +87,7 @@ void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 		if (fireball_collision(&f->position, g))
 		{
 			fireball_explode(g, &f->position);
-			f->state = IDLE;
+			f->state = F_IDLE;
 			f->position = (t_vector){-1, -1};
 		}
 		time_log = curr_time;

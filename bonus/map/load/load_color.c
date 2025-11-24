@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 07:07:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 04:50:05 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:56:39 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	validate_format(char *color, int len, t_main *g)
 	i = -1;
 	commas = 0;
 	comma_seen = 1;
+	(void)g;
 	while (++i < len)
 	{
 		if (color[i] == ',' && comma_seen == 0)
@@ -46,6 +47,7 @@ static int	extract_rgb_component(char **str, t_main *g)
 	int	value;
 
 	value = 0;
+	(void)g;
 	while (**str >= '0' && **str <= '9')
 	{
 		value = value * 10 + (**str - '0');
@@ -101,6 +103,7 @@ int	load_color(char *raw_map, int *target_color, char *identifier, t_main *g)
 {
 	int	rgb;
 
+	(void)identifier;
 	if (*target_color != -1)
 		return (1);
 	rgb = extract_color(raw_map, g);

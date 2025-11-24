@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:28:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:58:57 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static int	check_map_enclosed(char **matrix, t_main *g)
 	int	x;
 	int	y;
 
+	(void)g;
 	y = -1;
 	while (matrix[++y])
 	{

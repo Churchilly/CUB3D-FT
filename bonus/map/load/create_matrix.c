@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_matrix.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:23:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:55:43 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include "../../main/main.h"
 #include <math.h>
+#include <ctype.h>
 
 int	is_valid_map_char(char c)
 {
@@ -30,6 +31,7 @@ static int get_map_height(char *raw_map, t_main *g)
 
 	count = 1;
 	ret = 0;
+	(void)g;
 	while (*raw_map)
 	{
 		if (*raw_map == '\n')

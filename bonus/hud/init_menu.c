@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 05:54:49 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 09:45:10 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*init_main_menu(t_main *g, t_main_menu *mmenu)
 {    
 	g->state = MENU_MAIN;
 	mmenu->selected = &mmenu->btn_campaign;
-    mmenu->bg_img = g->gallery.mmenu_bg;
+    mmenu->bg_img = g->gallery.menu.bg;
     
     set_button(&g->main_menu.btn_continue, &g->gallery.menu.continue_btn,
 	(t_vector){(WIN_WIDTH / 2 - g->gallery.menu.continue_btn.width / 4),
@@ -35,6 +35,8 @@ void	*init_main_menu(t_main *g, t_main_menu *mmenu)
     set_button(&mmenu->btn_exit, &g->gallery.menu.exit_btn,
         (t_vector){(WIN_WIDTH / 2 - g->gallery.menu.exit_btn.width / 4),
             (WIN_HEIGHT / 2) - (g->gallery.menu.exit_btn.height * 2) / 3 + g->gallery.menu.exit_btn.height * 3});
+
+    return (g);
 }
 #include <stdio.h>
 #include <math.h>
@@ -48,7 +50,7 @@ void	*init_map_select_menu(t_main *g, t_map_select *menu)
     t_text txt;
     char *fname;
 
-    menu->bg_img = g->gallery.mmenu_bg;
+    menu->bg_img = g->gallery.menu.bg;
     menu->selected = NULL;
 
     /* count available map files */
@@ -122,7 +124,7 @@ void	*init_shop_menu(t_main *g, t_shop *menu)
     t_text txt;
     int i;
 
-    menu->bg_img = g->gallery.mmenu_bg;
+    menu->bg_img = g->gallery.menu.bg;
     menu->selected = NULL;
 
     txt.font = &g->font_menu.alagard;
@@ -150,7 +152,7 @@ void	*init_game_summary_menu(t_main *g, t_game_summary *menu)
 {
 	t_text	txt;
 
-	menu->bg_img = g->gallery.mmenu_bg;
+	menu->bg_img = g->gallery.menu.bg;
 
 	// Initialize text properties
 	txt.font = &g->font_menu.alagard;
@@ -195,8 +197,8 @@ void	*init_game_summary_menu(t_main *g, t_game_summary *menu)
 void	*init_error_menu(t_main *g, t_error *menu)
 {
 	t_text	txt;
-	
-	menu->bg_img = g->gallery.mmenu_bg;
+
+	menu->bg_img = g->gallery.menu.bg;
 	
 	txt.text_len = 19;
 	txt.font = &g->font_menu.alagard;

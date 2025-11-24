@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_doors.c                                      :+:      :+:    :+:   */
+/*   bonus_door.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 03:53:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:01:42 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
+#include "../../collisions/bonus_collisions.h"
 #include <stddef.h>
 #include <math.h>
-
 #include <stdio.h>
+
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new)
 {
 	static t_door_wall *door_walls = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 19:55:41 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:52:34 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:46:32 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <string.h>
 #include "../garbage_collector/garbage_collector.h"
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 static int	validate_extension(char	*file_name)
 {
@@ -129,9 +131,7 @@ static void	parse_normalized_files(t_map_file *files)
 void	cub_map(t_map *map)
 {
 	DIR				*dir;
-	struct dirent	*entry;
 	int				count;
-	int				i;
 
 	dir = opendir(MAP_FOLDER);
 	if (!dir)
