@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 07:37:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 08:20:28 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	**get_section(t_section section)
 	if (section == WINDOW)
 		return ((void **)&gc->win);
 	if (section == TEXTURES)
-		return ((void **)&gc->textures);
+		return ((void **)gc->textures);
 	return (NULL);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:56:56 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 07:23:01 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ENEMY_EFFECT_RADIUS 80
 # define ENEMY_EFFECT_START_OFFSET 10
 # define ENEMY_EFFECT_COLOR 0xFF0000
+# define ENEMY_ANIMATION_DELAY 5
 
 typedef struct s_enemy		t_enemy;
 typedef struct s_enemy_particle t_enemy_particle;
@@ -69,5 +70,6 @@ void	damage_enemy(t_enemy *enemy, double damage, t_main *g);
 void	draw_enemy_effect(t_enemy *enemy, t_player *player, t_window *win);
 void	enemy_attack(t_enemy *enemy, t_main *g);
 void	animate_enemy(t_enemy *enemy, t_main *g);
+void animate_enemy_effect(t_enemy *enemy, t_main *g);
 
 #endif

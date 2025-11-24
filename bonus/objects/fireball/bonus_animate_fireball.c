@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animate_fireball.c                                 :+:      :+:    :+:   */
+/*   bonus_animate_fireball.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:14:46 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 06:10:46 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 07:32:05 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal)
 	}
 }
 
-static void animate_particle_y(t_fire_particle *particle)
+void animate_particle_y(t_fire_particle *particle)
 {
 	if (particle->active)
 	{
@@ -106,26 +106,3 @@ static void animate_particle_y(t_fire_particle *particle)
 	}
 }
 
-void	animate_particles(t_main *g)
-{
-	static long long time_log = 0;
-	long long curr_time;
-	t_obj_node *obj;
-	t_fire_particle *particle;
-
-	curr_time = current_time_ms();
-	if (curr_time - time_log > 50)
-	{
-		obj = g->objects.all;
-		while (obj)
-		{
-			if (obj->type == PARTICLE)
-			{
-				particle = obj->object;
-				animate_particle_y(particle);
-			}
-			obj = obj->next;
-		}
-		time_log = curr_time;
-	}
-}

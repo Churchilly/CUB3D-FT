@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 06:05:45 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 08:13:48 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	reset(t_main *g)
 {
+	printf("fuck1\n");
 	clear_section(DYNAMIC);
+	printf("fuck2\n");
 	g->map.player.pos.x = -1;
 	g->map.player.pos.y = -1;
 	g->map.player.mana = MAX_MANA;
@@ -37,8 +39,8 @@ void	new_game(t_main *g, char *map_file)
 		g->state = MENU_ERROR;
 		return ;
 	}
-	else
-		init_minimap(g);
+	init_minimap(g);
+	printf("fuck3\n");
 	create_objects_dynamic(g);
 	g->state = GAME;
 	g->key_list.f3.key_switch = true;

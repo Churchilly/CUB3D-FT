@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_orb_create.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:28:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:28:26 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 07:55:53 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void create_orbs(t_main *g)
 {
-	int orb_count = 72; // gather this from g->player.inventory.orb
+	int orb_count;
 	t_orb *orb;
 	
+	orb_count = g->map.player.inventory.orb;
 	while (orb_count--)
 	{
 		orb = alloc(sizeof(t_orb), DYNAMIC);

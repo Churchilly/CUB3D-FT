@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 06:00:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 07:32:10 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void	animate_fireball_sprite(t_main *g);
 void	animate_fireball_particle_sprite(t_main *g);
 
 void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal);
-void	animate_particles(t_main *g);
+void animate_particle_y(t_fire_particle *particle);
 
 #endif

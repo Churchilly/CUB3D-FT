@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_sprites.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:12:10 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 05:11:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 07:33:17 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

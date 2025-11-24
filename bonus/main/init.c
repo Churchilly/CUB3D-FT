@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:29:47 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:11:23 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	__init__(t_main *game)
 	_init_keys(game);
 
 	// Initialize game statistics (total run across all maps)
+	game->map.player.inventory.orb = 8;
 	game->record.play_time = 0;
 	game->record.kill_count = 0;
 	game->record.fireballs_cast = 0;
