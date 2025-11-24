@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_objects.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:04:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 11:22:49 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,23 @@
 static void animate_orbs(t_orb *orb, t_main *g)
 {
 	static int curr_orb = 0;
-	static int gap;
+	static int gap = 0;
+	static int last_orb_count = 0;
 	int start_deg;
 
-	if (curr_orb == 0)
+	if (g->map.player.inventory.orb <= 0)
+		return ;
+	if (last_orb_count != g->map.player.inventory.orb)
+	{
+		curr_orb = 0;
 		gap = 360 / g->map.player.inventory.orb;
+		last_orb_count = g->map.player.inventory.orb;
+	}
 	start_deg = animate_orb_rotation();
 	orb->position = orb_position(&g->map.player, start_deg, curr_orb, gap);
 	orb_damage(g, orb);
 	curr_orb++;
-	if (curr_orb == g->map.player.inventory.orb)
+	if (curr_orb >= g->map.player.inventory.orb)
 		curr_orb = 0;
 }
 

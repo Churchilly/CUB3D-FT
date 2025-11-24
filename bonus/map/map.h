@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 02:38:06 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 14:42:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ struct s_map
 };
 
 void	cub_map(t_map *map);
+char	*reader(int fd);
+char	*read_file(char	*map_file);
 
 int		load_map(char *map_location, t_main *game);
 char	*read_file(char *map_file);

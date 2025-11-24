@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 09:38:53 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 11:23:47 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void draw_image(t_window *win, t_cub3_image *img, int x, int y);
 void draw_image_scaled(t_window *win, t_cub3_image *img, int x, int y, double scale);
 void draw_image_no_alpha(t_window *win, t_cub3_image *img, int x, int y);
 void draw_image_no_alpha_scaled(t_window *win, t_cub3_image *img, int x, int y, double scale);
-void draw_image_rotated(t_window *win, t_cub3_image *img, int x, int y, double angle_deg); // claude
 void draw_button(t_window *win, t_cub3_image *img, int x, int y);
 void draw_button_hover(t_window *win, t_cub3_image *img, int x, int y);
 void draw_column(t_draw_pkg *pkg, int x, t_window *win);
