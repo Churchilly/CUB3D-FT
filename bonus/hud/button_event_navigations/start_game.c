@@ -54,10 +54,17 @@ static void	reset(t_main *g)
 {
 	reset_static_objects(g);
 	clear_section(DYNAMIC);
+	g->objects.o_dynamic = NULL;
 	g->map.player.pos.x = -1;
 	g->map.player.pos.y = -1;
 	g->map.player.mana = MAX_MANA;
 	g->map.player.health = MAX_HEALTH;
+	g->map.player.inventory.orb = 8;
+	g->map.player.inventory.currency = 0;
+	g->map.player.inventory.adrenaline_potions = 0;
+	g->map.player.inventory.damage_increase = 0;
+	g->map.player.inventory.mana_increase = 0;
+	g->map.player.inventory.cooldown_decreaser = 0;
 	g->map.next_map = NULL;
 	g->map.color_c = -1;
 	g->map.texture_ea.img = NULL;

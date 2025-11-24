@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:41:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 02:23:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 14:41:28 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <stdio.h>   // Added: for printf function
 #include <string.h>  // Added: for strlen and strcmp functions
 #include "../../main/main.h"
+#include <errno.h>
 
-
-static char	*reader(int fd)
+char	*reader(int fd)
 {
 	char	*raw_map;
 	char	*tmp;
@@ -30,6 +30,8 @@ static char	*reader(int fd)
 	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, read_buffer, sizeof(read_buffer) -1);
+		if (errno == EINTR)
+			continue ;
 		if (bytes_read == -1)
 			return (NULL);
 		read_buffer[bytes_read] = '\0';

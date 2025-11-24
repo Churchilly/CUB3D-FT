@@ -5,8 +5,8 @@ FONT_SIZE = 32
 SPACING = 0
 DRAW_COLOR = (0, 0, 0)
 
-CHARS_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXSYZ"
-CHARS_LOWER = "abcdefghijklmnopqrstuvwxsyz"
+CHARS_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+CHARS_LOWER = "abcdefghijklmnopqrstuvwxyz"
 CHARS_NUMBER = "0123456789:;<=>?"
 CHARS_SYMBOL = " !\"#$%&'()*+,-./"
 # dont add or remove characters, they are accorded to ASCII
