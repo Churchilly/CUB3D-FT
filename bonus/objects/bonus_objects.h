@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:13:10 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:29:50 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:29:47 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,15 @@ struct s_object_node
 
 struct s_object_list
 {
-	t_obj_node *all;
+	t_obj_node *o_static;
+	t_obj_node *o_dynamic;
 	t_obj_node *to_render;
 };
 
 
 void	create_objects_static(t_main *g);
 void	create_objects_dynamic(t_main *g);
-void	add_object(t_obj_list *list, int type, void *obj);
+void	add_object(t_obj_list *list, int type, void *obj, t_section sec);
 void	add_to_render_queue(t_obj_list *list, t_obj_node *object, t_player *player);
 void	clear_render_queue(t_obj_list *list);
 void	create_render_queue(t_main *g);

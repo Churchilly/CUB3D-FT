@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects_queue.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 00:14:07 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 10:35:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,16 @@ static void	update_object_segment(t_segment *obj_seg, t_vector obj_pos, t_player
 				obj_pos.y - delta.y * (width / 2)};
 }
 
+
 void	create_render_queue(t_main *g)
 {
 	t_obj_node	*curr;
 
 	clear_render_queue(&g->objects);
-	curr = g->objects.all;
+	curr = g->objects.o_static;
 	while (curr)
 	{
-		if (curr->type == DOOR)
-		{
-			if (is_segment_in_fov(&g->map.player, &((t_door *)curr->object)->barrier))
-				add_to_render_queue(&g->objects, curr, &g->map.player); // i calculate distance in here check inside
-		}
-		else if (curr->type == FIREBALL && ((t_fireball *)curr->object)->state != IDLE)
+		if (curr->type == FIREBALL && ((t_fireball *)curr->object)->state != IDLE)
 		{
 			update_object_segment(&((t_fireball *)curr->object)->segment, ((t_fireball *)curr->object)->position, &g->map.player, FIREBALL_WIDTH);
 			if (is_segment_in_fov(&g->map.player, &((t_fireball *)curr->object)->segment))
@@ -114,6 +110,16 @@ void	create_render_queue(t_main *g)
 				if (is_segment_in_fov(&g->map.player, &((t_fire_particle *)curr->object)->segment))
 					add_to_render_queue(&g->objects, curr, &g->map.player);
 			}
+		}
+		curr = curr->next;
+	}
+	curr = g->objects.o_dynamic;
+	while (curr)
+	{
+		if (curr->type == DOOR)
+		{
+			if (is_segment_in_fov(&g->map.player, &((t_door *)curr->object)->barrier))
+				add_to_render_queue(&g->objects, curr, &g->map.player);
 		}
 		else if (curr->type == ORB)
 		{

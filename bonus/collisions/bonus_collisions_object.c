@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:40:58 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 09:47:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:31:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	find_object_collision(t_cast_data *d, t_main *g)
 	double		min_dist;
 	double		dist;
 
-	curr = g->objects.all;
+	curr = g->objects.o_dynamic;
 	min_dist = 1000.0;
 	while (curr)
 	{

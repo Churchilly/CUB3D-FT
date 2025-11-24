@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:24:14 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:24:59 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:25:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_fireballs(t_main *g)
 		fireball->position.x = -1.0;
 		fireball->position.y = -1.0;
 		fireball->state = F_IDLE;
-		add_object(&g->objects, FIREBALL, fireball);
+		add_object(&g->objects, FIREBALL, fireball, STATIC);
 	}
 }
 
@@ -41,6 +41,6 @@ void	create_particles(t_main *g)
 		particle->active = false;
 		particle->position.x = -1.0;
 		particle->position.y = -1.0;
-		add_object(&g->objects, PARTICLE, particle);
+		add_object(&g->objects, PARTICLE, particle, STATIC);
 	}
 }

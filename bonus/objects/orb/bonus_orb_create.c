@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_orb_create.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:28:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 07:55:53 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 10:25:44 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void create_orbs(t_main *g)
 		orb = alloc(sizeof(t_orb), DYNAMIC);
 		orb->position = (t_vector){-1, -1};
 		orb->last_hit_time = 0;
-		add_object(&g->objects, ORB, orb);
+		add_object(&g->objects, ORB, orb, DYNAMIC);
 	}
 }

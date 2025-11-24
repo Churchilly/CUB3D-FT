@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector_clear.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:24 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 08:23:55 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 10:37:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ static void	clear_textures(void)
 	i = -1;
 	while (++i < 5)
 	{
-		printf("here\n");
+		printf("CLEARING TEXTURE %p\n", *img);
 		img = (void **)(section)[i];
 		if (*img)
 			mlx_destroy_image(mlx, *img);
 		*img = NULL;
+		printf("CLEAR COMPLETE TEXTURE %d\n", i);
 	}
 }
 
@@ -86,11 +87,8 @@ void	clear_section(t_section section_name)
 		clear(STATIC);
 	else if (section_name == DYNAMIC)
 	{
-		printf("SSHIT\n");
-		//clear(DYNAMIC);
-		printf("SSHIT2\n");
+		clear(DYNAMIC);
 		clear_textures();
-		printf("SSHIT3\n");
 	}
 	else if (section_name == TEMPORARY)
 		clear(TEMPORARY);

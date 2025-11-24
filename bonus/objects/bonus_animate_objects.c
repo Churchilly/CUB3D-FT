@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_objects.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 07:58:09 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 10:30:42 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	animate_object_clusters(t_main *g)
 	curr_time = current_time_ms();
 	if (curr_time - time_log > 50)
 	{
-		obj = g->objects.all;
+		obj = g->objects.o_static;
 		while (obj)
 		{
 			if (obj->type == ENEMY)
@@ -55,15 +55,20 @@ void	animate_objects(t_main *g)
 	t_obj_node	*curr;
 	t_door		*door;
 
-	curr = g->objects.all;
+	curr = g->objects.o_static;
+	while (curr)
+	{
+		if (curr->type == ENEMY)
+			animate_enemy(curr->object, g);
+		else if (curr->type == FIREBALL)
+			animate_fireball(curr->object, g, &g->gallery);
+		curr = curr->next;
+	}
+	curr = g->objects.o_dynamic;
 	while (curr)
 	{
 		if (curr->type == DOOR)
 			animate_door(curr->object);
-		else if (curr->type == ENEMY)
-			animate_enemy(curr->object, g);
-		else if (curr->type == FIREBALL)
-			animate_fireball(curr->object, g, &g->gallery);
 		else if (curr->type == ORB && g->map.player.inventory.orb > 0)
 			animate_orbs(curr->object, g);
 		curr = curr->next;

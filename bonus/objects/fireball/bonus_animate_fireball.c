@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_fireball.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:14:46 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 07:32:05 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 10:33:50 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool fireball_collision(t_vector *f_pos, t_main *g)
 
 	if (g->map.matrix[(int)f_pos->y][(int)f_pos->x] == '1')
 		return (true);
-	obj = g->objects.all;
+	obj = g->objects.o_static;
 	while (obj)
 	{
 		if (obj->type == ENEMY)
@@ -49,7 +49,7 @@ static void add_particle(t_main *g, t_fireball *f)
 	curr_time = current_time_ms();
 	if (curr_time - time_log > 400)
 	{
-		obj = g->objects.all;
+		obj = g->objects.o_static;
 		while (obj)
 		{
 			if (obj->type == PARTICLE)

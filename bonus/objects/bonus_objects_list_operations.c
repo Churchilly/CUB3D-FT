@@ -3,27 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects_list_operations.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:26:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 05:21:18 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 10:40:01 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
 #include <stddef.h>
 
-void	add_object(t_obj_list *list, int type, void *obj)
+void	add_object(t_obj_list *list, int type, void *obj, t_section sec)
 {
 	t_obj_node *new;
 
-	new = alloc(sizeof(t_obj_node), STATIC);
+	new = alloc(sizeof(t_obj_node), sec);
 	new->type = type;
 	new->object = obj;
-	new->next = NULL;
 	new->next_render = NULL;
-	new->next = list->all;
-	list->all = new;
+	if (sec == STATIC)
+	{
+		new->next = list->o_static;
+		list->o_static = new;
+	}
+	else
+	{
+		new->next = list->o_dynamic;
+		list->o_dynamic = new;
+	}
 }
 
 static double	calculate_distance_object(t_player *player, t_obj_node *obj)

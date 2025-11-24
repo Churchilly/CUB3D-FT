@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_spellbook_cast.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:46:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/15 23:24:50 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 10:35:41 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	cast_fireball(t_main *g)
 	// 	return;
 	// last_cooldown = curr_time;
 	
-	objects = g->objects.all;
+	objects = g->objects.o_static;
 	while (objects)
 	{
 		if (objects->type == FIREBALL)

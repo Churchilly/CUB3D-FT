@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:16:37 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 05:25:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:34:06 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void damage_nearby_enemies(t_main *g, t_vector *f_pos)
 	t_obj_node	*obj;
 	t_enemy		*enemy;
 
-	obj = g->objects.all;
+	obj = g->objects.o_static;
 	while (obj)
 	{
 		if (obj->type == ENEMY)

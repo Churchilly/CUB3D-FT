@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_doors.c                                      :+:      :+:    :+:   */
+/*   bonus_door.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 03:53:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:33:22 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_door	*find_interactable_door(t_main *g)
 	init_data(&d, &g->map.player);
 	closest_door = NULL;
 	min_dist = DOOR_INTERACT_DISTANCE;
-	curr = g->objects.all;
+	curr = g->objects.o_dynamic;
 	while (curr)
 	{
 		if (curr->type == DOOR)

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:23:30 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:23:59 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:25:22 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void	create_enemies(t_main *g)
 		enemy->position.y = -1.0;
 		enemy->red_alpha = 0.0;
 		enemy->attack_time_log = 0;
-		add_object(&g->objects, ENEMY, enemy);
+		add_object(&g->objects, ENEMY, enemy, STATIC);
 	}
 }

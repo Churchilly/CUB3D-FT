@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:22:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:22:34 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:25:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	create_barriers(t_main *g)
 	{
 		door = alloc(sizeof(t_door), DYNAMIC);
 		insert_barrier(door, door_wall->map_pos, door_wall->axis);
-		add_object(&g->objects, DOOR, door);
+		add_object(&g->objects, DOOR, door, DYNAMIC);
 		door_wall = find_door_wall(-1, ++i, NULL);
 	}
 }

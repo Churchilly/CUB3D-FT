@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_orb.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 23:10:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 08:12:02 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 10:34:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	orb_damage(t_main *g, t_orb *orb)
 	curr_time = current_time_ms();
 	if (curr_time - orb->last_hit_time < 150)
 		return ;
-	obj = g->objects.all;
+	obj = g->objects.o_static;
 	while (obj)
 	{
 		if (obj->type == ENEMY && ((t_enemy *)obj->object)->state == ALIVE)

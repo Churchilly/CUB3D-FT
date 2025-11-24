@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 01:03:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:56:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:25:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static void	collector_add(void *new, t_section section_name)
 	t_gc_node	*new_gc_node;
 	t_gc_node	**section;
 
-	if (!new)
-		return ;
 	new_gc_node = (t_gc_node *)malloc(sizeof(t_gc_node));
 	if (!new_gc_node)
 	{
