@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:50:18 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 06:05:45 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	new_game(t_main *g, char *map_file)
 	}
 	else
 		init_minimap(g);
-	create_barriers(g);
+	create_objects_dynamic(g);
 	g->state = GAME;
 	g->key_list.f3.key_switch = true;
 }

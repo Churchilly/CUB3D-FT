@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   doors.h                                            :+:      :+:    :+:   */
+/*   bonus_door.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 04:39:48 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 04:02:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOORS_H
-# define DOORS_H
+#ifndef BONUS_DOORS_H
+# define BONUS_DOORS_H
 
-# include "../main/vector.h"
+// Forward declarations
+typedef struct s_main		t_main;
+typedef struct s_door_wall	t_door_wall;
 
+# include "../../main/vector.h"
 
 # define DOOR_WIDTH 0.4
 
@@ -54,22 +57,9 @@ struct s_door
 	double		alpha;
 };
 
-typedef struct s_main	t_main;
 
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);
 t_door		*find_interactable_door(t_main *g);
 void		create_barriers(t_main *g);
-/*
-door on map
-111111
-100001
-111611
-1000N1
-111111
-
-on render
-
-
-*/
 
 #endif

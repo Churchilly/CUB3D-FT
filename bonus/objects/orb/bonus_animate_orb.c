@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_orbs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 23:10:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 00:22:17 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 03:34:37 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
+#include "../../main/main.h"
 #include <math.h>
 
 static t_vector orb_position(t_player *player, int start_deg, int curr_orb, int gap)
@@ -98,7 +98,7 @@ static void place_orbs(t_main *g, int start_deg)
     }
 }
 
-void animate_orbs(t_main *g)
+void animate_orb(t_orb *orb, t_main *g)
 {
     int start_deg;
 

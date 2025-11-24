@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 00:24:51 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 03:53:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,9 @@
 # include "../cub3_images/cub3_images.h"
 # include "../cub3_fonts/cub3_fonts.h"
 
-# include "../objects/bonus_fireball.h"
-# include "../objects/bonus_enemy.h"
-# include "../objects/bonus_objects.h"
-# include "../objects/bonus_orbs.h"
-
 # include "../spellbook/bonus_spellbook.h"
 
-# include "../objects/doors.h"
+# include "../objects/bonus_objects.h"
 
 # include <stdbool.h>
 

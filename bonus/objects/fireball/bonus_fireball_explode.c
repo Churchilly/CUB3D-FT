@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball_explode.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:16:37 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/20 01:01:12 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 05:25:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
-#include "bonus_objects.h"
+#include "../../main/main.h"
 
 static void damage_nearby_enemies(t_main *g, t_vector *f_pos)
 {
-	t_obj_node *obj;
-	t_enemy *enemy;
+	t_obj_node	*obj;
+	t_enemy		*enemy;
 
 	obj = g->objects.all;
 	while (obj)
@@ -37,7 +36,7 @@ static void damage_nearby_enemies(t_main *g, t_vector *f_pos)
 
 void fireball_explode(t_main *g, t_vector *f_pos)
 {
-	t_player *player;
+	t_player	*player;
 
 	player = &g->map.player;
 	if (player->pos.x >= f_pos->x - 0.7 && player->pos.x <= f_pos->x + 0.7

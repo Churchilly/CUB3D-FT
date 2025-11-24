@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   doors.c                                            :+:      :+:    :+:   */
+/*   bonus_doors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 21:24:00 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 03:53:02 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _GNU_SOURCE // delete it later its just for me .p
-#include "../main/main.h"
-#include "../collisions/bonus_collisions.h"
+#include "../../main/main.h"
 #include <stddef.h>
 #include <math.h>
 

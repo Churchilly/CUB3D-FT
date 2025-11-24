@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 02:27:25 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 05:56:56 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BONUS_ENEMY_H
 # define BONUS_ENEMY_H
 
-# include "../main/vector.h"
+# include "../../main/vector.h"
 
 # define NUM_OF_ENEMIES 5
 # define ENEMY_SPAWN_FREEZE 300
@@ -65,9 +65,9 @@ typedef struct s_map	t_map;
 
 // Function declarations
 void	enemy_walk(t_enemy *enemy, t_main *g);
-void damage_enemy(t_enemy *enemy, double damage, t_main *g);
-void animate_enemy_effect(t_main *g);
-void draw_enemy_effect(t_enemy *enemy, t_player *player, t_window *win);
-void enemy_attack(t_enemy *enemy, t_main *g);
+void	damage_enemy(t_enemy *enemy, double damage, t_main *g);
+void	draw_enemy_effect(t_enemy *enemy, t_player *player, t_window *win);
+void	enemy_attack(t_enemy *enemy, t_main *g);
+void	animate_enemy(t_enemy *enemy, t_main *g);
 
 #endif

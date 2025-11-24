@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:13:10 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 00:51:12 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 05:29:50 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECTS
-# define OBJECTS
+#ifndef BONUS_OBJECTS_H
+# define BONUS_OBJECTS_H
 
 // Forward declarations
 typedef struct s_main			t_main;
 typedef struct s_player			t_player;
-typedef struct s_cub3_gallery	t_cub3_gallery;
-typedef struct s_fireball		t_fireball;
 typedef struct s_vector			t_vector;
+
+# include "fireball/bonus_fireball.h"
+# include "door/bonus_door.h"
+# include "enemy/bonus_enemy.h"
+# include "orb/bonus_orb.h"
 
 typedef struct s_object_node	t_obj_node;
 typedef struct s_object_list	t_obj_list;
@@ -54,20 +57,13 @@ struct s_object_list
 };
 
 
-void	cub_objects(t_main *g);
+void	create_objects_static(t_main *g);
+void	create_objects_dynamic(t_main *g);
 void	add_object(t_obj_list *list, int type, void *obj);
 void	add_to_render_queue(t_obj_list *list, t_obj_node *object, t_player *player);
 void	clear_render_queue(t_obj_list *list);
 void	create_render_queue(t_main *g);
 // in process
 void	animate_objects(t_main *g);
-
-// sprite animations
-void animate_fireball_sprite(t_main *g);
-void animate_fireball_particle_sprite(t_main *g);
-
-// fireball and particle animations
-void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal);
-void fireball_explode(t_main *g, t_vector *f_pos);
 
 #endif
