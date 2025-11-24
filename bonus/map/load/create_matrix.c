@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_matrix.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:23:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:55:43 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include "../../main/main.h"
 #include <math.h>
+#include <ctype.h>
 
 int	is_valid_map_char(char c)
 {
@@ -23,7 +24,7 @@ int	is_valid_map_char(char c)
 		|| c == 'd' || c == 'D');
 }
 
-static int get_map_height(char *raw_map, t_main *g)
+static int get_map_height(char *raw_map)
 {
 	int	count;
 	int	ret;
@@ -102,7 +103,7 @@ int	create_matrix(char *raw_map, t_main *g)
 	int	player;
 	int	i;
 
-	matrix_height = get_map_height(raw_map, g);
+	matrix_height = get_map_height(raw_map);
 	if (matrix_height == -1)
 		return (-1);
 	g->map.matrix = alloc(sizeof(char *) * (matrix_height + 1), DYNAMIC);

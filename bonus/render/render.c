@@ -18,8 +18,8 @@
 void	render_pause_menu(t_main *g)
 {
 	// change the fucking images
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
 	place_button(g, &g->main_menu.btn_continue);
 	place_button(g, &g->main_menu.btn_campaign);
 	place_button(g, &g->main_menu.btn_map_select);
@@ -29,8 +29,8 @@ void	render_pause_menu(t_main *g)
 
 void	render_main_menu(t_main *g)
 {
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
 	place_button(g, &g->main_menu.btn_campaign);
 	place_button(g, &g->main_menu.btn_map_select);
 	place_button(g, &g->main_menu.btn_exit);
@@ -47,9 +47,9 @@ void	render_game(t_main *g)
 	draw_heath_bar(g);
 	render_spellbook(g);
 	render_frames(g);
-	draw_image(&g->window, &g->gallery.cross,
-		WIN_WIDTH / 2 - g->gallery.cross.width / 2,
-		WIN_HEIGHT / 2 - g->gallery.cross.height / 2);
+	draw_image(&g->window, &g->gallery.misc.cross,
+		WIN_WIDTH / 2 - g->gallery.misc.cross.width / 2,
+		WIN_HEIGHT / 2 - g->gallery.misc.cross.height / 2);
 
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }
@@ -61,8 +61,8 @@ void	render_select_map(t_main *g)
 	int				idx;
 
 	/* draw background */
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
 	
 	page = NULL;
 	if (g->map_select.maps && g->map_select.curr_page >= 0)
@@ -86,8 +86,8 @@ void	render_select_map(t_main *g)
 
 void	render_shop(t_main *g)
 {
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
 	place_text_button(g, &g->shop_menu.items[0], "Adrenaline Potion - 50g");
 	place_text_button(g, &g->shop_menu.items[1], "Mana Increase - 100g");
 	place_text_button(g, &g->shop_menu.items[2], "Health Increase - 100g");
@@ -102,8 +102,8 @@ void	render_error_menu(t_main *g)
 {
 	static double scale_dir = 0.0075;
 
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
 	draw_text("Failed to load map", g->error_menu.error_text);
 	g->error_menu.to_continue.scale += scale_dir;
 	g->error_menu.to_continue.win_x = WIN_WIDTH / 2 - (g->error_menu.to_continue.font->font_size * g->error_menu.to_continue.scale * (g->error_menu.to_continue.text_len + 2)) / 3;
@@ -122,8 +122,8 @@ void	render_summary_menu(t_main *g)
 	int minutes;
 	int seconds;
 
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, 50);
-	draw_image(&g->window, &g->gallery.mmenu_bg, 0, -100);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
+	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
 
 	// Format and draw play time (milliseconds to MM:SS)
 	minutes = (g->record.play_time / 1000) / 60;

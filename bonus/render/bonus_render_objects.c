@@ -126,9 +126,9 @@ static void draw_fireball_column(t_main *g, int x, t_ray *ray, t_fireball *fireb
     if (pkg.end >= WIN_HEIGHT)
         pkg.end = WIN_HEIGHT - 1;
     hit_position = get_hit_position(ray, &fireball->segment);
-    pkg.col = get_image_column(hit_position, &g->gallery.fireball);
+    pkg.col = get_image_column(hit_position, &g->gallery.fireball.fireball);
 	pkg.height = height;
-	pkg.image = &g->gallery.fireball;
+	pkg.image = &g->gallery.fireball.fireball;
 	draw_column(&pkg, x, &g->window);
 }
 
@@ -146,7 +146,7 @@ static void draw_particle_column(t_main *g, int x, t_ray *ray, t_fire_particle *
     if (pkg.end >= WIN_HEIGHT)
         pkg.end = WIN_HEIGHT - 1;
     hit_position = get_hit_position(ray, &particle->segment);
-	pkg.col = get_image_column(hit_position, &g->gallery.fireball_particle_1);
+	pkg.col = get_image_column(hit_position, &g->gallery.fireball.particle_1);
 	pkg.height = height;
 	pkg.image = &particle->image;
 	draw_column(&pkg, x, &g->window);
@@ -155,28 +155,28 @@ static void draw_particle_column(t_main *g, int x, t_ray *ray, t_fire_particle *
 static t_im	*get_enemy_image(t_main *g, double distance)
 {
 	if (distance < 0.2)
-		return (&(g->gallery.enemy12));
+		return (&(g->gallery.enemy.enemy12));
 	if (distance < 0.4)
-		return (&(g->gallery.enemy11));
+		return (&(g->gallery.enemy.enemy11));
 	if (distance < 0.6)
-		return (&(g->gallery.enemy10));
+		return (&(g->gallery.enemy.enemy10));
 	if (distance < 0.8)
-		return (&(g->gallery.enemy9));
+		return (&(g->gallery.enemy.enemy9));
 	if (distance < 1.0)
-		return (&(g->gallery.enemy8));
+		return (&(g->gallery.enemy.enemy8));
 	if (distance < 1.2)
-		return (&(g->gallery.enemy7));
+		return (&(g->gallery.enemy.enemy7));
 	if (distance < 1.4)
-		return (&(g->gallery.enemy6));
+		return (&(g->gallery.enemy.enemy6));
 	if (distance < 1.6)
-		return (&(g->gallery.enemy5));
+		return (&(g->gallery.enemy.enemy5));
 	if (distance < 1.8)
-		return (&(g->gallery.enemy4));
+		return (&(g->gallery.enemy.enemy4));
 	if (distance < 2.0)
-		return (&(g->gallery.enemy3));
+		return (&(g->gallery.enemy.enemy3));
 	if (distance < 2.2)
-		return (&(g->gallery.enemy2));
-	return (&(g->gallery.enemy1));
+		return (&(g->gallery.enemy.enemy2));
+	return (&(g->gallery.enemy.enemy1));
 }
 
 static void draw_enemy_column(t_main *g, int x, t_ray *ray, t_enemy *enemy)
@@ -340,9 +340,9 @@ static void draw_orb_column(t_main *g, int x, t_ray *ray, t_orb *orb)
     if (pkg.end >= WIN_HEIGHT)
         pkg.end = WIN_HEIGHT - 1;
     hit_position = get_hit_position(ray, &orb->segment);
-    pkg.col = get_image_column(hit_position, &g->gallery.pokeball);
+    pkg.col = get_image_column(hit_position, &g->gallery.misc.pokeball);
 	pkg.height = height;
-	pkg.image = &g->gallery.pokeball;
+	pkg.image = &g->gallery.misc.pokeball;
 	draw_column(&pkg, x, &g->window);
 }
 

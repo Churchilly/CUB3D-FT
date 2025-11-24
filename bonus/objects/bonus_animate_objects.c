@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:30:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:56:50 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void animate_orbs(t_orb *orb, t_main *g)
 	static int curr_orb = 0;
 	static int gap;
 	int start_deg;
-	
+
 	if (curr_orb == 0)
 		gap = 360 / g->map.player.inventory.orb;
 	start_deg = animate_orb_rotation();
-	curr_orb++;
-	orb->position = orb_position(&g->map.player, start_deg + gap * curr_orb, orb, gap);
+	orb->position = orb_position(&g->map.player, start_deg, curr_orb, gap);
 	orb_damage(g, orb);
+	curr_orb++;
 	if (curr_orb == g->map.player.inventory.orb)
 		curr_orb = 0;
 }
@@ -41,7 +41,7 @@ static void	animate_object_clusters(t_main *g)
 		while (obj)
 		{
 			if (obj->type == ENEMY)
-				animate_enemy_effect((t_enemy *)obj->object, g);
+				animate_enemy_effect((t_enemy *)obj->object);
 			else if (obj->type == PARTICLE)
 				animate_particle_y((t_fire_particle *)obj->object);
 			obj = obj->next;
@@ -53,7 +53,6 @@ static void	animate_object_clusters(t_main *g)
 void	animate_objects(t_main *g)
 {
 	t_obj_node	*curr;
-	t_door		*door;
 
 	curr = g->objects.o_static;
 	while (curr)

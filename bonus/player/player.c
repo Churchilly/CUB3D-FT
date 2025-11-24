@@ -80,13 +80,12 @@ void	change_position(t_main *g)
 	raycasting(g);
 }
 
-void	change_direction(t_main *g, int key)
+void	change_direction(t_main *g)
 {
 	t_player	*player;
 	double		rotation_step;
 
 	player = &g->map.player;
-	(void)key;
 	rotation_step = (FOV * M_PI / 180.0) * SENSITIVITY * 0.05;
 	// this means one package goes dont touch this !!
 	if (g->key_list.arrow_r)

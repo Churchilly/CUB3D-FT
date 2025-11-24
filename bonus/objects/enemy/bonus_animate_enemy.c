@@ -6,13 +6,13 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 03:01:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 07:17:08 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 10:02:23 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 
-void animate_enemy_effect(t_enemy *enemy, t_main *g)
+void animate_enemy_effect(t_enemy *enemy)
 {
 	enemy->red_alpha = enemy->red_alpha - 0.1;
 	if (enemy->red_alpha < 0)

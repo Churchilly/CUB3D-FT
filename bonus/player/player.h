@@ -46,7 +46,7 @@ struct s_player
 	t_inventory inventory;
 };
 
-void	change_direction(t_main *g, int key);
+void	change_direction(t_main *g);
 void	change_position(t_main *g);
 void	change_direction_advanced(t_main *g, int direction, int weight);
 

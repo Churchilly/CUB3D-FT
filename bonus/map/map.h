@@ -63,8 +63,8 @@ void	cub_map(t_map *map);
 
 int		load_map(char *map_location, t_main *game);
 char	*read_file(char *map_file);
-int		load_texture(char *raw_map, t_texture *target, char *identifier, t_main *game);
-int		load_color(char *raw_map, int *target_color, char *identifier, t_main *game);
+int		load_texture(char *raw_map, t_texture *target, t_main *game);
+int		load_color(char *raw_map, int *target_color);
 void	load_next_map_info(char *raw_map, t_main *game);
 int		load_matrix(char *raw_map, t_main *game);
 int		create_matrix(char *raw_map, t_main *game);

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:36:19 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:58:25 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ struct s_enemy_particle
 typedef struct s_map	t_map;
 
 // Function declarations
+void	spawn_enemy(t_enemy *enemy, t_map *map);
 void	enemy_walk(t_enemy *enemy, t_main *g);
 void	damage_enemy(t_enemy *enemy, double damage, t_main *g);
 void	draw_enemy_effect(t_enemy *enemy, t_player *player, t_window *win);
 void	enemy_attack(t_enemy *enemy, t_main *g);
 void	animate_enemy(t_enemy *enemy, t_main *g);
-void	animate_enemy_effect(t_enemy *enemy, t_main *g);
+void animate_enemy_effect(t_enemy *enemy);
 void	create_enemies(t_main *g);
 
 #endif

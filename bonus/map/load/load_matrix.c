@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:28:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:58:57 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	**copy_matrix(char **matrix, int height)
 	return (copy);
 }
 
-static int	check_map_enclosed(char **matrix, t_main *g)
+static int	check_map_enclosed(char **matrix)
 {
 	int	x;
 	int	y;
@@ -86,7 +86,7 @@ int	load_matrix(char *raw_map, t_main *g)
 	if (matrix_height == -1)
 		return (1);
 	copy = copy_matrix(g->map.matrix, matrix_height);
-	if (check_map_enclosed(copy, g))
+	if (check_map_enclosed(copy))
 		return (1);
 	return (0);
 }

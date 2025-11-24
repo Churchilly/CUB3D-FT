@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 00:23:30 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 09:53:45 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ struct s_map_select
 
 struct s_shop
 {
-	t_button		*selected;
+	t_text_button		*selected;
 	t_cub3_image	bg_img;
 	t_text_button	items[6];
 	t_text_button	to_continue;
@@ -156,8 +156,13 @@ void	next_shop_item(t_main *g);
 void	prev_shop_item(t_main *g);
 void	activate_button_shop(t_main *g);
 
+// Player stats
 void	draw_mana_bar(t_main *g);
 void	draw_heath_bar(t_main *g);
+
+// Button event navigations
+void	new_game(t_main *g, char *map_file);
+void	next_map(t_main *g);
 
 #endif
 

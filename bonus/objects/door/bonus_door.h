@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_door.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 04:02:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:49:39 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ struct s_door
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);
 t_door		*find_interactable_door(t_main *g);
 void		create_barriers(t_main *g);
+void	animate_door(t_door *door);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:11:23 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 09:13:18 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	__init__(t_main *game)
 	create_objects_static(game);
 	cub_spellbook(&game->spellbook, game->window.mlx); // same as objects need reset
 	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05); // same as obj no need to reset
-	init_gallery_with_config(&(game->gallery), NULL);
+	init_gallery_with_config(&(game->gallery));
 	init_fonts(game);  // Initialize fonts BEFORE menus that use them
 	init_main_menu(game, &(game->main_menu));
 	init_map_select_menu(game, &(game->map_select));

@@ -73,7 +73,7 @@ void	fireball_explode(t_main *g, t_vector *f_pos);
 void	animate_fireball_sprite(t_main *g);
 void	animate_fireball_particle_sprite(t_main *g);
 
-void	animate_fireball(t_fireball *f, t_main *g, t_cub3_gallery *gal);
+void	animate_fireball(t_fireball *f, t_main *g);
 void animate_particle_y(t_fire_particle *particle);
 
 #endif

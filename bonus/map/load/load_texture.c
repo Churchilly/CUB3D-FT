@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 04:07:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:59:31 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <ctype.h>
 
 
-static char	*extract_texture_path(char *path_start, t_main *g)
+static char	*extract_texture_path(char *path_start)
 {
 	char	*path_end;
 	char	*path;
@@ -42,7 +42,7 @@ static char	*extract_texture_path(char *path_start, t_main *g)
 	return (path);
 }
 
-static int	check_file_extension(char *path, t_main *g)
+static int	check_file_extension(char *path)
 {
 	int		path_len;
 	int		fd;
@@ -73,16 +73,16 @@ static int	set_texture(t_texture *target, char *path, t_main *g)
 	return (0);
 }
 
-int	load_texture(char *raw_map, t_texture *target, char *identifier, t_main *g)
+int	load_texture(char *raw_map, t_texture *target, t_main *g)
 {
 	char	*path;
 
 	if (target->img)
 		return (1);
-	path = extract_texture_path(raw_map, g);
+	path = extract_texture_path(raw_map);
 	if (!path)
 		return (1);
-	if (check_file_extension(path, g))
+	if (check_file_extension(path))
 		return (1);
 	if (set_texture(target, path, g))
 		return (1);

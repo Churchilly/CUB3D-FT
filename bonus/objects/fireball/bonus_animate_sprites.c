@@ -16,11 +16,11 @@ void animate_fireball_sprite(t_main *g)
 {
 	static long long time_log = 0;
 	long long curr_time;
-	t_cub3_gallery *gal;
+	t_fireball_gal *gal;
 	t_im swap;
-	
+
 	curr_time = current_time_ms();
-	gal = &g->gallery;
+	gal = &g->gallery.fireball;
 	if (curr_time - time_log > 200)
 	{
 		swap = gal->fireball;
@@ -36,16 +36,17 @@ void animate_fireball_particle_sprite(t_main *g)
 {
 	static long long time_log = 0;
 	long long curr_time;
-	t_cub3_gallery *gal;
+	t_fireball_gal *gal;
 	t_im swap;
-	
+
 	curr_time = current_time_ms();
-	gal = &g->gallery;
+	gal = &g->gallery.fireball;
 	if (curr_time - time_log > 220)
 	{
-		swap = gal->fireball_particle_1;
-		gal->fireball_particle_1 = gal->fireball_particle_2;
-		gal->fireball_particle_2 = gal->fireball_particle_3;
-		gal->fireball_particle_3 = swap;
+		swap = gal->particle_1;
+		gal->particle_1 = gal->particle_2;
+		gal->particle_2 = gal->particle_3;
+		gal->particle_3 = swap;
+		time_log = curr_time;
 	}
 }

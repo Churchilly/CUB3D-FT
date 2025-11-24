@@ -6,15 +6,16 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:33:22 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:56:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
+#include "../../collisions/bonus_collisions.h"
 #include <stddef.h>
 #include <math.h>
-
 #include <stdio.h>
+
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new)
 {
 	static t_door_wall *door_walls = NULL;
