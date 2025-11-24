@@ -3,6 +3,11 @@
 
 
 ### BURAK
+- most updated todo for myself:
+- adrenaline potion
+- rendering all hud elements
+- maybe a frame for minimap
+- check enemy-fireball collisions and find out why is some exceptional enemies doesnt hit fireballs are flying
 - [OK] Strings to img -> draw_text
 - [OK] Enemy render
 - [ ] Enemy Damage on player
