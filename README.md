@@ -21,6 +21,8 @@
 - [ ] if have time to waste make minimap rotate
 
 ### YUSUF
+- shop background image
+- delay for summary menu
 - [OK] Map parse need to move when map selected
 - [OK] Map parse addition "NEXT" -> next map 
 - [OK] Sound effect on player step
