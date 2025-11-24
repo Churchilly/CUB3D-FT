@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:00 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 01:44:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 11:13:29 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,7 @@ void	list_clear(t_ray_list *list)
 	while (curr)
 	{
 		next = curr->next;
-		// free(curr->ray_pack); HERE1
 		curr->ray_pack = NULL;
-		// free(curr); HERE1
 		curr = next;
 	}
 	list->head = NULL;

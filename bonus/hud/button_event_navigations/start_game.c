@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:05:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 11:18:42 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	reset(t_main *g)
 {
 	reset_static_objects(g);
 	clear_section(DYNAMIC);
+	g->objects.o_dynamic = NULL;
 	g->map.player.pos.x = -1;
 	g->map.player.pos.y = -1;
 	g->map.player.mana = MAX_MANA;

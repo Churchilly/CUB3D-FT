@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   switch_menu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 23:12:39 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 05:46:24 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 11:23:19 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	switch_menu(t_main *g)
 {
-	if (g->state == MENU_PAUSE || g->state == MENU_MAIN)
+	if (g->state == MENU_PAUSE)
 	{
 		g->state = GAME;
 		mlx_mouse_hide(g->window.mlx, g->window.win);
