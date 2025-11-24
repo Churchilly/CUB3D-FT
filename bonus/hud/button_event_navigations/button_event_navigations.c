@@ -6,12 +6,11 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 03:32:58 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 03:29:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 08:07:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
-#include "../../events/events.h"
 
 void	next_button(t_main *g)
 {

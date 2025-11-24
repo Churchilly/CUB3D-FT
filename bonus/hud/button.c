@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:55:21 by root              #+#    #+#             */
-/*   Updated: 2025/11/22 05:39:48 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 08:05:38 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hud.h"
-#include "../events/events.h"
+#include "../main/main.h"
 
 void	*set_button(t_button *button, t_im *img, t_vector pos)
 {

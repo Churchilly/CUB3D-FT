@@ -6,11 +6,11 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 21:38:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 04:30:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 08:07:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../events/events.h"
+#include "../../main/main.h"
 
 void	next_map_select_item(t_main *g)
 {

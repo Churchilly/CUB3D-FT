@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 03:53:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 07:13:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,16 @@
 
 # include "../sound/sound.h"
 
+# include "../events/events.h"
+
 # define GAME_TIME 5
 
 #ifndef M_PI
 # define M_PI 3.14159265358979323846
 #endif
 
-typedef struct s_key_list	t_key_list;
 typedef struct s_main		t_main;
-typedef struct s_switch_key	t_switch_key;
 typedef struct s_record		t_record;
-
 typedef enum e_game_state	t_game_state;
 
 enum e_game_state
@@ -57,26 +56,6 @@ enum e_game_state
 	MENU_SHOP,
 	MENU_ERROR,
 	MENU_SUMMARY
-};
-
-struct s_switch_key
-{
-	int key;
-	int key_switch;
-};
-
-struct s_key_list
-{
-	bool w;
-	bool a;
-	bool s;
-	bool d;
-	int arrow_l;
-	int arrow_r;
-	t_switch_key e;
-	t_switch_key q;
-	t_switch_key spc;
-	t_switch_key f3;
 };
 
 struct s_record

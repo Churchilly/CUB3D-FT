@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_events.c                                       :+:      :+:    :+:   */
+/*   key_events_menu.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 08:01:51 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/11/24 07:17:25 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/11/24 07:25:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
+#include <X11/keysym.h>
 
-int	onpress_event(int key, t_main *game)
+void	onpress_event_menu(int key, t_main *game)
 {
-	if (game->state == GAME)
-		onpress_event_game(key, game);
-	else if (game->state == MENU_ERROR)
-		game->state = MENU_MAIN;
-	else if (game->state == MENU_SUMMARY)
-		game->state = MENU_MAIN;
-	else
-		onpress_event_menu(key, game);
-	return (0);
+	if (key == XK_w)
+		prev_button(game);
+	else if (key == XK_s)
+		next_button(game);
+	else if (key == XK_space || key == XK_Return)
+		activate_button(game);
+	else if (key == XK_a && game->state == MENU_MAP_SELECT)
+		prev_page(game);
+	else if (key == XK_d && game->state == MENU_MAP_SELECT)
+		next_page(game);
 }

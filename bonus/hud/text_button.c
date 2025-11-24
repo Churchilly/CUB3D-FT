@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 05:35:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 05:41:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 08:06:01 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hud.h"
-#include "../events/events.h"
+#include "../main/main.h"
 
 void	*set_text_button(t_text_button *button, t_text text_data, t_vector pos)
 {
