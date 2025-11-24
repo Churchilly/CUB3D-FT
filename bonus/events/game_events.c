@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 02:18:53 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 05:23:51 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void	update_game(t_main *g)
 		read_mouse_movements(g);
 		center_mouse(g);
 	}
-	unlock_switch(g);
 }
 
 static void	fps_counter(long long curr_time)
@@ -120,4 +119,5 @@ int loop_event(t_main *game)
 		render_error_menu(game);
 	else if (game->state == MENU_SUMMARY)
 		render_summary_menu(game);
+	unlock_switch(game);
 }

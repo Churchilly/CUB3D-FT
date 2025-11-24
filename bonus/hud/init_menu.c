@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_menu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 08:42:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 05:54:49 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,26 @@
 #include <string.h>
 
 void	*init_main_menu(t_main *g, t_main_menu *mmenu)
-{
+{    
 	g->state = MENU_MAIN;
 	mmenu->selected = &mmenu->btn_campaign;
     mmenu->bg_img = g->gallery.mmenu_bg;
     
-	mmenu->btn_continue.height = -1;
-    set_button(&mmenu->btn_campaign, &g->gallery.mmenu_start_btn,
-        (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4), (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3});
-	
-	set_button(&mmenu->btn_map_select, &g->gallery.mmenu_start_btn,
-        (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4),
-            (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3 + g->gallery.mmenu_start_btn.height});
+    set_button(&g->main_menu.btn_continue, &g->gallery.menu.continue_btn,
+	(t_vector){(WIN_WIDTH / 2 - g->gallery.menu.continue_btn.width / 4),
+	(WIN_HEIGHT / 2) - (g->gallery.menu.continue_btn.height * 2) / 3 - g->gallery.menu.maps_btn.height * 1.5});
 
-    set_button(&mmenu->btn_exit, &g->gallery.mmenu_start_btn,
-        (t_vector){(WIN_WIDTH / 2 - g->gallery.mmenu_start_btn.width / 4),
-            (WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2) / 3 + g->gallery.mmenu_start_btn.height * 2});
+    set_button(&mmenu->btn_campaign, &g->gallery.menu.campaign_btn,
+        (t_vector){(WIN_WIDTH / 2 - g->gallery.menu.campaign_btn.width / 4),
+            (WIN_HEIGHT / 2) - (g->gallery.menu.campaign_btn.height * 2) / 3});
+
+	set_button(&mmenu->btn_map_select, &g->gallery.menu.maps_btn,
+        (t_vector){(WIN_WIDTH / 2 - g->gallery.menu.maps_btn.width / 4),
+            (WIN_HEIGHT / 2) - (g->gallery.menu.maps_btn.height * 2) / 3 + g->gallery.menu.maps_btn.height * 1.5});
+
+    set_button(&mmenu->btn_exit, &g->gallery.menu.exit_btn,
+        (t_vector){(WIN_WIDTH / 2 - g->gallery.menu.exit_btn.width / 4),
+            (WIN_HEIGHT / 2) - (g->gallery.menu.exit_btn.height * 2) / 3 + g->gallery.menu.exit_btn.height * 3});
 }
 #include <stdio.h>
 #include <math.h>

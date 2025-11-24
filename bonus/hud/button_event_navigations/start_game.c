@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 02:00:52 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 05:50:18 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,6 @@ void	new_game(t_main *g, char *map_file)
 		init_minimap(g);
 	create_barriers(g);
 	g->state = GAME;
-	if (g->main_menu.btn_continue.height == -1)
-	{
-		set_button(&g->main_menu.btn_continue,
-			&g->gallery.mmenu_start_btn,
-			(t_vector){(WIN_WIDTH / 2
-				- g->gallery.mmenu_start_btn.width / 4),
-			(WIN_HEIGHT / 2) - (g->gallery.mmenu_start_btn.height * 2)
-			/ 3 - g->gallery.mmenu_start_btn.height});
-	}
 	g->key_list.f3.key_switch = true;
 }
 

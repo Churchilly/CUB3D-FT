@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_fireball_particle.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:14:46 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/22 05:18:10 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 05:06:37 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void add_particle(t_main *g, t_fireball *f)
 	t_fire_particle *particle;
 	
 	curr_time = current_time_ms();
-	if (curr_time - time_log > 300)
+	if (curr_time - time_log > 400)
 	{
 		obj = g->objects.all;
 		while (obj)

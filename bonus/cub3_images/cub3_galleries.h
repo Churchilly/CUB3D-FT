@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_galleries.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 22:25:41 by root              #+#    #+#             */
-/*   Updated: 2025/11/18 19:07:19 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 05:55:26 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3_GALLERIES_H
 # define CUB3_GALLERIES_H
 
-typedef struct s_number_gallery t_num_gal;
 typedef struct s_minimap_gallery t_mmap_gal;
 typedef struct s_main_menu_gallery t_mmenu_gal;
 typedef struct s_hud_gallery t_hud_gal;
@@ -21,21 +20,6 @@ typedef struct s_shop_gallery t_shop_gal;
 typedef struct s_effect_gallery t_effect_gal;
 typedef struct s_frame_gallery t_frame_gal;
 typedef struct s_font_gallery t_font_gal;
-
-struct s_number_gallery
-{
-    t_im num_0;
-    t_im num_1;
-    t_im num_2;
-    t_im num_3;
-    t_im num_4;
-    t_im num_5;
-    t_im num_6;
-    t_im num_7;
-    t_im num_8;
-    t_im num_9;
-    t_im num_dot;
-};
 
 struct s_minimap_gallery
 {
@@ -51,6 +35,7 @@ struct s_main_menu_gallery
     t_im bg_active;
     t_im start_btn;
     t_im campaign_btn;
+    t_im continue_btn;
     t_im maps_btn;
     t_im exit_btn;
 };

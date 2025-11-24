@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 02:15:25 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 05:44:09 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,18 @@
 // continuously pressing on the key. switch key attribute provide a safe
 // switching between active and inactive
 
-static int	onpress_switch_key_menu(t_switch_key *switch_key, int key, t_main *game)
+static int	onpress_key_menu(t_switch_key *switch_key, int key, t_main *game)
 {
-	switch_key->key = true;
-	if (!switch_key->key_switch)
-	{
-		if (key == XK_space || key == XK_Return)
-			activate_button(game);
-		else if (key == XK_w)
-			prev_button(game);
-		else if (key == XK_s)
-			next_button(game);
-		else if (key == XK_a && game->state == MENU_MAP_SELECT)
-			prev_page(game);
-		else if (key == XK_d && game->state == MENU_MAP_SELECT)
-			next_page(game);
-		switch_key->key_switch = true;
-	}
+	if (key == XK_space || key == XK_Return)
+		activate_button(game);
+	else if (key == XK_w)
+		prev_button(game);
+	else if (key == XK_s)
+		next_button(game);
+	else if (key == XK_a && game->state == MENU_MAP_SELECT)
+		prev_page(game);
+	else if (key == XK_d && game->state == MENU_MAP_SELECT)
+		next_page(game);
 	return (1);
 }
 static void onpress_switch_key(t_switch_key *switch_key, int key, t_main *game)
@@ -80,25 +75,25 @@ void unlock_switch(t_main *game)
 
 static void unlock_menu_switches(t_main *game)
 {
-	// game->key_list.e.key_switch = false;
-	// game->key_list.q.key_switch = false;
-	// game->key_list.spc.key_switch = false;
-	// unlock_switch(game);
-	return ;
+	game->key_list.e.key_switch = false;
+	game->key_list.q.key_switch = false;
+	game->key_list.spc.key_switch = false;
 }
+
 static void	onpress_event_menu(int key, t_main *game)
 {
 	if (key == XK_w)
-		onpress_switch_key_menu(&(game->key_list.spc), key, game);
+		onpress_key_menu(&(game->key_list.spc), key, game);
 	else if (key == XK_s)
-		onpress_switch_key_menu(&(game->key_list.spc), key, game);
+		onpress_key_menu(&(game->key_list.spc), key, game);
 	else if (key == XK_space || key == XK_Return)
-		onpress_switch_key_menu(&(game->key_list.spc), key, game);
+		onpress_key_menu(&(game->key_list.spc), key, game);
 	else if (key == XK_a || key == XK_Left)
-		onpress_switch_key_menu(&(game->key_list.q), key, game);
+		onpress_key_menu(&(game->key_list.q), key, game);
 	else if (key == XK_d || key == XK_Right)
-		onpress_switch_key_menu(&(game->key_list.e), key, game);
+		onpress_key_menu(&(game->key_list.e), key, game);
 }
+
 static void	onpress_event_game(int key, t_main *game)
 {
 	if (key == XK_w)
@@ -147,47 +142,19 @@ int onrelease_event(int key, t_main *game)
 	if (key == XK_Escape && game->state != MENU_MAIN)
 		switch_menu(game);
 	else if (key == XK_w)
-	{
 		game->key_list.w = false;
-		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == MENU_SHOP)
-			unlock_menu_switches(game);
-	}
 	else if (key == XK_a)
-	{
 		game->key_list.a = false;
-		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == MENU_SHOP)
-			unlock_menu_switches(game);
-	}
 	else if (key == XK_s)
-	{
 		game->key_list.s = false;
-		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == MENU_SHOP)
-			unlock_menu_switches(game);
-	}
 	else if (key == XK_d)
-	{
 		game->key_list.d = false;
-		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == MENU_SHOP)
-			unlock_menu_switches(game);
-	}
 	else if (key == XK_Left)
-	{
 		game->key_list.arrow_l = false;
-		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == MENU_SHOP)
-			unlock_menu_switches(game);
-	}
 	else if (key == XK_Right)
-	{
 		game->key_list.arrow_r = false;
-		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == MENU_SHOP)
-			unlock_menu_switches(game);
-	}
 	else if (key == XK_space || key == XK_Return)
-	{
 		onrelease_switch_key(&(game->key_list.spc));
-		if (game->state == MENU_MAIN || game->state == MENU_PAUSE || game->state == MENU_MAP_SELECT || game->state == MENU_SHOP || game->state == GAME)
-			unlock_menu_switches(game);
-	}
 	else if (key == XK_e)
 		onrelease_switch_key(&(game->key_list.e));
 	else if (key == XK_q)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   switch_menu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 23:12:39 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 05:33:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 05:46:24 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	switch_menu(t_main *g)
 		mlx_mouse_show(g->window.mlx, g->window.win);
 	}
 	else if (g->state == MENU_MAP_SELECT)
-		g->state = GAME;
+		g->state = MENU_MAIN;
 	system(AUDIO_MAIN_MENU);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 01:37:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 04:06:26 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ struct s_animated_sprite
 
 struct s_cub3_gallery
 {
+    t_mmap_gal mmap;
+    t_frame_gal frames;
+    t_font_gal fonts;
+    t_mmenu_gal menu;
+    
     t_im mmenu_bg;
     t_im mmenu_bg_active;
     t_im mmenu_start_btn;
@@ -57,8 +62,6 @@ struct s_cub3_gallery
     t_im fireball_particle_2;
     t_im fireball_particle_3;
     t_im cross;
-    t_mmap_gal mmap;
-    t_frame_gal frames;
 	t_im	enemy1;
 	t_im	enemy2;
 	t_im	enemy3;
@@ -76,7 +79,6 @@ struct s_cub3_gallery
     t_im    pokeball;
     t_im    currency;
     t_im    potion;
-    t_font_gal fonts;
 };
 
 struct s_draw_pkg

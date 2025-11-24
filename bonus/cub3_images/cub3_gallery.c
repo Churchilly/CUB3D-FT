@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:00:59 by root              #+#    #+#             */
-/*   Updated: 2025/11/20 01:07:55 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/24 04:08:20 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ static void init_mmap_gallery(t_cub3_gallery *gal)
     gal->mmap.wall = create_image("cub3_images/images/minimap/wall.cub3");
     gal->mmap.player = create_image("cub3_images/images/minimap/player.cub3");
     gal->mmap.floor_void = create_image("cub3_images/images/minimap/floor_void.cub3");
+}
+
+static void init_mmenu_gallery(t_cub3_gallery *gal)
+{
+    gal->menu.campaign_btn = create_image("cub3_images/images/buttons/btn_campaign.cub3");
+    gal->menu.continue_btn = create_image("cub3_images/images/buttons/btn_continue.cub3");
+    gal->menu.maps_btn = create_image("cub3_images/images/buttons/btn_maps.cub3");
+    gal->menu.exit_btn = create_image("cub3_images/images/buttons/btn_exit.cub3");
 }
 
 void *init_gallery_with_config(t_cub3_gallery *gal, char *config)
@@ -58,5 +66,6 @@ void *init_gallery_with_config(t_cub3_gallery *gal, char *config)
     gal->currency = create_image("cub3_images/images/player/coin.cub3");
     gal->potion = create_image("cub3_images/images/player/potion.cub3");
     init_mmap_gallery(gal);
+    init_mmenu_gallery(gal);
     return (gal);
 } // this is OK for TODO#1, not for the other
