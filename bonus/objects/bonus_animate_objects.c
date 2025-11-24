@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:56:50 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 11:04:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	animate_objects(t_main *g)
 		if (curr->type == ENEMY)
 			animate_enemy(curr->object, g);
 		else if (curr->type == FIREBALL)
-			animate_fireball(curr->object, g, &g->gallery);
+			animate_fireball(curr->object, g);
 		curr = curr->next;
 	}
 	curr = g->objects.o_dynamic;

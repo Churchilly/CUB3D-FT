@@ -6,43 +6,38 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:56:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 11:05:49 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
+#include "string.h"
 
 static void reset_static_objects(t_main *g)
 {
 	t_obj_node	*curr;
 
-	printf("RESETTING START\n");
 	clear_render_queue(&g->objects);
 	curr = g->objects.o_static;
 	while (curr)
 	{
 		if (curr->type == FIREBALL)
 		{
-			printf("RESETTING FIREBALL\n");
 			t_fireball *fireball = curr->object;
 			fireball->state = F_IDLE;
 			fireball->position.x = -1.0;
 			fireball->position.y = -1.0;
 			fireball->direction = 0.0;
-			printf("RESETTING FIREBALL\n");
 		}
 		else if (curr->type == PARTICLE)
 		{
-			printf("RESETTING PARTICLE\n");
 			t_fire_particle *particle = curr->object;
 			particle->active = false;
 			particle->position.x = -1.0;
 			particle->position.y = -1.0;
-			printf("RESETTING PARTICLE\n");
 		}
 		else if (curr->type == ENEMY)
 		{
-			printf("RESETTING ENEMY\n");
 			t_enemy *enemy = curr->object;
 			enemy->health = ENEMY_HEALTH;
 			enemy->state = IDLE;
@@ -50,7 +45,6 @@ static void reset_static_objects(t_main *g)
 			enemy->position.y = -1.0;
 			enemy->red_alpha = 0.0;
 			enemy->attack_time_log = 0;
-			printf("RESETTING ENEMY\n");
 		}
 		curr = curr->next;
 	}

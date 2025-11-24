@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:24 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:55:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/24 11:04:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,10 @@ static void	clear_textures(void)
 	i = -1;
 	while (++i < 5)
 	{
-		printf("here\n");
 		img = (void **)(section)[i];
 		if (*img)
 			mlx_destroy_image(mlx, *img);
 		*img = NULL;
-		printf("CLEAR COMPLETE TEXTURE %d\n", i);
 	}
 }
 
