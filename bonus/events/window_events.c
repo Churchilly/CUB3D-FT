@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 12:05:01 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:20:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
-#include <stdio.h> // for debug
+#include <stdio.h>
 
 int terminate_hook(void)
 {

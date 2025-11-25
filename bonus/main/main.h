@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 07:13:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:23:41 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 
 # include "../events/events.h"
 
-# define GAME_TIME 5
+# define GAME_TIME 10
 
 #ifndef M_PI
 # define M_PI 3.14159265358979323846

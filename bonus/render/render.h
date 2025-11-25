@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 08:48:32 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:21:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void	insert_vertical_hit(t_cast_data *d);
 void	insert_horizontal_hit(t_cast_data *d);
 int 	find_intersection(t_cast_data *d, t_segment inner_wall);
 void	render_objects(t_main *g);
+
+void	render_map_time(t_main *g);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:37:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:21:38 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	render_game(t_main *g)
 	draw_image(&g->window, &g->gallery.misc.cross,
 		WIN_WIDTH / 2 - g->gallery.misc.cross.width / 2,
 		WIN_HEIGHT / 2 - g->gallery.misc.cross.height / 2);
+	render_map_time(g);
 }
 
 void	render_select_map(t_main *g)
@@ -124,10 +125,7 @@ void	render_summary_menu(t_main *g)
 	draw_text(buf, g->summary_menu.kill_count);
 	snprintf(buf, sizeof(buf), "Total Income: %u", g->record.total_income);
 	draw_text(buf, g->summary_menu.total_income);
-	if (g->record.purchase_count > 0)
-		snprintf(buf, sizeof(buf), "Items Bought: %u", g->record.purchase_count);
-	else
-		snprintf(buf, sizeof(buf), "Items Bought: None");
+	snprintf(buf, sizeof(buf), "Items Bought: %u", g->record.purchase_count);
 	draw_text(buf, g->summary_menu.items_bought);
 	g->summary_menu.to_continue.scale += scale_dir;
 	g->summary_menu.to_continue.win_x = WIN_WIDTH / 2 - (g->summary_menu.to_continue.font->font_size * g->summary_menu.to_continue.scale * (g->summary_menu.to_continue.text_len + 2)) / 3;
