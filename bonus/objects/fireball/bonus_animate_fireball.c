@@ -26,11 +26,11 @@ static bool fireball_collision(t_vector *f_pos, t_main *g)
 		if (obj->type == ENEMY)
 		{
 			enemy = (t_enemy *)obj->object;
-			if (enemy->state == ALIVE)
+			if (enemy->state != IDLE && enemy->state != DYING)
 			{
 				if (enemy->position.x >= f_pos->x - ENEMY_WIDTH / 2
 					&& enemy->position.x <= f_pos->x + ENEMY_WIDTH / 2
-					&& enemy->position.y >= f_pos->y - ENEMY_WIDTH / 2 
+					&& enemy->position.y >= f_pos->y - ENEMY_WIDTH / 2
 					&& enemy->position.y <= f_pos->y + ENEMY_WIDTH / 2)
 					return (true);
 			}

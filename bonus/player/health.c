@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:43:14 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 17:35:36 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 18:07:37 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ void damage_player(t_main *g, double val)
         {
             player->inventory.adrenaline_potions--;
             player->healing = POTION_HEALING;
+            player->health = 1;
         }
-        player->health = 0;
+        else
+            player->health = 0;
         return ;
     }
     player->health = g->map.player.health - val;

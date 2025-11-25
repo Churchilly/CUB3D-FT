@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 17:36:52 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 17:39:40 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_main	t_main; // forward dec
 # define DEFAULT_HEALING 0.1
 # define POTION_HEALING 10;
 
-# define IMMORTALITY 1
+# define IMMORTALITY 0
 
 struct s_inventory
 {

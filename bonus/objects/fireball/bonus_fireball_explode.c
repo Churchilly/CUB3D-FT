@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:16:37 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 15:28:46 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 18:00:00 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	damage_nearby_enemies(t_main *g, t_vector *f_pos)
 		if (obj->type == ENEMY)
 		{
 			enemy = (t_enemy *)obj->object;
-			if (enemy->state == ALIVE || enemy->state == ATTACKING)
+			if (enemy->state != IDLE && enemy->state != DYING)
 			{
 				if (enemy->position.x >= f_pos->x - 1
 					&& enemy->position.x <= f_pos->x + 1
