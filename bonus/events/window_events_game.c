@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events_game.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:43:37 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 16:23:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	update_play_time(t_main *g)
 
 static void	check_game_time(t_main *g)
 {
-	if (g->map.map_timer >= GAME_TIME * 10000)
+	if (g->map.map_timer >= GAME_TIME * 1000)
 	{
 		if (g->map.next_map)
 		{
@@ -43,6 +43,8 @@ static void	check_game_time(t_main *g)
 			g->state = MENU_SUMMARY;
 		}
 	}
+	if (g->map.player.health <= 0 && IMMORTALITY == 0)
+		g->state = MENU_SUMMARY;
 }
 
 static void	update_game(t_main *g)
@@ -55,7 +57,6 @@ static void	update_game(t_main *g)
 	animate_spellbook(g);
 	update_mana(g);
 	update_health(g);
-	
 	if (g->key_list.f3.key_switch)
 	{
 		read_mouse_movements(g);

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 15:41:47 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 17:37:21 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	render_game(t_main *g)
 	draw_image(&g->window, &g->gallery.misc.cross,
 		WIN_WIDTH / 2 - g->gallery.misc.cross.width / 2,
 		WIN_HEIGHT / 2 - g->gallery.misc.cross.height / 2);
+	render_map_time(g);
 }
 
 void	render_select_map(t_main *g)
@@ -81,8 +82,12 @@ void	render_select_map(t_main *g)
 
 void	render_shop(t_main *g)
 {
+	char buf[16];
 	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
 	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
+	draw_image_no_alpha_scaled(&g->window, &g->gallery.hud.currency, WIN_WIDTH / 2 - 60, 20, 0.05);
+	snprintf(buf, sizeof(buf), "%d", g->map.player.inventory.currency);
+	draw_text(buf, (t_text){2, WIN_WIDTH / 2, 25, &g->font_menu.alagard, 0, 0, 1.5, &g->window, 0xFFD700});
 	place_text_button(g, &g->shop_menu.items[0], "Adrenaline Potion - 50g");
 	place_text_button(g, &g->shop_menu.items[1], "Mana Increase - 100g");
 	place_text_button(g, &g->shop_menu.items[2], "Health Increase - 100g");
@@ -125,10 +130,7 @@ void	render_summary_menu(t_main *g)
 	draw_text(buf, g->summary_menu.kill_count);
 	snprintf(buf, sizeof(buf), "Total Income: %u", g->record.total_income);
 	draw_text(buf, g->summary_menu.total_income);
-	if (g->record.purchase_count > 0)
-		snprintf(buf, sizeof(buf), "Items Bought: %u", g->record.purchase_count);
-	else
-		snprintf(buf, sizeof(buf), "Items Bought: None");
+	snprintf(buf, sizeof(buf), "Items Bought: %u", g->record.purchase_count);
 	draw_text(buf, g->summary_menu.items_bought);
 	g->summary_menu.to_continue.scale += scale_dir;
 	g->summary_menu.to_continue.win_x = WIN_WIDTH / 2 - (g->summary_menu.to_continue.font->font_size * g->summary_menu.to_continue.scale * (g->summary_menu.to_continue.text_len + 2)) / 3;

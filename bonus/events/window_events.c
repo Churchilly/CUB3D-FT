@@ -6,12 +6,12 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 15:41:15 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 17:37:10 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
-#include <stdio.h> // for debug
+#include <stdio.h>
 
 int terminate_hook(void)
 {
@@ -27,7 +27,7 @@ static void	render_fps(long long curr_time, t_main *g)
 	static char			buf[4];
 
 	frame_count++;
-	if (curr_time - time_log >= 999)
+	if (curr_time - time_log >= 1000)
 	{
 		snprintf(buf, sizeof(buf), "%d", frame_count);
 		frame_count = 1;

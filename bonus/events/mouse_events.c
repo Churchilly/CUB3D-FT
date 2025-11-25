@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 09:42:51 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 16:09:37 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ int	mouse_click(int button, int x, int y, void *game)
 	else if (g->state == MENU_SHOP)
 		mouse_click_shop(x, y, game);
 	else if (g->state == MENU_ERROR || g->state == MENU_SUMMARY)
-		g->state = MENU_MAIN;
+		delayed_event(game, MENU_MAIN);
 	return (0);
 }
