@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 03:01:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 19:19:12 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 20:42:09 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@ void animate_enemy_effect(t_enemy *enemy)
 	enemy->red_alpha = enemy->red_alpha - 0.1;
 	if (enemy->red_alpha < 0)
 		enemy->red_alpha = 0;
+}
+
+void animate_dying_enemy(t_enemy *enemy)
+{
+	if (enemy->state == DYING)
+	{
+		enemy->dying_effect.win_y++;
+		enemy->effect_phase++;
+		if (enemy->effect_phase == 50)
+		{
+			enemy->state = IDLE;
+			enemy->dying_effect.win_y = WIN_HEIGHT / 2;
+			enemy->position = (t_vector){-1, -1};
+		}
+	}
 }
 
 void animate_enemy(t_enemy *enemy, t_main *g)
@@ -36,16 +51,7 @@ void animate_enemy(t_enemy *enemy, t_main *g)
 		}
 	}
 	else if (enemy->state == DYING)
-	{
-		enemy->dying_effect.win_y++;
-		enemy->effect_phase++;
-		if (enemy->effect_phase == 50)
-		{
-			enemy->state = IDLE;
-			enemy->dying_effect.win_y = WIN_HEIGHT / 2;
-			enemy->position = (t_vector){-1, -1};
-		}
-	}
+		animate_dying_enemy(enemy);
 	else
 	{
 		enemy_walk(enemy, g);
