@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 20:45:55 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 02:11:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 void	render_pause_menu(t_main *g)
 {
 	// change the fucking images
-	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
-	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
+	draw_image_no_alpha(&g->window, &g->gallery.menu.bg, 0, 0);
 	place_button(g, &g->main_menu.btn_continue);
 	place_button(g, &g->main_menu.btn_campaign);
 	place_button(g, &g->main_menu.btn_map_select);
@@ -28,8 +27,8 @@ void	render_pause_menu(t_main *g)
 
 void	render_main_menu(t_main *g)
 {
-	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
-	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
+	//draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
+	draw_image_no_alpha(&g->window, &g->gallery.menu.bg, 0, 0);
 	place_button(g, &g->main_menu.btn_campaign);
 	place_button(g, &g->main_menu.btn_map_select);
 	place_button(g, &g->main_menu.btn_exit);
@@ -83,11 +82,10 @@ void	render_select_map(t_main *g)
 void	render_shop(t_main *g)
 {
 	char buf[16];
-	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
-	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
-	draw_image_no_alpha_scaled(&g->window, &g->gallery.hud.currency, WIN_WIDTH / 2 - 60, 20, 0.05);
+	draw_image_no_alpha(&g->window, &g->shop_menu.bg_img, 0, 0);
+	draw_image_no_alpha_scaled(&g->window, &g->gallery.hud.currency, WIN_WIDTH / 10 - (g->gallery.hud.currency.width * 0.075), (WIN_HEIGHT / 7) * 4 - (g->gallery.hud.currency.height * 0.025), 0.05);
 	snprintf(buf, sizeof(buf), "%d", g->map.player.inventory.currency);
-	draw_text(buf, (t_text){2, WIN_WIDTH / 2, 25, &g->font_menu.alagard, 0, 0, 1.5, &g->window, GOLD_COLOR});
+	draw_text(buf, (t_text){2, WIN_WIDTH / 10 - 17.5, (WIN_HEIGHT / 7) * 4 - 16, &g->font_menu.alagard, 0, 0, 1.25, &g->window, GOLD_COLOR});
 	place_text_button(g, &g->shop_menu.items[0], "Adrenaline Potion - 50g");
 	place_text_button(g, &g->shop_menu.items[1], "Mana Increase - 100g");
 	place_text_button(g, &g->shop_menu.items[2], "Health Increase - 100g");

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 19:07:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 23:12:42 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static t_vector	get_movement(t_main *g, t_player *player)
 {
 	t_vector	movement;
 
+	movement = (t_vector){0.0, 0.0};
 	if (g->key_list.w)
 	{
 		movement.x += PLAYER_MOVE_MULT * cos(player->dov) * PLAYER_MOVE_SPEED;
@@ -72,6 +73,7 @@ void	change_position(t_main *g)
 	t_vector	movement;
 
 	player = &g->map.player;
+	movement = (t_vector){0.0, 0.0};
 	movement = get_movement(g, player);
 	player->pos.x += movement.x;
 	player->pos.y += movement.y;

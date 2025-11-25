@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/25 17:00:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 01:52:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,11 @@ void	*init_shop_menu(t_main *g, t_shop *menu)
     t_text txt;
     int i;
 
-    menu->bg_img = g->gallery.menu.bg;
+    menu->bg_img = g->gallery.shop.bg;
     menu->selected = NULL;
 
     txt.font = &g->font_menu.alagard;
-    txt.scale = 1.0;
+    txt.scale = 0.75;
     txt.win = &g->window;
     txt.color = 0xFFFFFFFF; // White
 	i = -1;
@@ -136,7 +136,7 @@ void	*init_shop_menu(t_main *g, t_shop *menu)
     {
         txt.text_len = 30;
         txt.win_x = WIN_WIDTH / 4;
-        txt.win_y = WIN_HEIGHT / 4 + i * (txt.font->font_size * txt.scale + 24);
+        txt.win_y = 4 * (WIN_HEIGHT / 7) + i * (txt.font->font_size * txt.scale + 8);
         set_text_button(&menu->items[i], txt, (t_vector){txt.win_x, txt.win_y});
     }
 	txt.text_len = 9;

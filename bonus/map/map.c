@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 19:55:41 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:46:32 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 23:11:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ static int	validate_extension(char	*file_name)
 static int	count_valid_files(DIR *dir)
 {
 	struct dirent	*entry;
-	int				entry_len;
 	int				count;
 
 	entry = readdir(dir);
 	count = 0;
 	while (entry)
 	{
-		entry_len = strlen(entry->d_name);
 		if (validate_extension(entry->d_name))
 			count++;
 		entry = readdir(dir);

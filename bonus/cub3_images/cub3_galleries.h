@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_galleries.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 22:25:41 by root              #+#    #+#             */
-/*   Updated: 2025/11/25 16:28:46 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/26 01:40:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ struct s_shop_gallery
     t_im mana_increase;
     t_im currency;
     t_im buy_btn;
+	t_im	bg;
 };
 
 struct s_effect_gallery
