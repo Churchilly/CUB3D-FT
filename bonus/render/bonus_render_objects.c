@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 02:43:49 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 19:19:09 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,10 +291,18 @@ static void	render_enemy(t_main *g, t_enemy *e)
 			d.direction += d.fov_rad / WIN_WIDTH;
 			continue ;
 		}
-		draw_enemy_column(g, x, &ray, e);
+		if (e->state == DYING)
+		{
+			e->dying_effect.win_x = x + 40;
+			draw_text("+20", e->dying_effect);
+			return ;
+		}
+		else
+			draw_enemy_column(g, x, &ray, e);
 		d.direction += d.fov_rad / WIN_WIDTH;
 	}
 }
+
 static void render_particle(t_main *g, t_fire_particle *particle)
 {
 	t_cast_data d;

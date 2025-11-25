@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 22:55:49 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 17:48:53 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 19:15:18 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,11 @@ void	enemy_walk(t_enemy *enemy, t_main *g)
 static void kill_enemy(t_enemy *enemy, t_main *g)
 {
 	enemy->health = 0;
-	enemy->state = IDLE;
-	enemy->position = (t_vector){-1, -1};
+	enemy->state = DYING;
 	g->map.player.inventory.currency += 20;
 	g->record.kill_count++;
 	g->record.total_income += 20;
+	enemy->effect_phase = 1;
 	// ENEMY_PARTICLE SPAWN HERE
 }
 

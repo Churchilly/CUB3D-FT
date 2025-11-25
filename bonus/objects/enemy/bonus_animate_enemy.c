@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 03:01:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:02:23 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 19:19:12 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@ void animate_enemy(t_enemy *enemy, t_main *g)
 			if (spawn < ENEMY_SPAWN_RATE)
 				spawn_enemy(enemy, &g->map);
 			spawn_timer = 0;
+		}
+	}
+	else if (enemy->state == DYING)
+	{
+		enemy->dying_effect.win_y++;
+		enemy->effect_phase++;
+		if (enemy->effect_phase == 50)
+		{
+			enemy->state = IDLE;
+			enemy->dying_effect.win_y = WIN_HEIGHT / 2;
+			enemy->position = (t_vector){-1, -1};
 		}
 	}
 	else

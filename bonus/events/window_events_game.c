@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 17:46:13 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 18:24:05 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static void	update_game(t_main *g)
 	animate_spellbook(g);
 	update_mana(g);
 	update_health(g);
+	draw_currency_game(g);
+
 	if (g->key_list.f3.key_switch)
 	{
 		read_mouse_movements(g);

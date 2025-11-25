@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   draw_currency.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:54:19 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/20 02:57:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:47:53 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void draw_currency(t_main *g)
+void draw_currency_game(t_main *g)
 {
     int currency;
-
+    t_cub3_image *img;
+    char text[16];
+    
     currency = g->map.player.inventory.currency;
-    draw_image_no_alpha_scaled(&g->window, &g->gallery.misc.currency, 580, 10, 0.08);
-    //draw_text(ft_itoa(currency), &g->font_menu.alagard, (t_pos){590, 10}, &g->window, 1);
+    img = &g->gallery.misc.currency;
+    sprintf(text, "%d", currency);
+    draw_image_no_alpha_scaled(&g->window, img, 15, 280, .045);
+	draw_text(text, (t_text){16, 20 + img->width * .045, 292, &g->font_menu.alagard, 0, 0, .75, &g->window, GOLD_COLOR});
 }

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 17:47:33 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 18:48:10 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	render_shop(t_main *g)
 	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
 	draw_image_no_alpha_scaled(&g->window, &g->gallery.hud.currency, WIN_WIDTH / 2 - 60, 20, 0.05);
 	snprintf(buf, sizeof(buf), "%d", g->map.player.inventory.currency);
-	draw_text(buf, (t_text){2, WIN_WIDTH / 2, 25, &g->font_menu.alagard, 0, 0, 1.5, &g->window, 0xFFD700});
+	draw_text(buf, (t_text){2, WIN_WIDTH / 2, 25, &g->font_menu.alagard, 0, 0, 1.5, &g->window, GOLD_COLOR});
 	place_text_button(g, &g->shop_menu.items[0], "Adrenaline Potion - 50g");
 	place_text_button(g, &g->shop_menu.items[1], "Mana Increase - 100g");
 	place_text_button(g, &g->shop_menu.items[2], "Health Increase - 100g");

@@ -6,12 +6,14 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/25 16:41:11 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 18:47:37 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HUD_H
 # define HUD_H
+
+# define GOLD_COLOR 0xFFD700
 
 // MINIMAP DEFINES
 # define MMAP_GRID_SIZE 20
@@ -164,6 +166,7 @@ void	activate_button_shop(t_main *g);
 void	draw_mana_bar(t_main *g);
 void	draw_heath_bar(t_main *g);
 void draw_potions(t_main *g);
+void draw_currency_game(t_main *g);
 
 // Button event navigations
 void	new_game(t_main *g, char *map_file);
