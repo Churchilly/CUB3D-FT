@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/20 01:02:43 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 16:23:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_main	t_main; // forward dec
 # define PLAYER_MOVE_MULT 0.05
 # define SENSITIVITY 0.4
 # define PLAYER_RADIUS 0.1
+
+# define IMMORTALITY 1
 
 struct s_inventory
 {

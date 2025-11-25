@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 15:20:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 16:01:01 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	render_fps(long long curr_time, t_main *g)
 	static char			buf[4];
 
 	frame_count++;
-	if (curr_time - time_log >= 999)
+	if (curr_time - time_log >= 1000)
 	{
 		snprintf(buf, sizeof(buf), "%d", frame_count);
 		frame_count = 1;

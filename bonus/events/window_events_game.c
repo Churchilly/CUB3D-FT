@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 15:42:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 16:23:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	check_game_time(t_main *g)
 			g->state = MENU_SUMMARY;
 		}
 	}
-	if (g->map.player.health <= 0)
+	if (g->map.player.health <= 0 && IMMORTALITY == 0)
 		g->state = MENU_SUMMARY;
 }
 
