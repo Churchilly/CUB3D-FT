@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:26 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 07:45:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:20:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ enum e_section
 	STATIC,
 	DYNAMIC,
 	TEMPORARY,
-	TEXTURES,
+	S_TEXTURES,
+	D_TEXTURES,
 	WINDOW
 };
 
@@ -44,7 +45,8 @@ struct	s_garbage_collector
 	t_gc_node	*dynamic_section;
 	t_gc_node	*temporary_section;
 	t_window	*win;
-	void		**textures[5];
+	void		**d_textures[5];
+	void		**s_textures[3];
 };
 
 void		init_collector(t_collector *gc, t_main *g);

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:26:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 15:59:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:03:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static double	calculate_distance_object(t_player *player, t_obj_node *obj)
 	t_fireball *f;
 	t_fire_particle *p;
 	t_enemy			*e;
+	t_orb			*orb;
 
 	if (obj->type == DOOR)
 	{
@@ -66,6 +67,12 @@ static double	calculate_distance_object(t_player *player, t_obj_node *obj)
 		dx = (e->segment.s.x + e->segment.e.x) / 2.0 - player->pos.x;
 		dy = (e->segment.s.y + e->segment.e.y) / 2.0 - player->pos.y;
 	}
+	else if (obj->type == ORB)
+	{
+		orb = (t_orb *)obj->object;
+		dx = (orb->segment.s.x + orb->segment.e.x) / 2.0 - player->pos.x;
+		dy = (orb->segment.s.y + orb->segment.e.y) / 2.0 - player->pos.y;
+	}
 	else
 	{
 		dx = 0;
@@ -79,8 +86,7 @@ void	add_to_render_queue(t_obj_list *list, t_obj_node *object, t_player *player)
 	t_obj_node	*curr;
 	t_obj_node	*prev;
 
-	if (object->type)
-		object->distance = calculate_distance_object(player, object);
+	object->distance = calculate_distance_object(player, object);
 	object->next_render = NULL;
 	if (!list->to_render || object->distance > list->to_render->distance)
 	{

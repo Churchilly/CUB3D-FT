@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:48:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/11 17:13:05 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:41:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
-
+#include <stdio.h>
 void	render_spellbook(t_main *g)
 {
 	t_texture	*texture;

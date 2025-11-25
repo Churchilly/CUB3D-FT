@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 20:10:39 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/17 17:14:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:42:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ enum	e_spell
 struct s_spellbook
 {
 	t_spell			current;
-	t_texture		*cur_texture; // tmp
+	t_texture		*cur_texture;
 	t_vector		win_pos;
 	t_vector		original_win_pos;
 	t_texture		texture_fireball;
 	t_texture		texture_lock;
 	t_texture		texture_unlock;
 	int				cooldown;
-	int				changing_direction; // next = 1, prev = -1, idle = 0
-	float			scale;  // Dynamic scale based on window size
+	int				changing_direction;
+	float			scale;
 };
 
 typedef struct s_main	t_main;

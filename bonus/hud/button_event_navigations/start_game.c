@@ -6,12 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:18:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 19:08:17 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 #include "string.h"
+#include "strings.h"
 
 static void reset_static_objects(t_main *g)
 {
@@ -50,8 +51,13 @@ static void reset_static_objects(t_main *g)
 	}
 }
 
-static void	reset(t_main *g)
+static void	reset(t_main *g, int all)
 {
+	if (all)
+	{
+		bzero(&g->record, sizeof(t_record));
+		bzero(&g->map.player.inventory, sizeof(t_inventory));
+	}
 	reset_static_objects(g);
 	clear_section(DYNAMIC);
 	g->objects.o_dynamic = NULL;
@@ -59,12 +65,6 @@ static void	reset(t_main *g)
 	g->map.player.pos.y = -1;
 	g->map.player.mana = MAX_MANA;
 	g->map.player.health = MAX_HEALTH;
-	g->map.player.inventory.orb = 8;
-	g->map.player.inventory.currency = 0;
-	g->map.player.inventory.adrenaline_potions = 0;
-	g->map.player.inventory.damage_increase = 0;
-	g->map.player.inventory.mana_increase = 0;
-	g->map.player.inventory.cooldown_decreaser = 0;
 	g->map.next_map = NULL;
 	g->map.color_c = -1;
 	g->map.texture_ea.img = NULL;
@@ -77,7 +77,7 @@ static void	reset(t_main *g)
 
 void	new_game(t_main *g, char *map_file)
 {
-	reset(g);
+	reset(g, 1);
 	if (load_map(map_file, g))
 	{
 		g->state = MENU_ERROR;
@@ -112,7 +112,19 @@ void	next_map(t_main *g)
 
 	map_file = get_map_file(g->map.next_map, g->map.files);
 	if (map_file)
-		new_game(g, map_file);
+	{
+		reset(g, 0);
+		if (load_map(map_file, g))
+		{
+			g->state = MENU_ERROR;
+			return ;
+		}
+		init_minimap(g);
+		create_objects_dynamic(g);
+		clear_section(TEMPORARY);
+		g->state = GAME;
+		g->key_list.f3.key_switch = true;
+	}		
 	else
 		g->state = MENU_SUMMARY;
 }

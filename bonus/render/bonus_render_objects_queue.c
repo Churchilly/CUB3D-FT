@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:35:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 17:58:02 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	create_render_queue(t_main *g)
 {
 	t_obj_node	*curr;
 
-	clear_render_queue(&g->objects);
 	curr = g->objects.o_static;
 	while (curr)
 	{

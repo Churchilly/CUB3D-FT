@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:24 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:04:14 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:45:53 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,21 @@ static void	clear(t_section section_name)
 	*section = NULL;
 }
 
-static void	clear_textures(void)
+static void	clear_textures(t_section sec)
 {
 	void	**section;
 	void	*mlx;
 	void	**img;
 	int		i;
 
-	section = get_section(TEXTURES);
+	section = get_section(sec);
 	mlx = ((t_window *)(*get_section(WINDOW)))->mlx;
 	i = -1;
-	while (++i < 5)
+	if (sec == D_TEXTURES)
+		i = 5;
+	else
+		i = 3;
+	while (i--)
 	{
 		img = (void **)(section)[i];
 		if (*img)
@@ -86,7 +90,7 @@ void	clear_section(t_section section_name)
 	else if (section_name == DYNAMIC)
 	{
 		clear(DYNAMIC);
-		clear_textures();
+		clear_textures(D_TEXTURES);
 	}
 	else if (section_name == TEMPORARY)
 		clear(TEMPORARY);
@@ -95,7 +99,8 @@ void	clear_section(t_section section_name)
 		clear(STATIC);
 		clear(DYNAMIC);
 		clear(TEMPORARY);
-		clear_textures();
+		clear_textures(S_TEXTURES);
+		clear_textures(D_TEXTURES);
 		clear_win();
 	}
 }

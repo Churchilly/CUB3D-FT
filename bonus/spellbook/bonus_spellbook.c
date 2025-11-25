@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_spellbook.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:51:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 18:37:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	cub_spellbook(t_spellbook *spellbook, void *mlx)
 	int	scaled_width;
 	int	scaled_height;
 
-	_init_texture(&spellbook->texture_fireball, "textures/fireball_spellbook.xpm", mlx); // add to gallery
-	_init_texture(&spellbook->texture_lock, "textures/lock_spellbook.xpm", mlx);// add to gallery
-	_init_texture(&spellbook->texture_unlock, "textures/unlock_spellbook.xpm", mlx);// add to gallery
+	_init_texture(&spellbook->texture_fireball, "textures/fireball_spellbook.xpm", mlx);
+	_init_texture(&spellbook->texture_lock, "textures/lock_spellbook.xpm", mlx);
+	_init_texture(&spellbook->texture_unlock, "textures/unlock_spellbook.xpm", mlx);
 	spellbook->current = FIRBALL;
 	spellbook->cur_texture = &spellbook->texture_fireball;
 	spellbook->cooldown = 0;
