@@ -6,12 +6,14 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 09:53:45 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 18:47:37 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HUD_H
 # define HUD_H
+
+# define GOLD_COLOR 0xFFD700
 
 // MINIMAP DEFINES
 # define MMAP_GRID_SIZE 20
@@ -24,17 +26,21 @@
 // PLAYER STATS DEFINES
 # define MANA_COLOR 0xff2757f5
 # define MANA_POS_X 20
-# define MANA_POS_Y 227
+# define MANA_POS_Y 255
 # define MANA_CRIT_VAL 40.0
 # define MAX_MANA 150.0
 
 # define HEALTH_COLOR 0xffff2424
 # define HEALTH_POS_X 20
-# define HEALTH_POS_Y 205
+# define HEALTH_POS_Y 225
 # define HEALTH_CRIT_VAL 50.0
 # define MAX_HEALTH 175.0
 
 # define CRIT_STAT_COLOR 0xff502370
+
+# define POTIONS_POS_X 720
+# define POTIONS_POS_Y 60
+# define POTION_GAP -10
 
 # define MAP_SELECT_PAGE_NUM 8
 
@@ -159,6 +165,8 @@ void	activate_button_shop(t_main *g);
 // Player stats
 void	draw_mana_bar(t_main *g);
 void	draw_heath_bar(t_main *g);
+void draw_potions(t_main *g);
+void draw_currency_game(t_main *g);
 
 // Button event navigations
 void	new_game(t_main *g, char *map_file);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 16:23:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 17:39:40 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ typedef struct s_main	t_main; // forward dec
 # define PLAYER_MOVE_MULT 0.05
 # define SENSITIVITY 0.4
 # define PLAYER_RADIUS 0.1
+# define DEFAULT_HEALING 0.1
+# define POTION_HEALING 10;
 
-# define IMMORTALITY 1
+# define IMMORTALITY 0
 
 struct s_inventory
 {
@@ -45,6 +47,7 @@ struct s_player
 	double		dov; // direction of view
 	double		mana;
 	double		health;
+	double 		healing;
 	t_inventory inventory;
 };
 

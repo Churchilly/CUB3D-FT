@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   load_next_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 22:36:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 03:50:25 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:23:18 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 #include <ctype.h>
+
 void	load_next_map_info(char *raw_map, t_main *game)
 {
 	char	*path_start;

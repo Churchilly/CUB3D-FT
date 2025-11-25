@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:58:25 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 19:19:13 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ struct s_enemy
 	int				state;
 	double			red_alpha;
 	long long attack_time_log;
+	t_text dying_effect;
+	int effect_phase;
 };
 
 struct s_enemy_particle

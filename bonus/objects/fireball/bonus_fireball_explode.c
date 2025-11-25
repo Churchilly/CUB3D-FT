@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball_explode.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:16:37 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 10:34:06 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:00:00 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 
-static void damage_nearby_enemies(t_main *g, t_vector *f_pos)
+static void	damage_nearby_enemies(t_main *g, t_vector *f_pos)
 {
 	t_obj_node	*obj;
 	t_enemy		*enemy;
@@ -23,18 +23,21 @@ static void damage_nearby_enemies(t_main *g, t_vector *f_pos)
 		if (obj->type == ENEMY)
 		{
 			enemy = (t_enemy *)obj->object;
-			if (enemy->state == ALIVE || enemy->state == ATTACKING)
+			if (enemy->state != IDLE && enemy->state != DYING)
 			{
-				if (enemy->position.x >= f_pos->x - 1 && enemy->position.x <= f_pos->x + 1
-					&& enemy->position.y >= f_pos->y - 1 && enemy->position.y <= f_pos->y + 1)
-					damage_enemy(enemy, 40, g); // FIREBALL_DAMAGE * (inv->damage->increaser * 10)
+				if (enemy->position.x >= f_pos->x - 1
+					&& enemy->position.x <= f_pos->x + 1
+					&& enemy->position.y >= f_pos->y - 1
+					&& enemy->position.y <= f_pos->y + 1)
+					damage_enemy(enemy, FIREBALL_DAMAGE
+						+ g->map.player.inventory.damage_increase, g);
 			}
 		}
 		obj = obj->next;
 	}
 }
 
-void fireball_explode(t_main *g, t_vector *f_pos)
+void	fireball_explode(t_main *g, t_vector *f_pos)
 {
 	t_player	*player;
 
@@ -42,7 +45,7 @@ void fireball_explode(t_main *g, t_vector *f_pos)
 	if (player->pos.x >= f_pos->x - 0.7 && player->pos.x <= f_pos->x + 0.7
 		&& player->pos.y >= f_pos->y - 0.7 && player->pos.y <= f_pos->y + 0.7)
 	{
-		damage_player(g, 1);
+		damage_player(g, FIREBALL_DAMAGE);
 	}
 	damage_nearby_enemies(g, f_pos);
 }
