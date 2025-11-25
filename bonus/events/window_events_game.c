@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 20:44:31 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 20:58:27 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	update_play_time(t_main *g)
 	long long curr_time;
 
 	curr_time = current_time_ms();
+	if (g->record.play_time < 0)
+		game_start_time = 0;
 	if (game_start_time == 0)
 		game_start_time = curr_time;
 	if (g->map.map_timer < 0)

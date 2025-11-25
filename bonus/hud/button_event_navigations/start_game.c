@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 20:45:09 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 21:01:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,12 @@ static void	reset(t_main *g, int all)
 	{
 		bzero(&g->record, sizeof(t_record));
 		bzero(&g->map.player.inventory, sizeof(t_inventory));
+		g->record.play_time = -1;
 	}
 	reset_static_objects(g);
 	clear_section(DYNAMIC);
+	g->spellbook.current = FIRBALL;
+	g->spellbook.cur_texture = &g->spellbook.texture_fireball;
 	g->objects.o_dynamic = NULL;
 	g->map.player.pos.x = -1;
 	g->map.player.pos.y = -1;
