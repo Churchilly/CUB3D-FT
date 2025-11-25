@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 07:32:10 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 15:33:29 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ rendering
 # include <stdbool.h>
 
 # define NUM_OF_FIREBALLS 5
-# define FIREBALL_DAMAGE 5
+# define FIREBALL_DAMAGE 35
 # define FIREBALL_BURN_DAMAGE 3
 # define FIREBALL_WIDTH 0.2
 # define NUM_OF_PARTICLES 25

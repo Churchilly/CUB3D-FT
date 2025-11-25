@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:13:18 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 16:44:07 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ void center_window(t_main *g)
 	XMoveWindow(display, window, screen->width / 2 - WIN_WIDTH / 2,
 											screen->height / 2 - WIN_HEIGHT / 2 - WIN_HEIGHT / 5);	
 	XFlush(xvar->display);
+}
+
+static void init_inventory(t_main *g)
+{
+	g->map.player.inventory.orb = 8;
+	g->map.player.inventory.currency = 0;
+	g->map.player.inventory.adrenaline_potions = 5;
+	g->map.player.inventory.damage_increase = 0;
+	g->map.player.inventory.mana_increase = 0;
+	g->map.player.inventory.cooldown_decreaser = 0;
+	g->map.player.healing = .5;
 }
 
 static void _init_keys(t_main *game)
@@ -84,7 +95,7 @@ void	__init__(t_main *game)
 	_init_keys(game);
 
 	// Initialize game statistics (total run across all maps)
-	game->map.player.inventory.orb = 8;
+	init_inventory(game);
 	game->record.play_time = 0;
 	game->record.kill_count = 0;
 	game->record.fireballs_cast = 0;

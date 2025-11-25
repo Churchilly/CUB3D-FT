@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:43:14 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 02:17:31 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 17:35:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void update_mana(t_main *g)
     curr_time = current_time_ms();
     if (curr_time - time_log > 1)
     {
-        use_mana(g, -1);
+        use_mana(g, -.3);
         time_log = curr_time;
     }
 }
@@ -36,10 +36,9 @@ void use_mana(t_main *g, double val)
         return ;
     if (g->map.player.mana <= val)
     {
-        // damage_player(g, val - g->map.player.mana + (g->map.player.health / 100 * 5));
+        damage_player(g, val - g->map.player.mana + (g->map.player.health / 100 * 5));
         g->map.player.mana = 0;
         return ;
     }
     g->map.player.mana = g->map.player.mana - val;
 }
-

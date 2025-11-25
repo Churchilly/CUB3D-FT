@@ -39,7 +39,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-# TEXTURES TO MAKE
-# MAIN MENU BUTTONS
-# MENU BACKGROUND

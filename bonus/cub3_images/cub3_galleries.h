@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 22:25:41 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 09:38:55 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/25 16:28:46 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ struct s_misc_gallery
     t_im pokeball;
     t_im currency;
     t_im potion;
+    t_im healing_fx;
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:37:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:41:47 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	render_game(t_main *g)
 	draw_mmap(g);
 	draw_mana_bar(g);
 	draw_heath_bar(g);
+	draw_potions(g);
 	render_spellbook(g);
 	render_frames(g);
 	draw_image(&g->window, &g->gallery.misc.cross,
