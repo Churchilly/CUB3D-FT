@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/26 22:02:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 22:18:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ void	render_summary_menu(t_main *g)
 	int seconds;
 
 	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.summary, 0, 0);
-	minutes = (g->record.play_time / 1000) / 60;
-	seconds = (g->record.play_time / 1000) % 60;
+	minutes = (g->record.play_time) / 60;
+	seconds = (g->record.play_time) % 60;
 	snprintf(buf, sizeof(buf), "Time: %02d:%02d", minutes, seconds);
 	draw_text(buf, g->summary_menu.run_time);
 	snprintf(buf, sizeof(buf), "Enemies Killed: %u", g->record.kill_count);
