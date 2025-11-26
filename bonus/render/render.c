@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/26 22:18:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 22:54:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	render_select_map(t_main *g)
 	int				idx;
 
 	/* draw background */
-	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.map_select, 0, 0);
+	draw_image_no_alpha_scaled(&g->window, &g->gallery.menu_bg.map_select, -80, -80, .4);
 	
 	page = NULL;
 	if (g->map_select.maps && g->map_select.curr_page >= 0)
