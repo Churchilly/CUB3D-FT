@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/25 18:47:37 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/26 21:58:02 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ struct s_text_button
 struct s_main_menu
 {
 	t_button		*selected;
-	t_cub3_image	bg_img;
 	t_button		btn_continue;
 	t_button		btn_campaign;
 	t_button		btn_map_select;
@@ -89,7 +88,6 @@ struct s_main_menu
 struct s_map_select
 {
 	t_text_button	*selected;
-	t_cub3_image	bg_img;
 	t_text_button	**maps;
 	int				curr_page;
 	t_text_button	next_page;
@@ -99,14 +97,12 @@ struct s_map_select
 struct s_shop
 {
 	t_text_button		*selected;
-	t_cub3_image	bg_img;
 	t_text_button	items[6];
 	t_text_button	to_continue;
 };
 
 struct s_game_summary
 {
-	t_cub3_image	bg_img;
 	t_text			run_time;
 	t_text			kill_count;
 	t_text			total_income;
@@ -116,7 +112,6 @@ struct s_game_summary
 
 struct s_error
 {
-	t_cub3_image	bg_img;
 	t_text			error_text;
 	t_text			to_continue;
 };

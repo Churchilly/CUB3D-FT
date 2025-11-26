@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 22:25:41 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 01:40:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 21:51:32 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_font_gallery t_font_gal;
 typedef struct s_enemy_gallery t_enemy_gal;
 typedef struct s_fireball_gallery t_fireball_gal;
 typedef struct s_misc_gallery t_misc_gal;
+typedef struct s_menus_bg_gallery t_menus_bg_gal;
 
 struct s_minimap_gallery
 {
@@ -32,10 +33,18 @@ struct s_minimap_gallery
     t_im floor_void;
 };
 
+struct s_menus_bg_gallery
+{
+	t_im	main;
+	t_im	pause;
+	t_im	shop;
+	t_im	map_select;
+	t_im	summary;
+	t_im	error;	
+};
+
 struct s_main_menu_gallery
 {
-    t_im bg;
-    t_im bg_active;
     t_im start_btn;
     t_im campaign_btn;
     t_im continue_btn;
@@ -59,7 +68,6 @@ struct s_shop_gallery
     t_im mana_increase;
     t_im currency;
     t_im buy_btn;
-	t_im	bg;
 };
 
 struct s_effect_gallery

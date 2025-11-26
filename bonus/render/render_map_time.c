@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 15:15:12 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 15:31:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 22:15:48 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	render_map_time(t_main *g)
 	int minutes;
 	int seconds;
 
-	long long timer = (GAME_TIME * 1000) - g->map.map_timer;
+	long long timer = (GAME_TIME - g->map.map_timer) * 1000;
 	minutes = (timer / 1000) / 60;
 	seconds = (timer / 1000) % 60;
 	snprintf(buf, sizeof(buf), "%02d:%02d", minutes, seconds);

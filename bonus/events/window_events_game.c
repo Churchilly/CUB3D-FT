@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 20:58:27 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 22:14:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,21 @@
 
 static void	update_play_time(t_main *g)
 {
-	static long long game_start_time = 0;
-	static long long map_start_time = 0;
+	static long long timer = 0;
 	long long curr_time;
 
 	curr_time = current_time_ms();
-	if (g->record.play_time < 0)
-		game_start_time = 0;
-	if (game_start_time == 0)
-		game_start_time = curr_time;
-	if (g->map.map_timer < 0)
-		map_start_time = 0;
-	if (map_start_time == 0)
-		map_start_time = curr_time;
-	g->record.play_time = curr_time - game_start_time;
-	g->map.map_timer = curr_time - map_start_time;
+	if (curr_time - timer > 1000)
+	{
+		g->map.map_timer++;
+		g->record.play_time++;
+		timer = curr_time;
+	}
 }
 
 static void	check_game_time(t_main *g)
 {
-	if (g->map.map_timer >= GAME_TIME * 1000)
+	if (g->map.map_timer >= GAME_TIME)
 	{
 		if (g->map.next_map)
 		{

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 01:52:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 21:58:29 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*init_main_menu(t_main *g, t_main_menu *mmenu)
 {    
 	g->state = MENU_MAIN;
 	mmenu->selected = &mmenu->btn_campaign;
-    mmenu->bg_img = g->gallery.menu.bg;
     
     set_button(&g->main_menu.btn_continue, &g->gallery.menu.continue_btn,
 	(t_vector){(WIN_WIDTH / 2 - g->gallery.menu.continue_btn.width / 4),
@@ -50,7 +49,6 @@ void	*init_map_select_menu(t_main *g, t_map_select *menu)
     t_text txt;
     char *fname;
 
-    menu->bg_img = g->gallery.menu.bg;
     menu->selected = NULL;
 
     /* count available map files */
@@ -124,7 +122,6 @@ void	*init_shop_menu(t_main *g, t_shop *menu)
     t_text txt;
     int i;
 
-    menu->bg_img = g->gallery.shop.bg;
     menu->selected = NULL;
 
     txt.font = &g->font_menu.alagard;
@@ -152,7 +149,6 @@ void	*init_game_summary_menu(t_main *g, t_game_summary *menu)
 {
 	t_text	txt;
 
-	menu->bg_img = g->gallery.menu.bg;
 
 	// Initialize text properties
 	txt.font = &g->font_menu.alagard;
@@ -198,7 +194,6 @@ void	*init_error_menu(t_main *g, t_error *menu)
 {
 	t_text	txt;
 
-	menu->bg_img = g->gallery.menu.bg;
 	
 	txt.text_len = 19;
 	txt.font = &g->font_menu.alagard;

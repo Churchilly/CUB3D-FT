@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_gallery.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:00:59 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 03:20:00 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/26 20:14:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void *init_gallery_with_config(t_cub3_gallery *gal)
 	init_shop_gallery(gal);
 	init_effect_gallery(gal);
 	init_misc_gallery(gal);
+	init_menu_bg_gallery(gal);
 	return (gal);
 }

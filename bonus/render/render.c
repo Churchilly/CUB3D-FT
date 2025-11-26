@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/26 02:11:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/26 22:02:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	render_pause_menu(t_main *g)
 {
 	// change the fucking images
-	draw_image_no_alpha(&g->window, &g->gallery.menu.bg, 0, 0);
+	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.pause, 0, 0);
 	place_button(g, &g->main_menu.btn_continue);
 	place_button(g, &g->main_menu.btn_campaign);
 	place_button(g, &g->main_menu.btn_map_select);
@@ -28,7 +28,7 @@ void	render_pause_menu(t_main *g)
 void	render_main_menu(t_main *g)
 {
 	//draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
-	draw_image_no_alpha(&g->window, &g->gallery.menu.bg, 0, 0);
+	draw_image_no_alpha_scaled(&g->window, &g->gallery.menu_bg.main, -80, -80, .4);
 	place_button(g, &g->main_menu.btn_campaign);
 	place_button(g, &g->main_menu.btn_map_select);
 	place_button(g, &g->main_menu.btn_exit);
@@ -58,8 +58,7 @@ void	render_select_map(t_main *g)
 	int				idx;
 
 	/* draw background */
-	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
-	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
+	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.map_select, 0, 0);
 	
 	page = NULL;
 	if (g->map_select.maps && g->map_select.curr_page >= 0)
@@ -82,7 +81,7 @@ void	render_select_map(t_main *g)
 void	render_shop(t_main *g)
 {
 	char buf[16];
-	draw_image_no_alpha(&g->window, &g->shop_menu.bg_img, 0, 0);
+	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.shop, 0, 0);
 	draw_image_no_alpha_scaled(&g->window, &g->gallery.hud.currency, WIN_WIDTH / 10 - (g->gallery.hud.currency.width * 0.075), (WIN_HEIGHT / 7) * 4 - (g->gallery.hud.currency.height * 0.025), 0.05);
 	snprintf(buf, sizeof(buf), "%d", g->map.player.inventory.currency);
 	draw_text(buf, (t_text){2, WIN_WIDTH / 10 - 17.5, (WIN_HEIGHT / 7) * 4 - 16, &g->font_menu.alagard, 0, 0, 1.25, &g->window, GOLD_COLOR});
@@ -99,8 +98,7 @@ void	render_error_menu(t_main *g)
 {
 	static double scale_dir = 0.0075;
 
-	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
-	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
+	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.error, 0, 0);
 	draw_text("Failed to load map", g->error_menu.error_text);
 	g->error_menu.to_continue.scale += scale_dir;
 	g->error_menu.to_continue.win_x = WIN_WIDTH / 2 - (g->error_menu.to_continue.font->font_size * g->error_menu.to_continue.scale * (g->error_menu.to_continue.text_len + 2)) / 3;
@@ -118,8 +116,7 @@ void	render_summary_menu(t_main *g)
 	int minutes;
 	int seconds;
 
-	draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
-	draw_image(&g->window, &g->gallery.menu.bg, 0, -100);
+	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.summary, 0, 0);
 	minutes = (g->record.play_time / 1000) / 60;
 	seconds = (g->record.play_time / 1000) % 60;
 	snprintf(buf, sizeof(buf), "Time: %02d:%02d", minutes, seconds);
