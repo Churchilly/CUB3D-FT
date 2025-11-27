@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector_clear.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:24 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 18:45:53 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/27 19:47:48 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static void	clear_win(void)
 	}
 	if (win->mlx)
 	{
+		printf("destroyin display\n");
 		mlx_destroy_display(win->mlx);
 		free(win->mlx);
 		win->mlx = NULL;

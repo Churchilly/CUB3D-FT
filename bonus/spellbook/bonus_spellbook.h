@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_spellbook.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 20:10:39 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 18:42:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:46:28 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../main/vector.h"
 
 # define SPELL_COOLDOWN 60
-# define SPELLBOOK_CHANGE_ANIM_SPEED 5.0
+# define SPELLBOOK_CHANGE_ANIM_SPEED 10.0
 # define SPELLBOOK_WALK_ANIM_SPEED 0.8
 # define SPELLBOOK_WALK_ANIM_MAX 8.0
 # define SPELLBOOK_IDLE_ANIM_SPEED 0.05

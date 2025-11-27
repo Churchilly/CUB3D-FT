@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_gallery.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 00:00:59 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 20:14:00 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:58:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3_images.h"
 
-void *init_gallery_with_config(t_cub3_gallery *gal)
+void	*init_gallery_with_config(t_cub3_gallery *gal)
 {
 	init_enemy_gallery(gal);
 	init_fireball_gallery(gal);

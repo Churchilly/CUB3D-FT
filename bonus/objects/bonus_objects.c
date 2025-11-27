@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 18:48:38 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/27 18:55:57 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	create_objects_static(t_main *g)
 }
 
 void	create_objects_dynamic(t_main *g)
-{	
+{
 	create_barriers(g);
 	create_orbs(g);
 }
