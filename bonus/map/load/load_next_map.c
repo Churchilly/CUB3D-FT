@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_next_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 22:36:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 15:23:18 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/27 23:36:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

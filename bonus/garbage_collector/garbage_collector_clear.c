@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector_clear.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:24 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/27 19:47:48 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 01:11:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,15 @@ static void	clear_textures(t_section sec)
 	void	**img;
 	int		i;
 
-	section = get_section(sec);
+	section = (void ***)get_section(sec);
 	mlx = ((t_window *)(*get_section(WINDOW)))->mlx;
-	i = -1;
 	if (sec == D_TEXTURES)
 		i = 5;
 	else
 		i = 3;
 	while (i--)
 	{
-		img = (void **)(section)[i];
+		img = (void **)((section)[i]);
 		if (*img)
 			mlx_destroy_image(mlx, *img);
 		*img = NULL;
@@ -70,6 +69,11 @@ static void	clear_win(void)
 	if (!(*section))
 		return ;
 	win = (t_window *)(*section);
+	if (win->mlx && win->img)
+	{
+		mlx_destroy_image(win->mlx, win->img);
+		win->img = NULL;
+	}
 	if (win->mlx && win->win)
 	{
 		mlx_destroy_window(win->mlx, win->win);
@@ -77,7 +81,6 @@ static void	clear_win(void)
 	}
 	if (win->mlx)
 	{
-		printf("destroyin display\n");
 		mlx_destroy_display(win->mlx);
 		free(win->mlx);
 		win->mlx = NULL;

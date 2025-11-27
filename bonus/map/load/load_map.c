@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 15:34:01 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 01:13:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,38 @@ static int	find_id(char *raw_map)
 
 static int	check_map_materials(t_map *map)
 {
-	if (!map->texture_no.img || !map->texture_so.img
-		|| !map->texture_we.img || !map->texture_ea.img)
-		return (1);
+	printf("%p\n", map->texture_so.img);
+	if (!map->texture_no.img)
+		return (printf("dubletexture0\n"),1);
+	if (!map->texture_so.img)
+		return (printf("dubletexture1\n"),1);
+	if (!map->texture_ea.img)
+		return (printf("dubletexture2\n"),1);
+	if (!map->texture_we.img)
+		return (printf("dubletexture3\n"),1);
 	if (!map->texture_f.img)
+		return (printf("dubletexture4\n"),1);
+	if (map->color_c == -1)
+		return (printf("dublecolor\n"),1);
+	return (printf("YAY?\n"),0);
+}
+
+static int	map_parse_material(char *raw_map, t_main *g, int id)
+{
+	if (id == NO && load_texture(raw_map, &g->map.texture_no, g))
 		return (1);
-	if (map->color_c == 0)
+	else if (id == SO && load_texture(raw_map, &g->map.texture_so, g))
 		return (1);
+	else if (id == WE && load_texture(raw_map, &g->map.texture_we, g))
+		return (1);
+	else if (id == EA && load_texture(raw_map, &g->map.texture_ea, g))
+		return (1);
+	else if (id == FL && load_texture(raw_map, &g->map.texture_f, g))
+		return (1);
+	else if (id == C && load_color(raw_map, &g->map.color_c))
+		return (1);
+	else if (id == NEXT)
+		load_next_map_info(raw_map, g);
 	return (0);
 }
 
@@ -70,25 +95,10 @@ static int	map_parse(char *raw_map, t_main *g)
 		if (*raw_map == '\0')
 			break;
 		current_id = find_id(raw_map);
-		if (current_id == NO)
-		{
-			if (load_texture(raw_map, &g->map.texture_no, g))
-				return (1);
-		}
-		else if (current_id == SO)
-			load_texture(raw_map, &g->map.texture_so, g);
-		else if (current_id == WE)
-			load_texture(raw_map, &g->map.texture_we, g);
-		else if (current_id == EA)
-			load_texture(raw_map, &g->map.texture_ea, g);
-		else if (current_id == FL)
-			load_texture(raw_map, &g->map.texture_f, g);
-		else if (current_id == C)
-			load_color(raw_map, &g->map.color_c);
-		else if (current_id == NEXT)
-			load_next_map_info(raw_map, g);
-		else
+		if (current_id == MAP)
 			break ;
+		if (map_parse_material(raw_map, g, current_id))
+			return (1);
 		while (*raw_map && *raw_map != '\n')
 			raw_map++;
 	}
