@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:39:16 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:54:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	new_game(t_main *g, char *map_file)
 {
-	reset(g, 1);
+	reset_game(g, 1);
 	if (load_map(map_file, g))
 	{
 		g->state = MENU_ERROR;

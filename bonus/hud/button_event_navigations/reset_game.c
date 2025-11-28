@@ -6,11 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 04:35:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:43:56 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:54:53 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
+#include "string.h"
 
 static void	reset_fireball(t_fireball *fireball)
 {

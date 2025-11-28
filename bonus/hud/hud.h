@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 04:47:16 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:53:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,7 @@ void	draw_currency_game(t_main *g);
 // Button event navigations
 void	new_game(t_main *g, char *map_file);
 void	next_map(t_main *g);
+void	reset_game(t_main *g, int all);
+
 
 #endif

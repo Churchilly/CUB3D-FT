@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 19:55:41 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:54:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:52:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static void	parse_normalized_files(t_map_file *files)
 	char	*fname;
 	int		fname_len;
 	int		base_len;
-	int		ext_len;
 
 	i = -1;
 	while (files && files[++i].file)
