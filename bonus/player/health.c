@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   health.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:43:14 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 22:22:28 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 22:45:47 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ void update_health(t_main *g)
     }
     draw_healing_fx(g);
     curr_time = current_time_ms();
-    if (curr_time - time_log > 16)
+    if (curr_time - time_log > 1)
     {
         if (player->healing > DEFAULT_HEALING)
             player->healing -= 0.5;
+		if (player->healing > POTION_HEALING)
+			player->healing -= 0.5;
         damage_player(g, -(player->healing));
         time_log = curr_time;
     }
