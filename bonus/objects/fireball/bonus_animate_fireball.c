@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_fireball.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:14:46 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 03:28:46 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:45:47 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 #include <math.h>
 
-static bool fireball_collision(t_vector *f_pos, t_main *g)
+static bool	fireball_collision(t_vector *f_pos, t_main *g)
 {
-	t_obj_node *obj;
-	t_enemy *enemy;
+	t_obj_node	*obj;
+	t_enemy		*enemy;
 
-	if (g->map.matrix[(int)f_pos->y][(int)f_pos->x] == '1')
+	if (g->map.matrix[(int)f_pos->y][(int)f_pos->x] == '1'
+		|| g->map.matrix[(int)f_pos->y][(int)f_pos->x] == 'd'
+		|| g->map.matrix[(int)f_pos->y][(int)f_pos->x] == 'D')
 		return (true);
 	obj = g->objects.o_static;
 	while (obj)
@@ -40,13 +42,13 @@ static bool fireball_collision(t_vector *f_pos, t_main *g)
 	return (false);
 }
 
-static void add_particle(t_main *g, t_fireball *f)
+static void	add_particle(t_main *g, t_fireball *f)
 {
-	static long long time_log = 0;
-	long long curr_time;
-	t_obj_node *obj;
-	t_fire_particle *particle;
-	
+	static long long	time_log = 0;
+	long long			curr_time;
+	t_obj_node			*obj;
+	t_fire_particle		*particle;
+
 	curr_time = current_time_ms();
 	if (curr_time - time_log > 400)
 	{
@@ -57,12 +59,12 @@ static void add_particle(t_main *g, t_fireball *f)
 			{
 				particle = obj->object;
 				if (!particle->active)
-					break;
+					break ;
 			}
 			obj = obj->next;
 		}
 		particle->image = g->gallery.fireball.particle_1;
-        particle->position = (t_vector){f->position.x, f->position.y};
+		particle->position = (t_vector){f->position.x, f->position.y};
 		particle->segment = f->segment;
 		particle->active = true;
 		time_log = curr_time;
@@ -71,29 +73,27 @@ static void add_particle(t_main *g, t_fireball *f)
 
 void	animate_fireball(t_fireball *f, t_main *g)
 {
-	static long long time_log = 0;
-	long long curr_time;
+	long long	curr_time;
 
 	animate_fireball_sprite(g);
 	animate_fireball_particle_sprite(g);
 	curr_time = current_time_ms();
-	if (f->state == F_FLY && curr_time - time_log > 5)
+	if (f->state == F_FLY && curr_time - f->last_update_time > 5)
 	{
 		add_particle(g, f);
 		f->position.x += cos(f->direction) * 0.05;
 		f->position.y += sin(f->direction) * 0.05;
-		
 		if (fireball_collision(&f->position, g))
 		{
 			fireball_explode(g, &f->position);
 			f->state = F_IDLE;
 			f->position = (t_vector){-1, -1};
 		}
-		time_log = curr_time;
+		f->last_update_time = curr_time;
 	}
 }
 
-void animate_particle_y(t_fire_particle *particle)
+void	animate_particle_y(t_fire_particle *particle)
 {
 	if (particle->active)
 	{
@@ -106,4 +106,3 @@ void animate_particle_y(t_fire_particle *particle)
 			particle->start_y += 4;
 	}
 }
-

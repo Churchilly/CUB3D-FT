@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball_create.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:24:14 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:25:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:43:14 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	create_fireballs(t_main *g)
 		fireball->direction = 0.0;
 		fireball->position.x = -1.0;
 		fireball->position.y = -1.0;
+		fireball->last_update_time = 0;
 		fireball->state = F_IDLE;
 		add_object(&g->objects, FIREBALL, fireball, STATIC);
 	}

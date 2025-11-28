@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_animate_orb.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 23:10:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 03:34:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:21:16 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

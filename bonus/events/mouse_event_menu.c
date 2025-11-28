@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_event_menu.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:30:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:25:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:22:52 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	mouse_click_shop(int x, int y, t_main *g)
 
 	if (is_xy_on_text_button(x, y, &g->shop_menu.to_continue))
 	{
-		g->shop_menu.selected = &g->shop_menu.to_continue;
+		g->shop_menu.selected = &g->shop_menu.to_continue ;
 		activate_button(g);
 		return ;
 	}

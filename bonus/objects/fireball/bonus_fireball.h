@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 03:24:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:43:03 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ struct	s_fireball
 	t_vector			position;
 	double				direction;
 	t_segment			segment;
+	long long last_update_time;
 };
 
 struct s_fireball_particle

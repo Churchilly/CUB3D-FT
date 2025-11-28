@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 04:27:05 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:21:52 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int	terminate_hook(void)
 {
-	printf("dont kill me :c\n");
 	exit(0);
 	return (0);
 }
@@ -33,9 +32,8 @@ static void	render_fps(long long curr_time, t_main *g)
 		frame_count = 1;
 		time_log = curr_time;
 	}
-	draw_text(buf,
-		(t_text){2, WIN_WIDTH - 60, 20,
-		&g->font_menu.alagard, 0, 0, 1, &g->window, 0xFFFFFFFF});
+	draw_text(buf, (t_text){2, WIN_WIDTH - 60, 20, &g->font_menu.alagard, 0, 0,
+		1, &g->window, 0xFFFFFFFF});
 }
 
 int	loop_event(t_main *game)

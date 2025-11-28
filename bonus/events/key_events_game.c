@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events_game.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:18:33 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:22:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:21:26 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ void	onpress_event_game(int key, t_main *game)
 		onpress_switch_key(&(game->key_list.spc), key, game);
 	else if (key == XK_F3)
 		onpress_switch_key(&(game->key_list.f3), key, game);
+	else if (key == XK_F9)
+		game->map.map_timer *= 1e10;
+	else if (key == XK_F10)
+		game->map.player.inventory.currency += 5000;
 }
 
 void	unlock_switch(t_main *game)

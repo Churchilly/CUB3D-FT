@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events_game.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:27:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:21:47 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
