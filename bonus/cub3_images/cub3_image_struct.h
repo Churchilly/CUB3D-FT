@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mmap_gallery.c                                :+:      :+:    :+:   */
+/*   cub3_image_struct.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 03:15:00 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 17:48:57 by btuncer          ###   ########.fr       */
+/*   Created: 2025/11/28 18:38:34 by btuncer           #+#    #+#             */
+/*   Updated: 2025/11/28 18:42:13 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3_images.h"
+#ifndef CUB3_IMAGE_STRUCT_H
+# define CUB3_IMAGE_STRUCT_H
 
-void	init_mmap_gallery(t_cub3_gallery *gal)
+typedef struct s_cub3_image	t_cub3_image;
+typedef t_cub3_image		t_im;
+
+struct						s_cub3_image
 {
-	gal->mmap.floor = create_image("cub3_images/images/minimap/floor.cub3");
-	gal->mmap.wall = create_image("cub3_images/images/minimap/wall.cub3");
-	gal->mmap.player = create_image("cub3_images/images/minimap/player.cub3");
-	gal->mmap.floor_void \
-		= create_image("cub3_images/images/minimap/floor_void.cub3");
-}
+	int						*image;
+	int						width;
+	int						height;
+};
+
+#endif

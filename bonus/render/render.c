@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/26 22:54:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:29:30 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	render_pause_menu(t_main *g)
 
 void	render_main_menu(t_main *g)
 {
-	//draw_image(&g->window, &g->gallery.menu.bg, 0, 50);
-	draw_image_no_alpha_scaled(&g->window, &g->gallery.menu_bg.main, -80, -80, .4);
+	draw_image_no_alpha_scaled(&g->window, &g->gallery.menu_bg.main, (t_pos){-80, -80}, .4);
 	place_button(g, &g->main_menu.btn_campaign);
 	place_button(g, &g->main_menu.btn_map_select);
 	place_button(g, &g->main_menu.btn_exit);
@@ -58,7 +57,7 @@ void	render_select_map(t_main *g)
 	int				idx;
 
 	/* draw background */
-	draw_image_no_alpha_scaled(&g->window, &g->gallery.menu_bg.map_select, -80, -80, .4);
+	draw_image_no_alpha_scaled(&g->window, &g->gallery.menu_bg.map_select, (t_pos){-80, -80}, .4);
 	
 	page = NULL;
 	if (g->map_select.maps && g->map_select.curr_page >= 0)
@@ -82,7 +81,7 @@ void	render_shop(t_main *g)
 {
 	char buf[16];
 	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.shop, 0, 0);
-	draw_image_no_alpha_scaled(&g->window, &g->gallery.hud.currency, WIN_WIDTH / 10 - (g->gallery.hud.currency.width * 0.075), (WIN_HEIGHT / 7) * 4 - (g->gallery.hud.currency.height * 0.025), 0.05);
+	draw_image_no_alpha_scaled(&g->window, &g->gallery.hud.currency, (t_pos){WIN_WIDTH / 10 - (g->gallery.hud.currency.width * 0.075), (WIN_HEIGHT / 7) * 4 - (g->gallery.hud.currency.height * 0.025)}, 0.05);
 	snprintf(buf, sizeof(buf), "%d", g->map.player.inventory.currency);
 	draw_text(buf, (t_text){2, WIN_WIDTH / 10 - 17.5, (WIN_HEIGHT / 7) * 4 - 16, &g->font_menu.alagard, 0, 0, 1.25, &g->window, GOLD_COLOR});
 	place_text_button(g, &g->shop_menu.items[0], "Adrenaline Potion - 50g");

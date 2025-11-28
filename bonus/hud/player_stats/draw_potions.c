@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:54:19 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 16:28:30 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 17:33:39 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ static void	draw_potion(t_main *g, int potion)
 	if (potion == -1)
     {
         draw_image_scaled(&g->window, img,
-		    POTIONS_POS_X,
-            POTIONS_POS_Y, .08);
+		    (t_pos){POTIONS_POS_X, POTIONS_POS_Y}, .08);
             return ;    
     }
     draw_image_no_alpha_scaled(&g->window, img,
-		WIN_WIDTH - (img->width * .08),
-        POTIONS_POS_Y + potion * (img->height * .08) + POTION_GAP,
+		(t_pos){WIN_WIDTH - (img->width * .08),
+        POTIONS_POS_Y + potion * (img->height * .08) + POTION_GAP},
         .08);
 }
 

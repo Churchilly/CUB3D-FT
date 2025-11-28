@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:19:16 by root              #+#    #+#             */
-/*   Updated: 2025/11/27 18:58:20 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 18:40:13 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,12 @@ t_cub3_image	create_image(char *path)
 
 	empty = (t_cub3_image){NULL, 0, 0};
 	content = file_content(path);
-	if (content == NULL && printf("fail path (null): %s\n", path))
+	if (content == NULL)
 		return (empty);
 	lines = ft_split(content, '\n', TEMPORARY);
-	if (!init_cub3_image(&new_image, lines[0]) && printf("fail path: %s\n",
-			path))
+	if (!init_cub3_image(&new_image, lines[0]))
 		return (empty);
-	if (!read_cub3_image_content(&new_image, lines) && printf("exit3\n"))
+	if (!read_cub3_image_content(&new_image, lines))
 		return (empty);
 	clear_section(TEMPORARY);
 	return (new_image);

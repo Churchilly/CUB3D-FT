@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 03:21:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 18:41:07 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,27 @@
 # define RESET 1
 
 # include <fcntl.h>
+# include "cub3_galleries.h"
 
-typedef struct s_cub3_image			t_cub3_image;
+typedef struct s_position			t_pos;
+typedef struct s_rgb				t_rgb;
 typedef struct s_minimap_gallery	t_mmap_gallery;
 typedef struct s_cub3_gallery		t_cub3_gallery;
 typedef struct s_window				t_window;
 typedef struct s_draw_pkg			t_draw_pkg;
 
-typedef t_cub3_image				t_im;
-
-struct								s_cub3_image
+struct								s_position
 {
-	int								*image;
-	int								width;
-	int								height;
+	int								x;
+	int								y;
 };
 
-# include "cub3_galleries.h"
+struct								s_rgb
+{
+	int								r;
+	int								g;
+	int								b;
+};
 
 struct								s_animated_sprite
 {
@@ -69,16 +73,16 @@ struct								s_draw_pkg
 	int								col;
 };
 
-t_cub3_image	create_image(char *path);
+t_cub3_image						create_image(char *path);
 void								draw_image(t_window *win, t_cub3_image *img,
 										int x, int y);
 void								draw_image_scaled(t_window *win,
-										t_cub3_image *img, int x, int y,
+										t_cub3_image *img, t_pos pos,
 										double scale);
 void								draw_image_no_alpha(t_window *win,
 										t_cub3_image *img, int x, int y);
 void								draw_image_no_alpha_scaled(t_window *win,
-										t_cub3_image *img, int x, int y,
+										t_cub3_image *img, t_pos pos,
 										double scale);
 void								draw_button(t_window *win,
 										t_cub3_image *img, int x, int y);
@@ -89,8 +93,9 @@ void								draw_column(t_draw_pkg *pkg, int x,
 int									blend_alpha(int color, int color_to_blend,
 										double alpha);
 void								draw_column_alpha(t_draw_pkg *pkg, int x,
-										t_window *win, int blend, double alpha);
-void								*init_gallery_with_config(t_cub3_gallery *gal);
+										int blend, double alpha);
+void								*init_gallery_with_config(t_cub3_gallery \
+										*gal);
 
 // Gallery init functions
 void								init_enemy_gallery(t_cub3_gallery *gal);
@@ -103,6 +108,6 @@ void								init_hud_gallery(t_cub3_gallery *gal);
 void								init_shop_gallery(t_cub3_gallery *gal);
 void								init_effect_gallery(t_cub3_gallery *gal);
 void								init_misc_gallery(t_cub3_gallery *gal);
-void	init_menu_bg_gallery(t_cub3_gallery *gal);
+void								init_menu_bg_gallery(t_cub3_gallery *gal);
 
 #endif
