@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_fireball_explode.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:16:37 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 03:28:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:35:15 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	damage_nearby_enemies(t_main *g, t_vector *f_pos)
 					&& enemy->position.y >= f_pos->y - 1
 					&& enemy->position.y <= f_pos->y + 1)
 					damage_enemy(enemy, FIREBALL_DAMAGE
-						+ g->map.player.inventory.damage_increase, g);
+						+ g->map.player.inventory.damage_increase * 20, g);
 			}
 		}
 		obj = obj->next;
@@ -45,7 +45,7 @@ void	fireball_explode(t_main *g, t_vector *f_pos)
 	if (player->pos.x >= f_pos->x - 0.7 && player->pos.x <= f_pos->x + 0.7
 		&& player->pos.y >= f_pos->y - 0.7 && player->pos.y <= f_pos->y + 0.7)
 	{
-		damage_player(g, FIREBALL_DAMAGE);
+		damage_player(g, FIREBALL_DAMAGE + g->map.player.inventory.damage_increase * 2);
 	}
 	damage_nearby_enemies(g, f_pos);
 }

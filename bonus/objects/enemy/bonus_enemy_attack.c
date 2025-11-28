@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy_attack.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 05:06:26 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 03:28:15 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 22:14:58 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ void enemy_attack(t_enemy *enemy, t_main *g)
 
 	if (enemy->state == E_ATTACKING && curr_time - enemy->attack_time_log > 500)
 		enemy->state = E_ALIVE;
-
 	if (enemy->state != E_ATTACKING && curr_time - enemy->attack_time_log > 1000)
 	{
-		g->map.player.health -= ENEMY_DAMAGE;
-		if (g->map.player.health < 0)
-			g->map.player.health = 0;
+		damage_player(g, ENEMY_DAMAGE);
 		enemy->state = E_ATTACKING;
 		enemy->attack_time_log = curr_time;
 	}

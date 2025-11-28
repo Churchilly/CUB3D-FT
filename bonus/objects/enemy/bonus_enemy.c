@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 22:55:49 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 03:28:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 22:10:18 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ static void kill_enemy(t_enemy *enemy, t_main *g)
 	g->record.kill_count++;
 	g->record.total_income += 20;
 	enemy->effect_phase = 1;
-	// ENEMY_PARTICLE SPAWN HERE
 }
 
 void damage_enemy(t_enemy *enemy, double damage, t_main *g)

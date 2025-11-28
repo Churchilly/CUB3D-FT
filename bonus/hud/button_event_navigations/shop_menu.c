@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shop_menu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:15:57 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/22 05:33:07 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:39:17 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	purchase_shop_item(t_main *g, int item_idx)
 	else if (item_idx == 1)
 		g->map.player.inventory.mana_increase++;
 	else if (item_idx == 2)
-		g->map.player.health += 25;
+		g->map.player.inventory.health_increase++;
 	else if (item_idx == 3)
 		g->map.player.inventory.damage_increase++;
 	else if (item_idx == 4)

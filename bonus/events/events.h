@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:37:23 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 21:21:22 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 21:58:43 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ int							loop_event(t_main *game);
 void						render_screen(t_main *game);
 
 void						delayed_event(t_main *g, t_game_state state);
+
+void	check_game_time(t_main *g);
 
 #endif
