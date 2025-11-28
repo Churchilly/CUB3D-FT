@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 01:13:46 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:36:01 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,6 @@ static int	map_parse(char *raw_map, t_main *g)
 int	load_map(char *map_file, t_main *game)
 {
 	char	*raw_map;
-	// char	*map_start;
-	// int		current_id;
 
 	raw_map = read_file(map_file);
 	if (!raw_map)

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:55:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:37:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ struct s_map_file
 {
 	char	*file;
 	char	*file_shown;
-	int		validated;
 };
 
 struct s_map

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/26 22:54:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 18:31:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	render_error_menu(t_main *g)
 	draw_image_no_alpha(&g->window, &g->gallery.menu_bg.error, 0, 0);
 	draw_text("Failed to load map", g->error_menu.error_text);
 	g->error_menu.to_continue.scale += scale_dir;
-	g->error_menu.to_continue.win_x = WIN_WIDTH / 2 - (g->error_menu.to_continue.font->font_size * g->error_menu.to_continue.scale * (g->error_menu.to_continue.text_len + 2)) / 3;
+	g->error_menu.to_continue.win_x = WIN_WIDTH * 4 / 9 - (g->error_menu.to_continue.font->max_width * g->error_menu.to_continue.scale * (g->error_menu.to_continue.text_len) / 3);
 	if (g->error_menu.to_continue.scale >= 1.0)
 		scale_dir = -0.005;
 	else if (g->error_menu.to_continue.scale <= 0.75)
@@ -128,7 +128,7 @@ void	render_summary_menu(t_main *g)
 	snprintf(buf, sizeof(buf), "Items Bought: %u", g->record.purchase_count);
 	draw_text(buf, g->summary_menu.items_bought);
 	g->summary_menu.to_continue.scale += scale_dir;
-	g->summary_menu.to_continue.win_x = WIN_WIDTH / 2 - (g->summary_menu.to_continue.font->font_size * g->summary_menu.to_continue.scale * (g->summary_menu.to_continue.text_len + 2)) / 3;
+	g->summary_menu.to_continue.win_x = WIN_WIDTH * 4 / 9 - (g->summary_menu.to_continue.font->max_width * g->summary_menu.to_continue.scale * (g->summary_menu.to_continue.text_len) / 3);
 	if (g->summary_menu.to_continue.scale >= 1.0)
 		scale_dir = -0.005;
 	else if (g->summary_menu.to_continue.scale <= 0.75)

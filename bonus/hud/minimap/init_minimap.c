@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 05:20:00 by root              #+#    #+#             */
-/*   Updated: 2025/11/22 05:37:28 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 18:55:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hud.h"
 #include "../../main/main.h"
+#include "../hud.h"
 
-static void	write_image_to_image(t_cub3_image *dst, t_cub3_image *src,
-	int x, int y)
+static void	write_image_to_image(t_cub3_image *dst, t_cub3_image *src, int x,
+		int y)
 {
 	int	sx;
 	int	sy;
@@ -76,13 +76,13 @@ void	init_minimap(t_main *g)
 	map_height = get_map_height(g->map.matrix);
 	g->minimap_full.width = map_width * MMAP_GRID_SIZE;
 	g->minimap_full.height = map_height * MMAP_GRID_SIZE;
-	g->minimap_full.image = alloc(g->minimap_full.width
-			* g->minimap_full.height * sizeof(int), STATIC);
-	map_y = 0;
-	while (map_y < map_height)
+	g->minimap_full.image = alloc(g->minimap_full.width * g->minimap_full.height
+			* sizeof(int), STATIC);
+	map_y = -1;
+	while (++map_y < map_height)
 	{
-		map_x = 0;
-		while (map_x < map_width && g->map.matrix[map_y][map_x])
+		map_x = -1;
+		while (++map_x < map_width && g->map.matrix[map_y][map_x])
 		{
 			if (g->map.matrix[map_y][map_x] == '1')
 				write_image_to_image(&g->minimap_full, &g->gallery.mmap.wall,
@@ -90,8 +90,6 @@ void	init_minimap(t_main *g)
 			else if (g->map.matrix[map_y][map_x] == '0')
 				write_image_to_image(&g->minimap_full, &g->gallery.mmap.floor,
 					map_x * MMAP_GRID_SIZE, map_y * MMAP_GRID_SIZE);
-			map_x++;
 		}
-		map_y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 19:55:41 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 15:52:39 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:37:22 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,11 @@ static void	parse_valid_files(DIR *dir, t_map_file **files, int count)
 					STATIC);
 			strcpy((*files)[i].file, MAP_FOLDER);
 			strcat((*files)[i].file, entry->d_name);
-			(*files)[i].validated = 0;
 			i++;
 		}
 		entry = readdir(dir);
 	}
 	(*files)[i].file = NULL;
-	(*files)[i].validated = 0;
 }
 
 static void	parse_normalized_files(t_map_file *files)

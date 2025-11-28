@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_potions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:54:19 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 16:28:30 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 17:34:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,16 @@
 
 static void	draw_potion(t_main *g, int potion)
 {
-    t_cub3_image *img;
+	t_cub3_image	*img;
 
-    img = &g->gallery.misc.potion;
+	img = &g->gallery.misc.potion;
 	if (potion == -1)
-    {
-        draw_image_scaled(&g->window, img,
-		    POTIONS_POS_X,
-            POTIONS_POS_Y, .08);
-            return ;    
-    }
-    draw_image_no_alpha_scaled(&g->window, img,
-		WIN_WIDTH - (img->width * .08),
-        POTIONS_POS_Y + potion * (img->height * .08) + POTION_GAP,
-        .08);
+	{
+		draw_image_scaled(&g->window, img, POTIONS_POS_X, POTIONS_POS_Y, .08);
+		return ;
+	}
+	draw_image_no_alpha_scaled(&g->window, img, WIN_WIDTH - (img->width * .08),
+		POTIONS_POS_Y + potion * (img->height * .08) + POTION_GAP, .08);
 }
 
 void	draw_potions(t_main *g)
@@ -41,9 +37,9 @@ void	draw_potions(t_main *g)
 	potion_count = g->map.player.inventory.adrenaline_potions;
 	if (potion_count <= 0)
 	{
-        draw_potion(g, -1);
-        return ;
-    }
+		draw_potion(g, -1);
+		return ;
+	}
 	i = 0;
 	while (i < potion_count)
 	{

@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 05:35:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 08:06:01 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:34:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hud.h"
 #include "../main/main.h"
+#include "hud.h"
 
 void	*set_text_button(t_text_button *button, t_text text_data, t_vector pos)
 {
@@ -42,11 +42,11 @@ void	check_text_button(t_main *game, t_text_button *button)
 	t_vector	mouse_pos;
 
 	mouse_pos = get_mouse_position(game);
-	if (mouse_pos.x > button->position.x
-		&& mouse_pos.x < button->position.x + button->width)
+	if (mouse_pos.x > button->position.x && mouse_pos.x < button->position.x
+		+ button->width)
 	{
-		if (mouse_pos.y > button->position.y
-			&& mouse_pos.y < button->position.y + button->height)
+		if (mouse_pos.y > button->position.y && mouse_pos.y < button->position.y
+			+ button->height)
 		{
 			if (game->state == MENU_MAP_SELECT)
 				game->map_select.selected = button;
