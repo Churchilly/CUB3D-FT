@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:54:19 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 19:33:59 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:42:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ static void	draw_potion(t_main *g, int potion)
 
 	img = &g->gallery.misc.potion;
 	if (potion == -1)
-    {
-        draw_image_scaled(&g->window, img,
-		    (t_pos){POTIONS_POS_X, POTIONS_POS_Y}, .08);
-            return ;    
-    }
-    draw_image_no_alpha_scaled(&g->window, img,
-		(t_pos){WIN_WIDTH - (img->width * .08),
-        POTIONS_POS_Y + potion * (img->height * .08) + POTION_GAP},
-        .08);
+	{
+		draw_image_scaled(&g->window, img, (t_pos){POTIONS_POS_X,
+			POTIONS_POS_Y}, .08);
+		return ;
+	}
+	draw_image_no_alpha_scaled(&g->window, img, (t_pos){WIN_WIDTH - (img->width
+			* .08), POTIONS_POS_Y + potion * (img->height * .08) + POTION_GAP},
+		.08);
 }
 
 void	draw_potions(t_main *g)

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:34:49 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 03:31:46 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:45:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	change_spell(t_spellbook *book, t_main *g)
 {
 	int	spell;
-	
+
 	spell = (int)book->current + book->changing_direction;
 	if (spell < 0)
 		spell = 2;
@@ -50,5 +50,5 @@ void	change_animation(t_spellbook *book, int *phase, t_main *g)
 			book->changing_direction = 0;
 			*phase = 0;
 		}
-	}	
+	}
 }

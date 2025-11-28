@@ -6,19 +6,16 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:00 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:13:29 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 20:06:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../main/window.h"
 #include "render_ray_list.h"
+#include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../main/window.h"
-#include <math.h>
-
-#include "../garbage_collector/garbage_collector.h"
-
-#include <stdio.h>
 
 static int	calculate_package_size(int target_size)
 {
@@ -37,16 +34,15 @@ static int	calculate_package_size(int target_size)
 			{
 				best_diff = abs(i - target_size);
 				best_size = i;
-			}			
-			if (i != (WIN_WIDTH / i) &&
-				(abs(WIN_WIDTH / i - target_size) < best_diff))
+			}
+			if (i != (WIN_WIDTH / i) && (abs(WIN_WIDTH / i
+						- target_size) < best_diff))
 			{
-					best_diff = abs(WIN_WIDTH / i - target_size);
-					best_size = WIN_WIDTH / i;
+				best_diff = abs(WIN_WIDTH / i - target_size);
+				best_size = WIN_WIDTH / i;
 			}
 		}
 	}
-	printf("targetsize::%d\nbest_size::%d\n", target_size, best_size);
 	return (best_size);
 }
 
@@ -62,7 +58,7 @@ static t_ray	*create_ray_pack(int size)
 static void	add_ray_pack(t_ray_list *list, t_ray *ray_pack)
 {
 	t_ray_node	*new;
-	
+
 	new = alloc(sizeof(t_ray_node), STATIC);
 	if (!new)
 		return ;

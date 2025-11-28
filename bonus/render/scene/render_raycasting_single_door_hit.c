@@ -6,14 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:46:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:23:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 22:12:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
+#include "../../main/main.h"
 #include <math.h>
-
-#include <stdio.h>
 
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);
 
@@ -29,20 +27,20 @@ static int	check_doorwall_inner_hit(t_cast_data *d, t_door_wall *dw)
 	}
 	if (find_intersection(d, dw->inner_wall_2))
 	{
-		if (dw->axis == 1) 
+		if (dw->axis == 1)
 			d->ray->side = 'E';
 		else
 			d->ray->side = 'S';
 		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 static int	insert_doorwall_inner_hit(t_cast_data *d, t_door_wall *dw)
 {
-    double  wall_hit_pos;
+	double	wall_hit_pos;
 	double	door_start;
-	
+
 	door_start = (1.0 - DOOR_WIDTH) / 2.0;
 	if (dw->axis == 0)
 		wall_hit_pos = d->ray->hit.y - floor(d->ray->hit.y);
@@ -59,13 +57,14 @@ static int	insert_doorwall_inner_hit(t_cast_data *d, t_door_wall *dw)
 
 int	insert_doorwall_hit(t_cast_data *d, int loc)
 {
-    t_door_wall	*dw;
+	t_door_wall	*dw;
 	int			side;
 
 	dw = NULL;
 	if (loc)
 	{
-		dw = find_door_wall((int)d->player->pos.x, (int)d->player->pos.y, d->door_walls);
+		dw = find_door_wall((int)d->player->pos.x, (int)d->player->pos.y,
+				d->door_walls);
 		if (check_doorwall_inner_hit(d, dw))
 			return (1);
 	}

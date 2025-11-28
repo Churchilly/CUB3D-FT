@@ -6,13 +6,64 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:32:37 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 18:55:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:42:07 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 #include <math.h>
 #include <string.h>
+
+static int	count_map_files(t_main *g)
+{
+	int	count;
+
+	count = 0;
+	while (g->map.files && g->map.files[count].file)
+		count++;
+	return (count);
+}
+
+static void	init_map_button(t_main *g, t_text_button *btn, t_vector base,
+		int idx)
+{
+	t_text	txt;
+
+	txt.text_len = strlen(g->map.files[idx].file_shown);
+	txt.font = &g->font_menu.alagard;
+	txt.scale = 1.0;
+	txt.win = &g->window;
+	txt.win_x = base.x;
+	txt.win_y = base.y;
+	set_text_button(btn, txt, base);
+}
+
+static void	init_map_page(t_main *g, t_text_button *page, int page_num,
+		int files_count)
+{
+	t_vector	base;
+	int			s;
+	int			idx;
+
+	s = 0;
+	base.x = WIN_WIDTH / 4;
+	base.y = WIN_HEIGHT / 4;
+	while (s < MAP_SELECT_PAGE_NUM)
+	{
+		idx = page_num * MAP_SELECT_PAGE_NUM + s;
+		if (idx < files_count)
+		{
+			init_map_button(g, &page[s], base, idx);
+			base.y += (g->font_menu.alagard.font_size * 1.0) + 16;
+		}
+		else
+		{
+			page[s].width = 0;
+			page[s].height = 0;
+		}
+		s++;
+	}
+}
 
 static void	init_nav_buttons(t_main *g, t_map_select *menu)
 {
@@ -34,48 +85,21 @@ static void	init_nav_buttons(t_main *g, t_map_select *menu)
 
 void	*init_map_select_menu(t_main *g, t_map_select *menu)
 {
-	int			files_count;
-	int			pages;
-	int			p;
-	int			s;
-	t_vector	base;
-	t_text		txt;
-	int			idx;
+	int	files_count;
+	int	pages;
+	int	p;
 
-	menu->selected = NULL;
-	files_count = 0;
-	while (g->map.files && g->map.files[files_count].file)
-		files_count++;
+	files_count = count_map_files(g);
 	pages = ceil((double)(files_count + 4) / MAP_SELECT_PAGE_NUM);
+	menu->selected = NULL;
 	menu->maps = alloc(sizeof(t_text_button *) * (pages + 1), STATIC);
-	base.x = WIN_WIDTH / 4;
-	p = -1;
-	while (++p < pages)
+	p = 0;
+	while (p < pages)
 	{
 		menu->maps[p] = alloc(sizeof(t_text_button) * MAP_SELECT_PAGE_NUM,
 				STATIC);
-		base.y = WIN_HEIGHT / 4;
-		s = -1;
-		while (++s < MAP_SELECT_PAGE_NUM)
-		{
-			idx = p * MAP_SELECT_PAGE_NUM + s;
-			if (idx < files_count)
-			{
-				txt.text_len = strlen(g->map.files[idx].file_shown);
-				txt.font = &g->font_menu.alagard;
-				txt.scale = 1.0;
-				txt.win = &g->window;
-				txt.win_x = base.x;
-				txt.win_y = base.y;
-				set_text_button(&menu->maps[p][s], txt, base);
-				base.y += (txt.font->font_size * txt.scale) + 16;
-			}
-			else
-			{
-				menu->maps[p][s].width = 0;
-				menu->maps[p][s].height = 0;
-			}
-		}
+		init_map_page(g, menu->maps[p], p, files_count);
+		p++;
 	}
 	menu->maps[p] = NULL;
 	menu->curr_page = 0;

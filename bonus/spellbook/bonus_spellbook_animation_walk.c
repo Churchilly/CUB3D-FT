@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:33:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/11 17:30:06 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:45:06 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	reset_walk_animation_vertical(t_main *g)
 		g->spellbook.win_pos.x += SPELLBOOK_WALK_ANIM_SPEED;
 		if (g->spellbook.win_pos.x > g->spellbook.original_win_pos.x)
 			g->spellbook.win_pos.x = g->spellbook.original_win_pos.x;
-	}	
+	}
 }
 
 void	reset_walk_animation_horizontal(t_main *g)
@@ -41,7 +41,7 @@ void	reset_walk_animation_horizontal(t_main *g)
 		g->spellbook.win_pos.y += SPELLBOOK_WALK_ANIM_SPEED;
 		if (g->spellbook.win_pos.y > g->spellbook.original_win_pos.y)
 			g->spellbook.win_pos.y = g->spellbook.original_win_pos.y;
-	}	
+	}
 }
 
 static void	walk_animation_horizontal(t_main *g)
@@ -49,14 +49,18 @@ static void	walk_animation_horizontal(t_main *g)
 	if (g->key_list.w)
 	{
 		g->spellbook.win_pos.y += SPELLBOOK_WALK_ANIM_SPEED;
-		if (g->spellbook.win_pos.y > g->spellbook.original_win_pos.y + SPELLBOOK_WALK_ANIM_MAX)
-			g->spellbook.win_pos.y = g->spellbook.original_win_pos.y + SPELLBOOK_WALK_ANIM_MAX;
+		if (g->spellbook.win_pos.y > g->spellbook.original_win_pos.y
+			+ SPELLBOOK_WALK_ANIM_MAX)
+			g->spellbook.win_pos.y = g->spellbook.original_win_pos.y
+				+ SPELLBOOK_WALK_ANIM_MAX;
 	}
 	if (g->key_list.s)
 	{
 		g->spellbook.win_pos.y -= SPELLBOOK_WALK_ANIM_SPEED;
-		if (g->spellbook.win_pos.y < g->spellbook.original_win_pos.y - SPELLBOOK_WALK_ANIM_MAX)
-			g->spellbook.win_pos.y = g->spellbook.original_win_pos.y - SPELLBOOK_WALK_ANIM_MAX;
+		if (g->spellbook.win_pos.y < g->spellbook.original_win_pos.y
+			- SPELLBOOK_WALK_ANIM_MAX)
+			g->spellbook.win_pos.y = g->spellbook.original_win_pos.y
+				- SPELLBOOK_WALK_ANIM_MAX;
 	}
 	if ((!g->key_list.w && !g->key_list.s) || (g->key_list.w && g->key_list.s))
 		reset_walk_animation_horizontal(g);
@@ -67,14 +71,18 @@ static void	walk_animation_vertical(t_main *g)
 	if (g->key_list.a)
 	{
 		g->spellbook.win_pos.x += SPELLBOOK_WALK_ANIM_SPEED;
-		if (g->spellbook.win_pos.x > g->spellbook.original_win_pos.x + SPELLBOOK_WALK_ANIM_MAX)
-			g->spellbook.win_pos.x = g->spellbook.original_win_pos.x + SPELLBOOK_WALK_ANIM_MAX;
+		if (g->spellbook.win_pos.x > g->spellbook.original_win_pos.x
+			+ SPELLBOOK_WALK_ANIM_MAX)
+			g->spellbook.win_pos.x = g->spellbook.original_win_pos.x
+				+ SPELLBOOK_WALK_ANIM_MAX;
 	}
 	if (g->key_list.d)
 	{
 		g->spellbook.win_pos.x -= SPELLBOOK_WALK_ANIM_SPEED;
-		if (g->spellbook.win_pos.x < g->spellbook.original_win_pos.x - SPELLBOOK_WALK_ANIM_MAX)
-			g->spellbook.win_pos.x = g->spellbook.original_win_pos.x - SPELLBOOK_WALK_ANIM_MAX;
+		if (g->spellbook.win_pos.x < g->spellbook.original_win_pos.x
+			- SPELLBOOK_WALK_ANIM_MAX)
+			g->spellbook.win_pos.x = g->spellbook.original_win_pos.x
+				- SPELLBOOK_WALK_ANIM_MAX;
 	}
 	if ((!g->key_list.a && !g->key_list.d) || (g->key_list.a && g->key_list.d))
 		reset_walk_animation_vertical(g);

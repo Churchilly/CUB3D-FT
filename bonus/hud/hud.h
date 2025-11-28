@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 15:53:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:43:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define GOLD_COLOR 0xFFD700
 
-// MINIMAP DEFINES
 # define MMAP_GRID_SIZE 20
 # define MMAP_GRID_COUNT 9
 # define MMAP_RANGE 5
@@ -23,7 +22,6 @@
 
 # define MMAP_PLAYER_IMAGE_OFFSET 90.0
 
-// PLAYER STATS DEFINES
 # define MANA_COLOR 0xff2757f5
 # define MANA_POS_X 20
 # define MANA_POS_Y 255
@@ -134,38 +132,31 @@ void	*set_text_button(t_text_button *button, t_text text_data, t_vector pos);
 void	check_text_button(t_main *game, t_text_button *button);
 void	place_text_button(t_main *g, t_text_button *button, char *label);
 
-// General button navigation (delegates to specific menu functions)
 void	activate_button(t_main *g);
 void	next_button(t_main *game);
 void	prev_button(t_main *game);
 void	next_page(t_main *game);
 void	prev_page(t_main *game);
 
-// Main/Pause menu specific
 void	next_main_pause_item(t_main *g);
 void	prev_main_pause_item(t_main *g);
 void	activate_button_main_pause(t_main *g);
 
-// Map select menu specific
 void	next_map_select_item(t_main *g);
 void	prev_map_select_item(t_main *g);
 void	activate_button_map_select(t_main *g);
 
-// Shop menu specific
 void	next_shop_item(t_main *g);
 void	prev_shop_item(t_main *g);
 void	activate_button_shop(t_main *g);
 
-// Player stats
 void	draw_mana_bar(t_main *g);
 void	draw_heath_bar(t_main *g);
 void	draw_potions(t_main *g);
 void	draw_currency_game(t_main *g);
 
-// Button event navigations
 void	new_game(t_main *g, char *map_file);
 void	next_map(t_main *g);
 void	reset_game(t_main *g, int all);
-
 
 #endif

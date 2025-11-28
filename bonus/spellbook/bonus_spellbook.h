@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 20:10:39 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 03:32:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:54:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../cub3_images/cub3_images.h"
 # include "../main/vector.h"
+
+typedef struct s_main		t_main;
 
 # define SPELL_COOLDOWN 60
 # define SPELLBOOK_CHANGE_ANIM_SPEED 10.0
@@ -51,8 +53,6 @@ struct s_spellbook
 	float			scale;
 };
 
-typedef struct s_main	t_main;
-
 void	cub_spellbook(t_spellbook *spellbook, void *mlx);
 void	next_spell(t_main *g);
 void	prev_spell(t_main *g);
@@ -60,7 +60,6 @@ void	cast_spell(t_main *g);
 void	cast_lock(t_main *g);
 void	cast_unlock(t_main *g);
 void	cast_fireball(t_main *g);
-void	render_spellbook(t_main *g);
 void	animate_spellbook(t_main *g);
 void	change_animation(t_spellbook *book, int *phase, t_main *g);
 void	reset_walk_animation_horizontal(t_main *g);

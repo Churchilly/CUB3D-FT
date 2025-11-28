@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 03:31:46 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:48:19 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	cast_spell(t_main *g)
 	else if (g->spellbook.current == SPELL_UNLOCK)
 		cast_unlock(g);
 }
+
 static void	_init_texture(t_texture *src, char *dst, void *mlx)
 {
 	src->img = mlx_xpm_file_to_image(mlx, dst, &src->width, &src->height);
@@ -56,19 +57,21 @@ static void	_init_texture(t_texture *src, char *dst, void *mlx)
 		printf("Error: Failed to load texture %s\n", dst);
 		exit(1);
 	}
-	src->addr = mlx_get_data_addr(src->img,
-		&src->bits_per_pixel, &src->line_length,
-		&src->endian);
+	src->addr = mlx_get_data_addr(src->img, &src->bits_per_pixel,
+			&src->line_length, &src->endian);
 }
+
 void	cub_spellbook(t_spellbook *spellbook, void *mlx)
 {
 	int	target_width;
 	int	scaled_width;
 	int	scaled_height;
 
-	_init_texture(&spellbook->texture_fireball, "textures/fireball_spellbook.xpm", mlx);
+	_init_texture(&spellbook->texture_fireball,
+		"textures/fireball_spellbook.xpm", mlx);
 	_init_texture(&spellbook->texture_lock, "textures/lock_spellbook.xpm", mlx);
-	_init_texture(&spellbook->texture_unlock, "textures/unlock_spellbook.xpm", mlx);
+	_init_texture(&spellbook->texture_unlock, "textures/unlock_spellbook.xpm",
+		mlx);
 	spellbook->current = SPELL_FIREBALL;
 	spellbook->cur_texture = &spellbook->texture_fireball;
 	spellbook->cooldown = 0;

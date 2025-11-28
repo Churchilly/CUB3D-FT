@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 20:54:29 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:51:28 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "window.h"
 
 # include "../render/render.h"
-# include "../render/render_ray_list.h"
+# include "../render/ray_list/render_ray_list.h"
 
 # include "../hud/hud.h"
 # include "../cub3_images/cub3_images.h"

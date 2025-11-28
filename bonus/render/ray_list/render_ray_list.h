@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render_ray_list.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 04:27:51 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/15 21:22:23 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 22:02:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_RAYLIST_H
-# define RENDER_RAYLIST_H
+#ifndef RENDER_RAY_LIST_H
+# define RENDER_RAY_LIST_H
 
-# include "render.h"
+# include "../render.h"
 
 typedef struct s_ray_node	t_ray_node;
 typedef struct s_ray_list	t_ray_list;
@@ -22,7 +22,7 @@ struct s_ray_node
 {
 	t_ray_node	*next;
 	t_ray_node	*prev;
-	t_ray		*ray_pack; // this hold SENSITIVITY * 0.05 * WIN_WIDTH num of ray
+	t_ray		*ray_pack;
 };
 
 struct s_ray_list
