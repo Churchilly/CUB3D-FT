@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 05:06:26 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 04:11:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:27:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void draw_enemy_effect(t_enemy *enemy, t_player *player, t_window *win)
 {
 	double angle;
 
-	if (enemy->state == ATTACKING)
+	if (enemy->state == E_ATTACKING)
 	{
 		angle = get_enemy_angle_relative_to_player(enemy, player);
 		draw_line_from_center(angle, win);

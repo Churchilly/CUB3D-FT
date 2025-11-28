@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:34:49 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/11 14:41:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:31:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static void	change_spell(t_spellbook *book, t_main *g)
 	else if (spell > 2)
 		spell = 0;
 	book->current = (t_spell)spell;
-	if (book->current == FIRBALL)
+	if (book->current == SPELL_FIREBALL)
 		book->cur_texture = &g->spellbook.texture_fireball;
-	else if (book->current == LOCK)
+	else if (book->current == SPELL_LOCK)
 		book->cur_texture = &g->spellbook.texture_lock;
-	else if (book->current == UNLOCK)
+	else if (book->current == SPELL_UNLOCK)
 		book->cur_texture = &g->spellbook.texture_unlock;
 }
 

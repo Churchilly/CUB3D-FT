@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 17:58:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:29:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ void	create_render_queue(t_main *g)
 	curr = g->objects.o_static;
 	while (curr)
 	{
-		if (curr->type == FIREBALL && ((t_fireball *)curr->object)->state != IDLE)
+		if (curr->type == FIREBALL && ((t_fireball *)curr->object)->state != F_IDLE)
 		{
 			update_object_segment(&((t_fireball *)curr->object)->segment, ((t_fireball *)curr->object)->position, &g->map.player, FIREBALL_WIDTH);
 			if (is_segment_in_fov(&g->map.player, &((t_fireball *)curr->object)->segment))
 				add_to_render_queue(&g->objects, curr, &g->map.player);
 		}
-		else if (curr->type == ENEMY && ((t_enemy *)curr->object)->state != IDLE)
+		else if (curr->type == ENEMY && ((t_enemy *)curr->object)->state != E_IDLE)
 		{
 			update_object_segment(&((t_enemy *)curr->object)->segment, ((t_enemy *)curr->object)->position, &g->map.player, ENEMY_WIDTH);
 			if (is_segment_in_fov(&g->map.player, &((t_enemy *)curr->object)->segment))

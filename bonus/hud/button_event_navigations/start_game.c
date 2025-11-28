@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 21:01:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:31:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void reset_static_objects(t_main *g)
 		{
 			t_enemy *enemy = curr->object;
 			enemy->health = ENEMY_HEALTH;
-			enemy->state = IDLE;
+			enemy->state = E_IDLE;
 			enemy->position.x = -1.0;
 			enemy->position.y = -1.0;
 			enemy->red_alpha = 0.0;
@@ -61,7 +61,7 @@ static void	reset(t_main *g, int all)
 	}
 	reset_static_objects(g);
 	clear_section(DYNAMIC);
-	g->spellbook.current = FIRBALL;
+	g->spellbook.current = SPELL_FIREBALL;
 	g->spellbook.cur_texture = &g->spellbook.texture_fireball;
 	g->objects.o_dynamic = NULL;
 	g->map.player.pos.x = -1;

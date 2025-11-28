@@ -16,29 +16,24 @@
 #include <math.h>
 #include <stdio.h>
 
-t_door_wall	*find_door_wall(int x, int y, t_door_wall *new)
+t_door_wall	*find_door_wall(int x, int y, t_door_wall *door_walls)
 {
-	static t_door_wall *door_walls = NULL;
-	static int count = 0;
 	int	i;
 
-	if (x == -1 && new)
-	{
-		count = y;
-		door_walls = new;
+	if (!door_walls)
 		return (NULL);
-	}
 	if (x == -1)
 	{
-		if (y < count)
-			return (&(door_walls[y]));
-		return (NULL);
+		if (door_walls[y].map_pos.x == -1 && door_walls[y].map_pos.y == -1)
+			return (NULL);
+		return (&(door_walls[y]));
 	}
-	i = -1;
-	while (++i < count)
+	i = 0;
+	while (door_walls[i].map_pos.x != -1 || door_walls[i].map_pos.y != -1)
 	{
 		if (x == door_walls[i].map_pos.x && y == door_walls[i].map_pos.y)
 			return (&door_walls[i]);
+		i++;
 	}
 	return (NULL);
 }

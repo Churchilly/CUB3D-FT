@@ -17,6 +17,7 @@
 static void	init_cast_data(t_cast_data *d, t_main *g, double dx, double dy)
 {
 	d->player = &g->map.player;
+	d->door_walls = g->map.door_walls;
 	d->map_pos.x = (int)d->player->pos.x;
 	d->map_pos.y = (int)d->player->pos.y;
 	init_ray_axis(dx, &d->ray_d.x, &d->delta_dist.x);

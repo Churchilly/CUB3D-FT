@@ -1,5 +1,5 @@
 CC              = cc
-CFLAGS          = -I$(INC_DIR) -I$(MLX_DIR) #-Wextra -Wall -Werror # -fsanitize=address -g
+CFLAGS          = -I$(INC_DIR) -I$(MLX_DIR) -Wextra -Wall -Werror
 
 NAME            = cub3d
 

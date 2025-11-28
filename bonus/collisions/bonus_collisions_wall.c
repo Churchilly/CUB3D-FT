@@ -65,7 +65,7 @@ static double	check_wall_collision_single(t_cast_data *d, t_vector pos,
 			break ;
 		if (map[d->map_pos.y][d->map_pos.x] == 'D')
 		{
-			dw = find_door_wall(d->map_pos.x, d->map_pos.y, NULL);
+			dw = find_door_wall(d->map_pos.x, d->map_pos.y, d->door_walls);
 			if (dw && !check_doorwall_passage(d, pos, dw, side))
 				return (calculate_wall_distance(d, pos, side));
 		}

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:14:46 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 10:58:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:28:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool fireball_collision(t_vector *f_pos, t_main *g)
 		if (obj->type == ENEMY)
 		{
 			enemy = (t_enemy *)obj->object;
-			if (enemy->state != IDLE && enemy->state != DYING)
+			if (enemy->state != E_IDLE && enemy->state != E_DYING)
 			{
 				if (enemy->position.x >= f_pos->x - ENEMY_WIDTH / 2
 					&& enemy->position.x <= f_pos->x + ENEMY_WIDTH / 2
@@ -77,7 +77,7 @@ void	animate_fireball(t_fireball *f, t_main *g)
 	animate_fireball_sprite(g);
 	animate_fireball_particle_sprite(g);
 	curr_time = current_time_ms();
-	if (f->state == FLY && curr_time - time_log > 5)
+	if (f->state == F_FLY && curr_time - time_log > 5)
 	{
 		add_particle(g, f);
 		f->position.x += cos(f->direction) * 0.05;

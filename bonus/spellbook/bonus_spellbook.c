@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 18:37:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:31:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	cast_spell(t_main *g)
 			printf("spell in cooldown :: %d\n", g->spellbook.cooldown);
 		return ;
 	}
-	if (g->spellbook.current == FIRBALL)
+	if (g->spellbook.current == SPELL_FIREBALL)
 	{
 		system(AUDIO_FIREBALL);
 		cast_fireball(g);
 	}
-	else if (g->spellbook.current == LOCK)
+	else if (g->spellbook.current == SPELL_LOCK)
 		cast_lock(g);
-	else if (g->spellbook.current == UNLOCK)
+	else if (g->spellbook.current == SPELL_UNLOCK)
 		cast_unlock(g);
 }
 static void	_init_texture(t_texture *src, char *dst, void *mlx)
@@ -69,7 +69,7 @@ void	cub_spellbook(t_spellbook *spellbook, void *mlx)
 	_init_texture(&spellbook->texture_fireball, "textures/fireball_spellbook.xpm", mlx);
 	_init_texture(&spellbook->texture_lock, "textures/lock_spellbook.xpm", mlx);
 	_init_texture(&spellbook->texture_unlock, "textures/unlock_spellbook.xpm", mlx);
-	spellbook->current = FIRBALL;
+	spellbook->current = SPELL_FIREBALL;
 	spellbook->cur_texture = &spellbook->texture_fireball;
 	spellbook->cooldown = 0;
 	spellbook->changing_direction = 0;

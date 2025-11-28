@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy_create.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:23:30 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 19:16:00 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 03:27:41 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	create_enemies(t_main *g)
 	{
 		enemy = alloc(sizeof(t_enemy), STATIC);
 		enemy->health = ENEMY_HEALTH;
-		enemy->state = IDLE;
+		enemy->state = E_IDLE;
 		enemy->position.x = -1.0;
 		enemy->position.y = -1.0;
 		enemy->red_alpha = 0.0;

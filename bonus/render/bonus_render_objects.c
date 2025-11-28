@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 20:41:10 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 03:34:17 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ static void	init_cast_data(t_cast_data *d, t_main *g, t_ray *ray)
 	d->fov_rad = FOV * (M_PI) / 180.0;
 	d->direction = g->map.player.dov - (d->fov_rad / 2.0);
 	d->player = &g->map.player;
+	d->door_walls = g->map.door_walls;
 	d->ray = ray;
 }
 // todo: fucking delete the barrier 2 if you really want it add it as a seperate obj 
@@ -291,7 +292,7 @@ static void	render_enemy(t_main *g, t_enemy *e)
 			d.direction += d.fov_rad / WIN_WIDTH;
 			continue ;
 		}
-		if (e->state == DYING)
+		if (e->state == E_DYING)
 		{
 			e->dying_effect.win_x = x + 40;
 			draw_text("+20", e->dying_effect);

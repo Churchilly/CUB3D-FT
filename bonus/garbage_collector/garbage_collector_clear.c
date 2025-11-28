@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:24 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 01:11:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:22:19 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	clear(t_section section_name)
 
 static void	clear_textures(t_section sec)
 {
-	void	**section;
+	void	***section;
 	void	*mlx;
 	void	**img;
 	int		i;

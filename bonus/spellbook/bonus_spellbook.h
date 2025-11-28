@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_spellbook.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 20:10:39 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/27 18:46:28 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 03:32:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ typedef struct s_spellbook	t_spellbook;
 
 enum	e_spell
 {
-	FIRBALL = 0,
-	LOCK,
-	UNLOCK,
-	BARRIER
+	SPELL_FIREBALL = 0,
+	SPELL_LOCK,
+	SPELL_UNLOCK
 };
 
 struct s_spellbook

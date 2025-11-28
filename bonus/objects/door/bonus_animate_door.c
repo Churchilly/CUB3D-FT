@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 03:01:53 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 03:15:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:33:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	animate_lock(t_door *door)
 	{
 		door->alpha = DOOR_ALPHA_LOCKED;
 		door->color = DOOR_COLOR_LOCKED;
-		door->state = CLOSE;
+		door->state = D_CLOSE;
 	}
 }
 
@@ -56,14 +56,14 @@ static void	animate_unlock(t_door *door)
 	{
 		door->alpha = DOOR_ALPHA_OPEN;
 		door->color = DOOR_COLOR_OPEN;
-		door->state = OPEN;
+		door->state = D_OPEN;
 	}
 }
 
 void	animate_door(t_door *door)
 {
-	if (door->state == LOCKING)
+	if (door->state == D_LOCKING)
 		animate_lock(door);
-	else if (door->state == UNLOCKING)
+	else if (door->state == D_UNLOCKING)
 		animate_unlock(door);
 }

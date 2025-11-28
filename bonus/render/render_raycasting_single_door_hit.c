@@ -65,13 +65,13 @@ int	insert_doorwall_hit(t_cast_data *d, int loc)
 	dw = NULL;
 	if (loc)
 	{
-		dw = find_door_wall((int)d->player->pos.x, (int)d->player->pos.y, NULL);
+		dw = find_door_wall((int)d->player->pos.x, (int)d->player->pos.y, d->door_walls);
 		if (check_doorwall_inner_hit(d, dw))
 			return (1);
 	}
 	else
 	{
-		dw = find_door_wall(d->map_pos.x, d->map_pos.y, NULL);
+		dw = find_door_wall(d->map_pos.x, d->map_pos.y, d->door_walls);
 		side = d->ray->side;
 		if (side == 0)
 			insert_horizontal_hit(d);

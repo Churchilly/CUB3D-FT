@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:15:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 02:17:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,7 @@ static void	insert_inner_walls(t_door_wall *dw)
 		dw->inner_wall_2.e.y = dw->map_pos.y + 1.0;
 	}
 }
-/*
-static void	insert_door(t_door_wall *new)
-{
-	if (new->axis == 0) // horizontal
-	{
-		new->pos.s.x = new->map_pos.x + 0.5;
-		new->pos.s.y = new->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
-		new->pos.e.x = new->pos.s.x;
-		new->pos.e.y = new->pos.s.y + DOOR_WIDTH;
-	}
-	else // vertical
-	{
-		new->pos.s.x = new->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
-		new->pos.s.y = new->map_pos.y + 0.5;
-		new->pos.e.x = new->pos.s.x + DOOR_WIDTH;
-		new->pos.e.y = new->pos.s.y;
-	}
 
-}
-*/
 static void	new_door(int x, int y, int axis, t_door_wall *dw)
 {
 	dw->map_pos.x = x;
@@ -100,8 +81,8 @@ static t_door_wall *create_door_walls(char *raw_map, int count)
 	int		x;
 	int		y;
 	int		i;
-	
-	door_walls = alloc(sizeof(t_door_wall) * count, DYNAMIC);
+
+	door_walls = alloc(sizeof(t_door_wall) * (count + 1), DYNAMIC);
 	x = 0;
 	y = 0;
 	i = 0;
@@ -114,23 +95,30 @@ static t_door_wall *create_door_walls(char *raw_map, int count)
 		}
 		else if (*raw_map == 'd' || *raw_map == 'D')
 		{
-			new_door(x, y, *raw_map, &(door_walls[i++]));
+			new_door(x, y, *raw_map, &(door_walls[i]));
 			x++;
+			i++;
 		}
 		else
 			x++;
 		raw_map++;
 	}
+	door_walls[count].map_pos.x = -1;
+	door_walls[count].map_pos.y = -1;
 	return (door_walls);
 }
 
-void	load_doors(char *raw_map)
+void	load_doors(char *raw_map, t_main *game)
 {
 	t_door_wall	*door_walls;
+	int			count;
 
-	int count = count_doors(raw_map);
+	count = count_doors(raw_map);
 	if (count == 0)
+	{
+		game->map.door_walls = NULL;
 		return ;
+	}
 	door_walls = create_door_walls(raw_map, count);
-	find_door_wall(-1, count, door_walls);
+	game->map.door_walls = door_walls;
 }

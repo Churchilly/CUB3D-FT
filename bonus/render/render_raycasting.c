@@ -21,6 +21,7 @@ static t_ray_node	*init_cast_data(t_cast_data *d, t_main *g)
 	d->fov_rad = FOV * (M_PI) / 180.0;
 	d->direction = g->map.player.dov - (d->fov_rad / 2.0);
 	d->player = &g->map.player;
+	d->door_walls = g->map.door_walls;
 	return (g->rays.head);
 }
 

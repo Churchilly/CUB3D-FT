@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_door.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:49:39 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 03:33:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ typedef struct s_door		t_door;
 
 enum e_door_states
 {
-	OPEN = 11, // blue, alpha 0.4, no collision
-	CLOSE, // locked (red, alpha 0.8, has collision)
-	LOCKING, // animation: OPEN -> CLOSE
-	UNLOCKING // animation: CLOSE -> OPEN
+	D_OPEN = 11, // blue, alpha 0.4, no collision
+	D_CLOSE, // locked (red, alpha 0.8, has collision)
+	D_LOCKING, // animation: OPEN -> CLOSE
+	D_UNLOCKING // animation: CLOSE -> OPEN
 };
 
 struct s_door_wall
@@ -58,7 +58,7 @@ struct s_door
 };
 
 
-t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);
+t_door_wall	*find_door_wall(int x, int y, t_door_wall *door_walls);
 t_door		*find_interactable_door(t_main *g);
 void		create_barriers(t_main *g);
 void	animate_door(t_door *door);

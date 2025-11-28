@@ -63,7 +63,7 @@ double	find_doorwall_collision(t_cast_data *d, char **map)
 		{
 			if (y >= 0 && map[y] && x >= 0 && map[y][x] == 'D')
 			{
-				dw = find_door_wall(x, y, NULL);
+				dw = find_door_wall(x, y, d->door_walls);
 				if (!dw)
 					continue ;
 				dist = check_doorwall_inner_walls(d, dw);

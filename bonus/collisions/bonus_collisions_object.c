@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:40:58 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:31:46 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:33:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ double	find_object_collision(t_cast_data *d, t_main *g)
 		if (curr->type == DOOR)
 		{
 			door = (t_door *)curr->object;
-			if (door->state != OPEN)
+			if (door->state != D_OPEN)
 			{
 				dist = find_collision_distance(d, door->barrier);
 				if (dist < min_dist)

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 23:10:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/24 10:34:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:34:49 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	orb_damage(t_main *g, t_orb *orb)
 	obj = g->objects.o_static;
 	while (obj)
 	{
-		if (obj->type == ENEMY && ((t_enemy *)obj->object)->state == ALIVE)
+		if (obj->type == ENEMY && ((t_enemy *)obj->object)->state == E_ALIVE)
 		{
 			enemy = (t_enemy *)obj->object;
 			dist.x = orb->position.x - enemy->position.x;

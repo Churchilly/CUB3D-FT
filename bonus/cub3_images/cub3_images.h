@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/27 18:58:27 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 03:21:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ struct								s_draw_pkg
 	int								col;
 };
 
-t_cub3_image						create_image(char *path);
+t_cub3_image	create_image(char *path);
 void								draw_image(t_window *win, t_cub3_image *img,
 										int x, int y);
 void								draw_image_scaled(t_window *win,
@@ -103,5 +103,6 @@ void								init_hud_gallery(t_cub3_gallery *gal);
 void								init_shop_gallery(t_cub3_gallery *gal);
 void								init_effect_gallery(t_cub3_gallery *gal);
 void								init_misc_gallery(t_cub3_gallery *gal);
+void	init_menu_bg_gallery(t_cub3_gallery *gal);
 
 #endif

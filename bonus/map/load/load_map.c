@@ -104,7 +104,7 @@ static int	map_parse(char *raw_map, t_main *g)
 	}
 	if (check_map_materials(&g->map))
 		return (1);
-	load_doors(map_start);
+	load_doors(map_start, g);
 	if (load_matrix(map_start, g))
 		return (1);
 	return (0);

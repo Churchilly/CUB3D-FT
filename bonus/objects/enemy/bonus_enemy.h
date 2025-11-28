@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 19:19:13 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 03:27:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ typedef enum e_enemy_state	t_enemy_state;
 
 enum e_enemy_state
 {
-	IDLE,
-	ALIVE,
-	BURNING,
-	ATTACKING,
-	DYING
+	E_IDLE,
+	E_ALIVE,
+	E_ATTACKING,
+	E_DYING
 };
 
 struct s_enemy

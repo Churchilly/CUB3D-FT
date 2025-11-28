@@ -57,6 +57,7 @@ struct s_map
 	char		**matrix;
 	t_player	player;
 	long long	map_timer;
+	void		*door_walls;
 };
 
 void	cub_map(t_map *map);
@@ -70,6 +71,6 @@ int		load_color(char *raw_map, int *target_color);
 void	load_next_map_info(char *raw_map, t_main *game);
 int		load_matrix(char *raw_map, t_main *game);
 int		create_matrix(char *raw_map, t_main *game);
-void	load_doors(char *raw_map);
+void	load_doors(char *raw_map, t_main *game);
 
 #endif

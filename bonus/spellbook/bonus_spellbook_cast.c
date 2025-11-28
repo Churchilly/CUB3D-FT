@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:46:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:00:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 03:33:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	cast_fireball(t_main *g)
 			{
 				fireball->position = (t_vector){g->map.player.pos.x, g->map.player.pos.y};
 				fireball->direction = g->map.player.dov;
-				fireball->state = FLY;
+				fireball->state = F_FLY;
 				g->record.fireballs_cast++;
 				return ;
 			}
@@ -44,9 +44,9 @@ void	cast_lock(t_main *g)
 	door = find_interactable_door(g);
 	if (!door)
 		return ;
-	if (door->state == OPEN || door->state == UNLOCKING)
+	if (door->state == D_OPEN || door->state == D_UNLOCKING)
 	{
-		door->state = LOCKING;
+		door->state = D_LOCKING;
 		g->spellbook.cooldown = SPELL_COOLDOWN;
 	}
 }
@@ -58,9 +58,9 @@ void	cast_unlock(t_main *g)
 	door = find_interactable_door(g);
 	if (!door)
 		return ;
-	if (door->state == CLOSE || door->state == LOCKING)
+	if (door->state == D_CLOSE || door->state == D_LOCKING)
 	{
-		door->state = UNLOCKING;
+		door->state = D_UNLOCKING;
 		g->spellbook.cooldown = SPELL_COOLDOWN;
 	}
 }

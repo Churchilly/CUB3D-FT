@@ -34,6 +34,7 @@ struct s_cast_data
 	t_vector		delta_dist;
 	double			fov_rad;
 	double			direction;
+	void			*door_walls;
 };
 
 struct s_render_data
