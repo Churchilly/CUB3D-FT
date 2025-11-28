@@ -6,16 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 02:17:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:58:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _GNU_SOURCE // delete it later its just for me .p
-// doors must parse before matrix!!
 #include "../../main/main.h"
 #include <stdlib.h>
 #include <math.h>
-// classic function count create parse!
 
 static int	count_doors(char *raw_map)
 {
@@ -78,9 +76,9 @@ static void	new_door(int x, int y, int axis, t_door_wall *dw)
 static t_door_wall *create_door_walls(char *raw_map, int count)
 {
 	t_door_wall	*door_walls;
-	int		x;
-	int		y;
-	int		i;
+	int			x;
+	int			y;
+	int			i;
 
 	door_walls = alloc(sizeof(t_door_wall) * (count + 1), DYNAMIC);
 	x = 0;
@@ -88,7 +86,7 @@ static t_door_wall *create_door_walls(char *raw_map, int count)
 	i = 0;
 	while (*raw_map)
 	{
-		if (*raw_map == '\n') // x = 0 y++
+		if (*raw_map == '\n')
 		{
 			x = 0;
 			y++;

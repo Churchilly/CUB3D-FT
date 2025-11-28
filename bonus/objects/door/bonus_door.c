@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:56:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 05:01:19 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ t_door_wall	*find_door_wall(int x, int y, t_door_wall *door_walls)
 	return (NULL);
 }
 
-
 static void	init_data(t_cast_data *d, t_player *p)
 {
 	d->player = p;
 	d->ray_d.x = cos(p->dov);
 	d->ray_d.y = sin(p->dov);
 }
-// return door in player fov && distance < door_interact_distance
-// if no door found returns null
+
 t_door	*find_interactable_door(t_main *g)
 {
 	t_cast_data	d;
@@ -63,7 +61,8 @@ t_door	*find_interactable_door(t_main *g)
 	{
 		if (curr->type == DOOR)
 		{
-			dist = find_collision_distance(&d, ((t_door *)curr->object)->barrier);
+			dist = find_collision_distance(&d,
+					((t_door *)curr->object)->barrier);
 			if (dist < min_dist)
 			{
 				min_dist = dist;

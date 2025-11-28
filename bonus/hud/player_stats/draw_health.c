@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   draw_health.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:54:19 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/12 21:57:28 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 04:45:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
 
-static void draw_line_of_health(t_main *g, int vol)
+static void	draw_line_of_health(t_main *g, int vol)
 {
-    int counter;
-    int color;
+    int	counter;
+    int	color;
 
     if (g->map.player.health <= HEALTH_CRIT_VAL)
         color = CRIT_STAT_COLOR;

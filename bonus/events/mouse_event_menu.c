@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:30:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 08:05:09 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:25:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	mouse_click_main_pause(int x, int y, t_main *g)
 
 void	mouse_click_map_select(int x, int y, t_main *g)
 {
-	t_text_button *page;
-	int i;
+	t_text_button	*page;
+	int				i;
 
 	if (is_xy_on_text_button(x, y, &g->map_select.prev_page))
 	{
@@ -73,7 +73,7 @@ void	mouse_click_map_select(int x, int y, t_main *g)
 
 void	mouse_click_shop(int x, int y, t_main *g)
 {
-	int i;
+	int	i;
 
 	if (is_xy_on_text_button(x, y, &g->shop_menu.to_continue))
 	{

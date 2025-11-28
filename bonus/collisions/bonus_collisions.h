@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_collisions.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:26:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 10:00:33 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 04:17:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double		find_object_collision(t_cast_data *d, t_main *g);
 double		calculate_hit_position(t_cast_data *d, t_vector pos, int side);
 double		find_collision_distance(t_cast_data *d, t_segment wall);
 double		calculate_wall_distance(t_cast_data *d, t_vector pos, int side);
-double	find_collision_distance(t_cast_data *d, t_segment wall);
+double		find_collision_distance(t_cast_data *d, t_segment wall);
 
 void		init_ray_axis(double delta, double *ray_dir, double *delta_dist);
 void		init_y_axis_direction(t_cast_data *d);

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 03:01:53 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 03:33:34 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 05:03:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ static void	animate_lock(t_door *door)
 	double	progress;
 
 	door->alpha += DOOR_LOCK_ANIMATION_SPEED;
-	progress = (door->alpha - DOOR_ALPHA_OPEN) / (DOOR_ALPHA_LOCKED - DOOR_ALPHA_OPEN);
-	door->color = interpolate_color(DOOR_COLOR_OPEN, DOOR_COLOR_LOCKED, progress);
+	progress = (door->alpha - DOOR_ALPHA_OPEN)
+		/ (DOOR_ALPHA_LOCKED - DOOR_ALPHA_OPEN);
+	door->color = interpolate_color(DOOR_COLOR_OPEN,
+			DOOR_COLOR_LOCKED, progress);
 	if (door->alpha >= DOOR_ALPHA_LOCKED)
 	{
 		door->alpha = DOOR_ALPHA_LOCKED;
@@ -50,8 +52,10 @@ static void	animate_unlock(t_door *door)
 	double	progress;
 
 	door->alpha -= DOOR_LOCK_ANIMATION_SPEED;
-	progress = (DOOR_ALPHA_LOCKED - door->alpha) / (DOOR_ALPHA_LOCKED - DOOR_ALPHA_OPEN);
-	door->color = interpolate_color(DOOR_COLOR_LOCKED, DOOR_COLOR_OPEN, progress);
+	progress = (DOOR_ALPHA_LOCKED - door->alpha)
+		/ (DOOR_ALPHA_LOCKED - DOOR_ALPHA_OPEN);
+	door->color = interpolate_color(DOOR_COLOR_LOCKED,
+			DOOR_COLOR_OPEN, progress);
 	if (door->alpha <= DOOR_ALPHA_OPEN)
 	{
 		door->alpha = DOOR_ALPHA_OPEN;

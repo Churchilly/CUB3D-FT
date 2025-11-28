@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/26 22:14:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:27:49 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	update_play_time(t_main *g)
 {
-	static long long timer = 0;
-	long long curr_time;
+	static long long	timer = 0;
+	long long			curr_time;
 
 	curr_time = current_time_ms();
 	if (curr_time - timer > 1000)
@@ -55,7 +55,6 @@ static void	update_game(t_main *g)
 	update_mana(g);
 	update_health(g);
 	draw_currency_game(g);
-
 	if (g->key_list.f3.key_switch)
 	{
 		read_mouse_movements(g);

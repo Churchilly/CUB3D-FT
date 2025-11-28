@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.h                                          :+:      :+:    :+:   */
+/*   new_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 03:42:53 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:56:35 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/11/22 03:54:42 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/11/28 04:39:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURE_H
-# define TEXTURE_H
+#include "../../main/main.h"
+#include "string.h"
 
-typedef struct s_texture	t_texture;
-
-struct s_texture
+void	new_game(t_main *g, char *map_file)
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-};
-
-#endif
+	reset(g, 1);
+	if (load_map(map_file, g))
+	{
+		g->state = MENU_ERROR;
+		return ;
+	}
+	init_minimap(g);
+	create_objects_dynamic(g);
+	clear_section(TEMPORARY);
+	g->state = GAME;
+	g->key_list.f3.key_switch = true;
+}

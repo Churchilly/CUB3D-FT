@@ -6,13 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 19:55:41 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 23:11:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:54:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <dirent.h>
 #include "map.h"
-#include <stddef.h>
 #include <string.h>
 #include "../garbage_collector/garbage_collector.h"
 #include <string.h>
@@ -64,7 +63,8 @@ static void	parse_valid_files(DIR *dir, t_map_file **files, int count)
 		entry_len = strlen(entry->d_name);
 		if (validate_extension(entry->d_name))
 		{
-			(*files)[i].file = alloc(strlen(MAP_FOLDER) + entry_len + 1, STATIC);
+			(*files)[i].file = alloc(strlen(MAP_FOLDER) + entry_len + 1,
+					STATIC);
 			strcpy((*files)[i].file, MAP_FOLDER);
 			strcat((*files)[i].file, entry->d_name);
 			(*files)[i].validated = 0;
@@ -76,23 +76,6 @@ static void	parse_valid_files(DIR *dir, t_map_file **files, int count)
 	(*files)[i].validated = 0;
 }
 
-static void debug_printer_files(t_map_file *files)
-{
-	int	i;
-
-	printf("MAP FILES:\n");
-	i = 0;
-	while (files && files[i].file)
-	{
-		printf("[%s] -> shown as [%s] (validated: %d)\n", 
-			files[i].file, 
-			files[i].file_shown ? files[i].file_shown : "NULL",
-			files[i].validated);
-		i++;
-	}
-	printf("--END OF MAP FILES--\n");
-}
-
 static void	parse_normalized_files(t_map_file *files)
 {
 	int		i;
@@ -101,9 +84,8 @@ static void	parse_normalized_files(t_map_file *files)
 	int		base_len;
 	int		ext_len;
 
-	i = 0;
-	ext_len = strlen(MAP_FORMAT); // ".cub" = 4
-	while (files && files[i].file)
+	i = -1;
+	while (files && files[++i].file)
 	{
 		fname = files[i].file + strlen(MAP_FOLDER);
 		fname_len = strlen(fname);
@@ -114,15 +96,12 @@ static void	parse_normalized_files(t_map_file *files)
 		}
 		else
 		{
-			base_len = MAP_MAX_LEN - ext_len - 1; // -1 for the '*'
-			
+			base_len = MAP_MAX_LEN - strlen(MAP_FORMAT) - 1;
 			files[i].file_shown = alloc(MAP_MAX_LEN + 1, STATIC);
 			strncpy(files[i].file_shown, fname, base_len);
-			files[i].file_shown[base_len] = '\0';
 			strcat(files[i].file_shown, "*");
 			strcat(files[i].file_shown, MAP_FORMAT);
 		}
-		i++;
 	}
 }
 
@@ -142,5 +121,4 @@ void	cub_map(t_map *map)
 	parse_valid_files(dir, &map->files, count);
 	parse_normalized_files(map->files);
 	closedir(dir);
-	debug_printer_files(map->files);
 }

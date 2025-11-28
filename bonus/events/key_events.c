@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 16:09:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:25:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	delayed_event(t_main *g, t_game_state state)
 {
 	static long long	time_log = 0;
 	long long			curr_time;
-	
+
 	curr_time = current_time_ms();
 	if (time_log == 0)
 	{

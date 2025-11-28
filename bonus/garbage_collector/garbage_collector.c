@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:05:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 01:11:08 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:28:47 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_collector	*pointer_storage(void *ptr)
 {
-	static t_collector *collector = NULL;
+	static t_collector	*collector = NULL;
 
 	if (ptr)
 		collector = ptr;
@@ -59,4 +59,3 @@ void	init_collector(t_collector *gc, t_main *g)
 	gc->s_textures[1] = &(g->spellbook.texture_lock.img);
 	gc->s_textures[2] = &(g->spellbook.texture_unlock.img);
 }
-

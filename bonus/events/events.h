@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:37:23 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 16:06:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:24:05 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ int			terminate_hook(void);
 int			loop_event(t_main *game);
 void		render_screen(t_main *game);
 
-void	delayed_event(t_main *g, t_game_state state);
+void		delayed_event(t_main *g, t_game_state state);
 
 #endif

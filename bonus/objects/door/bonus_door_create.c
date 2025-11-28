@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:22:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 03:33:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 05:01:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	insert_barrier(t_door *door, t_vector_int map_pos, double axis)
 {
-	if (axis == 0) // horizontal
+	if (axis == 0)
 	{
 		door->barrier.s.x = map_pos.x + 0.5;
 		door->barrier.s.y = map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
 		door->barrier.e.x = map_pos.x + 0.5;
 		door->barrier.e.y = door->barrier.s.y + DOOR_WIDTH;
 	}
-	else // vertical
+	else
 	{
 		door->barrier.s.x = map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
 		door->barrier.s.y = map_pos.y + 0.5;
@@ -35,7 +35,7 @@ static void	insert_barrier(t_door *door, t_vector_int map_pos, double axis)
 
 void	create_barriers(t_main *g)
 {
-	t_door_wall *door_walls;
+	t_door_wall	*door_walls;
 	t_door		*door;
 	int			i;
 

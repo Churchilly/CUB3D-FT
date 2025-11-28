@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 21:58:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:47:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # include "../minilibx/mlx.h"
 # include "../cub3_images/cub3_images.h"
 # include "../main/vector.h"
-#include "../cub3_fonts/cub3_fonts.h"
+# include "../cub3_fonts/cub3_fonts.h"
 # include <stdbool.h>
 
 typedef struct s_button			t_button;
@@ -78,11 +78,11 @@ struct s_text_button
 
 struct s_main_menu
 {
-	t_button		*selected;
-	t_button		btn_continue;
-	t_button		btn_campaign;
-	t_button		btn_map_select;
-	t_button		btn_exit;
+	t_button	*selected;
+	t_button	btn_continue;
+	t_button	btn_campaign;
+	t_button	btn_map_select;
+	t_button	btn_exit;
 };
 
 struct s_map_select
@@ -96,26 +96,25 @@ struct s_map_select
 
 struct s_shop
 {
-	t_text_button		*selected;
+	t_text_button	*selected;
 	t_text_button	items[6];
 	t_text_button	to_continue;
 };
 
 struct s_game_summary
 {
-	t_text			run_time;
-	t_text			kill_count;
-	t_text			total_income;
-	t_text			items_bought;
-	t_text			to_continue;
+	t_text	run_time;
+	t_text	kill_count;
+	t_text	total_income;
+	t_text	items_bought;
+	t_text	to_continue;
 };
 
 struct s_error
 {
-	t_text			error_text;
-	t_text			to_continue;
+	t_text	error_text;
+	t_text	to_continue;
 };
-
 
 void	draw_minimap(t_main *game);
 void	draw_mmap(t_main *g);
@@ -160,12 +159,11 @@ void	activate_button_shop(t_main *g);
 // Player stats
 void	draw_mana_bar(t_main *g);
 void	draw_heath_bar(t_main *g);
-void draw_potions(t_main *g);
-void draw_currency_game(t_main *g);
+void	draw_potions(t_main *g);
+void	draw_currency_game(t_main *g);
 
 // Button event navigations
 void	new_game(t_main *g, char *map_file);
 void	next_map(t_main *g);
 
 #endif
-

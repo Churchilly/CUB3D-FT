@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:50:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 21:58:29 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:48:32 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	*init_map_select_menu(t_main *g, t_map_select *menu)
     else
     {
     pages = ceil((double)(files_count + 4) / MAP_SELECT_PAGE_NUM);
-	printf("filescount::%d\npage::%d\n",files_count, pages);
     menu->maps = alloc(sizeof(t_text_button *) * (pages + 1), STATIC);
 
     base.x = WIN_WIDTH / 4;
@@ -119,15 +118,14 @@ void	*init_map_select_menu(t_main *g, t_map_select *menu)
 // show up when you complete the map and there is a next map
 void	*init_shop_menu(t_main *g, t_shop *menu)
 {
-    t_text txt;
-    int i;
+    t_text	txt;
+    int		i;
 
     menu->selected = NULL;
-
     txt.font = &g->font_menu.alagard;
     txt.scale = 0.75;
     txt.win = &g->window;
-    txt.color = 0xFFFFFFFF; // White
+    txt.color = 0xFFFFFFFF;
 	i = -1;
     while (++i < 6)
     {
@@ -149,8 +147,6 @@ void	*init_game_summary_menu(t_main *g, t_game_summary *menu)
 {
 	t_text	txt;
 
-
-	// Initialize text properties
 	txt.font = &g->font_menu.alagard;
 	txt.win = &g->window;
 	txt.sheet_row = 0;
@@ -194,7 +190,6 @@ void	*init_error_menu(t_main *g, t_error *menu)
 {
 	t_text	txt;
 
-	
 	txt.text_len = 19;
 	txt.font = &g->font_menu.alagard;
 	txt.scale = 1.5;

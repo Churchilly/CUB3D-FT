@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 23:36:20 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 03:27:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:41:52 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ struct s_enemy
 	int				health;
 	int				state;
 	double			red_alpha;
-	long long attack_time_log;
-	t_text dying_effect;
-	int effect_phase;
+	long long		attack_time_log;
+	t_text			dying_effect;
+	int				effect_phase;
 };
 
 struct s_enemy_particle

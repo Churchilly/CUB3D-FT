@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 14:42:34 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 04:55:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 
-#include "texture.h"
-#include "../utils/utils.h"
-#include "../player/player.h"
+# include "texture.h"
+# include "../utils/utils.h"
+# include "../player/player.h"
 
 # define MAP_FOLDER		"testmaps/"
 # define CAMPAIGN_MAP "testmaps/valid-wall.cub"
@@ -41,7 +41,7 @@ struct s_map_file
 {
 	char	*file;
 	char	*file_shown;
-	int		validated; // if map valid = 1 if not valid = -1 if not validated yet = 0
+	int		validated;
 };
 
 struct s_map
