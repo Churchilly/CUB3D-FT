@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_draw_button.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:28:37 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 02:00:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:38:40 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	draw_button_hover(t_window *win, t_cub3_image *img, int x, int y)
 		pixel_index = (counter / (img->width / 2)) * img->width + (counter
 				% (img->width / 2)) + (img->width / 2);
 		if (((unsigned int)img->image[pixel_index]) != 0xffffffff)
-			put_pixel(x1 + x, y1 + y, img->image[pixel_index] >> 8
-				& 0x00FFFFFF, win);
+			put_pixel(x1 + x, y1 + y, img->image[pixel_index] >> 8 & 0x00FFFFFF,
+				win);
 		x1++;
 		counter++;
 	}

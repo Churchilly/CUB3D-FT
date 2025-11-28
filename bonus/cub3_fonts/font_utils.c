@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   font_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:56:56 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 04:22:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:24:17 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_char(char ch)
 {
-	return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'));  // ✅ && olmalı
+	return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'));
 }
 
 bool	is_upper(char ch)

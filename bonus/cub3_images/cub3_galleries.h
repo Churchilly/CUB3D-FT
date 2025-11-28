@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_galleries.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 22:25:41 by root              #+#    #+#             */
-/*   Updated: 2025/11/27 18:58:04 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 18:40:53 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3_GALLERIES_H
 # define CUB3_GALLERIES_H
+
+# include "cub3_image_struct.h"
 
 typedef struct s_minimap_gallery	t_mmap_gal;
 typedef struct s_main_menu_gallery	t_mmenu_gal;

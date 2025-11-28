@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   health.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:43:14 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 05:03:56 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:32:23 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void draw_healing_fx(t_main *g)
     img = &g->gallery.misc.healing_fx;
     if (player->healing >= DEFAULT_HEALING)
     {
-        draw_image_no_alpha_scaled(&g->window, img, WIN_WIDTH / 2 + 5,
-            WIN_HEIGHT / 2 - (img->height * .2) - 5, .2);
+        draw_image_no_alpha_scaled(&g->window, img,
+            (t_pos){WIN_WIDTH / 2 + 5,
+            WIN_HEIGHT / 2 - (img->height * .2) - 5}, .2);
     }
 }
 

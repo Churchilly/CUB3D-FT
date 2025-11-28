@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 05:39:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/27 18:57:58 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 18:04:19 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,40 +35,43 @@ void	draw_image(t_window *win, t_cub3_image *img, int x, int y)
 	}
 }
 
-static void	draw_scaled_pixel(t_window *win, t_cub3_image *img,
-		t_vector_int offset, t_vector_int dst, double scale)
+static void	draw_scaled_pixel(t_draw_pkg *pkg, t_vector_int offset,
+		t_vector_int dst, double scale)
 {
 	t_vector_int	src;
 	int				color;
 
 	src.x = (int)(dst.x / scale);
 	src.y = (int)(dst.y / scale);
-	if (src.x < img->width && src.y < img->height)
+	if (src.x < pkg->image->width && src.y < pkg->image->height)
 	{
-		color = img->image[src.y * img->width + src.x];
+		color = pkg->image->image[src.y * pkg->image->width + src.x];
 		if ((unsigned int)color != 0xffffffff)
-			put_pixel(offset.x + dst.x, offset.y + dst.y, color, win);
+			put_pixel(offset.x + dst.x, offset.y + dst.y, color, pkg->window);
 	}
 }
 
-void	draw_image_scaled(t_window *win, t_cub3_image *img, int x, int y,
+void	draw_image_scaled(t_window *win, t_cub3_image *img, t_pos pos,
 		double scale)
 {
 	t_vector_int	offset;
 	t_vector_int	dst;
 	t_vector_int	size;
+	t_draw_pkg		pkg;
 
+	pkg.image = img;
+	pkg.window = win;
 	size.x = (int)(img->width * scale);
 	size.y = (int)(img->height * scale);
-	offset.x = x;
-	offset.y = y;
+	offset.x = pos.x;
+	offset.y = pos.y;
 	dst.y = 0;
 	while (dst.y < size.y)
 	{
 		dst.x = 0;
 		while (dst.x < size.x)
 		{
-			draw_scaled_pixel(win, img, offset, dst, scale);
+			draw_scaled_pixel(&pkg, offset, dst, scale);
 			dst.x++;
 		}
 		dst.y++;

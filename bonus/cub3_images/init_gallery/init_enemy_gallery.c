@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_enemy_gallery.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 03:15:00 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/27 18:56:17 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 17:41:09 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3_images.h"
 
-void init_enemy_gallery(t_cub3_gallery *gal)
+void	init_enemy_gallery(t_cub3_gallery *gal)
 {
 	gal->enemy.enemy1 = create_image("cub3_images/images/enemy/enemy1.cub3");
 	gal->enemy.enemy2 = create_image("cub3_images/images/enemy/enemy2.cub3");

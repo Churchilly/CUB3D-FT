@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_draw_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 05:39:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/27 19:23:03 by root             ###   ########.fr       */
+/*   Updated: 2025/11/28 17:57:31 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,41 +36,44 @@ void	draw_image_no_alpha(t_window *win, t_cub3_image *img, int x, int y)
 	}
 }
 
-static void	draw_scaled_pixel_no_alpha(t_window *win, t_cub3_image *img,
-		t_vector_int offset, t_vector_int dst, double scale)
+static void	draw_scaled_pixel_no_alpha(t_draw_pkg *pkg, t_vector_int offset,
+		t_vector_int dst, double scale)
 {
 	t_vector_int	src;
 	int				color;
 
 	src.x = (int)(dst.x / scale);
 	src.y = (int)(dst.y / scale);
-	if (src.x < img->width && src.y < img->height)
+	if (src.x < pkg->image->width && src.y < pkg->image->height)
 	{
-		color = img->image[src.y * img->width + src.x];
+		color = pkg->image->image[src.y * pkg->image->width + src.x];
 		if ((unsigned int)color != 0xffffffff)
 			put_pixel(offset.x + dst.x, offset.y + dst.y,
-				color >> 8 & 0x00FFFFFF, win);
+				color >> 8 & 0x00FFFFFF, pkg->window);
 	}
 }
 
-void	draw_image_no_alpha_scaled(t_window *win, t_cub3_image *img, int x,
-		int y, double scale)
+void	draw_image_no_alpha_scaled(t_window *win, t_cub3_image *img, t_pos pos,
+		double scale)
 {
 	t_vector_int	offset;
 	t_vector_int	dst;
 	t_vector_int	size;
+	t_draw_pkg		pkg;
 
+	pkg.image = img;
+	pkg.window = win;
 	size.x = (int)(img->width * scale);
 	size.y = (int)(img->height * scale);
-	offset.x = x;
-	offset.y = y;
+	offset.x = pos.x;
+	offset.y = pos.y;
 	dst.y = 0;
 	while (dst.y < size.y)
 	{
 		dst.x = 0;
 		while (dst.x < size.x)
 		{
-			draw_scaled_pixel_no_alpha(win, img, offset, dst, scale);
+			draw_scaled_pixel_no_alpha(&pkg, offset, dst, scale);
 			dst.x++;
 		}
 		dst.y++;
@@ -79,27 +82,22 @@ void	draw_image_no_alpha_scaled(t_window *win, t_cub3_image *img, int x,
 
 int	blend_alpha(int color, int color_to_blend, double alpha)
 {
-	int	r;
-	int	g;
-	int	b;
-	int	blend_r;
-	int	blend_g;
-	int	blend_b;
+	t_rgb	rgb;
+	t_rgb	blend_rgb;
 
-	r = (color >> 16) & 0xFF;
-	g = (color >> 8) & 0xFF;
-	b = color & 0xFF;
-	blend_r = (color_to_blend >> 16) & 0xFF;
-	blend_g = (color_to_blend >> 8) & 0xFF;
-	blend_b = color_to_blend & 0xFF;
-	r = (int)(r * (1.0 - alpha) + blend_r * alpha);
-	g = (int)(g * (1.0 - alpha) + blend_g * alpha);
-	b = (int)(b * (1.0 - alpha) + blend_b * alpha);
-	return ((r << 16) | (g << 8) | b);
+	rgb.r = (color >> 16) & 0xFF;
+	rgb.g = (color >> 8) & 0xFF;
+	rgb.b = color & 0xFF;
+	blend_rgb.r = (color_to_blend >> 16) & 0xFF;
+	blend_rgb.g = (color_to_blend >> 8) & 0xFF;
+	blend_rgb.b = color_to_blend & 0xFF;
+	rgb.r = (int)(rgb.r * (1.0 - alpha) + blend_rgb.r * alpha);
+	rgb.g = (int)(rgb.g * (1.0 - alpha) + blend_rgb.g * alpha);
+	rgb.b = (int)(rgb.b * (1.0 - alpha) + blend_rgb.b * alpha);
+	return ((rgb.r << 16) | (rgb.g << 8) | rgb.b);
 }
 
-void	draw_column_alpha(t_draw_pkg *pkg, int x, t_window *win, int blend,
-		double alpha)
+void	draw_column_alpha(t_draw_pkg *pkg, int x, int blend, double alpha)
 {
 	double	step;
 	double	image_x;
@@ -119,7 +117,8 @@ void	draw_column_alpha(t_draw_pkg *pkg, int x, t_window *win, int blend,
 		if ((unsigned int)color != 0xffffffff)
 		{
 			color = (color >> 8) & 0x00FFFFFF;
-			put_pixel(x, y_counter, blend_alpha(color, blend, alpha), win);
+			put_pixel(x, y_counter, blend_alpha(color, blend, alpha),
+				pkg->window);
 		}
 		image_x += step;
 	}

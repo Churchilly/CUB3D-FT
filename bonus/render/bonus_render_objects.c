@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_render_objects.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 03:34:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:37:10 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,8 @@ static void draw_enemy_column(t_main *g, int x, t_ray *ray, t_enemy *enemy)
     pkg.col = get_image_column(hit_position, enemy_img);
 	pkg.height = height;
 	pkg.image = enemy_img;
-	draw_column_alpha(&pkg, x, &g->window, 0xFF0000, enemy->red_alpha);
+	pkg.window = &g->window;
+	draw_column_alpha(&pkg, x, 0xFF0000, enemy->red_alpha);
 }
 
 static void	init_cast_data(t_cast_data *d, t_main *g, t_ray *ray)
