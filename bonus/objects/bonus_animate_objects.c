@@ -6,18 +6,18 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:38:22 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 11:22:49 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 21:21:12 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
 
-static void animate_orbs(t_orb *orb, t_main *g)
+static void	animate_orbs(t_orb *orb, t_main *g)
 {
-	static int curr_orb = 0;
-	static int gap = 0;
-	static int last_orb_count = 0;
-	int start_deg;
+	static int	curr_orb = 0;
+	static int	gap = 0;
+	static int	last_orb_count = 0;
+	int			start_deg;
 
 	if (g->map.player.inventory.orb <= 0)
 		return ;

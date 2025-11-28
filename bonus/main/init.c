@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 16:44:07 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 21:45:58 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static void init_inventory(t_main *g)
 	g->map.player.inventory.damage_increase = 0;
 	g->map.player.inventory.mana_increase = 0;
 	g->map.player.inventory.cooldown_decreaser = 0;
-	g->map.player.healing = .5;
+	g->map.player.inventory.health_increase = 0;
+	g->map.player.healing = DEFAULT_HEALING;
 }
 
 static void _init_keys(t_main *game)

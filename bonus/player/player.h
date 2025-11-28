@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 17:39:40 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 22:21:02 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ typedef struct s_main	t_main; // forward dec
 # define PLAYER_MOVE_MULT 0.05
 # define SENSITIVITY 0.4
 # define PLAYER_RADIUS 0.1
-# define DEFAULT_HEALING 0.1
-# define POTION_HEALING 10;
+# define DEFAULT_HEALING 0.05
+# define POTION_HEALING 10
+# define SPAWN_HEALING 30
 
 # define IMMORTALITY 0
 
@@ -36,6 +37,7 @@ struct s_inventory
 	int currency;
 	int adrenaline_potions;
 	int damage_increase;
+	int health_increase;
 	int mana_increase;
 	int cooldown_decreaser;
 	int	orb;

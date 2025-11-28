@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events_game.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:27:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:58:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	update_play_time(t_main *g)
 	}
 }
 
-static void	check_game_time(t_main *g)
+void	check_game_time(t_main *g)
 {
 	if (g->map.map_timer >= GAME_TIME)
 	{

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:43:14 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 17:35:34 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 21:39:53 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void update_mana(t_main *g)
 {
     static long long time_log = 0;
     long long curr_time;
+    int max_mana;
     
-    if (g->map.player.mana >= MAX_MANA)
+    max_mana = MAX_MANA + g->map.player.inventory.mana_increase * 15;
+    if (g->map.player.mana >= max_mana)
     {
         time_log = 0;
         return ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/25 16:09:37 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:21:42 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	center_mouse(t_main *game)
 	xvar = (t_xvar *)game->window.mlx;
 	display = xvar->display;
 	window_cub3d = xvar->win_list->window;
-	XWarpPointer(display, None, window_cub3d,
-		0, 0, 0, 0,
-		WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	XWarpPointer(display, None, window_cub3d, 0, 0, 0, 0, WIN_WIDTH / 2,
+		WIN_HEIGHT / 2);
 }
 
 t_vector	get_mouse_position(t_main *game)
@@ -38,8 +37,8 @@ t_vector	get_mouse_position(t_main *game)
 
 	xvar = (t_xvar *)game->window.mlx;
 	cub3d = xvar->win_list->window;
-	XQueryPointer(xvar->display, cub3d,
-		&cub3d, &cub3d, &win.x, &win.x, &win.x, &win.y, &m);
+	XQueryPointer(xvar->display, cub3d, &cub3d, &cub3d, &win.x, &win.x, &win.x,
+		&win.y, &m);
 	response.x = win.x;
 	response.y = win.y;
 	return (response);
@@ -55,8 +54,8 @@ void	read_mouse_movements(t_main *game)
 
 	xvar = (t_xvar *)game->window.mlx;
 	cub3d = xvar->win_list->window;
-	XQueryPointer(xvar->display, cub3d,
-		&cub3d, &cub3d, &win.x, &win.x, &win.x, &win.y, &m);
+	XQueryPointer(xvar->display, cub3d, &cub3d, &cub3d, &win.x, &win.x, &win.x,
+		&win.y, &m);
 	win_x_abs = win.x - WIN_WIDTH / 2;
 	if (win_x_abs > 0)
 		change_direction_advanced(game, 'R', win_x_abs);

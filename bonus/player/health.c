@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:43:14 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 17:32:23 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/28 22:22:28 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void draw_healing_fx(t_main *g)
     
     player = &g->map.player;
     img = &g->gallery.misc.healing_fx;
-    if (player->healing >= DEFAULT_HEALING)
+    if (player->healing >= POTION_HEALING)
     {
         draw_image_no_alpha_scaled(&g->window, img,
             (t_pos){WIN_WIDTH / 2 + 5,
@@ -32,16 +32,18 @@ void update_health(t_main *g)
     static long long time_log = 0;
     long long curr_time;
     t_player *player;
+    int max_health;
 
     player = &g->map.player;
-    if (player->health >= MAX_HEALTH)
+    max_health = MAX_HEALTH + g->map.player.inventory.health_increase * 10;
+    if (player->health >= max_health)
     {
         time_log = 0;
         return ;
     }
     draw_healing_fx(g);
     curr_time = current_time_ms();
-    if (curr_time - time_log > 1)
+    if (curr_time - time_log > 16)
     {
         if (player->healing > DEFAULT_HEALING)
             player->healing -= 0.5;
@@ -64,7 +66,10 @@ void damage_player(t_main *g, double val)
             player->health = 1;
         }
         else
+        {
             player->health = 0;
+            check_game_time(g);
+        }
         return ;
     }
     player->health = g->map.player.health - val;
