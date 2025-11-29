@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 19:45:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/30 00:37:30 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
+#include <stdio.h>
 #include <stdlib.h>
-#include <stdio.h>  // Added: for printf function
 
 static int	find_id(char *raw_map)
 {
@@ -46,14 +46,34 @@ static void	check_parsed_table(int parsed[6])
 	}
 }
 
+static int	map_parse_material(int current_id, char **raw_map, int parsed[6],
+		t_main *g)
+{
+	if (current_id < F)
+	{
+		parse_texture(*raw_map, current_id, parsed, g);
+		while (**raw_map && **raw_map != '\n')
+			(*raw_map)++;
+	}
+	else if (current_id < MAP)
+	{
+		parse_color(*raw_map, current_id, parsed, g);
+		while (**raw_map && **raw_map != '\n')
+			(*raw_map)++;
+	}
+	else
+		return (-1);
+	return (0);
+}
+
 static void	map_parse(char *raw_map, t_main *g)
 {
-	int			parsed[6] = {0, 0, 0, 0, 0, 0}; // NO SO WE EA F C - when refactoring i found out i dont need map xd 
-	// you can delete this and check parsed obj via game struct
+	int			parsed[6];
 	int			current_id;
 	char		*map_start;
 
 	map_start = raw_map;
+	ft_bzero(parsed, 6 * sizeof(int));
 	while (*raw_map)
 	{
 		while (*raw_map && (is_space(*raw_map) || *raw_map == '\n'))
@@ -63,27 +83,13 @@ static void	map_parse(char *raw_map, t_main *g)
 			raw_map++;
 		}
 		if (*raw_map == '\0')
-			break;
+			break ;
 		current_id = find_id(raw_map);
-		if (current_id < F)
-		{
-			load_texture(raw_map, current_id, parsed, g);
-			// Advance to next line after processing texture
-			while (*raw_map && *raw_map != '\n')
-				raw_map++;
-		}
-		else if (current_id < MAP)
-		{
-			load_color(raw_map, current_id, parsed, g);
-			// Advance to next line after processing color
-			while (*raw_map && *raw_map != '\n')
-				raw_map++;
-		}
-		else
+		if (map_parse_material(current_id, &raw_map, parsed, g) == -1)
 			break ;
 	}
 	check_parsed_table(parsed);
-	load_matrix(map_start, g);
+	parse_matrix(map_start, g);
 }
 
 void	cub_map(char *map_file, t_main *game)
@@ -94,23 +100,4 @@ void	cub_map(char *map_file, t_main *game)
 	if (!raw_map)
 		exit(1);
 	map_parse(raw_map, game);
-	// check textures one by one
-	//test color
-	printf("color_f::%d\ncolor_c::%d\n", game->map.color_f, game->map.color_c);
-	// matrix
-	printf("matrix::\n");
-	int i = -1;
-	while (game->map.matrix[++i])
-	{
-		int j = -1;
-		while (game->map.matrix[i][++j])
-		{
-			printf("%c", game->map.matrix[i][j]);	
-		}
-		printf("\n");
-	}
-	//player
-	printf("player_x::%f\nplayer_y::%f\n", game->map.player.pos.x, game->map.player.pos.y);
-	printf("player_dov::%f\n", game->map.player.dov);
-	// free(raw_map); HERE1
 }

@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_isspace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 06:57:25 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:34:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 21:51:04 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	is_space(char c)
 {
-	return (c == ' '
-			|| c == '\t'
-			|| c == '\v'
-			|| c == '\f'
-			|| c == '\r');
+	return (c == ' ' || c == '\t' || c == '\v' || c == '\f' || c == '\r');
 }

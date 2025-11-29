@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:50:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:30:51 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 00:45:05 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,36 @@
 
 static void	find_ray_direction(t_cast_data *d)
 {
-	if (d->ray_d.x < 0) // west
+	if (d->ray_d.x < 0)
 	{
 		d->step.x = -1;
-		d->side_dist.x = (d->player->pos.x - d->map_pos.x)
-			* fabs(1.0 / d->ray_d.x);
+		d->side_dist.x = (d->player->pos.x - d->map_pos.x) * fabs(1.0
+				/ d->ray_d.x);
 	}
-	else // east
+	else
 	{
 		d->step.x = 1;
-		d->side_dist.x = ((d->map_pos.x + 1.0) - d->player->pos.x)
-			* fabs(1.0 / d->ray_d.x);
+		d->side_dist.x = ((d->map_pos.x + 1.0) - d->player->pos.x) * fabs(1.0
+				/ d->ray_d.x);
 	}
-	if (d->ray_d.y < 0) // north
+	if (d->ray_d.y < 0)
 	{
 		d->step.y = -1;
-		d->side_dist.y = (d->player->pos.y - d->map_pos.y)
-			* fabs(1.0 / d->ray_d.y);
+		d->side_dist.y = (d->player->pos.y - d->map_pos.y) * fabs(1.0
+				/ d->ray_d.y);
 	}
-	else // south
+	else
 	{
 		d->step.y = 1;
-		d->side_dist.y = ((d->map_pos.y + 1.0) - d->player->pos.y)
-			* fabs(1.0 / d->ray_d.y);
+		d->side_dist.y = ((d->map_pos.y + 1.0) - d->player->pos.y) * fabs(1.0
+				/ d->ray_d.y);
 	}
 }
 
 static void	insert_horizontal_hit(t_cast_data *d)
 {
-	d->ray->distance = (d->map_pos.x - d->player->pos.x +
-			((1 - d->step.x) / 2)) / d->ray_d.x;
+	d->ray->distance = (d->map_pos.x - d->player->pos.x + ((1 - d->step.x) / 2))
+		/ d->ray_d.x;
 	if (d->step.x == 1)
 	{
 		d->ray->side = 'E';
@@ -55,17 +55,16 @@ static void	insert_horizontal_hit(t_cast_data *d)
 		d->ray->side = 'W';
 		d->ray->hit.x = d->map_pos.x + 1.0;
 	}
-	d->ray->hit.y = d->player->pos.y +
-		(d->ray->distance * d->ray_d.y);
+	d->ray->hit.y = d->player->pos.y + (d->ray->distance * d->ray_d.y);
 }
 
 static void	insert_vertical_hit(t_cast_data *d)
 {
-	d->ray->distance = (d->map_pos.y - d->player->pos.y +
-			((1 - d->step.y) / 2)) / d->ray_d.y;
+	d->ray->distance = (d->map_pos.y - d->player->pos.y + ((1 - d->step.y) / 2))
+		/ d->ray_d.y;
 	if (d->step.y == 1)
 	{
-		d->ray->side = 'S'; // now im sure xd
+		d->ray->side = 'S';
 		d->ray->hit.y = d->map_pos.y;
 	}
 	else
@@ -73,8 +72,15 @@ static void	insert_vertical_hit(t_cast_data *d)
 		d->ray->side = 'N';
 		d->ray->hit.y = d->map_pos.y + 1;
 	}
-	d->ray->hit.x = d->player->pos.x +
-		(d->ray->distance * d->ray_d.x);
+	d->ray->hit.x = d->player->pos.x + (d->ray->distance * d->ray_d.x);
+}
+
+static void	insert_ray_hit(t_cast_data *d)
+{
+	if (d->ray->side == 0)
+		insert_horizontal_hit(d);
+	else
+		insert_vertical_hit(d);
 }
 
 void	raycast_single(t_cast_data *d, char **matrix)
@@ -96,15 +102,11 @@ void	raycast_single(t_cast_data *d, char **matrix)
 			d->map_pos.y += d->step.y;
 			d->ray->side = 1;
 		}
-		// if you looking here and want to delete this just dont xd
-		if (d->map_pos.y < 0 || !matrix[d->map_pos.y] || 
-			d->map_pos.x < 0 || !matrix[d->map_pos.y][d->map_pos.x])
+		if (d->map_pos.y < 0 || !matrix[d->map_pos.y] || d->map_pos.x < 0
+			|| !matrix[d->map_pos.y][d->map_pos.x])
 			break ;
 		if (matrix[d->map_pos.y][d->map_pos.x] == '1')
 			break ;
 	}
-	if (d->ray->side == 0)
-		insert_horizontal_hit(d);
-	else
-		insert_vertical_hit(d);
+	insert_ray_hit(d);
 }

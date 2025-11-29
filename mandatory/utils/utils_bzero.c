@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   utils_bzero.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 03:03:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 04:00:58 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/11/30 00:02:50 by btuncer           #+#    #+#             */
+/*   Updated: 2025/11/30 00:03:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#include <sys/types.h>
 
-typedef struct s_vector		t_vector;
-typedef struct s_vector_int	t_vector_int;
-
-struct s_vector
+void	ft_bzero(void *s, size_t n)
 {
-	double	x;	
-	double	y;	
-};
+	unsigned char	*p;
 
-struct s_vector_int
-{
-	int	x;
-	int	y;
-};
-
-#endif
+	p = (unsigned char *)s;
+	while (n--)
+		*p++ = '\0';
+}

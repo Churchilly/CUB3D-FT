@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.h                                           :+:      :+:    :+:   */
+/*   utils_memset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 03:43:19 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:34:55 by btuncer          ###   ########.fr       */
+/*   Created: 2024/10/07 13:55:17 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/11/30 01:10:54 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
+#include <sys/types.h>
 
-#include "../minilibx/mlx.h"
-
-typedef struct s_window t_window;
-
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 800
-
-
-struct s_window
+void	*ft_memset(void *s, int c, size_t n)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-};
+	unsigned char	*p;
 
-void	cub_create_window(t_main *g);
-
-#endif
+	p = (unsigned char *)s;
+	while (n--)
+		*p++ = (unsigned char)c;
+	return (s);
+}

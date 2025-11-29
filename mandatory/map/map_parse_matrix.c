@@ -6,14 +6,14 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:35:34 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 23:28:17 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include "../gc/gc.h"
+#include "../main/main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 static int	flood_fill(char **matrix, int x, int y)
 {
@@ -37,8 +37,8 @@ static int	flood_fill(char **matrix, int x, int y)
 static char	**copy_matrix(char **matrix, int height)
 {
 	char	**copy;
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	copy = alloc(sizeof(char *) * (height + 1));
 	if (!copy)
@@ -75,7 +75,8 @@ static void	check_map_enclosed(char **matrix, t_main *g)
 			if (matrix[y][x] == '0')
 			{
 				if (!flood_fill(matrix, x, y))
-					map_cleanup_exit("Error: Map is not properly enclosed by walls", g);
+					map_cleanup_exit(\
+						"Error: Map is not properly enclosed by walls", g);
 			}
 		}
 	}
@@ -83,16 +84,15 @@ static void	check_map_enclosed(char **matrix, t_main *g)
 
 void	parse_matrix(char *raw_map, t_main *g)
 {
-	int 	matrix_height;
+	int		matrix_height;
 	char	**copy;
-	
+
 	if (!*raw_map)
 	{
 		printf("Error: Missing map data\n");
 		exit(1);
 	}
 	matrix_height = create_matrix(raw_map, g);
-	// copy current matrix to make changes on it
 	copy = copy_matrix(g->map.matrix, matrix_height);
 	if (!copy)
 		map_cleanup_exit("Error: Memory allocation failed", g);

@@ -6,19 +6,18 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:35:35 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 00:40:17 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "../gc/gc.h"
 #include "../main/main.h"
+#include "map.h"
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <fcntl.h>
 #include <unistd.h>
-#include <string.h>
 
-#include "../gc/gc.h"
 static char	*extract_texture_path(char *path_start)
 {
 	char	*path_end;
@@ -39,11 +38,6 @@ static char	*extract_texture_path(char *path_start)
 		exit(1);
 	}
 	path = alloc_crit(path_len + 1);
-	if (!path)
-	{
-		printf("Error: Memory allocation failed\n");
-		exit(1);
-	}
 	i = -1;
 	while (++i < path_len)
 		path[i] = path_start[i];
@@ -53,23 +47,20 @@ static char	*extract_texture_path(char *path_start)
 
 static void	check_file_extension(char *path)
 {
-	int		path_len;
-	int		fd;
+	int	path_len;
+	int	fd;
 
-	path_len = strlen(path);
+	path_len = ft_strlen(path);
 	if (path_len < 4)
 	{
 		printf("Error: Invalid texture file path\n");
 		exit(1);
 	}
-	printf("path: [%s]\n", path);
-	if (strcmp(path + path_len - 4, ".xpm") != 0)
+	if (ft_strncmp(path + path_len - 4, ".xpm", 4) != 0)
 	{
 		printf("Error: Texture file must have .xpm extension\n");
 		exit(1);
 	}
-	
-	// Check if file exists and is readable
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
@@ -77,7 +68,6 @@ static void	check_file_extension(char *path)
 		exit(1);
 	}
 	close(fd);
-	printf("Texture file exists and is readable: %s\n", path);
 }
 
 static t_texture	*find_target_texture(int id, t_map *map)
@@ -93,40 +83,33 @@ static t_texture	*find_target_texture(int id, t_map *map)
 	return (NULL);
 }
 
-static void set_texture(int id, char *path, t_main *g)
+static void	set_texture(int id, char *path, t_main *g)
 {
-	t_texture *target_texture;
+	t_texture	*target_texture;
 
 	target_texture = find_target_texture(id, &(g->map));
-	printf("Attempting to load texture: [%s]\n", path);
-	target_texture->img = mlx_xpm_file_to_image(g->window.mlx, path, 
-		&target_texture->width, &target_texture->height);
+	target_texture->img = mlx_xpm_file_to_image(g->window.mlx, path,
+			&target_texture->width, &target_texture->height);
 	if (!target_texture->img)
 	{
 		printf("Error: Failed to load texture image from path: %s\n", path);
-		// free(path); HERE1
 		exit(1);
 	}
 	target_texture->addr = mlx_get_data_addr(target_texture->img,
-		&target_texture->bits_per_pixel, &target_texture->line_length,
-		&target_texture->endian);
+			&target_texture->bits_per_pixel, &target_texture->line_length,
+			&target_texture->endian);
 	if (!target_texture->addr)
 	{
 		printf("Error: Failed to get texture data address\n");
-		// free(path); HERE1
 		exit(1);
 	}
-	// free(path); HERE1
-	printf("Successfully loaded texture: %dx%d pixels\n", 
-		target_texture->width, target_texture->height);
 }
 
 void	parse_texture(char *raw_map, int id, int parsed[6], t_main *g)
 {
-	char	*path;
-	char	*id_names[] = {"NO", "SO", "WE", "EA", "F", "C"};
+	char		*path;
+	static char	*id_names[] = {"NO", "SO", "WE", "EA", "F", "C"};
 
-	printf("Parsing texture ID: %s (id=%d)\n", id_names[id], id);
 	if (parsed[id])
 	{
 		printf("Error: Duplicate texture identifier: %s\n", id_names[id]);
@@ -136,5 +119,4 @@ void	parse_texture(char *raw_map, int id, int parsed[6], t_main *g)
 	check_file_extension(path);
 	set_texture(id, path, g);
 	parsed[id] = 1;
-	printf("Successfully parsed texture: %s\n", id_names[id]);
 }

@@ -6,14 +6,12 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:20:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:30:52 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 01:10:13 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _GNU_SOURCE // delete it later its just for me .p
 #include "../main/main.h"
 #include <math.h>
-
 #include <stdio.h>
 
 static t_ray_node	*init_cast_data(t_cast_data *d, t_main *g)
@@ -47,8 +45,14 @@ void	raycasting(t_main *g)
 		curr = curr->next;
 	}
 }
-// for right rotation pop_left since you dont see there any more and
-// cast on right(tail) pack
+
+static void	update_ray_pack(t_ray_node *ray_node, int ray, t_cast_data *d,
+		t_main *g)
+{
+	ray_node->ray_pack[ray].raw_distance = ray_node->ray_pack[ray].distance;
+	ray_node->ray_pack[ray].distance *= cos(d->direction - g->map.player.dov);
+}
+
 void	raycasting_right_rotation(t_main *g)
 {
 	t_ray_node	*curr;
@@ -67,11 +71,11 @@ void	raycasting_right_rotation(t_main *g)
 				d.ray_d.x = cos(d.direction);
 				d.ray_d.y = sin(d.direction);
 				raycast_single(&d, g->map.matrix);
-				curr->ray_pack[i].raw_distance = curr->ray_pack[i].distance;
-				curr->ray_pack[i].distance *= cos(d.direction - g->map.player.dov);
+				update_ray_pack(curr, i, &d, g);
 			}
 			else
-				curr->ray_pack[i].distance = curr->ray_pack[i].raw_distance * cos(d.direction - g->map.player.dov);
+				curr->ray_pack[i].distance = curr->ray_pack[i].raw_distance
+					* cos(d.direction - g->map.player.dov);
 			d.direction += d.fov_rad / WIN_WIDTH;
 		}
 		curr = curr->next;
@@ -96,11 +100,11 @@ void	raycasting_left_rotation(t_main *g)
 				d.ray_d.x = cos(d.direction);
 				d.ray_d.y = sin(d.direction);
 				raycast_single(&d, g->map.matrix);
-				curr->ray_pack[i].raw_distance = curr->ray_pack[i].distance;
-				curr->ray_pack[i].distance *= cos(d.direction - g->map.player.dov);
+				update_ray_pack(curr, i, &d, g);
 			}
 			else
-				curr->ray_pack[i].distance = curr->ray_pack[i].raw_distance * cos(d.direction - g->map.player.dov);
+				curr->ray_pack[i].distance = curr->ray_pack[i].raw_distance
+					* cos(d.direction - g->map.player.dov);
 			d.direction += d.fov_rad / WIN_WIDTH;
 		}
 		curr = curr->next;

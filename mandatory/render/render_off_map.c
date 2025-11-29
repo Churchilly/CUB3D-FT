@@ -6,20 +6,18 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:24:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:30:50 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 00:41:38 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
 
-#include <stdio.h>
 void	render_black_screen(t_window *win)
 {
-	int black;
+	int	black;
 	int	y;
-	int x;
+	int	x;
 
-	printf("rendering the fucking black screen >&\n");
 	black = 0x000000;
 	y = -1;
 	while (++y < WIN_HEIGHT)
@@ -27,12 +25,12 @@ void	render_black_screen(t_window *win)
 		x = -1;
 		while (++x < WIN_WIDTH)
 		{
-			put_pixel(x,y,black,win);
+			put_pixel(x, y, black, win);
 		}
 	}
 }
 
-int check_off_map(t_main *g)
+int	check_off_map(t_main *g)
 {
 	double	width;
 	double	height;

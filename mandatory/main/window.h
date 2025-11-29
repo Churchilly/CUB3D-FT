@@ -6,32 +6,31 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:43:19 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:34:55 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 21:45:10 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WINDOW_H
 # define WINDOW_H
 
-#include "../minilibx/mlx.h"
+# include "../minilibx/mlx.h"
 
-typedef struct s_window t_window;
+typedef struct s_window	t_window;
 
 # define WIN_HEIGHT 600
 # define WIN_WIDTH 800
 
-
-struct s_window
+struct					s_window
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void				*mlx;
+	void				*win;
+	void				*img;
+	char				*addr;
+	int					bits_per_pixel;
+	int					line_length;
+	int					endian;
 };
 
-void	cub_create_window(t_main *g);
+void					cub_create_window(t_main *g);
 
 #endif

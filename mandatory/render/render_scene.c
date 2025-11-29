@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:25:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/11 18:06:39 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/30 00:57:36 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,21 @@ static void	init_render_data(t_render_data *d, t_main *g, t_ray *ray)
 	else
 		d->wall_hit = ray->hit.y;
 	d->wall_hit = d->wall_hit - floor(d->wall_hit);
-} 
+}
+
+static void	set_wall_color(t_render_data *d, int *color)
+{
+	*color = *(int *)(d->wall_texture->addr + (d->texture_y
+				* d->wall_texture->line_length + d->texture_x
+				* (d->wall_texture->bits_per_pixel / 8)));
+}
 
 static void	draw_wall_column(t_main *g, int x, t_ray *ray)
 {
 	t_render_data	d;
 	int				y;
 	int				color;
-	
+
 	init_render_data(&d, g, ray);
 	d.texture_x = (int)(d.wall_hit * (double)d.wall_texture->width);
 	if (d.texture_x < 0)
@@ -56,7 +63,8 @@ static void	draw_wall_column(t_main *g, int x, t_ray *ray)
 	if (d.texture_x >= d.wall_texture->width)
 		d.texture_x = d.wall_texture->width - 1;
 	d.texture_step = (double)d.wall_texture->height / (double)d.wall_height;
-	d.texture_pos = (d.wall_start - WIN_HEIGHT / 2 + d.wall_height / 2) * d.texture_step;
+	d.texture_pos = (d.wall_start - WIN_HEIGHT / 2 + d.wall_height / 2)
+		* d.texture_step;
 	y = d.wall_start - 1;
 	while (++y <= d.wall_end)
 	{
@@ -66,8 +74,7 @@ static void	draw_wall_column(t_main *g, int x, t_ray *ray)
 		if (d.texture_y >= d.wall_texture->height)
 			d.texture_y = d.wall_texture->height - 1;
 		d.texture_pos += d.texture_step;
-		color = *(int *)(d.wall_texture->addr + (d.texture_y * d.wall_texture->line_length + d.texture_x * (d.wall_texture->bits_per_pixel / 8)));
-		int rune_color = *(int *)(d.wall_texture->addr + (d.texture_y * d.wall_texture->line_length + d.texture_x * (d.wall_texture->bits_per_pixel / 8)));
+		set_wall_color(&d, &color);
 		put_pixel(x, y, color, &g->window);
 	}
 }
@@ -77,14 +84,15 @@ void	render_scene(t_main *g)
 	t_ray_node	*current;
 	int			i;
 	int			j;
-	
+
 	current = g->rays.head;
 	i = -1;
 	while (current && ++i < g->rays.list_size)
 	{
 		j = -1;
 		while (++j < g->rays.package_size)
-			draw_wall_column(g, j + (i * g->rays.package_size), &(current->ray_pack[j]));
+			draw_wall_column(g, j + (i * g->rays.package_size),
+				&(current->ray_pack[j]));
 		current = current->next;
 	}
 }
