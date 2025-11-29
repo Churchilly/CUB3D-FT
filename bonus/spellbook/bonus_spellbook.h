@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 20:10:39 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 19:54:14 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 21:59:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_main		t_main;
 # define SPELLBOOK_IDLE_START_DELAY 300
 # define SPELLBOOK_WIDTH 1248
 # define SPELLBOOK_HEIGHT 832
-# define SPELLBOOK_TARGET_WIDTH_RATIO 0.42  // 50% of window width
+# define SPELLBOOK_TARGET_WIDTH_RATIO 0.42
 
 typedef enum e_spell		t_spell;
 typedef struct s_spellbook	t_spellbook;

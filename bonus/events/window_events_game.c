@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events_game.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 07:58:52 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 21:58:34 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 21:53:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	update_play_time(t_main *g)
 	}
 }
 
-void	check_game_time(t_main *g)
+void	check_map_time(t_main *g)
 {
-	if (g->map.map_timer >= GAME_TIME)
+	if (g->map.map_timer >= MAP_TIME)
 	{
 		if (g->map.next_map)
 		{
@@ -47,7 +47,7 @@ void	check_game_time(t_main *g)
 static void	update_game(t_main *g)
 {
 	update_play_time(g);
-	check_game_time(g);
+	check_map_time(g);
 	change_position(g);
 	change_direction(g);
 	animate_objects(g);

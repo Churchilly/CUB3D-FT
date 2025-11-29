@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   load_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 07:07:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:56:39 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 23:48:28 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
-#include <stdlib.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 static int	validate_format(char *color, int len)
 {
@@ -35,6 +35,8 @@ static int	validate_format(char *color, int len)
 			comma_seen = 0;
 			continue ;
 		}
+		else
+			return (1);
 	}
 	if (comma_seen == 1 || commas != 2)
 		return (1);
@@ -56,9 +58,9 @@ static int	extract_rgb_component(char **str)
 	return (value);
 }
 
-static int	str_to_rgb(char	*color)
+static int	str_to_rgb(char *color)
 {
-	int rgb[3];
+	int	rgb[3];
 	int	i;
 
 	i = 0;
@@ -78,6 +80,7 @@ static int	str_to_rgb(char	*color)
 	}
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
+
 static int	extract_color(char *color_start)
 {
 	char	*color_end;
@@ -100,6 +103,7 @@ static int	extract_color(char *color_start)
 int	load_color(char *raw_map, int *target_color)
 {
 	int	rgb;
+
 	if (*target_color != -1)
 		return (1);
 	rgb = extract_color(raw_map);

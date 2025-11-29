@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:59:31 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 21:30:07 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
+#include <ctype.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include <string.h>
-#include <ctype.h>
-
+#include <unistd.h>
 
 static char	*extract_texture_path(char *path_start)
 {
@@ -44,8 +43,8 @@ static char	*extract_texture_path(char *path_start)
 
 static int	check_file_extension(char *path)
 {
-	int		path_len;
-	int		fd;
+	int	path_len;
+	int	fd;
 
 	path_len = strlen(path);
 	if (path_len < 4)
@@ -61,13 +60,12 @@ static int	check_file_extension(char *path)
 
 static int	set_texture(t_texture *target, char *path, t_main *g)
 {
-	target->img = mlx_xpm_file_to_image(g->window.mlx, path,
-		&target->width, &target->height);
+	target->img = mlx_xpm_file_to_image(g->window.mlx, path, &target->width,
+			&target->height);
 	if (!target->img)
 		return (1);
-	target->addr = mlx_get_data_addr(target->img,
-		&target->bits_per_pixel, &target->line_length,
-		&target->endian);
+	target->addr = mlx_get_data_addr(target->img, &target->bits_per_pixel,
+			&target->line_length, &target->endian);
 	if (!target->addr)
 		return (1);
 	return (0);

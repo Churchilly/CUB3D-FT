@@ -3,28 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   create_matrix.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:55:43 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 21:29:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _GNU_SOURCE // delete it later its just for me .p
-#include <stdlib.h>
-#include <stdio.h>
 #include "../../main/main.h"
-#include <math.h>
 #include <ctype.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int	is_valid_map_char(char c)
-{
-	return (c == '0' || c == '1' || isspace(c)
-		|| c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == 'd' || c == 'D');
-}
-
-static int get_map_height(char *raw_map)
+static int	get_map_height(char *raw_map)
 {
 	int	count;
 	int	ret;
@@ -35,7 +27,9 @@ static int get_map_height(char *raw_map)
 	{
 		if (*raw_map == '\n')
 			count++;
-		else if (!is_valid_map_char(*raw_map))
+		else if (!(*raw_map == '0' || *raw_map == '1' || isspace(*raw_map)
+				|| *raw_map == 'N' || *raw_map == 'S' || *raw_map == 'E'
+				|| *raw_map == 'W' || *raw_map == 'd' || *raw_map == 'D'))
 			return (-1);
 		else
 			ret = count;
@@ -60,20 +54,20 @@ static int	char_to_int(char c)
 void	parse_player_view(t_main *g, char direction)
 {
 	if (direction == 'E')
-		g->map.player.dov = 0; // 0degrees,
+		g->map.player.dov = 0;
 	if (direction == 'S')
-		g->map.player.dov = M_PI / 2; // 90 d
+		g->map.player.dov = M_PI / 2;
 	if (direction == 'W')
-		g->map.player.dov = M_PI; // 180 d
+		g->map.player.dov = M_PI;
 	if (direction == 'N')
-		g->map.player.dov = 3 * M_PI / 2; // 270d
+		g->map.player.dov = 3 * M_PI / 2;
 }
 
 static char	*create_map_line(char **raw_map, t_main *g)
 {
 	char	*matrix_line;
-	int	i;
-	int	line_len;
+	int		i;
+	int		line_len;
 
 	line_len = 0;
 	while ((*raw_map)[line_len] && (*raw_map)[line_len] != '\n')
@@ -83,8 +77,8 @@ static char	*create_map_line(char **raw_map, t_main *g)
 	while (++i < line_len)
 	{
 		matrix_line[i] = char_to_int(**raw_map);
-		if (**raw_map == 'N' || **raw_map == 'S'
-			|| **raw_map == 'E' || **raw_map == 'W')
+		if (**raw_map == 'N' || **raw_map == 'S' || **raw_map == 'E'
+			|| **raw_map == 'W')
 		{
 			if (g->map.player.pos.x != -1)
 				return (NULL);

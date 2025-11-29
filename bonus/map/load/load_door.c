@@ -6,18 +6,17 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 04:58:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 23:14:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _GNU_SOURCE // delete it later its just for me .p
 #include "../../main/main.h"
-#include <stdlib.h>
 #include <math.h>
+#include <stdlib.h>
 
 static int	count_doors(char *raw_map)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	while (*raw_map)
@@ -31,25 +30,23 @@ static int	count_doors(char *raw_map)
 
 static void	insert_inner_walls(t_door_wall *dw)
 {
-	if (dw->axis == 0) // horizontal
+	if (dw->axis == 0)
 	{
 		dw->inner_wall_1.s.x = dw->map_pos.x;
 		dw->inner_wall_1.s.y = dw->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
 		dw->inner_wall_1.e.x = dw->map_pos.x + 1.0;
 		dw->inner_wall_1.e.y = dw->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
-	
 		dw->inner_wall_2.s.x = dw->map_pos.x;
 		dw->inner_wall_2.s.y = dw->map_pos.y + 0.5 + (DOOR_WIDTH / 2.0);
 		dw->inner_wall_2.e.x = dw->map_pos.x + 1.0;
 		dw->inner_wall_2.e.y = dw->map_pos.y + 0.5 + (DOOR_WIDTH / 2.0);
 	}
-	else // door->axis == 1 // vertical
+	else
 	{
 		dw->inner_wall_1.s.x = dw->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
 		dw->inner_wall_1.s.y = dw->map_pos.y;
 		dw->inner_wall_1.e.x = dw->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
 		dw->inner_wall_1.e.y = dw->map_pos.y + 1.0;
-	
 		dw->inner_wall_2.s.x = dw->map_pos.x + 0.5 + (DOOR_WIDTH / 2.0);
 		dw->inner_wall_2.s.y = dw->map_pos.y;
 		dw->inner_wall_2.e.x = dw->map_pos.x + 0.5 + (DOOR_WIDTH / 2.0);
@@ -57,23 +54,31 @@ static void	insert_inner_walls(t_door_wall *dw)
 	}
 }
 
-static void	new_door(int x, int y, int axis, t_door_wall *dw)
+static int	new_door(int *x, int *y, int c, t_door_wall *dw)
 {
-	dw->map_pos.x = x;
-	dw->map_pos.y = y;
-	if (axis == 'd')
+	if (c == '\n')
 	{
-		dw->axis = 0;
+		(*x) = 0;
+		(*y)++;
 	}
-	else // axis == 'D'
+	else if (c == 'd' || c == 'D')
 	{
-		dw->axis = 1;
-		
+		dw->map_pos.x = (*x);
+		dw->map_pos.y = (*y);
+		if (c == 'd')
+			dw->axis = 0;
+		else
+			dw->axis = 1;
+		insert_inner_walls(dw);
+		(*x)++;
+		return (1);
 	}
-	insert_inner_walls(dw);
+	else
+		(*x)++;
+	return (0);
 }
 
-static t_door_wall *create_door_walls(char *raw_map, int count)
+ static t_door_wall	*create_door_walls(char *raw_map, int count)
 {
 	t_door_wall	*door_walls;
 	int			x;
@@ -86,19 +91,8 @@ static t_door_wall *create_door_walls(char *raw_map, int count)
 	i = 0;
 	while (*raw_map)
 	{
-		if (*raw_map == '\n')
-		{
-			x = 0;
-			y++;
-		}
-		else if (*raw_map == 'd' || *raw_map == 'D')
-		{
-			new_door(x, y, *raw_map, &(door_walls[i]));
-			x++;
+		if (new_door(&x, &y, *raw_map, &(door_walls[i])))
 			i++;
-		}
-		else
-			x++;
 		raw_map++;
 	}
 	door_walls[count].map_pos.x = -1;

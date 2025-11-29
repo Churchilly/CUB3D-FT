@@ -1,0 +1,22 @@
+NO _textures/woodenwall.xpm
+SO _textures/woodenwall.xpm
+WE _textures/woodenwall.xpm
+EA _textures/woodenwall.xpm
+
+FL _textures/woodenfloor.xpm
+C 135,206,235
+
+NEXT _maps/campaign2.cub
+
+111111111111
+100000000001
+100000000001
+100000000001
+1N0000000011
+100000000001
+100000000001
+111100000001
+100000000001
+100000000111
+100000000001
+111111111111

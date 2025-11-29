@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_fonts.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:45:23 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 19:31:51 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 22:04:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_font_selector	t_font_menu;
 typedef struct s_text			t_text;
 typedef struct s_text_internal	t_text_int;
 
-enum							e_font_row
+enum e_font_row
 {
 	ROW_UPPERCASE = 0,
 	ROW_LOWERCASE,
@@ -34,46 +34,46 @@ enum							e_font_row
 	ROW_SYMBOL
 };
 
-struct							s_cub3_font
+struct s_cub3_font
 {
-	t_im						sheet;
-	int							max_width;
-	int							font_size;
-	int							color;
-	int							gap;
+	t_im	sheet;
+	int		max_width;
+	int		font_size;
+	int		color;
+	int		gap;
 };
 
-struct							s_font_selector
+struct s_font_selector
 {
-	t_font						alagard;
-	t_font						another_font;
+	t_font	alagard;
+	t_font	another_font;
 };
 
-struct							s_text
+struct s_text
 {
-	int							text_len;
-	int							win_x;
-	int							win_y;
-	t_font						*font;
-	int							sheet_row;
-	int							sheet_col;
-	double						scale;
-	t_window					*win;
-	int							color;
+	int			text_len;
+	int			win_x;
+	int			win_y;
+	t_font		*font;
+	int			sheet_row;
+	int			sheet_col;
+	double		scale;
+	t_window	*win;
+	int			color;
 };
 
-struct							s_text_internal
+struct s_text_internal
 {
-	t_text						*text;
-	t_vector_int				size;
-	t_im						*sheet;
+	t_text			*text;
+	t_vector_int	size;
+	t_im			*sheet;
 };
 
-bool							is_char(char ch);
-bool							is_upper(char ch);
-bool							is_num(char ch);
-bool							is_symbol(char ch);
-void							init_fonts(void *g);
-void							draw_text(char *text, t_text text_data);
+bool	is_char(char ch);
+bool	is_upper(char ch);
+bool	is_num(char ch);
+bool	is_symbol(char ch);
+void	init_fonts(void *g);
+void	draw_text(char *text, t_text text_data);
 
 #endif

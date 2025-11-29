@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   load_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 09:58:57 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 23:29:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 static int	flood_fill(char **matrix, int x, int y)
 {
@@ -21,7 +21,7 @@ static int	flood_fill(char **matrix, int x, int y)
 	int	left;
 	int	right;
 
-	if (y < 0 || !matrix[y] || x < 0 || matrix[y][x] == 0)
+	if (y < 0 || !matrix[y] || x < 0 || matrix[y][x] == 0 || matrix[y][x] == 50)
 		return (0);
 	if (matrix[y][x] == 49 || matrix[y][x] == 83)
 		return (1);
@@ -36,8 +36,8 @@ static int	flood_fill(char **matrix, int x, int y)
 static char	**copy_matrix(char **matrix, int height)
 {
 	char	**copy;
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	copy = alloc(sizeof(char *) * (height + 1), TEMPORARY);
 	i = -1;
@@ -77,7 +77,7 @@ static int	check_map_enclosed(char **matrix)
 
 int	load_matrix(char *raw_map, t_main *g)
 {
-	int 	matrix_height;
+	int		matrix_height;
 	char	**copy;
 
 	if (!*raw_map)

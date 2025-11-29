@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:03:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/19 20:29:22 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 21:44:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ struct s_vector_int
 
 struct s_segment
 {
-	t_vector s;
-	t_vector e;
+	t_vector	s;
+	t_vector	e;
 };
 
 struct s_angle

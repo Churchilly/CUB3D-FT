@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/28 19:34:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/30 01:53:01 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "../utils/utils.h"
 # include "../player/player.h"
 
-# define MAP_FOLDER		"testmaps/"
-# define CAMPAIGN_MAP "testmaps/valid-wall.cub"
+# define MAP_FOLDER		"_maps/"
+# define CAMPAIGN_MAP "_maps/campaign1.cub"
 # define MAP_FORMAT		".cub"
 # define MAP_MAX_LEN	16
 
@@ -63,6 +63,7 @@ void	cub_map(t_map *map);
 char	*reader(int fd);
 char	*read_file(char	*map_file);
 
+int		map_parse(char *raw_map, t_main *g);
 int		load_map(char *map_location, t_main *game);
 char	*read_file(char *map_file);
 int		load_texture(char *raw_map, t_texture *target, t_main *game);

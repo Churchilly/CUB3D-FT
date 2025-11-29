@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 06:59:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/21 02:15:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 21:59:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ char	*ft_strjoin(char *str1, char *str2, t_section sec)
 	*res = '\0';
 	return (ret);
 }
-// note that shi

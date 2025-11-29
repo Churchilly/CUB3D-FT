@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 19:13:02 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/21 02:22:38 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 21:58:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "../garbage_collector/garbage_collector.h"
+#include <stdlib.h>
 
 static unsigned int	count_digits(int n)
 {

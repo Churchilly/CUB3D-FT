@@ -6,14 +6,11 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:54:19 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 19:42:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 21:58:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main/main.h"
-
-//
-// void	put_pixel(int x, int y, int color, t_window *win);
 
 static void	draw_potion(t_main *g, int potion)
 {

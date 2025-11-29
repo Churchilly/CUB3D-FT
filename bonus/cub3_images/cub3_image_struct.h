@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_image_struct.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:38:34 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/28 18:42:13 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 22:02:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 typedef struct s_cub3_image	t_cub3_image;
 typedef t_cub3_image		t_im;
 
-struct						s_cub3_image
+struct s_cub3_image
 {
-	int						*image;
-	int						width;
-	int						height;
+	int	*image;
+	int	width;
+	int	height;
 };
 
 #endif

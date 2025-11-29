@@ -6,16 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/25 23:12:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 20:15:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#define _GNU_SOURCE // delete it later its just for me .p
 
 #include "../main/main.h"
 #include <X11/keysym.h>
 #include <math.h>
-
 #include <stdio.h>
 
 static t_vector	get_movement(t_main *g, t_player *player)
@@ -25,23 +22,23 @@ static t_vector	get_movement(t_main *g, t_player *player)
 	movement = (t_vector){0.0, 0.0};
 	if (g->key_list.w)
 	{
-		movement.x += PLAYER_MOVE_MULT * cos(player->dov) * PLAYER_MOVE_SPEED;
-		movement.y += PLAYER_MOVE_MULT * sin(player->dov) * PLAYER_MOVE_SPEED;
+		movement.x += P_MOVEMULT * cos(player->dov) * P_MOVESPEED;
+		movement.y += P_MOVEMULT * sin(player->dov) * P_MOVESPEED;
 	}
 	if (g->key_list.s)
 	{
-		movement.x += -PLAYER_MOVE_MULT * cos(player->dov) * PLAYER_MOVE_SPEED;
-		movement.y += -PLAYER_MOVE_MULT * sin(player->dov) * PLAYER_MOVE_SPEED;
+		movement.x += -P_MOVEMULT * cos(player->dov) * P_MOVESPEED;
+		movement.y += -P_MOVEMULT * sin(player->dov) * P_MOVESPEED;
 	}
 	if (g->key_list.d)
 	{
-		movement.x += PLAYER_MOVE_MULT * cos(player->dov + (M_PI / 2)) * PLAYER_MOVE_SPEED;
-		movement.y += PLAYER_MOVE_MULT * sin(player->dov + (M_PI / 2)) * PLAYER_MOVE_SPEED;
+		movement.x += P_MOVEMULT * cos(player->dov + (M_PI / 2)) * P_MOVESPEED;
+		movement.y += P_MOVEMULT * sin(player->dov + (M_PI / 2)) * P_MOVESPEED;
 	}
 	if (g->key_list.a)
 	{
-		movement.x += PLAYER_MOVE_MULT * cos(player->dov - (M_PI / 2)) * PLAYER_MOVE_SPEED;
-		movement.y += PLAYER_MOVE_MULT * sin(player->dov - (M_PI / 2)) * PLAYER_MOVE_SPEED;
+		movement.x += P_MOVEMULT * cos(player->dov - (M_PI / 2)) * P_MOVESPEED;
+		movement.y += P_MOVEMULT * sin(player->dov - (M_PI / 2)) * P_MOVESPEED;
 	}
 	movement = check_collision(g, movement);
 	return (movement);
@@ -52,7 +49,7 @@ void	play_footstep(int moved)
 	static int		step = 0;
 	static double	last_time = 0;
 	double			curr_time;
-	
+
 	curr_time = current_time_ms();
 	if (moved && curr_time - last_time > 240)
 	{
@@ -88,12 +85,11 @@ void	change_direction(t_main *g)
 
 	player = &g->map.player;
 	rotation_step = (FOV * M_PI / 180.0) * SENSITIVITY * 0.05;
-	// this means one package goes dont touch this !!
 	if (g->key_list.arrow_r)
 	{
 		player->dov += rotation_step;
 		if (player->dov >= (M_PI * 2))
-		 	player->dov -= (M_PI * 2);
+			player->dov -= (M_PI * 2);
 		list_pop_left(&g->rays);
 		raycasting_right_rotation(g);
 	}
@@ -115,13 +111,13 @@ void	change_direction_advanced(t_main *g, int direction, int weight)
 	player = &g->map.player;
 	if (weight < 0)
 		weight = -weight;
-	rotation_step = (((FOV * M_PI / 180.0) * SENSITIVITY) + weight * 0.025) * 0.05;
-	// this means one package goes dont touch this !!
+	rotation_step = (((FOV * M_PI / 180.0) * SENSITIVITY) + weight * 0.025)
+		* 0.05;
 	if (direction == 'R')
 	{
 		player->dov += rotation_step;
 		if (player->dov >= (M_PI * 2))
-		 	player->dov -= (M_PI * 2);
+			player->dov -= (M_PI * 2);
 		list_pop_left(&g->rays);
 		raycasting_right_rotation(g);
 	}

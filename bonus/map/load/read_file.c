@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:41:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/24 14:41:28 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 21:30:38 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>   // Added: for printf function
-#include <string.h>  // Added: for strlen and strcmp functions
 #include "../../main/main.h"
 #include <errno.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 char	*reader(int fd)
 {
@@ -29,7 +27,7 @@ char	*reader(int fd)
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
-		bytes_read = read(fd, read_buffer, sizeof(read_buffer) -1);
+		bytes_read = read(fd, read_buffer, sizeof(read_buffer) - 1);
 		if (errno == EINTR)
 			continue ;
 		if (bytes_read == -1)
@@ -41,9 +39,7 @@ char	*reader(int fd)
 	return (raw_map);
 }
 
-
-// for efficiency i read all map data at once. dont touch! line by line reading is absurt
-char	*read_file(char	*map_file)
+char	*read_file(char *map_file)
 {
 	char	*raw_map;
 	int		fd;
@@ -57,4 +53,3 @@ char	*read_file(char	*map_file)
 		return (NULL);
 	return (raw_map);
 }
-
