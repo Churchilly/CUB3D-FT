@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:54:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:30:51 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 00:41:50 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	put_pixel(int x, int y, int color, t_window *win)
 
 	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
 	{
-		dest = win->addr + (y * win->line_length + x
-				* (win->bits_per_pixel / 8));
+		dest = win->addr + (y * win->line_length + x * (win->bits_per_pixel
+					/ 8));
 		*(unsigned int *)dest = color;
 	}
 }

@@ -3,24 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   render_ray_list_operations.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:37 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 02:36:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 21:38:24 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_ray_list.h"
 #include <stdlib.h>
 
-
- // whenever pop right happens dont free the node add to left instead. go brr
-
-void		list_pop_right(t_ray_list *list)
+void	list_pop_right(t_ray_list *list)
 {
 	t_ray_node	*to_move;
 
-	if (!list->tail) // necessarry for when you get so high sensitivity
+	if (!list->tail)
 		return ;
 	to_move = list->tail;
 	list->tail = to_move->prev;
@@ -37,11 +34,11 @@ void		list_pop_right(t_ray_list *list)
 	list->head = to_move;
 }
 
-void		list_pop_left(t_ray_list *list)
+void	list_pop_left(t_ray_list *list)
 {
 	t_ray_node	*to_move;
 
-	if (!list->head) // necessarry for when you get so high sensitivity
+	if (!list->head)
 		return ;
 	to_move = list->head;
 	list->head = to_move->next;

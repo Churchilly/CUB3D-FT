@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/18 19:45:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/29 23:17:55 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 
-#include "texture.h"
-#include "../utils/utils.h"
-#include "../player/player.h"
+# include "../player/player.h"
+# include "../utils/utils.h"
+# include "texture.h"
 
 typedef struct s_map	t_map;
 typedef struct s_main	t_main;
 
-enum e_identifiers
+enum					e_identifiers
 {
 	NO = 0,
 	SO,
@@ -31,27 +31,30 @@ enum e_identifiers
 	MAP
 };
 
-struct s_map
+struct					s_map
 {
-	t_texture	texture_no;
-	t_texture	texture_so;
-	t_texture	texture_we;
-	t_texture	texture_ea;
-	int			color_f;
-	int			color_c;
-	char		**matrix;
-	t_player	player;
+	t_texture			texture_no;
+	t_texture			texture_so;
+	t_texture			texture_we;
+	t_texture			texture_ea;
+	int					color_f;
+	int					color_c;
+	char				**matrix;
+	t_player			player;
 };
 
-void	cub_map(char *map_location, t_main *game);
-char	*cub_map_read(char *map_file);
-void	load_texture(char *raw_map, int id, int parsed[6], t_main *game);
-void	load_color(char *raw_map, int id, int parsed[6], t_main *game);
-void	validate_map(char *raw_map);
-void	load_matrix(char *raw_map, t_main *game);  // Added: function to validate the map matrix
-int		create_matrix(char *raw_map, t_main *game);  // Added: missing function declaration
-// Note: create_matrix function is called but not defined - needs implementation
-void	map_cleanup_exit(char *errmsg, t_main *game);
-void	map_cleanup(t_main *game);
+void					cub_map(char *map_location, t_main *game);
+char					*cub_map_read(char *map_file);
+void					parse_texture(char *raw_map, int id, int parsed[6],
+							t_main *g);
+void					parse_color(char *raw_map, int id, int parsed[6],
+							t_main *g);
+void					validate_map(char *raw_map);
+void					parse_matrix(char *raw_map, t_main *g);
+int						create_matrix(char *raw_map, t_main *game);
+void					map_cleanup_exit(char *errmsg, t_main *game);
+void					map_cleanup(t_main *game);
+int						is_valid_map_char(char c);
+int						char_to_int(char c);
 
 #endif

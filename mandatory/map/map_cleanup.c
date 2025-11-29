@@ -6,18 +6,17 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:54 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:34:56 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/29 22:52:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
 #include "../minilibx/mlx.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void	map_cleanup(t_main *game)
 {
-	//before destroy the connection need to clear textures
 	if (game->window.mlx)
 	{
 		if (game->map.texture_no.img)
@@ -29,30 +28,8 @@ void	map_cleanup(t_main *game)
 		if (game->map.texture_ea.img)
 			mlx_destroy_image(game->window.mlx, game->map.texture_ea.img);
 	}
-	//close mlx connection which opened at _init at main
-	// if (game->window.mlx)
-	// {
-	// 	mlx_destroy_display(game->window.mlx);
-	// 	free(game->window.mlx);
-	// 	game->window.mlx = NULL;
-	// }
-	//clear the map struct
-	
-	//int	i;
-	// if (game->map.matrix) HERE1
-	// {
-	// 	i = -1;
-	// 	while (game->map.matrix[++i])
-	// 	{
-	// 		free(game->map.matrix[i]);
-	// 		game->map.matrix[i] = NULL;
-	// 	}
-	// 	free(game->map.matrix);
-	// 	game->map.matrix = NULL;
-	// } HERE1
 }
 
-// cleanup and exit for error cases
 void	map_cleanup_exit(char *errmsg, t_main *game)
 {
 	printf("%s\n", errmsg);

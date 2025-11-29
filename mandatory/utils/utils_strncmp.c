@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   utils_strcmp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:34:07 by btuncer          ###   ########.fr       */
+/*   Created: 2024/10/07 13:56:13 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/11/29 22:11:17 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include <sys/types.h>
 
-# include "../map/map.h"
-# include "window.h"
-# include "../player/player.h"
-# include "../render/render.h"
-# include "../render/render_ray_list.h"
-
-typedef struct s_main t_main;
-
-struct s_main
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_map		map;
-	t_window	window;
-	t_ray_list	rays;
-};
-
-#endif
+	while (*s1 && *s2 && *s1 == *s2 && n > 0)
+	{
+		s1++;
+		s2++;
+		n--;
+	}
+	if (n == 0)
+		return (0);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}

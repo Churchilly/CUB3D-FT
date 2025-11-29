@@ -1,5 +1,5 @@
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)
+CFLAGS          = -I$(INC_DIR) -I$(MLX_DIR) -Wextra -Wall -Werror
 
 NAME            = cub3d
 
@@ -8,7 +8,8 @@ MLX             = $(MLX_DIR)/libmlx.a
 MLXFLAGS        = -lmlx -lXext -lX11 -lm -lz
 
 SRC             = $(wildcard *.c) \
-                  $(filter-out $(MLX_DIR)/%, $(wildcard */*.c))
+                  $(filter-out $(MLX_DIR)/%, $(wildcard */*.c)) \
+                  $(filter-out $(MLX_DIR)/%, $(wildcard */*/*.c))
 
 OBJ             = $(SRC:.c=.o)
 
