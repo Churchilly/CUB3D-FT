@@ -6,11 +6,12 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:08:13 by btuncer           #+#    #+#             */
-/*   Updated: 2025/11/29 20:53:12 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 02:51:59 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gc.h"
+#include "../utils/utils.h"
 
 t_garbage	*new_garbage(ssize_t size)
 {
@@ -25,6 +26,7 @@ t_garbage	*new_garbage(ssize_t size)
 		free(garbage);
 		return (NULL);
 	}
+	ft_bzero(garbage->mem, size);
 	garbage->next = NULL;
 	return (garbage);
 }

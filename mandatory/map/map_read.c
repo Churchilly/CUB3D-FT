@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:41:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/29 23:04:42 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 02:50:56 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ static char	*reader(int fd)
 	int		bytes_read;
 
 	raw_map = alloc_crit(1);
-	if (!raw_map)
-	{
-		close(fd);
-		return (printf("Error: Memory allocation failed\n"), NULL);
-	}
 	raw_map[0] = '\0';
 	bytes_read = 1;
 	while (bytes_read > 0)

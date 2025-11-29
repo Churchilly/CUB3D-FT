@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/30 00:37:30 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 01:34:12 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ static void	check_parsed_table(int parsed[6])
 {
 	int	i;
 
-	i = -1;
-	while (i++ < 6)
+	i = 0;
+	while (i < 6)
 	{
 		if (parsed[i] == 0)
 		{
 			printf("Error: Missing map material data\n");
 			exit(1);
 		}
+		i++;
 	}
 }
 

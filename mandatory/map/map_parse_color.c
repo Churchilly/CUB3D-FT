@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 07:07:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/30 00:39:49 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/30 02:45:29 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	validate_format(char *color, int len)
 	i = -1;
 	commas = 0;
 	comma_seen = 1;
-	while (++i < len)
+	while (++i < len && commas != -1)
 	{
 		if (color[i] == ',' && comma_seen == 0)
 		{
@@ -36,9 +36,9 @@ static void	validate_format(char *color, int len)
 			continue ;
 		}
 		else
-			exit(1);
+			commas = -1;
 	}
-	if ((comma_seen == 1 || commas != 2)
+	if ((comma_seen == 1 || commas != 2 || commas == -1)
 		&& printf("Error: invalid color value\n"))
 		exit(1);
 }
