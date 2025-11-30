@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_spellbook.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:44:50 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/30 02:14:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/30 02:57:30 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	cub_spellbook(t_spellbook *spellbook, void *mlx)
 
 	_init_texture(&spellbook->texture_fireball,
 		"_textures/fireball_spellbook.xpm", mlx);
-	_init_texture(&spellbook->texture_lock, "_textures/lock_spellbook.xpm", mlx);
+	_init_texture(&spellbook->texture_lock, "_textures/lock_spellbook.xpm",
+		mlx);
 	_init_texture(&spellbook->texture_unlock, "_textures/unlock_spellbook.xpm",
 		mlx);
 	spellbook->current = SPELL_FIREBALL;

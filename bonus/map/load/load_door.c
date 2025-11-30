@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_door.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/29 23:14:59 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/30 02:57:56 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	new_door(int *x, int *y, int c, t_door_wall *dw)
 	return (0);
 }
 
- static t_door_wall	*create_door_walls(char *raw_map, int count)
+static t_door_wall	*create_door_walls(char *raw_map, int count)
 {
 	t_door_wall	*door_walls;
 	int			x;
