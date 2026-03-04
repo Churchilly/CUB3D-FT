@@ -226,7 +226,7 @@ Player rapidly turning left during combat:
 Without raypack: 800 rays × 60 fps = 48,000 casts/sec
 With raypack: 100 rays × 12 shifts/sec = 1,200 casts/sec
 
-97.5% reduction in raycast calculations! 🚀
+97.5% reduction in raycast calculations!
 ```
 
 ---
@@ -383,7 +383,7 @@ Check FOV: 50 simple angle checks
 Visible objects (behind player + outside FOV culled): ~12 objects
 Check intersection with 800 rays × 12 objects = 9,600 checks
 
-76% reduction in intersection tests! 🚀
+76% reduction in intersection tests!
 ```
 
 **Additional Benefits:**
